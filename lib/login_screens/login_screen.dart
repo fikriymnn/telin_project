@@ -11,9 +11,37 @@ class LoginScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: SizedBox(
           width: screenSize.width,
-          child: Row(
+          height: screenSize.height,
+          child: Stack(
             children: [
-              LogoWidget(),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 800,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/background_login.png"),
+                        fit: BoxFit.cover)),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 800,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Color.fromARGB(0, 255, 255, 255),
+                      Color(0xFFFFFFFF),
+                    ],
+                    stops: [0.2, 1],
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  LogoWidget(),
+                ],
+              ),
             ],
           ),
         ),
