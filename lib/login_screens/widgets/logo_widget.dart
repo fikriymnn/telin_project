@@ -28,13 +28,13 @@ class LogoWidget extends StatelessWidget {
             children: [
               Text('Welcome To',
                   textAlign: TextAlign.start,
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.roboto(
                     fontSize: 33,
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
                   )),
               Text('Spare Management',
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.roboto(
                     fontSize: 43,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
