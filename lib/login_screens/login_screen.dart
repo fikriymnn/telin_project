@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:iconify_flutter/icons/clarity.dart';
+import 'package:telin_project/login_screens/widgets/form_login_widget.dart';
 import 'package:telin_project/login_screens/widgets/logo_widget.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -19,7 +28,8 @@ class LoginScreen extends StatelessWidget {
                 height: 800,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("assets/images/background_login.png"),
+                        image: AssetImage(
+                            "assets/images/background_login_full.png"),
                         fit: BoxFit.cover)),
               ),
               Container(
@@ -29,6 +39,8 @@ class LoginScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.center,
                     end: Alignment.centerRight,
+                    //center: Alignment(0.5, -0.1),
+                    //radius: 1.0,
                     colors: [
                       Color.fromARGB(0, 255, 255, 255),
                       Color(0xFFFFFFFF),
@@ -38,8 +50,10 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  LogoWidget(),
+                  const LogoWidget(),
+                  LoginForm(),
                 ],
               ),
             ],
