@@ -28,11 +28,13 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  api_cache_manager: ^1.0.2
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
   google_fonts: ^4.0.1
   iconify_flutter: ^0.0.5
+  snippet_coder_utils: ^1.0.13
   url_strategy: ^0.2.0
 
 dev_dependencies:
