@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/controllers/login_controller.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -11,9 +13,8 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  TextEditingController userInput = TextEditingController();
-  TextEditingController passInput = TextEditingController();
   TextEditingController captchaInput = TextEditingController();
+  LoginController loginController = Get.put(LoginController());
   String text = "";
   late String _password;
   bool _obscureText = true;
@@ -41,7 +42,7 @@ class _LoginFormState extends State<LoginForm> {
             height: 50,
             margin: EdgeInsets.only(right: 100),
             child: TextFormField(
-              controller: userInput,
+              controller: loginController.userController,
               style: GoogleFonts.roboto(),
               decoration: InputDecoration(
                 prefixIcon: Container(
@@ -73,7 +74,7 @@ class _LoginFormState extends State<LoginForm> {
             margin: EdgeInsets.only(right: 100),
             child: TextFormField(
               obscureText: _obscureText,
-              controller: passInput,
+              controller: loginController.passController,
               style: GoogleFonts.roboto(),
               decoration: InputDecoration(
                 prefixIcon: Container(
@@ -159,7 +160,7 @@ class _LoginFormState extends State<LoginForm> {
           Padding(
             padding: const EdgeInsets.only(right: 100),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () => loginController.loginFunction(),
               child: Text('Login',
                   style: GoogleFonts.roboto(
                     fontSize: 15,
