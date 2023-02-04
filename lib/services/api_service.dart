@@ -13,6 +13,7 @@ class APIService {
 
   static Future<bool> login(LoginRequest model) async {
     Map<String, String> requestHeaders = {
+      "Access-Control-Allow-Origin": "*",
       'Content-Type': 'application/json',
     };
 
@@ -35,6 +36,7 @@ class APIService {
 
   static Future<RegisterResponse> register(RegisterRequest model) async {
     Map<String, String> requestHeaders = {
+      "Access-Control-Allow-Origin": "*",
       'Content-Type': 'application/json',
     };
 
@@ -53,6 +55,7 @@ class APIService {
     var loginDetails = await SharedService.loginDetails();
 
     Map<String, String> requestHeaders = {
+      "Access-Control-Allow-Origin": "*",
       'Content-Type': 'application/json',
       'Authorization': 'Basic ${loginDetails!.data.token}'
     };

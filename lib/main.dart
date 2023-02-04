@@ -8,7 +8,7 @@ Widget _defaultHome = const LoginScreen();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  bool _result = await SharedService.isLoggedIn();
+  // bool _result = await SharedService.isLoggedIn();
   // if (_result) {
   //   _defaultHome = const HomeScreen();
   // }
@@ -23,14 +23,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Telkom Infra - Spare Management (SPAREMAN)',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        routes: {
-          '/': (context) => _defaultHome,
-          '/home': (context) => const HomeScreen(),
-        });
+      debugShowCheckedModeBanner: false,
+      title: 'Telkom Infra - Spare Management (SPAREMAN)',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      routes: {
+        '/': (context) => _defaultHome,
+        '/home': (context) => const HomeScreen(),
+      },
+    );
   }
 }

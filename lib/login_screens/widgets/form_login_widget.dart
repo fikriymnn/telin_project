@@ -172,7 +172,7 @@ class _LoginFormState extends State<LoginForm> {
                   isApiCallProcess = true;
                 });
                 LoginRequest model = LoginRequest(
-                    username: userInput.text, password: passInput.text!);
+                    username: userInput.text, password: passInput.text);
 
                 APIService.login(model).then((response) {
                   if (response) {
