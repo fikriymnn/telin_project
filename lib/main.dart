@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         }),
         primaryColor: Color(0xFFED1D25),
       ),
-      home: const SiteLayout(),
+      home: SiteLayout(),
     );
   }
 }
