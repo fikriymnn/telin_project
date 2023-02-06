@@ -1,7 +1,15 @@
+import 'dart:convert';
+
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+
+import '../../home_screen/home_screen.dart';
+import '../../utils/constant.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -11,12 +19,60 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  TextEditingController userInput = TextEditingController();
-  TextEditingController passInput = TextEditingController();
+  TextEditingController usernameInput = TextEditingController();
+  TextEditingController passwordInput = TextEditingController();
   TextEditingController captchaInput = TextEditingController();
   String text = "";
   late String _password;
   bool _obscureText = true;
+  bool? _isLoading = false;
+
+  // Fungsi Tombol Click Login
+  signIn(String username, String password) async {
+    String url = "http://192.168.43.166:1000/api/user/signin";
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    Map body = {"username": username, "password": password};
+    var jsonResponse;
+    var res = await http.post(Uri.parse(url), body: body);
+    // Need to check the api status
+    if (res.statusCode == 200) {
+      jsonResponse = json.decode(res.body);
+
+      print("Response status: ${res.statusCode}");
+
+      print("Response status: ${res.body}");
+
+      if (jsonResponse != null) {
+        sharedPreferences.setString("token", jsonResponse['token']);
+        UtilsApps.showDialog(context);
+
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.success,
+          animType: AnimType.rightSlide,
+          title: 'Peringatan',
+          desc: 'Berhasil Login',
+          btnOkOnPress: () {
+            UtilsApps.hideDialog(context);
+
+            Navigator.pushNamed(context, HomeScreen.routeName);
+          },
+        ).show();
+      }
+    } else {
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.error,
+        animType: AnimType.rightSlide,
+        title: 'Peringatan',
+        desc: 'Gagal Login',
+        btnOkOnPress: () {
+          UtilsApps.hideDialog(context);
+        },
+      ).show();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,7 +97,14 @@ class _LoginFormState extends State<LoginForm> {
             height: 50,
             margin: EdgeInsets.only(right: 100),
             child: TextFormField(
-              controller: userInput,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Harap masukkan username dengan benar';
+                } else {
+                  return null;
+                }
+              },
+              controller: usernameInput,
               style: GoogleFonts.roboto(),
               decoration: InputDecoration(
                 prefixIcon: Container(
@@ -72,8 +135,15 @@ class _LoginFormState extends State<LoginForm> {
             height: 50,
             margin: EdgeInsets.only(right: 100),
             child: TextFormField(
+              validator: (value) {
+                if (value!.isEmpty || value.length < 10) {
+                  return 'Harap masukkan password dengan benar';
+                } else {
+                  return null;
+                }
+              },
               obscureText: _obscureText,
-              controller: passInput,
+              controller: passwordInput,
               style: GoogleFonts.roboto(),
               decoration: InputDecoration(
                 prefixIcon: Container(
@@ -159,7 +229,9 @@ class _LoginFormState extends State<LoginForm> {
           Padding(
             padding: const EdgeInsets.only(right: 100),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                signIn(usernameInput.text, passwordInput.text);
+              },
               child: Text('Login',
                   style: GoogleFonts.roboto(
                     fontSize: 15,

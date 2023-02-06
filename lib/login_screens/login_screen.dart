@@ -6,6 +6,8 @@ import 'package:telin_project/login_screens/widgets/logo_widget.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
+  static String routeName = "/SignIn";
+
   const LoginScreen({super.key});
 
   @override

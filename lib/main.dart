@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telin_project/login_screens/login_screen.dart';
+import 'package:telin_project/routes.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 void main() {
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const LoginScreen(),
+      routes: routes,
     );
   }
 }
