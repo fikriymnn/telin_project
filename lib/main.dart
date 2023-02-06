@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:telin_project/login_screens/login_screen.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/pages/layout.dart';
+import 'package:telin_project/pages/login_screen.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 void main() {
@@ -13,13 +16,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Telkom Infra - Spare Management (SPAREMAN)',
+      title: 'Spare Management',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
+        textTheme:
+            GoogleFonts.robotoTextTheme(Theme.of(context).textTheme).apply(
+          bodyColor: Colors.black,
+        ),
+        pageTransitionsTheme: PageTransitionsTheme(builders: {
+          TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+        }),
+        primaryColor: Color(0xFFED1D25),
       ),
-      home: const LoginScreen(),
+      home: const SiteLayout(),
     );
   }
 }

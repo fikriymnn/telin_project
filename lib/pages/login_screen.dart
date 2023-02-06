@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/icons/clarity.dart';
-import 'package:telin_project/login_screens/widgets/form_login_widget.dart';
-import 'package:telin_project/login_screens/widgets/logo_widget.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
+
+import '../widgets/form_login_widget.dart';
+import '../widgets/logo_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
