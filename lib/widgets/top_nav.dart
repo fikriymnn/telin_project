@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
@@ -38,7 +40,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                         child: CustomText(
                           text: "DASHBOARD CABLE & NON CABLE SPARE",
                           color: dark,
-                          size: 20,
+                          size: 13,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -46,13 +48,21 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                         child: CustomText(
                           text: "DEPO 104 - PELINDO IV MAKASSAR",
                           color: lightGrey,
-                          size: 20,
+                          size: 13,
                         ),
                       ),
                     ],
                   ),
                   Expanded(
                     child: Container(),
+                  ),
+                  Container(
+                    width: 1,
+                    height: 22,
+                    color: lightGrey,
+                  ),
+                  SizedBox(
+                    width: 24,
                   ),
                   Stack(
                     children: [
@@ -82,18 +92,6 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                       )
                     ],
                   ),
-                  Container(
-                    width: 1,
-                    height: 22,
-                    color: lightGrey,
-                  ),
-                  SizedBox(
-                    width: 24,
-                  ),
-                  CustomText(
-                    text: "Super Admin",
-                    color: lightGrey,
-                  ),
                   SizedBox(
                     width: 16,
                   ),
@@ -107,9 +105,12 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                       margin: EdgeInsets.all(2),
                       child: CircleAvatar(
                         backgroundColor: light,
-                        child: Icon(
-                          Icons.person_outline,
-                          color: dark,
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.person_outline,
+                            color: dark,
+                          ),
                         ),
                       ),
                     ),
@@ -124,6 +125,14 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                   Expanded(
                     child: Container(),
                   ),
+                  Container(
+                    width: 1,
+                    height: 22,
+                    color: lightGrey,
+                  ),
+                  SizedBox(
+                    width: 24,
+                  ),
                   Stack(
                     children: [
                       IconButton(
@@ -152,18 +161,6 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                       )
                     ],
                   ),
-                  Container(
-                    width: 1,
-                    height: 22,
-                    color: lightGrey,
-                  ),
-                  SizedBox(
-                    width: 24,
-                  ),
-                  CustomText(
-                    text: "Super Admin",
-                    color: lightGrey,
-                  ),
                   SizedBox(
                     width: 16,
                   ),
@@ -177,9 +174,12 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                       margin: EdgeInsets.all(2),
                       child: CircleAvatar(
                         backgroundColor: light,
-                        child: Icon(
-                          Icons.person_outline,
-                          color: dark,
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.person_outline,
+                            color: dark,
+                          ),
                         ),
                       ),
                     ),
