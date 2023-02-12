@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/routing/routes.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -159,7 +161,9 @@ class _LoginFormState extends State<LoginForm> {
           Padding(
             padding: const EdgeInsets.only(right: 100),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.offAllNamed(RootRoute);
+              },
               child: Text('Login',
                   style: GoogleFonts.roboto(
                     fontSize: 15,

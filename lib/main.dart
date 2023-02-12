@@ -3,11 +3,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/controllers/navigation_controllers.dart';
 import 'package:telin_project/layout.dart';
+import 'package:telin_project/pages/404/error_page.dart';
+import 'package:telin_project/pages/auth/login_screen.dart';
+import 'package:telin_project/pages/home/home.dart';
+import 'package:telin_project/routing/routes.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:telin_project/controllers/menu_controllers.dart';
 
 void main() {
-  setPathUrlStrategy();
   Get.put(MenuControllers());
   Get.put(NavigationControllers());
   runApp(const MyApp());
@@ -20,6 +23,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: AuthenticationPageRoute,
+      unknownRoute: GetPage(
+          name: "/notfound",
+          page: () => const PageNotFound(),
+          transition: Transition.fadeIn),
+      getPages: [
+        GetPage(name: RootRoute, page: () => SiteLayout()),
+        GetPage(name: AuthenticationPageRoute, page: () => const LoginScreen()),
+      ],
       debugShowCheckedModeBanner: false,
       title: 'Spare Management',
       theme: ThemeData(
@@ -34,7 +46,7 @@ class MyApp extends StatelessWidget {
         }),
         primaryColor: const Color(0xFFED1D25),
       ),
-      home: SiteLayout(),
+      //home: SiteLayout(),
     );
   }
 }

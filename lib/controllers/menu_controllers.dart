@@ -6,7 +6,7 @@ import 'package:telin_project/routing/routes.dart';
 
 class MenuControllers extends GetxController {
   static MenuControllers instance = Get.find();
-  var activeItem = HomePageRoute.obs;
+  var activeItem = HomePageDisplayName.obs;
   var hoverItem = "".obs;
 
   changeActiveitemTo(String itemName) {
@@ -23,19 +23,19 @@ class MenuControllers extends GetxController {
 
   Widget returnIconFor(String itemName) {
     switch (itemName) {
-      case HomePageRoute:
+      case HomePageDisplayName:
         return _customIcon(FontAwesomeIcons.house, itemName);
-      case InventoryPageRoute:
+      case InventoryDisplayName:
         return _customIcon(Icons.task_outlined, itemName);
-      case MasterDataPageRoute:
+      case MasterDataDisplayName:
         return _customIcon(FontAwesomeIcons.coins, itemName);
-      case OrderPageRoute:
+      case OrderDisplayName:
         return _customIcon(FontAwesomeIcons.tag, itemName);
-      case ReportPageRoute:
+      case ReportDisplayName:
         return _customIcon(FontAwesomeIcons.listCheck, itemName);
-      case SettingsPageRoute:
+      case SettingsDisplayName:
         return _customIcon(FontAwesomeIcons.gear, itemName);
-      case AuthenticationPageRoute:
+      case AuthenticationDisplayName:
         return _customIcon(Icons.exit_to_app, itemName);
       default:
         return _customIcon(Icons.exit_to_app, itemName);
