@@ -6,15 +6,22 @@ import 'package:telin_project/widgets/large_screen.dart';
 import 'package:telin_project/widgets/small_screen.dart';
 import 'package:telin_project/widgets/top_nav.dart';
 
+import 'widgets/side_menu.dart';
+
 class SiteLayout extends StatelessWidget {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+
+  SiteLayout({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: topNavigationBar(context, scaffoldKey),
-      drawer: Drawer(),
-      body: ResponsiveWidget(
+      drawer: const Drawer(
+        child: SideMenu(),
+      ),
+      body: const ResponsiveWidget(
         largeScreen: LargeScreen(),
         smallScreen: SmallScreen(),
       ),

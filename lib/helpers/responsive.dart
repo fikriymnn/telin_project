@@ -27,8 +27,8 @@ class ResponsiveWidget extends StatelessWidget {
       MediaQuery.of(context).size.width >= largeScreenSize;
 
   static bool isCustomScreen(BuildContext context) =>
-      MediaQuery.of(context).size.width >= mediumScreenSize &&
-      MediaQuery.of(context).size.width <= customScreenSize;
+      MediaQuery.of(context).size.width <= customScreenSize &&
+      MediaQuery.of(context).size.width >= mediumScreenSize;
 
   @override
   Widget build(BuildContext context) {
