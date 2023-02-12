@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/icons/clarity.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 
-import '../widgets/form_login_widget.dart';
-import '../widgets/logo_widget.dart';
+import '../../widgets/form_login_widget.dart';
+import '../../widgets/logo_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const LogoWidget(),
+                  LogoWidget(),
                   LoginForm(),
                 ],
               ),

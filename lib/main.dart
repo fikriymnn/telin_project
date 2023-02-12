@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/pages/layout.dart';
-import 'package:telin_project/pages/login_screen.dart';
+import 'package:telin_project/controllers/navigation_controllers.dart';
+import 'package:telin_project/layout.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'package:telin_project/controllers/menu_controllers.dart';
 
 void main() {
   setPathUrlStrategy();
+  Get.put(MenuControllers());
+  Get.put(NavigationControllers());
   runApp(const MyApp());
 }
 
@@ -25,11 +28,11 @@ class MyApp extends StatelessWidget {
             GoogleFonts.robotoTextTheme(Theme.of(context).textTheme).apply(
           bodyColor: Colors.black,
         ),
-        pageTransitionsTheme: PageTransitionsTheme(builders: {
+        pageTransitionsTheme: const PageTransitionsTheme(builders: {
           TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
           TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
         }),
-        primaryColor: Color(0xFFED1D25),
+        primaryColor: const Color(0xFFED1D25),
       ),
       home: SiteLayout(),
     );
