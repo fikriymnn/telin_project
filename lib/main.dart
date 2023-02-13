@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/pages/depo.dart';
 import 'package:telin_project/pages/layout.dart';
 import 'package:telin_project/pages/login_screen.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         }),
         primaryColor: Color(0xFFED1D25),
       ),
-      home: SiteLayout(),
+      home: Depo(),
     );
   }
 }
