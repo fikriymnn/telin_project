@@ -16,6 +16,7 @@ class Depo extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return const Scaffold(
+      
       body: ResponsiveWidget(
         largeScreen: DepoLarge(),
         mediumScreen: DepoMedium() ,
