@@ -19,9 +19,9 @@ class DepoMedium extends StatelessWidget {
               children: [
                 Container(
                   alignment: Alignment.centerLeft,
-                  width: 359,
-                  height: 110,
-                  margin: const EdgeInsets.only(top: 20, left: 50),
+                 width: 239.3,
+                  height: 73.3,
+                  margin: const EdgeInsets.only( left: 30),
                   child: Image.asset(
                     'assets/images/logo_telin_login.png',
                     fit: BoxFit.fill,
@@ -29,11 +29,11 @@ class DepoMedium extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 200),
+                    padding: const EdgeInsets.only(left: 100),
                     child: Text('Site Management Dasboard',
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
-                          fontSize: 30,
+                          fontSize: 26.6,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         )),
@@ -64,13 +64,13 @@ class DepoMedium extends StatelessWidget {
                         child: Text('Choose Your Site !',
                             textAlign: TextAlign.start,
                             style: GoogleFonts.roboto(
-                              fontSize: 60,
+                              fontSize: 40,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             )),
                       ),
                       SizedBox(
-                        height: 100,
+                        height: 66.6,
                       ),
                       Container(
                         width: screenSize.width,
@@ -89,7 +89,7 @@ class DepoMedium extends StatelessWidget {
                               },
                             ),
                             SizedBox(
-                              height: 100,
+                              height: 66.6,
                             ),
                             DepoWidget(
                               screenSize: screenSize,

@@ -19,8 +19,8 @@ class DepoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 494,
-      height: 276,
+      width: 329.3,
+      height: 184,
       decoration: BoxDecoration(
           color: Color(0xffF0F0F0),
           borderRadius: BorderRadius.circular(30),
@@ -31,12 +31,12 @@ class DepoWidget extends StatelessWidget {
                 offset: Offset(0, 4))
           ]),
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(6.6),
         child: Column(
           children: [
             Container(
               width: screenSize.width,
-              height: 187,
+              height: 124.6,
               decoration: BoxDecoration(
                   color: light,
                   borderRadius: BorderRadius.only(
@@ -50,7 +50,7 @@ class DepoWidget extends StatelessWidget {
                     Text(site,
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
-                          fontSize: 30,
+                          fontSize: 20,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         )),
@@ -60,7 +60,7 @@ class DepoWidget extends StatelessWidget {
                     Text(depo,
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
-                          fontSize: 20,
+                          fontSize: 13.3,
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                         )),
@@ -69,11 +69,11 @@ class DepoWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 3.3,
             ),
             Container(
               width: screenSize.width,
-              height: 63,
+              height: 42,
               decoration: BoxDecoration(
                   color: light,
                   borderRadius: BorderRadius.only(
@@ -87,8 +87,8 @@ class DepoWidget extends StatelessWidget {
                       route();
                     },
                     child: Container(
-                      height: 46,
-                      width: 139,
+                      height: 30.6,
+                      width: 92.6,
                       decoration: BoxDecoration(
                         color: Color(0xFFEC1D26),
                         borderRadius: BorderRadius.circular(10),
@@ -97,7 +97,7 @@ class DepoWidget extends StatelessWidget {
                         child: Text('View Dasboard',
                             textAlign: TextAlign.start,
                             style: GoogleFonts.rubik(
-                              fontSize: 15,
+                              fontSize: 10,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             )),

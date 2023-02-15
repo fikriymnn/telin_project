@@ -16,12 +16,13 @@ class DepoSmall extends StatelessWidget {
           Container(
             width: screenSize.width,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   alignment: Alignment.centerLeft,
                   width: 159,
                   height: 70,
-                  margin: const EdgeInsets.only(top: 20, left: 50),
+                  margin: const EdgeInsets.only( left: 5),
                   child: Image.asset(
                     'assets/images/logo_telin_login.png',
                     fit: BoxFit.fill,
@@ -33,7 +34,7 @@ class DepoSmall extends StatelessWidget {
                     child: Text('Site Management Dasboard',
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
-                          fontSize: 15,
+                          fontSize: 20,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         )),
@@ -64,13 +65,13 @@ class DepoSmall extends StatelessWidget {
                         child: Text('Choose Your Site !',
                             textAlign: TextAlign.start,
                             style: GoogleFonts.roboto(
-                              fontSize: 60,
+                              fontSize: 40,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             )),
                       ),
                       SizedBox(
-                        height: 100,
+                        height: 66.6,
                       ),
                       Container(
                         width: screenSize.width,
@@ -89,7 +90,7 @@ class DepoSmall extends StatelessWidget {
                               },
                             ),
                             SizedBox(
-                              height: 100,
+                              height: 66.6,
                             ),
                             DepoWidget(
                               screenSize: screenSize,
