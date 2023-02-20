@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
@@ -10,7 +12,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
           ? Row(
               children: [
                 Container(
-                  padding: EdgeInsets.only(left: 14),
+                  padding: const EdgeInsets.only(left: 14),
                   width: 120,
                   child: Image.asset("assets/images/logo_telin_top_nav.png"),
                 )
@@ -20,15 +22,15 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
               onPressed: () {
                 key.currentState?.openDrawer();
               },
-              icon: Icon(Icons.menu),
+              icon: const Icon(Icons.menu),
               color: active,
             ),
       leadingWidth: 120,
-      backgroundColor: Colors.white,
+      backgroundColor: light,
       elevation: 0,
       title: !ResponsiveWidget.isSmallScreen(context)
           ? Padding(
-              padding: EdgeInsets.only(left: 50),
+              padding: const EdgeInsets.only(left: 50),
               child: Row(
                 children: [
                   Column(
@@ -38,7 +40,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                         child: CustomText(
                           text: "DASHBOARD CABLE & NON CABLE SPARE",
                           color: dark,
-                          size: 20,
+                          size: 13,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -46,13 +48,21 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                         child: CustomText(
                           text: "DEPO 104 - PELINDO IV MAKASSAR",
                           color: lightGrey,
-                          size: 20,
+                          size: 13,
                         ),
                       ),
                     ],
                   ),
                   Expanded(
                     child: Container(),
+                  ),
+                  Container(
+                    width: 1,
+                    height: 22,
+                    color: lightGrey,
+                  ),
+                  const SizedBox(
+                    width: 24,
                   ),
                   Stack(
                     children: [
@@ -69,7 +79,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                         child: Container(
                           width: 12,
                           height: 12,
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                             color: active,
                             borderRadius: BorderRadius.circular(30),
@@ -82,19 +92,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                       )
                     ],
                   ),
-                  Container(
-                    width: 1,
-                    height: 22,
-                    color: lightGrey,
-                  ),
-                  SizedBox(
-                    width: 24,
-                  ),
-                  CustomText(
-                    text: "Super Admin",
-                    color: lightGrey,
-                  ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                   Container(
@@ -103,13 +101,16 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Container(
-                      padding: EdgeInsets.all(2),
-                      margin: EdgeInsets.all(2),
+                      padding: const EdgeInsets.all(2),
+                      margin: const EdgeInsets.all(2),
                       child: CircleAvatar(
                         backgroundColor: light,
-                        child: Icon(
-                          Icons.person_outline,
-                          color: dark,
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.person_outline,
+                            color: dark,
+                          ),
                         ),
                       ),
                     ),
@@ -118,11 +119,19 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
               ),
             )
           : Padding(
-              padding: EdgeInsets.only(left: 50),
+              padding: const EdgeInsets.only(left: 50),
               child: Row(
                 children: [
                   Expanded(
                     child: Container(),
+                  ),
+                  Container(
+                    width: 1,
+                    height: 22,
+                    color: lightGrey,
+                  ),
+                  const SizedBox(
+                    width: 24,
                   ),
                   Stack(
                     children: [
@@ -139,7 +148,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                         child: Container(
                           width: 12,
                           height: 12,
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                             color: active,
                             borderRadius: BorderRadius.circular(30),
@@ -152,19 +161,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                       )
                     ],
                   ),
-                  Container(
-                    width: 1,
-                    height: 22,
-                    color: lightGrey,
-                  ),
-                  SizedBox(
-                    width: 24,
-                  ),
-                  CustomText(
-                    text: "Super Admin",
-                    color: lightGrey,
-                  ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                   Container(
@@ -173,13 +170,16 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Container(
-                      padding: EdgeInsets.all(2),
-                      margin: EdgeInsets.all(2),
+                      padding: const EdgeInsets.all(2),
+                      margin: const EdgeInsets.all(2),
                       child: CircleAvatar(
                         backgroundColor: light,
-                        child: Icon(
-                          Icons.person_outline,
-                          color: dark,
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.person_outline,
+                            color: dark,
+                          ),
                         ),
                       ),
                     ),
@@ -187,7 +187,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                 ],
               ),
             ),
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: Colors.transparent,
       ),
     );

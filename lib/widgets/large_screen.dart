@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:telin_project/helpers/local_navigator.dart';
+import 'package:telin_project/widgets/side_menu.dart';
 
 class LargeScreen extends StatelessWidget {
   const LargeScreen({super.key});
@@ -11,15 +13,11 @@ class LargeScreen extends StatelessWidget {
       children: [
         Expanded(
           flex: 1,
-          child: Container(
-            color: Colors.red,
-          ),
+          child: SideMenu(),
         ),
         Expanded(
-          flex: 6,
-          child: Container(
-            color: Colors.blue,
-          ),
+          flex: 5,
+          child: localNavigator(),
         )
       ],
     );
