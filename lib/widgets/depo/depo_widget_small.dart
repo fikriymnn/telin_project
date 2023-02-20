@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/pages/layout.dart';
+import 'package:telin_project/layout.dart';
+
 import 'package:telin_project/widgets/depo/depo_widget.dart';
 
 class DepoSmall extends StatelessWidget {

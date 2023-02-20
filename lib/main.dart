@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           transition: Transition.fadeIn),
       getPages: [
         GetPage(name: RootRoute, page: () => SiteLayout()),
-        GetPage(name: AuthenticationPageRoute, page: () => const LoginScreen()),
+        GetPage(name: AuthenticationPageRoute, page: () =>  SiteLayout()),
       ],
       debugShowCheckedModeBanner: false,
       title: 'Spare Management',

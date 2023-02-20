@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
-import 'package:telin_project/pages/layout.dart';
+
 import 'package:telin_project/widgets/depo/depo_widget_large.dart';
 
 import '../widgets/depo/depo_widget_medium.dart';
