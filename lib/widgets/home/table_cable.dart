@@ -58,6 +58,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                   child: DataTable2(
                       columnSpacing: 6,
                       horizontalMargin: 6,
+                       dataRowHeight: 30,
                       minWidth: 3000,
                       columns: [
                         DataColumn2(
@@ -176,13 +177,13 @@ class _TableCableHomeState extends State<TableCableHome> {
                           fixedWidth: 160.6,
                         ),
                         DataColumn2(
-                          label: Text('ROtTO',
+                          label: Text('ROTO',
                               style: GoogleFonts.montserrat(
                                 fontSize: 8.6,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 164.6,
+                          fixedWidth: 90,
                         ),
                       ],
                       rows: List<DataRow>.generate(

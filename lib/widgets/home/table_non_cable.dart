@@ -4,11 +4,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TableCableTurnOverHome extends StatefulWidget {
-  const TableCableTurnOverHome({super.key});
+class TableNonCableHome extends StatefulWidget {
+  const TableNonCableHome({super.key});
 
   @override
-  State<TableCableTurnOverHome> createState() => _TableCableTurnOverHomeState();
+  State<TableNonCableHome> createState() => _TableNonCableHomeState();
 }
  List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItems = [
@@ -30,7 +30,7 @@ class TableCableTurnOverHome extends StatefulWidget {
     return menuItemsArmoring;
   }
 
-class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
+class _TableNonCableHomeState extends State<TableNonCableHome> {
   @override
   Widget build(BuildContext context) {
      String selectedValueSystem = "SYSTEM";
@@ -41,7 +41,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                 padding: const EdgeInsets.only(left: 19.3),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  child: Text("CABLE TURN OVER",
+                  child: Text("NON-CABLE",
                       style: GoogleFonts.montserrat(
                         fontSize: 8.6,
                         fontWeight: FontWeight.bold,
@@ -57,9 +57,10 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                   padding: const EdgeInsets.only(left: 19.3,right: 126),
                   child: DataTable2(
                       columnSpacing: 6,
-                      
-                       dataRowHeight: 30,
+                     
                       minWidth: 3000,
+                      
+                      dataRowHeight: 30,
                       columns: [
                         DataColumn2(
                           label: Text('NO',
@@ -71,7 +72,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                           fixedWidth: 60,
                         ),
                         DataColumn2(
-                          label: Text('LABEL',
+                          label: Text('SYSTEM',
                               style: GoogleFonts.montserrat(
                                 fontSize: 8.6,
                                 fontWeight: FontWeight.bold,
@@ -80,24 +81,16 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                           fixedWidth: 72,
                         ),
                         DataColumn2(
-                          label: DropdownButton(
-                            
-                            style: GoogleFonts.montserrat(
+                          label: Text('ITEM NAME',
+                              style: GoogleFonts.montserrat(
                                 fontSize: 8.6,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
-                              ),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  selectedValueSystem = newValue!;
-                                });
-                              },
-                              value: selectedValueSystem,
-                              items: dropdownItemsSystem),
-                          fixedWidth: 120,
+                              )),
+                          fixedWidth: 200,
                         ),
                         DataColumn2(
-                          label: Text('CABLE TYPE',
+                          label: Text('PART NUMBER',
                               style: GoogleFonts.montserrat(
                                 fontSize: 8.6,
                                 fontWeight: FontWeight.bold,
@@ -106,7 +99,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                           fixedWidth: 120,
                         ),
                         DataColumn2(
-                          label: Text('MANUFACTURER',
+                          label: Text('SERIAL NUMBER',
                               style: GoogleFonts.montserrat(
                                 fontSize: 8.6,
                                 fontWeight: FontWeight.bold,
@@ -115,24 +108,16 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                           fixedWidth: 144.6,
                         ),
                         DataColumn2(
-                          label: DropdownButton(
-                            
-                            style: GoogleFonts.montserrat(
+                          label: Text('LOCATION',
+                              style: GoogleFonts.montserrat(
                                 fontSize: 8.6,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
-                              ),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  selectedValueArmoring = newValue!;
-                                });
-                              },
-                              value: selectedValueArmoring,
-                              items: dropdownItemsArmoring),
+                              )),
                           fixedWidth: 148,
                         ),
                         DataColumn2(
-                          label: Text('LENGTH (METER)',
+                          label: Text('WEIGHT (Kg)',
                               style: GoogleFonts.montserrat(
                                 fontSize: 8.6,
                                 fontWeight: FontWeight.bold,
@@ -141,7 +126,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                           fixedWidth: 141.3,
                         ),
                         DataColumn2(
-                          label: Text('INNER',
+                          label: Text('QTY',
                               style: GoogleFonts.montserrat(
                                 fontSize: 8.6,
                                 fontWeight: FontWeight.bold,
@@ -150,22 +135,13 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                           fixedWidth: 92.6,
                         ),
                         DataColumn2(
-                          label: Text('OUTER',
+                          label: Text('UNIT',
                               style: GoogleFonts.montserrat(
                                 fontSize: 8.6,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
                           fixedWidth: 92.6,
-                        ),
-                        DataColumn2(
-                          label: Text('TANK LEVER (FR BOTTOM)',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              )),
-                          fixedWidth: 158.6,
                         ),
                         DataColumn2(
                           label: Text('REMARK',
@@ -174,20 +150,12 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 160.6,
+                          fixedWidth: 158.6,
                         ),
-                        DataColumn2(
-                          label: Text('ROTO',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              )),
-                          fixedWidth: 90,
-                        ),
+                        
                       ],
                       rows: List<DataRow>.generate(
-                          10,
+                          4,
                           (index) => DataRow(cells: [
                                 DataCell(Text('1',
                                     style: GoogleFonts.montserrat(
@@ -195,72 +163,62 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ))),
-                                DataCell(Text('18303',
+                                      DataCell(Text('',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 8.6,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ))),
-                                DataCell(Text('SEA-US',
+                                DataCell(Text('UJ COMMON ADHESV KIT',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 8.6,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ))),
-                                DataCell(Text('OCC-SC500',
+                                DataCell(Text('KIT 15010',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 8.6,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ))),
-                                DataCell(Text('ALCATEL',
+                                DataCell(Text('4700051391',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 8.6,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ))),
-                                DataCell(Text('LWP',
+                                DataCell(Text('LEMARI PENDINGIN',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 8.6,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ))),
-                                DataCell(Text('7,730',
+                                DataCell(Text('1,00',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 8.6,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ))),
-                                DataCell(Text('TANK 2',
+                                DataCell(Text('1',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 8.6,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ))),
-                                DataCell(Text('TANK 2',
+                                DataCell(Text('1 unit',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 8.6,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ))),
-                                DataCell(Text('10',
+                               DataCell(Text('SABANG - LHOK EXSESS DA',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 8.6,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ))),
-                                DataCell(Text('SABANG - LHOK EXSESS DA',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 8.6,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ))),
-                                DataCell(Text('7,204',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 8.6,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ))),
+                              
+                               
                               ]))),
                 ),
               ),
