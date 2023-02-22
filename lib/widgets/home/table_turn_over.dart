@@ -80,20 +80,22 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                           fixedWidth: 72,
                         ),
                         DataColumn2(
-                          label: DropdownButton(
-                            
-                            style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  selectedValueSystem = newValue!;
-                                });
-                              },
-                              value: selectedValueSystem,
-                              items: dropdownItemsSystem),
+                          label: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 8.6,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    selectedValueSystem = newValue!;
+                                  });
+                                },
+                                value: selectedValueSystem,
+                                items: dropdownItemsSystem),
+                          ),
                           fixedWidth: 120,
                         ),
                         DataColumn2(
@@ -115,20 +117,22 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                           fixedWidth: 144.6,
                         ),
                         DataColumn2(
-                          label: DropdownButton(
-                            
-                            style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  selectedValueArmoring = newValue!;
-                                });
-                              },
-                              value: selectedValueArmoring,
-                              items: dropdownItemsArmoring),
+                          label: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 8.6,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    selectedValueArmoring = newValue!;
+                                  });
+                                },
+                                value: selectedValueArmoring,
+                                items: dropdownItemsArmoring),
+                          ),
                           fixedWidth: 148,
                         ),
                         DataColumn2(
@@ -264,35 +268,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                               ]))),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right:80 ),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 77.3,
-                          height: 19.3,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(33.3),
-                              color: Color(0xFFED1D25)),
-                          child: Center(
-                            child: Text("Edit",
-                                style: GoogleFonts.roboto(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                )),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
+              
       ],
     );
   }

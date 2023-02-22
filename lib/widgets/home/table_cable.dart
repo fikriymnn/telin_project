@@ -80,20 +80,22 @@ class _TableCableHomeState extends State<TableCableHome> {
                           fixedWidth: 72,
                         ),
                         DataColumn2(
-                          label: DropdownButton(
-                            
-                            style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  selectedValueSystem = newValue!;
-                                });
-                              },
-                              value: selectedValueSystem,
-                              items: dropdownItemsSystem),
+                          label: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 8.6,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    selectedValueSystem = newValue!;
+                                  });
+                                },
+                                value: selectedValueSystem,
+                                items: dropdownItemsSystem),
+                          ),
                           fixedWidth: 120,
                         ),
                         DataColumn2(
@@ -115,20 +117,22 @@ class _TableCableHomeState extends State<TableCableHome> {
                           fixedWidth: 144.6,
                         ),
                         DataColumn2(
-                          label: DropdownButton(
-                            
-                            style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  selectedValueArmoring = newValue!;
-                                });
-                              },
-                              value: selectedValueArmoring,
-                              items: dropdownItemsArmoring),
+                          label: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 8.6,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    selectedValueArmoring = newValue!;
+                                  });
+                                },
+                                value: selectedValueArmoring,
+                                items: dropdownItemsArmoring),
+                          ),
                           fixedWidth: 148,
                         ),
                         DataColumn2(

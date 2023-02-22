@@ -64,6 +64,7 @@ class TableHome extends StatelessWidget {
                                   color: Color(0xFF9D9D9D),
                                 ),
                                 decoration: InputDecoration(
+                                  border: InputBorder.none,
                                     hintStyle: GoogleFonts.roboto(
                                       fontSize: 11.3,
                                       fontWeight: FontWeight.w400,

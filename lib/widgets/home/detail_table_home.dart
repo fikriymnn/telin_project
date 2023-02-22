@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/widgets/home/table_cable.dart';
@@ -14,10 +12,8 @@ class DetailTableHome extends StatefulWidget {
 }
 
 class _DetailTableHomeState extends State<DetailTableHome> {
- 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Padding(
@@ -25,7 +21,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
         child: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
-            height: 1500,
+            
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
             child: Padding(
@@ -130,13 +126,61 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       ],
                     ),
                   ),
-                  Flexible(child: TableCableHome()),
-                          SizedBox(height: 15,),
-                          Expanded(child: TableNonCableHome()),
-                        
-                           Flexible(child: TableCableTurnOverHome())
-                  
-                 
+                  Container(
+                      height: 400,
+                      child: Column(
+                        children: [
+                          Flexible(child: TableCableHome()),
+                        ],
+                      )),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    height: 250,
+                    child: Column(
+                      children: [
+                        Expanded(child: TableNonCableHome()),
+                      ],
+                    ),
+                  ),
+                  Container(
+                      height: 400,
+                      child: Column(
+                        children: [
+                          Flexible(child: TableCableTurnOverHome()),
+                        ],
+                      )),
+                      SizedBox(
+                    height: 22,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 21.3),
+                          child: InkWell(
+                            onTap: (){},
+                            child: Container(
+                              width: 88.6,
+                              height: 28.6,
+                              
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.6),color: Color(0xff75B212)),
+                              child: Center(
+                                child: Text("SUBMIT",style: GoogleFonts.roboto(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                )),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

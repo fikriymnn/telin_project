@@ -10,21 +10,33 @@ class HomeViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 116, right: 116),
-            child: Container(
+    return SingleChildScrollView(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: [
+            Container(
               width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/background_home.png'),fit: BoxFit.fill)),
               height: 327.6,
-              child: ChartDataCuy(),
+              child: Padding(
+               padding: const EdgeInsets.only(left: 146, right: 146),
+                child: ChartDataCuy(),
+              ),
             ),
-          ),
-           Expanded(child: TableHome()),
-          
-        ],
+            SizedBox(height: 50,),
+             Container(
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.only(bottom: 20),
+              height: 700,
+              child: Column(
+                children: [
+                  Expanded(child: TableHome()),
+                ],
+              )),
+            
+          ],
+        ),
       ),
     );
   }
