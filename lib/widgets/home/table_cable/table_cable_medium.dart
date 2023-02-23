@@ -4,11 +4,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TableCableHome extends StatefulWidget {
-  const TableCableHome({super.key});
+class TableCableHomeMedium extends StatefulWidget {
+  const TableCableHomeMedium({super.key});
 
   @override
-  State<TableCableHome> createState() => _TableCableHomeState();
+  State<TableCableHomeMedium> createState() => _TableCableHomeMediumState();
 }
  List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItems = [
@@ -30,7 +30,7 @@ class TableCableHome extends StatefulWidget {
     return menuItemsArmoring;
   }
 
-class _TableCableHomeState extends State<TableCableHome> {
+class _TableCableHomeMediumState extends State<TableCableHomeMedium> {
   @override
   Widget build(BuildContext context) {
      String selectedValueSystem = "SYSTEM";
@@ -269,7 +269,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right:80 ),
+                padding: const EdgeInsets.only(right:100 ),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Row(

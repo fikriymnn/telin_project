@@ -2,12 +2,17 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter_new/flutter.dart' as charts;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/widgets/home/detail_table_home.dart';
 
-class ChartDataCuy extends StatefulWidget {
-  const ChartDataCuy({super.key});
+class ChartData extends StatefulWidget {
+  const ChartData({super.key});
 
   @override
-  State<ChartDataCuy> createState() => _ChartDataCuyState();
+  State<ChartData> createState() => _ChartDataState();
+}
+
+class onklik{
+  
 }
 
 class Sales {
@@ -17,7 +22,7 @@ class Sales {
   Sales(this.year, this.sales, this.onClick);
 }
 
-class _ChartDataCuyState extends State<ChartDataCuy> {
+class _ChartDataState extends State<ChartData> {
   late List<Sales> _sa;
   late List<Sales> _da;
   late List<Sales> _sal;
@@ -117,11 +122,15 @@ class _ChartDataCuyState extends State<ChartDataCuy> {
       _lwp.add(Sales("URC-1", rnd.nextInt(100000), () {}));
       _das.add(Sales("URC-1", rnd.nextInt(100000), () {}));
     }
+
+    
     _chartdata.add(
       charts.Series(
           id: 'Sales',
-          colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+          
+          colorFn: (datum, index) =>charts.Color(r: 48, g: 120, b: 240) ,
           data: _sa,
+         
           domainFn: (Sales sales, __) => sales.year,
           measureFn: (Sales sales, __) => sales.sales,
           displayName: 'Sales'),
@@ -129,7 +138,7 @@ class _ChartDataCuyState extends State<ChartDataCuy> {
     _chartdata.add(
       charts.Series(
           id: 'Sales',
-          colorFn: (_, __) => charts.MaterialPalette.lime.shadeDefault,
+          colorFn: (_, __) => charts.Color(r: 136, g: 108, b: 8),
           data: _da,
           domainFn: (Sales sales, __) => sales.year,
           measureFn: (Sales sales, __) => sales.sales,
@@ -138,7 +147,7 @@ class _ChartDataCuyState extends State<ChartDataCuy> {
     _chartdata.add(
       charts.Series(
           id: 'Sales',
-          colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+          colorFn: (_, __) => charts.Color(r: 202, g: 12, b: 12),
           data: _sal,
           domainFn: (Sales sales, __) => sales.year,
           measureFn: (Sales sales, __) => sales.sales,
@@ -147,7 +156,7 @@ class _ChartDataCuyState extends State<ChartDataCuy> {
     _chartdata.add(
       charts.Series(
           id: 'Sales',
-          colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+          colorFn: (_, __) => charts.Color(r: 19, g: 211, b: 61),
           data: _lwp,
           domainFn: (Sales sales, __) => sales.year,
           measureFn: (Sales sales, __) => sales.sales,
@@ -156,7 +165,7 @@ class _ChartDataCuyState extends State<ChartDataCuy> {
     _chartdata.add(
       charts.Series(
           id: 'Sales',
-          colorFn: (_, __) => charts.MaterialPalette.deepOrange.shadeDefault,
+          colorFn: (_, __) => charts.Color(r: 233, g: 68, b: 16),
           data: _das,
           domainFn: (Sales sales, __) => sales.year,
           measureFn: (Sales sales, __) => sales.sales,

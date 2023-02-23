@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/widgets/home/table_cable.dart';
+import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/widgets/home/table_cable/table_cable.dart';
 import 'package:telin_project/widgets/home/table_non_cable.dart';
 import 'package:telin_project/widgets/home/table_turn_over.dart';
 
@@ -86,7 +87,8 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       ),
                     ),
                   ),
-                  Container(
+                  ResponsiveWidget(
+                    largeScreen: Container(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -100,10 +102,27 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       ],
                     ),
                   ),
+                  mediumScreen: Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 8.86,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.black,
+                            ))
+                      ],
+                    ),
+                  ),
+                  ),
+                  
                   SizedBox(
                     height: 22,
                   ),
-                  Container(
+                  ResponsiveWidget(
+                    largeScreen: Container(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -126,6 +145,31 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       ],
                     ),
                   ),
+                  mediumScreen: Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("LCT NAPOLEON",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 8.86,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.black,
+                            )),
+                        SizedBox(
+                          width: 284,
+                        ),
+                        Text("BANDUNG - JAKARTA",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 8.86,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.black,
+                            ))
+                      ],
+                    ),
+                  ),
+                    ),
+                  
                   Container(
                       height: 400,
                       child: Column(
@@ -146,6 +190,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                   ),
                   Container(
                       height: 400,
+                     
                       child: Column(
                         children: [
                           Flexible(child: TableCableTurnOverHome()),
