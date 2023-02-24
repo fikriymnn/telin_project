@@ -14,7 +14,19 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     return Container(
-      color: light,
+     
+      decoration: BoxDecoration(
+        color: light,
+        
+        boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.25),
+        spreadRadius: 0,
+        blurRadius: 12,
+        offset: Offset(4, 12), // changes position of shadow
+      ),
+    ],),
+      
       child: ListView(
         children: [
           if (ResponsiveWidget.isSmallScreen(context))

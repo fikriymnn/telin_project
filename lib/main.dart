@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/pages/depo.dart';
+
+
 import 'package:telin_project/controllers/navigation_controllers.dart';
 import 'package:telin_project/layout.dart';
 import 'package:telin_project/pages/404/error_page.dart';
 import 'package:telin_project/pages/auth/login_screen.dart';
 import 'package:telin_project/pages/home/home.dart';
 import 'package:telin_project/routing/routes.dart';
+
 import 'package:url_strategy/url_strategy.dart';
 import 'package:telin_project/controllers/menu_controllers.dart';
 
@@ -30,7 +34,7 @@ class MyApp extends StatelessWidget {
           transition: Transition.fadeIn),
       getPages: [
         GetPage(name: RootRoute, page: () => SiteLayout()),
-        GetPage(name: AuthenticationPageRoute, page: () => const LoginScreen()),
+        GetPage(name: AuthenticationPageRoute, page: () =>  SiteLayout()),
       ],
       debugShowCheckedModeBanner: false,
       title: 'Spare Management',
@@ -46,7 +50,8 @@ class MyApp extends StatelessWidget {
         }),
         primaryColor: const Color(0xFFED1D25),
       ),
-      //home: SiteLayout(),
+
+      home: Depo(),
     );
   }
 }
