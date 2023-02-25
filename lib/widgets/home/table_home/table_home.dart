@@ -58,6 +58,7 @@ class TableHome extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 10),
                               child: TextField(
+                                
                                 style: GoogleFonts.roboto(
                                   fontSize: 11.3,
                                   fontWeight: FontWeight.w400,

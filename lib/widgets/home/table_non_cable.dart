@@ -29,12 +29,13 @@ class TableNonCableHome extends StatefulWidget {
     ];
     return menuItemsArmoring;
   }
+   String selectedValueSystem = "SYSTEM";
+     String selectedValueArmoring = "ARMORING TYPE";
 
 class _TableNonCableHomeState extends State<TableNonCableHome> {
   @override
   Widget build(BuildContext context) {
-     String selectedValueSystem = "SYSTEM";
-     String selectedValueArmoring = "ARMORING TYPE";
+    
     return Column(
       children: [
          Padding(
