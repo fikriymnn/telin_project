@@ -48,13 +48,13 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                           InkWell(
                             onTap: () {},
                             child: Container(
-                              width: 77.3,
-                              height: 19.3,
+                              width: 100,
+                              height: 30,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(33.3),
-                                  color: Color(0xFFED1D25)),
+                                  color: Color(0xff75B212)),
                               child: Center(
-                                child: Text("Edit",
+                                child: Text("View Invoice/BAST",
                                     style: GoogleFonts.roboto(
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold,
@@ -102,20 +102,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       ],
                     ),
                   ),
-                  mediumScreen: Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 8.86,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black,
-                            ))
-                      ],
-                    ),
-                  ),
+                 
                   ),
                   
                   SizedBox(
@@ -145,29 +132,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       ],
                     ),
                   ),
-                  mediumScreen: Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("LCT NAPOLEON",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 8.86,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black,
-                            )),
-                        SizedBox(
-                          width: 284,
-                        ),
-                        Text("BANDUNG - JAKARTA",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 8.86,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black,
-                            ))
-                      ],
-                    ),
-                  ),
+                  
                     ),
                   
                   Container(
@@ -199,33 +164,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       SizedBox(
                     height: 22,
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 21.3),
-                          child: InkWell(
-                            onTap: (){},
-                            child: Container(
-                              width: 88.6,
-                              height: 28.6,
-                              
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.6),color: Color(0xff75B212)),
-                              child: Center(
-                                child: Text("SUBMIT",style: GoogleFonts.roboto(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                )),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
+                 
                 ],
               ),
             ),

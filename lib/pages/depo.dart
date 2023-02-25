@@ -19,7 +19,7 @@ class Depo extends StatelessWidget {
       
       body: ResponsiveWidget(
         largeScreen: DepoLarge(),
-        mediumScreen: DepoMedium() ,
+      
         smallScreen: DepoSmall(),
         ),
     );

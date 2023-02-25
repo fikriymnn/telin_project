@@ -54,7 +54,7 @@ class _TableCableHomeState extends State<TableCableHome> {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 19.3,right: 126),
+                  padding: const EdgeInsets.only(left: 19.3,right: 150),
                   child: DataTable2(
                       columnSpacing: 6,
                       horizontalMargin: 6,
@@ -69,7 +69,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 60,
+                          fixedWidth: 50,
                         ),
                         DataColumn2(
                           label: Text('LABEL',
@@ -78,7 +78,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 72,
+                          fixedWidth: 64.6,
                         ),
                         DataColumn2(
                           label: DropdownButtonHideUnderline(
@@ -97,7 +97,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 value: selectedValueSystem,
                                 items: dropdownItemsSystem),
                           ),
-                          fixedWidth: 120,
+                          fixedWidth: 78.6,
                         ),
                         DataColumn2(
                           label: Text('CABLE TYPE',
@@ -106,7 +106,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 120,
+                          fixedWidth: 101.3,
                         ),
                         DataColumn2(
                           label: Text('MANUFACTURER',
@@ -115,7 +115,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 144.6,
+                          fixedWidth: 112,
                         ),
                         DataColumn2(
                           label: DropdownButtonHideUnderline(
@@ -134,7 +134,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 value: selectedValueArmoring,
                                 items: dropdownItemsArmoring),
                           ),
-                          fixedWidth: 148,
+                          fixedWidth: 110,
                         ),
                         DataColumn2(
                           label: Text('LENGTH (METER)',
@@ -143,7 +143,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 141.3,
+                          fixedWidth: 116.6,
                         ),
                         DataColumn2(
                           label: Text('INNER',
@@ -152,7 +152,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 92.6,
+                          fixedWidth: 72.6,
                         ),
                         DataColumn2(
                           label: Text('OUTER',
@@ -161,7 +161,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 92.6,
+                          fixedWidth: 64.6,
                         ),
                         DataColumn2(
                           label: Text('TANK LEVER (FR BOTTOM)',
@@ -170,7 +170,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 158.6,
+                          fixedWidth: 135.3,
                         ),
                         DataColumn2(
                           label: Text('REMARK',
@@ -179,7 +179,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 160.6,
+                          fixedWidth: 142.6,
                         ),
                         DataColumn2(
                           label: Text('ROTO',
@@ -188,7 +188,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 90,
+                          fixedWidth: 40,
                         ),
                       ],
                       rows: List<DataRow>.generate(
@@ -269,35 +269,7 @@ class _TableCableHomeState extends State<TableCableHome> {
                               ]))),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right:100 ),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 77.3,
-                          height: 19.3,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(33.3),
-                              color: Color(0xFFED1D25)),
-                          child: Center(
-                            child: Text("Edit",
-                                style: GoogleFonts.roboto(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                )),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
+              
       ],
     );
   }
