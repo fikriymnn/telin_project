@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telin_project/pages/auth/login_screen.dart';
+import 'package:telin_project/pages/depo.dart';
 import 'package:telin_project/pages/home/home.dart';
 import 'package:telin_project/routing/routes.dart';
 
@@ -11,6 +12,8 @@ import '../pages/settings/settings.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
+    case DepoPageRoute:
+      return _getPageRoute(Depo());
     case HomePageRoute:
       return _getPageRoute(HomeViewPage());
     case InventoryPageRoute:
@@ -31,5 +34,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 }
 
 PageRoute _getPageRoute(Widget child) {
+  return MaterialPageRoute(builder: (context) => child);
+}
+
+PageRoute getPagesRoute(Widget child) {
   return MaterialPageRoute(builder: (context) => child);
 }

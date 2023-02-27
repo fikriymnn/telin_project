@@ -21,6 +21,8 @@ const SettingsPageRoute = "/settings";
 const AuthenticationDisplayName = "Log Out";
 const AuthenticationPageRoute = "/auth";
 
+const DepoPageRoute = "/depo";
+
 class MenuItem {
   final String name;
   final String route;

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/pages/depo.dart';
 
-
 import 'package:telin_project/controllers/navigation_controllers.dart';
 import 'package:telin_project/layout.dart';
 import 'package:telin_project/pages/404/error_page.dart';
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
           transition: Transition.fadeIn),
       getPages: [
         GetPage(name: RootRoute, page: () => SiteLayout()),
-        GetPage(name: AuthenticationPageRoute, page: () =>  SiteLayout()),
+        GetPage(name: AuthenticationPageRoute, page: () => LoginScreen()),
       ],
       debugShowCheckedModeBanner: false,
       title: 'Spare Management',
@@ -51,7 +50,7 @@ class MyApp extends StatelessWidget {
         primaryColor: const Color(0xFFED1D25),
       ),
 
-      home: Depo(),
+      //home: Depo(),
     );
   }
 }
