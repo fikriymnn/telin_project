@@ -14,7 +14,6 @@ class TableAkun extends StatefulWidget {
 }
 
 class _TableAkunState extends State<TableAkun> {
- 
   @override
   Widget build(BuildContext context) {
     return DataTable2(
@@ -145,7 +144,100 @@ class _TableAkunState extends State<TableAkun> {
                   ),
                   DataCell(Center(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            barrierColor: Colors.transparent,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                content: Container(
+                                  width: 486.6,
+                                  height: 322.6,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(26.6),
+                                      color: Colors.white,
+                                      
+                                      ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 18),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: 170.6,
+                                          height: 170.6,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      'assets/images/cross_icon.png'))),
+                                        ),
+                                        SizedBox(height: 30,),
+                                        Center(
+                                          child: Text("Delete This Account ?",
+                                              style: GoogleFonts.montserrat(
+                                                fontSize: 14.6,
+                                                fontWeight: FontWeight.w400,
+                                                color: Colors.black,
+                                              )),
+                                        ),
+                                        SizedBox(height: 15.3,),
+                                        Container(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              InkWell(
+                                                onTap: (){},
+                                                child: Container(
+                                                  width: 141.3,
+                                                  height: 44.6,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(6),
+                                                      color: Color(0xff45CA52)),
+                                                  child: Center(
+                                                    child: Text("Yes",
+                                                        style:
+                                                            GoogleFonts.montserrat(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.white,
+                                                        )),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: 85.3,),
+                                              InkWell(
+                                                onTap: (){},
+                                                child: Container(
+                                                  width: 141.3,
+                                                  height: 44.6,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(6),
+                                                      color: Color(0xffEC1D26)),
+                                                  child: Center(
+                                                    child: Text("No",
+                                                        style:
+                                                            GoogleFonts.montserrat(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.white,
+                                                        )),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            });
+                      },
                       child: Container(
                         width: 21.41,
                         height: 19.46,

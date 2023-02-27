@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/widgets/custom_text.dart';
+import 'package:telin_project/widgets/setting/add_user.dart';
 
 import 'package:telin_project/widgets/setting/table_akun.dart';
+import 'package:telin_project/widgets/setting/table_akun_delete.dart';
 
 class SettingsViewPage extends StatefulWidget {
   const SettingsViewPage({super.key});
@@ -10,6 +12,8 @@ class SettingsViewPage extends StatefulWidget {
   @override
   State<SettingsViewPage> createState() => _SettingsViewPageState();
 }
+
+bool btnDelete = false;
 
 class _SettingsViewPageState extends State<SettingsViewPage> {
   @override
@@ -31,36 +35,41 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 170.6,
-                      height: 50.6,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xffA5C176), width: 3.3),
-                          borderRadius: BorderRadius.circular(4),
-                          color: Color(0xffB1CC85)),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 14.6),
-                        child: Center(
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 15,
-                                backgroundColor: Colors.white,
-                                child: Icon(
-                                  Icons.add,
-                                  color: Color(0xffB1CC85),
-                                  size: 20,
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddUser()));
+                      },
+                      child: Container(
+                        width: 170.6,
+                        height: 50.6,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                            borderRadius: BorderRadius.circular(4),
+                            color: Color(0xffB1CC85)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 14.6),
+                          child: Center(
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 15,
+                                  backgroundColor: Colors.white,
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Color(0xffB1CC85),
+                                    size: 20,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Text("Add User",
-                                  style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13.3,
-                                      color: Colors.white))
-                            ],
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text("Add User",
+                                    style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13.3,
+                                        color: Colors.white))
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -68,35 +77,43 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                     SizedBox(
                       width: 171.3,
                     ),
-                    Container(
-                      width: 170.6,
-                      height: 50.6,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xffE44A51), width: 3.3),
-                          borderRadius: BorderRadius.circular(4),
-                          color: Color(0xffEC1D26)),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 14.6),
-                        child: Center(
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                  radius: 15,
-                                  backgroundColor: Colors.white,
-                                  child: Text("X",
-                                      style: GoogleFonts.roboto(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 13.3,
-                                          color: Color(0xffEC1D26)))),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Text("Delete User",
-                                  style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13.3,
-                                      color: Colors.white))
-                            ],
+                    btnDelete?Container():
+                    InkWell(
+                      onTap: (){
+                        setState(() {
+                          btnDelete = true;
+                        });
+                      },
+                      child: Container(
+                        width: 170.6,
+                        height: 50.6,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xffE44A51), width: 3.3),
+                            borderRadius: BorderRadius.circular(4),
+                            color: Color(0xffEC1D26)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 14.6),
+                          child: Center(
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                    radius: 15,
+                                    backgroundColor: Colors.white,
+                                    child: Text("X",
+                                        style: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13.3,
+                                            color: Color(0xffEC1D26)))),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text("Delete User",
+                                    style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13.3,
+                                        color: Colors.white))
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -164,8 +181,41 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                             ],
                           ),
                         ),
+                        btnDelete?
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 14, horizontal: 26.6),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                  onTap: (){
+                                    setState(() {
+                                      btnDelete = false;
+                                    });
+                                  },
+                                  child: Container(
+                                    width:100 ,
+                                    height: 30,
+                                    decoration: BoxDecoration(color: Color(0xffEC1D26),borderRadius: BorderRadius.circular(6)),
+                                    child: Center(
+                                      child: Text("Done",style: GoogleFonts.roboto(
+                                                fontSize: 13.3,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.white,
+                                              ),),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ):Container(),
                         Expanded(
-                          child: TableAkun()
+                          child:btnDelete?
+                           TableAkunDelete():
+                           TableAkun()
                           ),
            
       

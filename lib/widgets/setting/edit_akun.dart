@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/widgets/setting/edit_akun.dart';
 
-class DetailAkun extends StatefulWidget {
-  const DetailAkun({super.key});
+class EditAkun extends StatefulWidget {
+  const EditAkun({super.key});
 
   @override
-  State<DetailAkun> createState() => _DetailAkunState();
+  State<EditAkun> createState() => _EditAkunState();
 }
 
-class _DetailAkunState extends State<DetailAkun> {
-   var _obscureText = false;
+class _EditAkunState extends State<EditAkun> {
+ String? role= "Super Admin";
+  var _obscureText = false;
+  bool _isSelected1 = false;
+  bool _isSelected2 = false;
+  bool _isSelected3 = false;
   @override
   Widget build(BuildContext context) {
    
@@ -68,7 +71,7 @@ class _DetailAkunState extends State<DetailAkun> {
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
                       child: Center(
                         child: TextField(
-                          enabled: false,
+                          
                           style: GoogleFonts.montserrat(
                             fontSize: 10.6,
                             fontWeight: FontWeight.w400,
@@ -129,7 +132,7 @@ class _DetailAkunState extends State<DetailAkun> {
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
                       child: Center(
                         child: TextField(
-                          enabled: false,
+                          
                           style: GoogleFonts.montserrat(
                             fontSize: 10.6,
                             fontWeight: FontWeight.w400,
@@ -201,7 +204,7 @@ class _DetailAkunState extends State<DetailAkun> {
                                   color: Colors.black.withOpacity(0.6),
                                 ),
                                 decoration: InputDecoration(
-                                  enabled: false,
+                                 
                                     border: InputBorder.none,
                                     hintStyle: GoogleFonts.montserrat(
                                       fontSize: 13.3,
@@ -250,43 +253,99 @@ class _DetailAkunState extends State<DetailAkun> {
                       ],
                     ),
                   ),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 154.6,
-                              height: 46.6,
-                              decoration: BoxDecoration(
-                                color: Color(0xffEC1D26),
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: Center(
-                                child: Container(
-                                  width: 148,
-                                  height: 40,
-                                  color: Colors.white,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 13.3),
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(radius: 8,backgroundColor: Color(0xffEC1D26),),
-                                        SizedBox(width: 10,),
-                                        Text("Super Admin", style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                                            ),)
-                                      ],
-                                    ),
-                                  ),
-                                              
+                     Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 190,
+                                height: 46.6,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color:_isSelected1? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
+                                  borderRadius: BorderRadius.circular(6),
+                                 
+                                ),
+                                child: RadioListTile(
+                                  title: Text("Super Admin",style: GoogleFonts.montserrat(
+                                fontSize: 13.3,
+                                fontWeight: FontWeight.w400,
+                                color: _isSelected1? Color(0xffEC1D26): Colors.black.withOpacity(0.6),
+                                                            ),),
+    
+                                  value: "Super Admin",
+                                  activeColor: Color(0xffEC1D26),
+                                  groupValue: role,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      role = value.toString();
+                                      _isSelected1 = true;
+                                      _isSelected2 = false;
+                                      _isSelected3 = false;
+                                    });
+                                  },
                                 ),
                               ),
-                            ),
-                          ],
+                              SizedBox(width: 15.3,),
+                              Container(
+                                width: 154.6,
+                                height: 46.6,
+                                decoration: BoxDecoration(
+                                   border: Border.all(color:_isSelected2? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Center(
+                                  child: RadioListTile(
+                                    title: Text("Admin",style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color:  _isSelected2? Color(0xffEC1D26): Colors.black.withOpacity(0.6),
+                                ),),
+                                    value: "Admin",
+                                    activeColor: Color(0xffEC1D26),
+                                    groupValue: role,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        role = value.toString();
+                                        _isSelected1 = false;
+                                          _isSelected2 = true;
+                                          _isSelected3 = false;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 15.3,),
+                              Container(
+                                width: 154.6,
+                                height: 46.6,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color:_isSelected3? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Center(
+                                  child: RadioListTile(
+                                    title: Text("User",style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color:  _isSelected3? Color(0xffEC1D26): Colors.black.withOpacity(0.6),
+                                ),),
+                                    value: "User",
+                                    activeColor: Color(0xffEC1D26),
+                                    groupValue: role,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        role = value.toString();
+                                        _isSelected1 = false;
+                                          _isSelected2 = false;
+                                          _isSelected3 = true;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 ),
@@ -311,39 +370,7 @@ class _DetailAkunState extends State<DetailAkun> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 100,),
-                      InkWell(
-                        onTap: (){
-                          showDialog(
-                              context: context,
-                              barrierColor: Colors.transparent,
-                              builder: (BuildContext context) {
-                                return EditAkun();
-                              });
-                        },
-                        child: Container(
-                          width: 90,
-                          height: 37.3,
-                          
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(6),color: Color(0xff94C8BE)),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.edit,color: Colors.white,size: 24,),
-                                  SizedBox(width: 5,),
-                                  Text("Edit",style: GoogleFonts.roboto(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.white,
-                                                                          )),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      
                     ],
                   ),
                 )

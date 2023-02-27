@@ -2,35 +2,67 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/widgets/setting/edit_akun.dart';
 
-class DetailAkun extends StatefulWidget {
-  const DetailAkun({super.key});
+class AddUser extends StatefulWidget {
+  const AddUser({super.key});
 
   @override
-  State<DetailAkun> createState() => _DetailAkunState();
+  State<AddUser> createState() => _AddUserState();
 }
 
-class _DetailAkunState extends State<DetailAkun> {
-   var _obscureText = false;
+class _AddUserState extends State<AddUser> {
+  String? role;
+  var _obscureText = false;
+  bool _isSelected1 = false;
+    bool _isSelected2 = false;
+      bool _isSelected3 = false;
   @override
   Widget build(BuildContext context) {
-   
-   
-    return AlertDialog(
-      content: Container(
-        width: 942,
-        height: 592.6,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6), color: Colors.white),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/background_depo.png'))),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 38),
         child: Column(
           children: [
-            Text("User",
-                style: GoogleFonts.montserrat(
-                  fontSize: 33.3,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 59.3,top: 32),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: 107.3,
+                        height: 37.3,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Color(0xffB8B8B8),
+                          width: 1
+                        )
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.subdirectory_arrow_left,color: Color(0xffED1D25),size: 28.6,),
+                            SizedBox(width: 10,),
+                            Text("Back",style: GoogleFonts.roboto(
+                                    fontSize: 17.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color(0xffED1D25),
+                                  ),)
+                          ],
+                        ),
+                      )
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -68,7 +100,7 @@ class _DetailAkunState extends State<DetailAkun> {
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
                       child: Center(
                         child: TextField(
-                          enabled: false,
+                          
                           style: GoogleFonts.montserrat(
                             fontSize: 10.6,
                             fontWeight: FontWeight.w400,
@@ -129,7 +161,7 @@ class _DetailAkunState extends State<DetailAkun> {
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
                       child: Center(
                         child: TextField(
-                          enabled: false,
+                         
                           style: GoogleFonts.montserrat(
                             fontSize: 10.6,
                             fontWeight: FontWeight.w400,
@@ -192,8 +224,7 @@ class _DetailAkunState extends State<DetailAkun> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: TextField(
-                                
+                              child: TextFormField(
                                 obscureText: _obscureText,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 10.6,
@@ -201,7 +232,6 @@ class _DetailAkunState extends State<DetailAkun> {
                                   color: Colors.black.withOpacity(0.6),
                                 ),
                                 decoration: InputDecoration(
-                                  enabled: false,
                                     border: InputBorder.none,
                                     hintStyle: GoogleFonts.montserrat(
                                       fontSize: 13.3,
@@ -229,124 +259,141 @@ class _DetailAkunState extends State<DetailAkun> {
                       ),
                     ),
                   ),
-                   SizedBox(
-              height: 10,
-            ),
-                Container(
-                  child: Column(
-                    children: [
-                      Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    child: Column(
                       children: [
-                        Text(
-                          "Select Role",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Select Role",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 190,
+                                height: 46.6,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color:_isSelected1? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
+                                  borderRadius: BorderRadius.circular(6),
+                                 
+                                ),
+                                child: RadioListTile(
+                                  title: Text("Super Admin",style: GoogleFonts.montserrat(
+                                fontSize: 13.3,
+                                fontWeight: FontWeight.w400,
+                                color: _isSelected1? Color(0xffEC1D26): Colors.black.withOpacity(0.6),
+                                                            ),),
+    
+                                  value: "Super Admin",
+                                  activeColor: Color(0xffEC1D26),
+                                  groupValue: role,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      role = value.toString();
+                                      _isSelected1 = true;
+                                      _isSelected2 = false;
+                                      _isSelected3 = false;
+                                    });
+                                  },
+                                ),
+                              ),
+                              SizedBox(width: 15.3,),
+                              Container(
+                                width: 154.6,
+                                height: 46.6,
+                                decoration: BoxDecoration(
+                                   border: Border.all(color:_isSelected2? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Center(
+                                  child: RadioListTile(
+                                    title: Text("Admin",style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color:  _isSelected2? Color(0xffEC1D26): Colors.black.withOpacity(0.6),
+                                ),),
+                                    value: "Admin",
+                                    activeColor: Color(0xffEC1D26),
+                                    groupValue: role,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        role = value.toString();
+                                        _isSelected1 = false;
+                                          _isSelected2 = true;
+                                          _isSelected3 = false;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 15.3,),
+                              Container(
+                                width: 154.6,
+                                height: 46.6,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color:_isSelected3? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Center(
+                                  child: RadioListTile(
+                                    title: Text("User",style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color:  _isSelected3? Color(0xffEC1D26): Colors.black.withOpacity(0.6),
+                                ),),
+                                    value: "User",
+                                    activeColor: Color(0xffEC1D26),
+                                    groupValue: role,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        role = value.toString();
+                                        _isSelected1 = false;
+                                          _isSelected2 = false;
+                                          _isSelected3 = true;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
                   ),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 154.6,
-                              height: 46.6,
-                              decoration: BoxDecoration(
-                                color: Color(0xffEC1D26),
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: Center(
-                                child: Container(
-                                  width: 148,
-                                  height: 40,
-                                  color: Colors.white,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 13.3),
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(radius: 8,backgroundColor: Color(0xffEC1D26),),
-                                        SizedBox(width: 10,),
-                                        Text("Super Admin", style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                                            ),)
-                                      ],
-                                    ),
-                                  ),
-                                              
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  SizedBox(
+                    height: 43,
                   ),
-                ),
-                SizedBox(height: 101.3,),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: (){},
-                        child: Container(
-                          width: 90,
-                          height: 37.3,
-                          
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(6),color: Color(0xffEC1D26)),
-                          child: Center(
-                            child: Text("Done",style: GoogleFonts.roboto(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.white,
-                                                                    )),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 100,),
-                      InkWell(
-                        onTap: (){
-                          showDialog(
-                              context: context,
-                              barrierColor: Colors.transparent,
-                              builder: (BuildContext context) {
-                                return EditAkun();
-                              });
-                        },
-                        child: Container(
-                          width: 90,
-                          height: 37.3,
-                          
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(6),color: Color(0xff94C8BE)),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.edit,color: Colors.white,size: 24,),
-                                  SizedBox(width: 5,),
-                                  Text("Edit",style: GoogleFonts.roboto(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.white,
-                                                                          )),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
+                  Container(
+                    width: 120.6,
+                    height: 34.6,
+                    decoration: BoxDecoration(
+                        color: Color(0xffEC1D26),
+                        borderRadius: BorderRadius.circular(6)),
+                    child: Center(
+                      child: Text("Create Account",
+                          style: GoogleFonts.montserrat(
+                            fontSize: 13.3,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          )),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -354,6 +401,5 @@ class _DetailAkunState extends State<DetailAkun> {
         ),
       ),
     );
-    ;
   }
 }
