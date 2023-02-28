@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/helpers/responsive.dart';
 
 class AddUser extends StatefulWidget {
   const AddUser({super.key});
@@ -280,7 +281,8 @@ class _AddUserState extends State<AddUser> {
                             ],
                           ),
                         ),
-                        Container(
+                        ResponsiveWidget(
+                          largeScreen: Container(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -290,6 +292,7 @@ class _AddUserState extends State<AddUser> {
                                 decoration: BoxDecoration(
                                   border: Border.all(color:_isSelected1? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
                                   borderRadius: BorderRadius.circular(6),
+                                  color: Colors.white
                                  
                                 ),
                                 child: RadioListTile(
@@ -319,6 +322,7 @@ class _AddUserState extends State<AddUser> {
                                 decoration: BoxDecoration(
                                    border: Border.all(color:_isSelected2? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
                                   borderRadius: BorderRadius.circular(6),
+                                  color: Colors.white
                                 ),
                                 child: Center(
                                   child: RadioListTile(
@@ -348,6 +352,7 @@ class _AddUserState extends State<AddUser> {
                                 decoration: BoxDecoration(
                                   border: Border.all(color:_isSelected3? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
                                   borderRadius: BorderRadius.circular(6),
+                                  color: Colors.white
                                 ),
                                 child: Center(
                                   child: RadioListTile(
@@ -373,6 +378,112 @@ class _AddUserState extends State<AddUser> {
                             ],
                           ),
                         ),
+                        smallScreen: Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 190,
+                                      height: 46.6,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color:_isSelected1? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
+                                        borderRadius: BorderRadius.circular(6),
+                                       color: Colors.white
+                                      ),
+                                      child: RadioListTile(
+                                        title: Text("Super Admin",style: GoogleFonts.montserrat(
+                                      fontSize: 13.3,
+                                      fontWeight: FontWeight.w400,
+                                      color: _isSelected1? Color(0xffEC1D26): Colors.black.withOpacity(0.6),
+                                                                  ),),
+                                
+                                        value: "Super Admin",
+                                        activeColor: Color(0xffEC1D26),
+                                        groupValue: role,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            role = value.toString();
+                                            _isSelected1 = true;
+                                            _isSelected2 = false;
+                                            _isSelected3 = false;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                    SizedBox(width: 15.3,),
+                                    Container(
+                                      width: 154.6,
+                                      height: 46.6,
+                                      decoration: BoxDecoration(
+                                         border: Border.all(color:_isSelected2? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
+                                        borderRadius: BorderRadius.circular(6),
+                                        color: Colors.white
+                                      ),
+                                      child: Center(
+                                        child: RadioListTile(
+                                          title: Text("Admin",style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color:  _isSelected2? Color(0xffEC1D26): Colors.black.withOpacity(0.6),
+                                      ),),
+                                          value: "Admin",
+                                          activeColor: Color(0xffEC1D26),
+                                          groupValue: role,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              role = value.toString();
+                                              _isSelected1 = false;
+                                                _isSelected2 = true;
+                                                _isSelected3 = false;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 15.3,),
+                                    Container(
+                                      width: 154.6,
+                                      height: 46.6,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color:_isSelected3? Color(0xffEC1D26):Color(0xffF0F0F0),width: 4),
+                                        borderRadius: BorderRadius.circular(6),
+                                        color: Colors.white
+                                      ),
+                                      child: Center(
+                                        child: RadioListTile(
+                                          title: Text("User",style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color:  _isSelected3? Color(0xffEC1D26): Colors.black.withOpacity(0.6),
+                                      ),),
+                                          value: "User",
+                                          activeColor: Color(0xffEC1D26),
+                                          groupValue: role,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              role = value.toString();
+                                              _isSelected1 = false;
+                                                _isSelected2 = false;
+                                                _isSelected3 = true;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        )
+                        
                       ],
                     ),
                   ),

@@ -6,6 +6,8 @@ import 'package:telin_project/widgets/setting/add_user.dart';
 
 import 'package:telin_project/widgets/setting/table_akun.dart';
 import 'package:telin_project/widgets/setting/table_akun_delete.dart';
+import 'package:telin_project/widgets/setting/table_akun_delete_mobile.dart';
+import 'package:telin_project/widgets/setting/table_akun_delete_small.dart';
 import 'package:telin_project/widgets/setting/table_akun_mobile.dart';
 import 'package:telin_project/widgets/setting/table_akun_small.dart';
 
@@ -32,7 +34,8 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              ResponsiveWidget(
+                largeScreen:  Container(
                 width: MediaQuery.of(context).size.width,
                 height: 148,
                 child: Row(
@@ -124,6 +127,101 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                   ],
                 ),
               ),
+              smallScreen:  Container(
+                width: MediaQuery.of(context).size.width,
+                height: 148,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddUser()));
+                      },
+                      child: Container(
+                        width: 170.6,
+                        height: 50.6,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                            borderRadius: BorderRadius.circular(4),
+                            color: Color(0xffB1CC85)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 14.6),
+                          child: Center(
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 15,
+                                  backgroundColor: Colors.white,
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Color(0xffB1CC85),
+                                    size: 20,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text("Add User",
+                                    style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13.3,
+                                        color: Colors.white))
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 40,
+                    ),
+                    btnDelete?Container():
+                    InkWell(
+                      onTap: (){
+                        setState(() {
+                          btnDelete = true;
+                        });
+                      },
+                      child: Container(
+                        width: 170.6,
+                        height: 50.6,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xffE44A51), width: 3.3),
+                            borderRadius: BorderRadius.circular(4),
+                            color: Color(0xffEC1D26)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 14.6),
+                          child: Center(
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                    radius: 15,
+                                    backgroundColor: Colors.white,
+                                    child: Text("X",
+                                        style: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13.3,
+                                            color: Color(0xffEC1D26)))),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text("Delete User",
+                                    style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13.3,
+                                        color: Colors.white))
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+                ),
+           
+              
               Padding(
                 padding: const EdgeInsets.only(left: 16.6, right: 16.6),
                 child: Container(
@@ -217,12 +315,17 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                         ):Container(),
                         Expanded(
                           child:btnDelete?
-                           TableAkunDelete():
-                           ResponsiveWidget(
+                          const ResponsiveWidget(largeScreen: TableAkunDelete(),
+                          mediumScreen: TableAkunDelete(),
+                          smallScreen: TableAkunDeleteSmall(),
+                          mobileScreen: TableAkunDeleteMobile(),
+                          )
+                           :
+                           const ResponsiveWidget(
                             largeScreen:  TableAkun(),
                             mediumScreen:TableAkun(),
-                            smallScreen: Container(child: Text("ini kecil")),
-                            mobileScreen: Container(child: Text("ini Mobile")),
+                            smallScreen: TableAkunSmall(),
+                            mobileScreen: TableAkunMobile(),
                             )
                           
                           ),

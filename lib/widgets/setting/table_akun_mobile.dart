@@ -26,55 +26,55 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
             label: Text(
               'No',
               style: GoogleFonts.montserrat(
-                fontSize: 16,
+                fontSize: 10.6,
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
               ),
             ),
-            fixedWidth: 42.6,
+            fixedWidth: 28,
           ),
           DataColumn2(
             label: Text('Name',
                 style: GoogleFonts.montserrat(
-                  fontSize: 16,
+                  fontSize: 10.6,
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                 )),
-            fixedWidth: 116.4,
+            fixedWidth: 60,
           ),
           DataColumn2(
-              fixedWidth: 148.4,
+              fixedWidth: 70,
               label: Text("Username",
                   style: GoogleFonts.montserrat(
-                    fontSize: 16,
+                    fontSize: 10.6,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   )),
               size: ColumnSize.L),
           DataColumn2(
-            fixedWidth: 130.6,
+            fixedWidth: 70,
             label: Text('Password',
                 style: GoogleFonts.montserrat(
-                  fontSize: 16,
+                  fontSize: 10.6,
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                 )),
           ),
           DataColumn2(
-            fixedWidth: 160.4,
+            fixedWidth: 106,
             label: Text('Role',
                 style: GoogleFonts.montserrat(
-                  fontSize: 16,
+                  fontSize: 10.6,
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                 )),
           ),
           DataColumn2(
-            fixedWidth: 60.8,
+            fixedWidth: 50,
             label: Text(''),
           ),
           DataColumn2(
-            fixedWidth: 35.53,
+            fixedWidth: 23,
             label: Text(''),
           ),
         ],
@@ -83,25 +83,25 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
             (index) => DataRow(cells: [
                   DataCell(Text('1',
                       style: GoogleFonts.montserrat(
-                        fontSize: 14.6,
+                        fontSize: 9.7,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ))),
                   DataCell(Text('Gudang',
                       style: GoogleFonts.montserrat(
-                        fontSize: 14.6,
+                        fontSize: 9.7,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ))),
                   DataCell(Text('Gudang1',
                       style: GoogleFonts.montserrat(
-                        fontSize: 14.6,
+                        fontSize: 9.7,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ))),
                   DataCell(Text('xxxxxxxxxxxx',
                       style: GoogleFonts.montserrat(
-                        fontSize: 14.6,
+                        fontSize: 9.7,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ))),
@@ -116,7 +116,7 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
                       ),
                       Text("User",
                           style: GoogleFonts.montserrat(
-                            fontSize: 14.6,
+                            fontSize: 9.7,
                             fontWeight: FontWeight.w400,
                             color: Colors.black,
                           )),
@@ -135,7 +135,7 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
                         },
                         child: Text('Detail...',
                             style: GoogleFonts.montserrat(
-                              fontSize: 13.3,
+                              fontSize: 9.7,
                               fontWeight: FontWeight.w600,
                               color: Colors.black.withOpacity(0.5),
                             )),
