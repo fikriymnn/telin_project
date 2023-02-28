@@ -158,7 +158,12 @@ List<DataRow> _createRows() {
                     Center(
                       child: InkWell(
                         onTap: () {
-                          
+                          showDialog(
+                              context: context,
+                              barrierColor: Colors.transparent,
+                              builder: (BuildContext context) {
+                                return DetailAkun();
+                              });
                         },
                         child: Text('Detail...',
                             style: GoogleFonts.montserrat(

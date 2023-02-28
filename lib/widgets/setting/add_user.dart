@@ -21,7 +21,7 @@ class _AddUserState extends State<AddUser> {
     return Container(
       width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/background_depo.png'))),
+        decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/background_depo.png'),fit: BoxFit.fill)),
       child: Padding(
         padding: const EdgeInsets.only(left: 38),
         child: Column(

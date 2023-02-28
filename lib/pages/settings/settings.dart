@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/widgets/custom_text.dart';
 import 'package:telin_project/widgets/setting/add_user.dart';
 
 import 'package:telin_project/widgets/setting/table_akun.dart';
 import 'package:telin_project/widgets/setting/table_akun_delete.dart';
+import 'package:telin_project/widgets/setting/table_akun_mobile.dart';
+import 'package:telin_project/widgets/setting/table_akun_small.dart';
 
 class SettingsViewPage extends StatefulWidget {
   const SettingsViewPage({super.key});
@@ -200,7 +203,7 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                                     height: 30,
                                     decoration: BoxDecoration(color: Color(0xffEC1D26),borderRadius: BorderRadius.circular(6)),
                                     child: Center(
-                                      child: Text("Done",style: GoogleFonts.roboto(
+                                      child: Text("Delete",style: GoogleFonts.roboto(
                                                 fontSize: 13.3,
                                                 fontWeight: FontWeight.w500,
                                                 color: Colors.white,
@@ -215,7 +218,13 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                         Expanded(
                           child:btnDelete?
                            TableAkunDelete():
-                           TableAkun()
+                           ResponsiveWidget(
+                            largeScreen:  TableAkun(),
+                            mediumScreen:TableAkun(),
+                            smallScreen: Container(child: Text("ini kecil")),
+                            mobileScreen: Container(child: Text("ini Mobile")),
+                            )
+                          
                           ),
            
       
