@@ -39,6 +39,12 @@ class LogoWidget extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   )),
+              Text('SKKL TELKOM',
+                  style: GoogleFonts.roboto(
+                    fontSize: 43,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  )),
             ],
           ),
         ),
