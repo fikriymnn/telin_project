@@ -54,21 +54,21 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 19.3,right: 126),
+                  padding: const EdgeInsets.only(left: 19.3,right: 150),
                   child: DataTable2(
                       columnSpacing: 6,
                       
                        dataRowHeight: 30,
                       minWidth: 3000,
                       columns: [
-                        DataColumn2(
+                         DataColumn2(
                           label: Text('NO',
                               style: GoogleFonts.montserrat(
                                 fontSize: 8.6,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 60,
+                          fixedWidth: 50,
                         ),
                         DataColumn2(
                           label: Text('LABEL',
@@ -77,7 +77,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 72,
+                          fixedWidth: 64.6,
                         ),
                         DataColumn2(
                           label: DropdownButtonHideUnderline(
@@ -96,7 +96,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 value: selectedValueSystem,
                                 items: dropdownItemsSystem),
                           ),
-                          fixedWidth: 120,
+                          fixedWidth: 78.6,
                         ),
                         DataColumn2(
                           label: Text('CABLE TYPE',
@@ -105,7 +105,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 120,
+                          fixedWidth: 101.3,
                         ),
                         DataColumn2(
                           label: Text('MANUFACTURER',
@@ -114,7 +114,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 144.6,
+                          fixedWidth: 112,
                         ),
                         DataColumn2(
                           label: DropdownButtonHideUnderline(
@@ -133,7 +133,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 value: selectedValueArmoring,
                                 items: dropdownItemsArmoring),
                           ),
-                          fixedWidth: 148,
+                          fixedWidth: 110,
                         ),
                         DataColumn2(
                           label: Text('LENGTH (METER)',
@@ -142,7 +142,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 141.3,
+                          fixedWidth: 116.6,
                         ),
                         DataColumn2(
                           label: Text('INNER',
@@ -151,7 +151,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 92.6,
+                          fixedWidth: 72.6,
                         ),
                         DataColumn2(
                           label: Text('OUTER',
@@ -160,7 +160,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 92.6,
+                          fixedWidth: 64.6,
                         ),
                         DataColumn2(
                           label: Text('TANK LEVER (FR BOTTOM)',
@@ -169,7 +169,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 158.6,
+                          fixedWidth: 135.3,
                         ),
                         DataColumn2(
                           label: Text('REMARK',
@@ -178,7 +178,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 160.6,
+                          fixedWidth: 142.6,
                         ),
                         DataColumn2(
                           label: Text('ROTO',
@@ -187,7 +187,7 @@ class _TableCableTurnOverHomeState extends State<TableCableTurnOverHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 90,
+                          fixedWidth: 40,
                         ),
                       ],
                       rows: List<DataRow>.generate(

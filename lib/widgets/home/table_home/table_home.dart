@@ -58,6 +58,7 @@ class TableHome extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 10),
                               child: TextField(
+                                
                                 style: GoogleFonts.roboto(
                                   fontSize: 11.3,
                                   fontWeight: FontWeight.w400,
@@ -105,7 +106,7 @@ class TableHome extends StatelessWidget {
                           ),
                         ),
                       ),
-                      fixedWidth: 84,
+                      fixedWidth: 66.6,
                     ),
                     DataColumn2(
                       label: Center(
@@ -116,10 +117,10 @@ class TableHome extends StatelessWidget {
                               color: Colors.black,
                             )),
                       ),
-                      fixedWidth: 140,
+                      fixedWidth: 143.3,
                     ),
                     DataColumn2(
-                        fixedWidth: 440,
+                        fixedWidth: 306,
                         label: Center(
                           child: Text("Project's Name",
                               style: GoogleFonts.roboto(
@@ -141,7 +142,7 @@ class TableHome extends StatelessWidget {
                       ),
                     ),
                     DataColumn2(
-                      fixedWidth: 150,
+                      fixedWidth: 125,
                       label: Center(
                         child: Text('Off-Loading',
                             style: GoogleFonts.roboto(
@@ -152,7 +153,7 @@ class TableHome extends StatelessWidget {
                       ),
                     ),
                     DataColumn2(
-                      fixedWidth: 107,
+                      fixedWidth: 80,
                       label: Text(''),
                     ),
                   ],

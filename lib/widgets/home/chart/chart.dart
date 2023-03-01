@@ -183,6 +183,7 @@ class _ChartDataState extends State<ChartData> {
     ];
     return menuItems;
   }
+   String selectedValueGrafik = "Cable By Jumlah";
 
   @override
   void initState() {
@@ -192,7 +193,7 @@ class _ChartDataState extends State<ChartData> {
 
   @override
   Widget build(BuildContext context) {
-    String selectedValueGrafik = "Cable By Jumlah";
+   
     return Container(
       height: 327.6,
       child: Column(
