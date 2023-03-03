@@ -30,7 +30,7 @@ class TableNonCableHome extends StatefulWidget {
     return menuItemsArmoring;
   }
    String selectedValueSystem = "SYSTEM";
-     String selectedValueArmoring = "ARMORING TYPE";
+  String selectedValueArmoring = "ARMORING TYPE";
 
 class _TableNonCableHomeState extends State<TableNonCableHome> {
   @override
