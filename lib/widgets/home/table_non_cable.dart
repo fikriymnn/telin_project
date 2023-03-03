@@ -29,12 +29,13 @@ class TableNonCableHome extends StatefulWidget {
     ];
     return menuItemsArmoring;
   }
+   String selectedValueSystem = "SYSTEM";
+  String selectedValueArmoring = "ARMORING TYPE";
 
 class _TableNonCableHomeState extends State<TableNonCableHome> {
   @override
   Widget build(BuildContext context) {
-     String selectedValueSystem = "SYSTEM";
-     String selectedValueArmoring = "ARMORING TYPE";
+    
     return Column(
       children: [
          Padding(
@@ -69,7 +70,7 @@ class _TableNonCableHomeState extends State<TableNonCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 60,
+                          fixedWidth: 50,
                         ),
                         DataColumn2(
                           label: Text('SYSTEM',
@@ -87,7 +88,7 @@ class _TableNonCableHomeState extends State<TableNonCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 200,
+                          fixedWidth: 150,
                         ),
                         DataColumn2(
                           label: Text('PART NUMBER',
@@ -96,7 +97,7 @@ class _TableNonCableHomeState extends State<TableNonCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 120,
+                          fixedWidth: 100,
                         ),
                         DataColumn2(
                           label: Text('SERIAL NUMBER',
@@ -105,7 +106,7 @@ class _TableNonCableHomeState extends State<TableNonCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 144.6,
+                          fixedWidth: 120,
                         ),
                         DataColumn2(
                           label: Text('LOCATION',
@@ -123,7 +124,7 @@ class _TableNonCableHomeState extends State<TableNonCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 141.3,
+                          fixedWidth: 110,
                         ),
                         DataColumn2(
                           label: Text('QTY',
@@ -132,7 +133,7 @@ class _TableNonCableHomeState extends State<TableNonCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 92.6,
+                          fixedWidth: 80,
                         ),
                         DataColumn2(
                           label: Text('UNIT',
@@ -141,7 +142,7 @@ class _TableNonCableHomeState extends State<TableNonCableHome> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
-                          fixedWidth: 92.6,
+                          fixedWidth: 75,
                         ),
                         DataColumn2(
                           label: Text('REMARK',
@@ -222,35 +223,7 @@ class _TableNonCableHomeState extends State<TableNonCableHome> {
                               ]))),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right:100 ),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 77.3,
-                          height: 19.3,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(33.3),
-                              color: Color(0xFFED1D25)),
-                          child: Center(
-                            child: Text("Edit",
-                                style: GoogleFonts.roboto(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                )),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
+             
       ],
     );
   }

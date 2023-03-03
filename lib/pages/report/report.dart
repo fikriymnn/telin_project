@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telin_project/widgets/custom_text.dart';
+import 'package:telin_project/widgets/report/report_table_cable.dart';
 
 class ReportViewPage extends StatelessWidget {
   const ReportViewPage({super.key});
@@ -7,8 +8,24 @@ class ReportViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: CustomText(
-        text: "Report View",
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CableReport()));
+            },
+            child: Text("Cable Report"),
+          ),
+          SizedBox(
+            width: 50,
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text("Non Cable Report"),
+          ),
+        ],
       ),
     );
   }
