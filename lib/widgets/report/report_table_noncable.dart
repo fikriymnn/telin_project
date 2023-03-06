@@ -2,26 +2,62 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants/style.dart';
 
-class NonCableReport extends StatelessWidget {
+class NonCableReport extends StatefulWidget {
   const NonCableReport({super.key});
 
+  @override
+  State<NonCableReport> createState() => _NonCableReportState();
+}
+
+class _NonCableReportState extends State<NonCableReport> {
+  String _date = "Select Date";
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
-          ElevatedButton.icon(
-            onPressed: () {},
-            icon: Icon(Icons.print),
-            label: Text("Print All"),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: active, // Background color
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    DatePicker.showDatePicker(context, showTitleActions: true,
+                        onChanged: (date) {
+                      print('change $date');
+                    }, onConfirm: (date) {
+                      print('confirm $date');
+                      _date = '${date.year}/${date.month}/${date.day}';
+                      setState(() {});
+                    }, currentTime: DateTime.now(), locale: LocaleType.en);
+                  },
+                  icon: Icon(Icons.date_range),
+                  label: Text("$_date"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: dark,
+                    // Background color
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.print),
+                  label: Text("Print All"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: active, // Background color
+                  ),
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: 30,
