@@ -1,10 +1,13 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/constants/style.dart';
 
-class CableReport extends StatelessWidget {
-  const CableReport({super.key});
+import '../../constants/style.dart';
+
+class NonCableReport extends StatelessWidget {
+  const NonCableReport({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,7 @@ class CableReport extends StatelessWidget {
                   ),
                   DataColumn2(
                     label: Text(
-                      'Label ID',
+                      'Location',
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
@@ -54,6 +57,39 @@ class CableReport extends StatelessWidget {
                       ),
                     ),
                     fixedWidth: 95.25,
+                  ),
+                  DataColumn2(
+                    label: Text(
+                      'Nama Barang',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    fixedWidth: 200.25,
+                  ),
+                  DataColumn2(
+                    label: Text(
+                      'Part Number',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    fixedWidth: 155.25,
+                  ),
+                  DataColumn2(
+                    label: Text(
+                      'Serial Number',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    fixedWidth: 155.25,
                   ),
                   DataColumn2(
                     label: Text(
@@ -68,7 +104,8 @@ class CableReport extends StatelessWidget {
                   ),
                   DataColumn2(
                     label: Text(
-                      'Cable Type',
+                      """Weight
+(Kg)""",
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
@@ -79,40 +116,7 @@ class CableReport extends StatelessWidget {
                   ),
                   DataColumn2(
                     label: Text(
-                      'Manuacturer',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    fixedWidth: 115.25,
-                  ),
-                  DataColumn2(
-                    label: Text(
-                      'Armoring Type',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    fixedWidth: 115.25,
-                  ),
-                  DataColumn2(
-                    label: Text(
-                      'Core Type',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    fixedWidth: 115.25,
-                  ),
-                  DataColumn2(
-                    label: Text(
-                      "\u03A3 Core",
+                      "QTY",
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
@@ -123,8 +127,7 @@ class CableReport extends StatelessWidget {
                   ),
                   DataColumn2(
                     label: Text(
-                      """Length
-(Meter)""",
+                      "Unit",
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
@@ -132,30 +135,6 @@ class CableReport extends StatelessWidget {
                       ),
                     ),
                     fixedWidth: 95.25,
-                  ),
-                  DataColumn2(
-                    label: Text(
-                      """Tank
-(Inner)""",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    fixedWidth: 95.25,
-                  ),
-                  DataColumn2(
-                    label: Text(
-                      """Tank
-(Outer)""",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    fixedWidth: 135.25,
                   ),
                   DataColumn2(
                     label: Text(
@@ -166,29 +145,18 @@ class CableReport extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
+                    fixedWidth: 135.25,
+                  ),
+                  DataColumn2(
+                    label: Text(
+                      "",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
                     fixedWidth: 115.25,
-                  ),
-                  DataColumn2(
-                    label: Text(
-                      "Evidence",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    fixedWidth: 95.25,
-                  ),
-                  DataColumn2(
-                    label: Text(
-                      " ",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    fixedWidth: 95.25,
                   ),
                 ],
                 rows: List.generate(
@@ -201,73 +169,55 @@ class CableReport extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                             color: Colors.black,
                           ))),
-                      DataCell(Text('20208',
+                      DataCell(Text('Cage 1',
                           style: GoogleFonts.montserrat(
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
                             color: Colors.black,
                           ))),
-                      DataCell(Text('UNKOWN-12',
+                      DataCell(Text('REPEATER',
                           style: GoogleFonts.montserrat(
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
                             color: Colors.black,
                           ))),
-                      DataCell(Text('OCC-SC500',
+                      DataCell(Text('4FP#5-91E RP24 730 AAA',
                           style: GoogleFonts.montserrat(
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
                             color: Colors.black,
                           ))),
-                      DataCell(Text('NEC',
+                      DataCell(Text('NA',
                           style: GoogleFonts.montserrat(
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
                             color: Colors.black,
                           ))),
-                      DataCell(Text('DA',
+                      DataCell(Text('SMPCS P#1',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                          ))),
+                      DataCell(Text('3.00',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                          ))),
+                      DataCell(Text('1',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                          ))),
+                      DataCell(Text('Unit',
                           style: GoogleFonts.montserrat(
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
                             color: Colors.black,
                           ))),
                       DataCell(Text('-',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ))),
-                      DataCell(Text('-',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ))),
-                      DataCell(Text('628',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ))),
-                      DataCell(Text('-',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ))),
-                      DataCell(Text('Tank 6',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ))),
-                      DataCell(Text('IGG-S14.5 # S146C01-3',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ))),
-                      DataCell(Text('SCRAP',
                           style: GoogleFonts.montserrat(
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
