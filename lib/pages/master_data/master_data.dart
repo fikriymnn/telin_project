@@ -9,8 +9,6 @@ import 'package:telin_project/pages/master_data/perusahan.dart';
 import 'package:telin_project/pages/master_data/system.dart';
 import 'package:telin_project/pages/master_data/unit.dart';
 import 'package:telin_project/widgets/custom_text.dart';
-import 'package:telin_project/widgets/master_data/add_new_item.dart';
-import 'package:telin_project/widgets/master_data/add_new_kit.dart';
 
 class MasterDataViewPage extends StatelessWidget {
   const MasterDataViewPage({super.key});

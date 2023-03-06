@@ -43,7 +43,7 @@ class _TableManufactureState extends State<TableManufacture> {
           ),
           DataColumn2(
             label: Center(
-              child: Text('System Name',
+              child: Text('Manufacture Name',
                   style: GoogleFonts.montserrat(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -92,11 +92,17 @@ class _TableManufactureState extends State<TableManufacture> {
                           });
                           },
                           child: Container(
-                            width: 21.41,
+                            width: 50,
                             height: 19.46,
-                            
+                             decoration: BoxDecoration(
+                                color: green,
+                                borderRadius: BorderRadius.circular(6)),
                             child: Center(
-                              child: Icon(Icons.edit,color: green,)
+                              child: Text("Edit",style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ))
                             ),
                           ),
                         ),

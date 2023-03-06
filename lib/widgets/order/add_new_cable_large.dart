@@ -3,58 +3,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AddNewKitSmall extends StatefulWidget {
-  const AddNewKitSmall({super.key});
+class AddNewCableLarge extends StatefulWidget {
+  const AddNewCableLarge({super.key});
 
   @override
-  State<AddNewKitSmall> createState() => _AddNewKitSmallState();
+  State<AddNewCableLarge> createState() => _AddNewCableLargeState();
 }
 
-class _AddNewKitSmallState extends State<AddNewKitSmall> {
-   List<DropdownMenuItem<String>> get dropdownItemsLocationName {
-    List<DropdownMenuItem<String>> menuItemsLocationName = [
-      DropdownMenuItem(
-          child: Text("Select Location Name"), value: "Select Location Name"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
-    ];
-    return menuItemsLocationName;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItemsLocationCategory {
-    List<DropdownMenuItem<String>> menuItemsLocationCategory = [
-      DropdownMenuItem(
-          child: Text("Select Location Category"), value: "Select Location Category"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
-    ];
-    return menuItemsLocationCategory;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItemsPartNumber {
-    List<DropdownMenuItem<String>> menuItemsPartNumber = [
-      DropdownMenuItem(
-          child: Text("Select Part Number"), value: "Select Part Number"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
-    ];
-    return menuItemsPartNumber;
-  }
-   
-   List<DropdownMenuItem<String>> get dropdownItemsSerialNumber {
-    List<DropdownMenuItem<String>> menuItemsSerialNumber = [
-      DropdownMenuItem(
-          child: Text("Select Serial Number"), value: "Select Serial Number"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
-    ];
-    return menuItemsSerialNumber;
-  }
-
+class _AddNewCableLargeState extends State<AddNewCableLarge> {
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItemsSystem = [
       DropdownMenuItem(
@@ -66,54 +22,110 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
     return menuItemsSystem;
   }
 
-  List<DropdownMenuItem<String>> get dropdownItemsUnit {
-    List<DropdownMenuItem<String>> menuItemsUnit = [
+   List<DropdownMenuItem<String>> get dropdownItemsCableType {
+    List<DropdownMenuItem<String>> menuItemsCableType = [
       DropdownMenuItem(
-          child: Text("Select Unit"), value: "Select Unit"),
+          child: Text("Select Cable Type"), value: "Select Cable Type"),
       DropdownMenuItem(child: Text("Canada"), value: "Canada"),
       DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
       DropdownMenuItem(child: Text("England"), value: "England"),
     ];
-    return menuItemsUnit;
+    return menuItemsCableType;
+  }
+
+  List<DropdownMenuItem<String>> get dropdownItemsManufacture {
+    List<DropdownMenuItem<String>> menuItemsManufacture = [
+      DropdownMenuItem(
+          child: Text("Select Manufacture"), value: "Select Manufacture"),
+      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
+      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
+      DropdownMenuItem(child: Text("England"), value: "England"),
+    ];
+    return menuItemsManufacture;
+  }
+
+  List<DropdownMenuItem<String>> get dropdownItemsArmoringType {
+    List<DropdownMenuItem<String>> menuItemsArmoringType = [
+      DropdownMenuItem(
+          child: Text("Select Armoring Type"), value: "Select Armoring Type"),
+      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
+      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
+      DropdownMenuItem(child: Text("England"), value: "England"),
+    ];
+    return menuItemsArmoringType;
+  }
+   
+   List<DropdownMenuItem<String>> get dropdownItemsInner {
+    List<DropdownMenuItem<String>> menuItemsInner = [
+      DropdownMenuItem(
+          child: Text("Select Inner"), value: "Select Inner"),
+      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
+      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
+      DropdownMenuItem(child: Text("England"), value: "England"),
+    ];
+    return menuItemsInner;
+  }
+
+  List<DropdownMenuItem<String>> get dropdownItemsOuter {
+    List<DropdownMenuItem<String>> menuItemsOuter = [
+      DropdownMenuItem(
+          child: Text("Select Outer"), value: "Select Outer"),
+      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
+      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
+      DropdownMenuItem(child: Text("England"), value: "England"),
+    ];
+    return menuItemsOuter;
+  }
+
+  List<DropdownMenuItem<String>> get dropdownItemsCoreType {
+    List<DropdownMenuItem<String>> menuItemsCoreType = [
+      DropdownMenuItem(
+          child: Text("Select Core Type"), value: "Select Core Type"),
+      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
+      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
+      DropdownMenuItem(child: Text("England"), value: "England"),
+    ];
+    return menuItemsCoreType;
   }
 
 
 
 
+
+
+ 
+
   
 
-  String selectedValueLocationName = "Select Location Name";
-  String selectedValueLocationCategory = "Select Location Category";
-  String selectedValuePartNumber = "Select Part Number";
-  String selectedValueSerialNumber = "Select Serial Number";
+  String selectedValueCableType = "Select Cable Type";
+  String selectedValueManufacture = "Select Manufacture";
+  String selectedValueArmoringType = "Select Armoring Type";
+  String selectedValueCoreType = "Select Core Type";
+  String selectedValueCore = "Select Core";
+  String selectedValueInner = "Select Inner";
+  String selectedValueOuter = "Select Outer";
   String selectedValueSystem = "Select System";
-  String selectedValueUnit = "Select Unit";
-
   @override
   Widget build(BuildContext context) {
     return Column(
           children: [
-            Text("Add New Kit",
-                style: GoogleFonts.montserrat(
-                  fontSize: 23.3,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                )),
-                SizedBox(height: 30,),
+            
             Container(
+              width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     child: Column(
                       children: [
                         Container(
-                          width: 220,
+                          width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Location Name",
+                                "System",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -124,7 +136,7 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           ),
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
                           height: 44,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
@@ -150,11 +162,11 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                                     ),
                                     onChanged: (String? newValue) {
                                       setState(() {
-                                        selectedValueLocationName = newValue!;
+                                        selectedValueSystem = newValue!;
                                       });
                                     },
-                                    value: selectedValueLocationName,
-                                    items: dropdownItemsLocationName),
+                                    value: selectedValueSystem,
+                                    items: dropdownItemsSystem),
                               ),
                             ),
                           ),
@@ -163,12 +175,12 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           height: 20.6,
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Location Category",
+                                "Cable Type",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -179,7 +191,7 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           ),
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
                           height: 44,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
@@ -205,11 +217,11 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                                     ),
                                     onChanged: (String? newValue) {
                                       setState(() {
-                                        selectedValueLocationCategory = newValue!;
+                                        selectedValueCableType = newValue!;
                                       });
                                     },
-                                    value: selectedValueLocationCategory,
-                                    items: dropdownItemsLocationCategory),
+                                    value: selectedValueCableType,
+                                    items: dropdownItemsCableType),
                               ),
                             ),
                           ),
@@ -218,12 +230,12 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           height: 20.6,
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Part Number",
+                                "Manufacture",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -234,7 +246,7 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           ),
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
                           height: 44,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
@@ -260,11 +272,11 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                                     ),
                                     onChanged: (String? newValue) {
                                       setState(() {
-                                        selectedValuePartNumber = newValue!;
+                                        selectedValueManufacture = newValue!;
                                       });
                                     },
-                                    value: selectedValuePartNumber,
-                                    items: dropdownItemsPartNumber),
+                                    value: selectedValueManufacture,
+                                    items: dropdownItemsManufacture),
                               ),
                             ),
                           ),
@@ -273,12 +285,12 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           height: 20.6,
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Serial Number",
+                                "Armoring Type",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -289,7 +301,7 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           ),
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
                           height: 44,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
@@ -315,11 +327,11 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                                     ),
                                     onChanged: (String? newValue) {
                                       setState(() {
-                                        selectedValueSerialNumber = newValue!;
+                                        selectedValueArmoringType = newValue!;
                                       });
                                     },
-                                    value: selectedValueSerialNumber,
-                                    items: dropdownItemsSerialNumber),
+                                    value: selectedValueArmoringType,
+                                    items: dropdownItemsArmoringType),
                               ),
                             ),
                           ),
@@ -328,19 +340,19 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                     ),
                   ),
                   SizedBox(
-                    width: 20,
+                    width: 40,
                   ),
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: 220,
+                          width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Weigth",
+                                "Length",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -386,7 +398,7 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                                             fontWeight: FontWeight.w400,
                                             color: Colors.black,
                                           ),
-                                          hintText: "Type Weigth"),
+                                          hintText: "Type Length"),
                                     ),
                                   ),
                                 ),
@@ -400,7 +412,7 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                                       color: Color(0xffEC1D26)),
                                   child: Center(
                                     child: Text(
-                                      "Kilogram",
+                                      "Meter",
                                       style: GoogleFonts.montserrat(
                                         fontSize: 13.3,
                                         fontWeight: FontWeight.w500,
@@ -417,12 +429,12 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           height: 20.6,
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "QTY",
+                                "Lable",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -433,7 +445,7 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           ),
                         ),
                         Container(
-                          width: 203.3,
+                          width: 230,
                           height: 44,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
@@ -447,11 +459,8 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                                     offset: Offset(0, 4))
                               ]),
                           child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 18,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
+                            padding: const EdgeInsets.only(left: 18, bottom: 8),
+                            child: Center(
                               child: TextField(
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
@@ -465,21 +474,19 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ),
-                                    hintText: "Type Quantity"),
+                                    hintText: "Type Here"),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 20.6,
-                        ),
+                        SizedBox(height: 20.6,),
                         Container(
-                          width: 220,
+                          width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "System",
+                                "Inner",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -490,7 +497,7 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           ),
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
                           height: 44,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
@@ -516,11 +523,11 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                                     ),
                                     onChanged: (String? newValue) {
                                       setState(() {
-                                        selectedValueSystem = newValue!;
+                                        selectedValueInner = newValue!;
                                       });
                                     },
-                                    value: selectedValueSystem,
-                                    items: dropdownItemsSystem),
+                                    value: selectedValueInner,
+                                    items: dropdownItemsInner),
                               ),
                             ),
                           ),
@@ -529,12 +536,12 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           height: 20.6,
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Unit",
+                                "Outer",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -545,7 +552,7 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           ),
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
                           height: 44,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
@@ -571,34 +578,37 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                                     ),
                                     onChanged: (String? newValue) {
                                       setState(() {
-                                        selectedValueUnit = newValue!;
+                                        selectedValueOuter = newValue!;
                                       });
                                     },
-                                    value: selectedValueUnit,
-                                    items: dropdownItemsUnit),
+                                    value: selectedValueOuter,
+                                    items: dropdownItemsOuter),
                               ),
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: 20.6,
+                        ),
+                       
+                        
                       ],
                     ),
                   ),
-                 
-                  
-                ],
-              ),
-            ),
-             SizedBox(height: 30,),
-             Container(
+                  SizedBox(
+                    width: 40,
+                  ),
+                  Container(
                     child: Column(
                       children: [
+                        
                         Container(
-                          width: 220,
+                          width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Keterangan",
+                                "Evidence",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -609,7 +619,59 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                           ),
                         ),
                         Container(
-                          width: 220,
+                          width: 230,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  width: 5, color: Color(0xffF0F0F0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: Offset(0, 4))
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 18, bottom: 8),
+                            child: Center(
+                              child: TextField(
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintStyle: GoogleFonts.montserrat(
+                                      fontSize: 13.3,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                    hintText: "Type Here"),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20.6,),
+                        Container(
+                          width: 230,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Remark",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 230,
                           height: 44,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
@@ -646,10 +708,118 @@ class _AddNewKitSmallState extends State<AddNewKitSmall> {
                         SizedBox(
                           height: 20.6,
                         ),
-                       
+                        Container(
+                          width: 230,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Core Type",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 230,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  width: 5, color: Color(0xffF0F0F0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: Offset(0, 4))
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 18, right: 18),
+                            child: Center(
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                    isExpanded: true,
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 13.3,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        selectedValueCoreType = newValue!;
+                                      });
+                                    },
+                                    value: selectedValueCoreType,
+                                    items: dropdownItemsCoreType),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.6,
+                        ),
+                        Container(
+                          width: 230,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "\u03A3 Core",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 230,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  width: 5, color: Color(0xffF0F0F0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: Offset(0, 4))
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 18, bottom: 8),
+                            child: Center(
+                              child: TextField(
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintStyle: GoogleFonts.montserrat(
+                                      fontSize: 13.3,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                    hintText: "Type Here"),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 72,
             ),

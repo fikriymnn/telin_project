@@ -43,7 +43,7 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
           ),
           DataColumn2(
             label: Center(
-              child: Text('System Name',
+              child: Text('Armoring Name',
                   style: GoogleFonts.montserrat(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -91,12 +91,18 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
                             return EditArmoringType();
                           });
                           },
-                          child: Container(
-                            width: 21.41,
+                          child:Container(
+                            width: 50,
                             height: 19.46,
-                            
+                             decoration: BoxDecoration(
+                                color: green,
+                                borderRadius: BorderRadius.circular(6)),
                             child: Center(
-                              child: Icon(Icons.edit,color: green,)
+                              child: Text("Edit",style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ))
                             ),
                           ),
                         ),

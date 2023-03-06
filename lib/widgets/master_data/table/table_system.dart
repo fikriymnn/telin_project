@@ -92,11 +92,17 @@ class _TableSystemState extends State<TableSystem> {
                           });
                           },
                           child: Container(
-                            width: 21.41,
+                            width: 50,
                             height: 19.46,
-                            
+                             decoration: BoxDecoration(
+                                color: green,
+                                borderRadius: BorderRadius.circular(6)),
                             child: Center(
-                              child: Icon(Icons.edit,color: green,)
+                              child: Text("Edit",style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ))
                             ),
                           ),
                         ),
