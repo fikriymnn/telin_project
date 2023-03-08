@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:telin_project/pages/auth/login_screen.dart';
 import 'package:telin_project/pages/depo.dart';
 import 'package:telin_project/pages/home/home.dart';
+import 'package:telin_project/pages/master_data/armoring_type.dart';
+import 'package:telin_project/pages/master_data/cable_type.dart';
+import 'package:telin_project/pages/master_data/core_type.dart';
+import 'package:telin_project/pages/master_data/location.dart';
+import 'package:telin_project/pages/master_data/manufacture.dart';
+import 'package:telin_project/pages/master_data/perusahan.dart';
+import 'package:telin_project/pages/master_data/system.dart';
+import 'package:telin_project/pages/master_data/unit.dart';
 import 'package:telin_project/routing/routes.dart';
 
 import '../pages/inventory/inventory.dart';
@@ -20,6 +28,22 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(InventoryViewPage());
     case MasterDataPageRoute:
       return _getPageRoute(MasterDataViewPage());
+    case SystemPageRoute:
+      return _getPageRoute(SystemScreens());
+    case ArmoringPageRoute:
+      return _getPageRoute(ArmoringTypeScreens());
+    case CableTypePageRoute:
+      return _getPageRoute(CableTypeScreens());
+    case ManufacturerPageRoute:
+      return _getPageRoute(ManufactureScreens());
+    case CoreTypePageRoute:
+      return _getPageRoute(CoreTypeScreens());
+    case LocationPageRoute:
+      return _getPageRoute(LocationScreens());
+    case UnitPageRoute:
+      return _getPageRoute(UnitScreens());
+    case CompanyPageRoute:
+      return _getPageRoute(PerusahaanScreens());
     case OrderPageRoute:
       return _getPageRoute(OrderViewPage());
     case ReportPageRoute:

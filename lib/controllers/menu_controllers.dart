@@ -29,6 +29,22 @@ class MenuControllers extends GetxController {
         return _customIcon(Icons.task_outlined, itemName);
       case MasterDataDisplayName:
         return _customIcon(FontAwesomeIcons.coins, itemName);
+      case SystemDisplayName:
+        return _customIcon(FontAwesomeIcons.box, itemName);
+      case ArmoringDisplayName:
+        return _customIcon(FontAwesomeIcons.cableCar, itemName);
+      case CableTypeDisplayName:
+        return _customIcon(FontAwesomeIcons.magento, itemName);
+      case ManufacturerDisplayName:
+        return _customIcon(FontAwesomeIcons.hand, itemName);
+      case CoreTypeDisplayName:
+        return _customIcon(FontAwesomeIcons.circleCheck, itemName);
+      case LocationDisplayName:
+        return _customIcon(FontAwesomeIcons.locationDot, itemName);
+      case UnitDisplayName:
+        return _customIcon(FontAwesomeIcons.unity, itemName);
+      case CompanyDisplayName:
+        return _customIcon(FontAwesomeIcons.building, itemName);
       case OrderDisplayName:
         return _customIcon(FontAwesomeIcons.tag, itemName);
       case ReportDisplayName:

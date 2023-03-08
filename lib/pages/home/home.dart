@@ -22,16 +22,12 @@ class HomeViewPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/background_home.png'),fit: BoxFit.fill)),
               height: 327.6,
-              child: const ResponsiveWidget(
-                largeScreen: Padding(
+              child: Padding(
                padding:  EdgeInsets.only(left: 146, right: 146),
                 child: ChartData(),
               ),
-              mediumScreen:  Padding(
-               padding:  EdgeInsets.only(left: 90, right: 90),
-                child: ChartData(),
-              ),
-              )
+              
+              
               
             ),
             const SizedBox(height: 50,),
