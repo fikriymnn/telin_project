@@ -221,18 +221,17 @@ class _TableSystemState extends State<TableSystem> {
                                 });
                           },
                           child: Container(
-                            width: 21.41,
+                            width: 50,
                             height: 19.46,
-                            decoration: BoxDecoration(
-                                color: Color(0xffEC1D26),
+                             decoration: BoxDecoration(
+                                color: active,
                                 borderRadius: BorderRadius.circular(6)),
                             child: Center(
-                              child: Text("X",
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                  )),
+                              child: Text("Delete",style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ))
                             ),
                           ),
                         ),

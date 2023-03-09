@@ -10,7 +10,12 @@ import 'package:telin_project/pages/master_data/manufacture.dart';
 import 'package:telin_project/pages/master_data/perusahan.dart';
 import 'package:telin_project/pages/master_data/system.dart';
 import 'package:telin_project/pages/master_data/unit.dart';
+import 'package:telin_project/pages/order/loading.dart';
+import 'package:telin_project/pages/order/off_loading_existing_material.dart';
+import 'package:telin_project/pages/order/off_loading_new_material.dart';
 import 'package:telin_project/routing/routes.dart';
+import 'package:telin_project/widgets/report/report_table_cable.dart';
+import 'package:telin_project/widgets/report/report_table_noncable.dart';
 
 import '../pages/inventory/inventory.dart';
 import '../pages/master_data/master_data.dart';
@@ -46,8 +51,18 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(PerusahaanScreens());
     case OrderPageRoute:
       return _getPageRoute(OrderViewPage());
+    case LoadingPageRoute:
+      return _getPageRoute(LoadingScreens());
+    case NewMaterialPageRoute:
+      return _getPageRoute(OffLoadingNewMatrial());
+    case ExistingMaterialPageRoute:
+      return _getPageRoute(OffLoadingExistingScreens());
     case ReportPageRoute:
       return _getPageRoute(ReportViewPage());
+    case CableReportPageRoute:
+      return _getPageRoute(CableReport());
+    case NonCableReportPageRoute:
+      return _getPageRoute(NonCableReport());
     case SettingsPageRoute:
       return _getPageRoute(SettingsViewPage());
     case AuthenticationPageRoute:

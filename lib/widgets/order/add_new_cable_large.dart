@@ -107,741 +107,744 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   String selectedValueSystem = "Select System";
   @override
   Widget build(BuildContext context) {
-    return Column(
-          children: [
-            
-            Container(
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "System",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, right: 18),
-                            child: Center(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton(
-                                    isExpanded: true,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        selectedValueSystem = newValue!;
-                                      });
-                                    },
-                                    value: selectedValueSystem,
-                                    items: dropdownItemsSystem),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20.6,
-                        ),
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Cable Type",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, right: 18),
-                            child: Center(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton(
-                                    isExpanded: true,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        selectedValueCableType = newValue!;
-                                      });
-                                    },
-                                    value: selectedValueCableType,
-                                    items: dropdownItemsCableType),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20.6,
-                        ),
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Manufacture",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, right: 18),
-                            child: Center(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton(
-                                    isExpanded: true,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        selectedValueManufacture = newValue!;
-                                      });
-                                    },
-                                    value: selectedValueManufacture,
-                                    items: dropdownItemsManufacture),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20.6,
-                        ),
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Armoring Type",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, right: 18),
-                            child: Center(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton(
-                                    isExpanded: true,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        selectedValueArmoringType = newValue!;
-                                      });
-                                    },
-                                    value: selectedValueArmoringType,
-                                    items: dropdownItemsArmoringType),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 40,
-                  ),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Length",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 203.3,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 18,
-                            ),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Column(
+            children: [
+              
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 230,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 8),
-                                    child: TextField(
+                                Text(
+                                  "System",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 230,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18, right: 18),
+                              child: Center(
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
+                                      isExpanded: true,
                                       style: GoogleFonts.montserrat(
                                         fontSize: 13.3,
                                         fontWeight: FontWeight.w400,
                                         color: Colors.black,
                                       ),
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintStyle: GoogleFonts.montserrat(
-                                            fontSize: 13.3,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.black,
-                                          ),
-                                          hintText: "Type Length"),
-                                    ),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          selectedValueSystem = newValue!;
+                                        });
+                                      },
+                                      value: selectedValueSystem,
+                                      items: dropdownItemsSystem),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.6,
+                          ),
+                          Container(
+                            width: 230,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Cable Type",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
                                   ),
                                 ),
-                                Container(
-                                  width: 68.6,
-                                  height: 44,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(6),
-                                          bottomRight: Radius.circular(6)),
-                                      color: Color(0xffEC1D26)),
-                                  child: Center(
-                                    child: Text(
-                                      "Meter",
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 13.3,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                )
                               ],
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20.6,
-                        ),
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Lable",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
+                          Container(
+                            width: 230,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18, right: 18),
+                              child: Center(
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
+                                      isExpanded: true,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          selectedValueCableType = newValue!;
+                                        });
+                                      },
+                                      value: selectedValueCableType,
+                                      items: dropdownItemsCableType),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, bottom: 8),
-                            child: Center(
-                              child: TextField(
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 13.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    hintText: "Type Here"),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 20.6,),
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Inner",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
+                          SizedBox(
+                            height: 20.6,
                           ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, right: 18),
-                            child: Center(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton(
-                                    isExpanded: true,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        selectedValueInner = newValue!;
-                                      });
-                                    },
-                                    value: selectedValueInner,
-                                    items: dropdownItemsInner),
+                          Container(
+                            width: 230,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Manufacture",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 230,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18, right: 18),
+                              child: Center(
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
+                                      isExpanded: true,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          selectedValueManufacture = newValue!;
+                                        });
+                                      },
+                                      value: selectedValueManufacture,
+                                      items: dropdownItemsManufacture),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20.6,
-                        ),
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Outer",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
+                          SizedBox(
+                            height: 20.6,
                           ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, right: 18),
-                            child: Center(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton(
-                                    isExpanded: true,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        selectedValueOuter = newValue!;
-                                      });
-                                    },
-                                    value: selectedValueOuter,
-                                    items: dropdownItemsOuter),
+                          Container(
+                            width: 230,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Armoring Type",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 230,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18, right: 18),
+                              child: Center(
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
+                                      isExpanded: true,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          selectedValueArmoringType = newValue!;
+                                        });
+                                      },
+                                      value: selectedValueArmoringType,
+                                      items: dropdownItemsArmoringType),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20.6,
-                        ),
-                       
-                        
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 40,
-                  ),
-                  Container(
-                    child: Column(
-                      children: [
-                        
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Evidence",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, bottom: 8),
-                            child: Center(
-                              child: TextField(
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 13.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    hintText: "Type Here"),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 20.6,),
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Remark",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, bottom: 8),
-                            child: Center(
-                              child: TextField(
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 13.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    hintText: "Type Here"),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20.6,
-                        ),
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Core Type",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, right: 18),
-                            child: Center(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton(
-                                    isExpanded: true,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        selectedValueCoreType = newValue!;
-                                      });
-                                    },
-                                    value: selectedValueCoreType,
-                                    items: dropdownItemsCoreType),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20.6,
-                        ),
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "\u03A3 Core",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, bottom: 8),
-                            child: Center(
-                              child: TextField(
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 13.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    hintText: "Type Here"),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      width: 40,
                     ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 72,
-            ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                width: 90,
-                height: 37.3,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color: Color(0xffEC1D26)),
-                child: Center(
-                  child: Text("Done",
-                      style: GoogleFonts.roboto(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      )),
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 230,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Length",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 203.3,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                left: 18,
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(bottom: 8),
+                                      child: TextField(
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 13.3,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                        ),
+                                        decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintStyle: GoogleFonts.montserrat(
+                                              fontSize: 13.3,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black,
+                                            ),
+                                            hintText: "Type Length"),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 68.6,
+                                    height: 44,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(6),
+                                            bottomRight: Radius.circular(6)),
+                                        color: Color(0xffEC1D26)),
+                                    child: Center(
+                                      child: Text(
+                                        "Meter",
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 13.3,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.6,
+                          ),
+                          Container(
+                            width: 230,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Lable",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 230,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18, bottom: 8),
+                              child: Center(
+                                child: TextField(
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintStyle: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      hintText: "Type Here"),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20.6,),
+                          Container(
+                            width: 230,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Inner",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 230,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18, right: 18),
+                              child: Center(
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
+                                      isExpanded: true,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          selectedValueInner = newValue!;
+                                        });
+                                      },
+                                      value: selectedValueInner,
+                                      items: dropdownItemsInner),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.6,
+                          ),
+                          Container(
+                            width: 230,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Outer",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 230,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18, right: 18),
+                              child: Center(
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
+                                      isExpanded: true,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          selectedValueOuter = newValue!;
+                                        });
+                                      },
+                                      value: selectedValueOuter,
+                                      items: dropdownItemsOuter),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.6,
+                          ),
+                         
+                          
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 40,
+                    ),
+                    Container(
+                      child: Column(
+                        children: [
+                          
+                          Container(
+                            width: 230,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Evidence",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 230,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18, bottom: 8),
+                              child: Center(
+                                child: TextField(
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintStyle: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      hintText: "Type Here"),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20.6,),
+                          Container(
+                            width: 230,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Remark",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 230,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18, bottom: 8),
+                              child: Center(
+                                child: TextField(
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintStyle: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      hintText: "Type Here"),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.6,
+                          ),
+                          Container(
+                            width: 230,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Core Type",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 230,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18, right: 18),
+                              child: Center(
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
+                                      isExpanded: true,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          selectedValueCoreType = newValue!;
+                                        });
+                                      },
+                                      value: selectedValueCoreType,
+                                      items: dropdownItemsCoreType),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.6,
+                          ),
+                          Container(
+                            width: 230,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "\u03A3 Core",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 230,
+                            height: 44,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 5, color: Color(0xffF0F0F0)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 5,
+                                      offset: Offset(0, 4))
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18, bottom: 8),
+                              child: Center(
+                                child: TextField(
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintStyle: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      hintText: "Type Here"),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
-        );
+              SizedBox(
+                height: 72,
+              ),
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  width: 90,
+                  height: 37.3,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: Color(0xffEC1D26)),
+                  child: Center(
+                    child: Text("Done",
+                        style: GoogleFonts.roboto(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        )),
+                  ),
+                ),
+              ),
+            ],
+          ),
+    );
   }
 }

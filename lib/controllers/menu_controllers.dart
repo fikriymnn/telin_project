@@ -32,7 +32,7 @@ class MenuControllers extends GetxController {
       case SystemDisplayName:
         return _customIcon(FontAwesomeIcons.box, itemName);
       case ArmoringDisplayName:
-        return _customIcon(FontAwesomeIcons.cableCar, itemName);
+        return _customIcon(Icons.settings_input_component, itemName);
       case CableTypeDisplayName:
         return _customIcon(FontAwesomeIcons.magento, itemName);
       case ManufacturerDisplayName:
@@ -47,8 +47,20 @@ class MenuControllers extends GetxController {
         return _customIcon(FontAwesomeIcons.building, itemName);
       case OrderDisplayName:
         return _customIcon(FontAwesomeIcons.tag, itemName);
+      case LoadingDisplayName:
+        return _customIcon(Icons.keyboard_double_arrow_up, itemName);
+      case OffLoadingDisplayName:
+        return _customIcon(Icons.keyboard_double_arrow_down, itemName);
+      case NewMaterialDisplayName:
+        return _customIcon(Icons.new_label_outlined, itemName);
+      case ExistingMaterialDisplayName:
+        return _customIcon(Icons.label_outline, itemName);
       case ReportDisplayName:
         return _customIcon(FontAwesomeIcons.listCheck, itemName);
+      case CableReportDisplayName:
+        return _customIcon(Icons.cable, itemName);
+      case NonCableReportDisplayName:
+        return _customIcon(FontAwesomeIcons.tools, itemName);
       case SettingsDisplayName:
         return _customIcon(FontAwesomeIcons.gear, itemName);
       case AuthenticationDisplayName:

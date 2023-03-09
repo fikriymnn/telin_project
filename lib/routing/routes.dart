@@ -36,8 +36,26 @@ const CompanyPageRoute = "/Company";
 const OrderDisplayName = "Order";
 const OrderPageRoute = "/order";
 
+const LoadingDisplayName = "Loading";
+const LoadingPageRoute = "/Loading";
+
+const OffLoadingDisplayName = "Off Loading";
+const OffLoadingPageRoute = "/Off Loading";
+
+const NewMaterialDisplayName = "New Material";
+const NewMaterialPageRoute = "/New Material";
+
+const ExistingMaterialDisplayName = "Existing Material";
+const ExistingMaterialPageRoute = "/Existing Material";
+
 const ReportDisplayName = "Report";
 const ReportPageRoute = "/report";
+
+const CableReportDisplayName = "Cable Report";
+const CableReportPageRoute = "/Cable Report";
+
+const NonCableReportDisplayName = "Non Cable Report";
+const NonCableReportPageRoute = "/Non Cable Report";
 
 const SettingsDisplayName = "Settings";
 const SettingsPageRoute = "/settings";
@@ -67,6 +85,10 @@ List<MenuItem> sideMenuItems = [
   MenuItem(UnitDisplayName, UnitPageRoute),
   MenuItem(CompanyDisplayName, CompanyPageRoute),
   MenuItem(OrderDisplayName, OrderPageRoute),
+  MenuItem(LoadingDisplayName, LoadingPageRoute),
+  MenuItem(OffLoadingDisplayName, OffLoadingPageRoute),
+  MenuItem(NewMaterialDisplayName, NewMaterialPageRoute),
+  MenuItem(ExistingMaterialDisplayName, ExistingMaterialPageRoute),
   MenuItem(ReportDisplayName, ReportPageRoute),
   MenuItem(SettingsDisplayName, SettingsPageRoute),
   MenuItem(AuthenticationDisplayName, AuthenticationPageRoute),

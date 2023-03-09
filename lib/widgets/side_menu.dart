@@ -15,6 +15,9 @@ class SideMenu extends StatefulWidget {
 }
 
 bool dropdownMasterData = false;
+bool dropDownOrder = false;
+bool dropDownOffLoading = false;
+bool dropDownReport = false;
 
 class _SideMenuState extends State<SideMenu> {
   @override
@@ -66,7 +69,6 @@ class _SideMenuState extends State<SideMenu> {
             SideMenuItem(
               itemName: "Home",
               dropp: false,
-              
               onTap: () {
                 if (!menuController.isActive("Home")) {
                   menuController.changeActiveitemTo("Home");
@@ -78,7 +80,6 @@ class _SideMenuState extends State<SideMenu> {
             SideMenuItem(
               itemName: "Inventory",
               dropp: false,
-              
               onTap: () {
                 if (!menuController.isActive("Inventory")) {
                   menuController.changeActiveitemTo("Inventory");
@@ -90,6 +91,7 @@ class _SideMenuState extends State<SideMenu> {
             SideMenuItem(
               itemName: "Master Data",
               dropp: true,
+              
               activess: dropdownMasterData,
               onTap: () {
                 setState(() {
@@ -99,16 +101,18 @@ class _SideMenuState extends State<SideMenu> {
             ),
             dropdownMasterData
                 ? Padding(
-                    padding: const EdgeInsets.only(left: 30),
+                    padding: const EdgeInsets.only(left: 15),
                     child: Container(
                       width: _width,
-                      decoration: BoxDecoration(color:lightGrey.withOpacity(0.10) ),
+                      decoration:
+                          BoxDecoration(color: lightGrey.withOpacity(0.10)),
                       child: Column(
                         children: [
                           SideMenuItem(
                             itemName: "System",
                             dropp: false,
-                            
+                            size1: 13,
+                            size2: 15,
                             onTap: () {
                               if (!menuController.isActive("System")) {
                                 menuController.changeActiveitemTo("System");
@@ -122,7 +126,8 @@ class _SideMenuState extends State<SideMenu> {
                           SideMenuItem(
                             itemName: "Armoring Type",
                             dropp: false,
-                           
+                            size1: 13,
+                            size2: 15,
                             onTap: () {
                               if (!menuController.isActive("Armoring Type")) {
                                 menuController
@@ -137,7 +142,8 @@ class _SideMenuState extends State<SideMenu> {
                           SideMenuItem(
                             itemName: "Cable Type",
                             dropp: false,
-                            
+                            size1: 13,
+                            size2: 15,
                             onTap: () {
                               if (!menuController.isActive("Cable Type")) {
                                 menuController.changeActiveitemTo("Cable Type");
@@ -151,7 +157,8 @@ class _SideMenuState extends State<SideMenu> {
                           SideMenuItem(
                             itemName: "Manufacturer",
                             dropp: false,
-                            
+                            size1: 13,
+                            size2: 15,
                             onTap: () {
                               if (!menuController.isActive("Manufacturer")) {
                                 menuController
@@ -166,7 +173,6 @@ class _SideMenuState extends State<SideMenu> {
                           SideMenuItem(
                             itemName: "Core Type",
                             dropp: false,
-                           
                             onTap: () {
                               if (!menuController.isActive("Core Type")) {
                                 menuController.changeActiveitemTo("Core Type");
@@ -180,7 +186,8 @@ class _SideMenuState extends State<SideMenu> {
                           SideMenuItem(
                             itemName: "Location",
                             dropp: false,
-                           
+                            size1: 13,
+                            size2: 15,
                             onTap: () {
                               if (!menuController.isActive("Location")) {
                                 menuController.changeActiveitemTo("Location");
@@ -194,7 +201,8 @@ class _SideMenuState extends State<SideMenu> {
                           SideMenuItem(
                             itemName: "Unit",
                             dropp: false,
-                           
+                            size1: 13,
+                            size2: 15,
                             onTap: () {
                               if (!menuController.isActive("Unit")) {
                                 menuController.changeActiveitemTo("Unit");
@@ -207,7 +215,8 @@ class _SideMenuState extends State<SideMenu> {
                           SideMenuItem(
                             itemName: "Company",
                             dropp: false,
-                            
+                            size1: 13,
+                            size2: 15,
                             onTap: () {
                               if (!menuController.isActive("Company")) {
                                 menuController.changeActiveitemTo("Company");
@@ -225,32 +234,165 @@ class _SideMenuState extends State<SideMenu> {
                 : Container(),
             SideMenuItem(
               itemName: "Order",
-              dropp: false,
-             
+              dropp: true,
+              activess: dropDownOrder,
               onTap: () {
-                if (!menuController.isActive("Order")) {
-                  menuController.changeActiveitemTo("Order");
-                  if (ResponsiveWidget.isSmallScreen(context)) Get.back();
-                  navigationController.navigateTo(OrderPageRoute);
-                }
+                setState(() {
+                  dropDownOrder = !dropDownOrder;
+                });
               },
             ),
+            dropDownOrder
+                ? Padding(
+                    padding: EdgeInsets.only(left: 15),
+                    child: Container(
+                      width: _width,
+                      decoration:
+                          BoxDecoration(color: lightGrey.withOpacity(0.10)),
+                      child: Column(
+                        children: [
+                          SideMenuItem(
+                            itemName: "Loading",
+                            dropp: false,
+                            size1: 13,
+                            size2: 15,
+                            onTap: () {
+                              if (!menuController.isActive("Loading")) {
+                                menuController.changeActiveitemTo("Loading");
+                                if (ResponsiveWidget.isSmallScreen(context))
+                                  Get.back();
+                                navigationController
+                                    .navigateTo(LoadingPageRoute);
+                              }
+                            },
+                          ),
+                          SideMenuItem(
+                            itemName: "Off Loading",
+                            dropp: true,
+                            size1: 13,
+                            size2: 15,
+                            activess: dropDownOffLoading,
+                            onTap: () {
+                              setState(() {
+                                dropDownOffLoading = !dropDownOffLoading;
+                              });
+                            },
+                          ),
+                          dropDownOffLoading
+                              ? Padding(
+                                  padding: const EdgeInsets.only(left: 15),
+                                  child: Container(
+                                    width: _width,
+                                    decoration: BoxDecoration(
+                                        color: lightGrey.withOpacity(0.10)),
+                                    child: Column(
+                                      children: [
+                                        SideMenuItem(
+                                          itemName: "New Material",
+                                          dropp: false,
+                                          size1: 13,
+                                          size2: 15,
+                                          onTap: () {
+                                            if (!menuController
+                                                .isActive("New Material")) {
+                                              menuController.changeActiveitemTo(
+                                                  "New Material");
+                                              if (ResponsiveWidget
+                                                  .isSmallScreen(context))
+                                                Get.back();
+                                              navigationController.navigateTo(
+                                                  NewMaterialPageRoute);
+                                            }
+                                          },
+                                        ),
+                                        SideMenuItem(
+                                          itemName: "Existing Material",
+                                          dropp: false,
+                                          size1: 13,
+                                          size2: 15,
+                                          onTap: () {
+                                            if (!menuController.isActive(
+                                                "Existing Material")) {
+                                              menuController.changeActiveitemTo(
+                                                  "Existing Material");
+                                              if (ResponsiveWidget
+                                                  .isSmallScreen(context))
+                                                Get.back();
+                                              navigationController.navigateTo(
+                                                  ExistingMaterialPageRoute);
+                                            }
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : Container()
+                        ],
+                      ),
+                    ),
+                  )
+                : Container(),
             SideMenuItem(
               itemName: "Report",
-              dropp: false,
-              
+              dropp: true,
+              activess: dropDownReport,
               onTap: () {
-                if (!menuController.isActive("Report")) {
-                  menuController.changeActiveitemTo("Report");
-                  if (ResponsiveWidget.isSmallScreen(context)) Get.back();
-                  navigationController.navigateTo(ReportPageRoute);
-                }
+                setState(() {
+                  dropDownReport = !dropDownReport;
+                });
               },
             ),
+            dropDownReport
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Container(
+                      width: _width,
+                      decoration:
+                          BoxDecoration(color: lightGrey.withOpacity(0.10)),
+                      child: Column(
+                        children: [
+                          SideMenuItem(
+                            itemName: "Cable Report",
+                            dropp: false,
+                            size1: 13,
+                            size2: 15,
+                            onTap: () {
+                              if (!menuController.isActive("Cable Report")) {
+                                menuController
+                                    .changeActiveitemTo("Cable Report");
+                                if (ResponsiveWidget.isSmallScreen(context))
+                                  Get.back();
+                                navigationController
+                                    .navigateTo(CableReportPageRoute);
+                              }
+                            },
+                          ),
+                          SideMenuItem(
+                            itemName: "Non Cable Report",
+                            dropp: false,
+                            size1: 13,
+                            size2: 15,
+                            onTap: () {
+                              if (!menuController
+                                  .isActive("Non Cable Report")) {
+                                menuController
+                                    .changeActiveitemTo("Non Cable Report");
+                                if (ResponsiveWidget.isSmallScreen(context))
+                                  Get.back();
+                                navigationController
+                                    .navigateTo(NonCableReportPageRoute);
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                : Container(),
             SideMenuItem(
               itemName: "Settings",
               dropp: false,
-              
               onTap: () {
                 if (!menuController.isActive("Settings")) {
                   menuController.changeActiveitemTo("Settings");
@@ -262,15 +404,11 @@ class _SideMenuState extends State<SideMenu> {
             SideMenuItem(
               itemName: "Log Out",
               dropp: false,
-              
               onTap: () {
                 if (AuthenticationPageRoute == AuthenticationPageRoute) {
-                        menuController.changeActiveitemTo(HomePageDisplayName);
-                        Get.offAllNamed(AuthenticationPageRoute);
-                        
-                      }
-
-                    
+                  menuController.changeActiveitemTo(HomePageDisplayName);
+                  Get.offAllNamed(AuthenticationPageRoute);
+                }
               },
             ),
           ]),
@@ -279,4 +417,3 @@ class _SideMenuState extends State<SideMenu> {
     );
   }
 }
-
