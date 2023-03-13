@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/pages/order/off_loading_new_material.dart';
 import 'package:telin_project/widgets/custom_text.dart';
 
 class OrderViewPage extends StatelessWidget {
@@ -6,9 +8,33 @@ class OrderViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: CustomText(
-        text: "Order View",
+    return Scaffold(
+      body: Column(
+        children: [
+          InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>OffLoadingNewMatrial()));
+                  },
+                  child: Container(
+                    width: 170.6,
+                    height: 50.6,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                        borderRadius: BorderRadius.circular(4),
+                        color: Color(0xffB1CC85)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 14.6),
+                      child: Center(
+                        child: Text("New Material",
+                            style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13.3,
+                                color: Colors.white)),
+                      ),
+                    ),
+                  ),
+                ),
+        ],
       ),
     );
   }

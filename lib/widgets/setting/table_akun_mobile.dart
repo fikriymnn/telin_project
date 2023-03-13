@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
+import 'package:telin_project/widgets/setting/akun.dart';
 import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 class TableAkunMobile extends StatefulWidget {
@@ -14,6 +15,14 @@ class TableAkunMobile extends StatefulWidget {
 }
 
 class _TableAkunMobileState extends State<TableAkunMobile> {
+    late List<Akun> akun;
+ List <Akun> selectedRow = [];
+ @override
+  void initState() {
+    // TODO: implement initState
+    akun = Akun.getAkun();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return DataTable2(
@@ -78,28 +87,33 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
             label: Text(''),
           ),
         ],
-        rows: List<DataRow>.generate(
-            4,
-            (index) => DataRow(cells: [
-                  DataCell(Text('1',
+        rows: _createRows());
+  }
+
+  List<DataRow> _createRows() {
+    return akun
+        .map((akun) => DataRow(
+         
+          cells: [
+            DataCell(Text(akun.no,
                       style: GoogleFonts.montserrat(
                         fontSize: 9.7,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ))),
-                  DataCell(Text('Gudang',
+                  DataCell(Text(akun.name,
                       style: GoogleFonts.montserrat(
                         fontSize: 9.7,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ))),
-                  DataCell(Text('Gudang1',
+                  DataCell(Text(akun.username,
                       style: GoogleFonts.montserrat(
                         fontSize: 9.7,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ))),
-                  DataCell(Text('xxxxxxxxxxxx',
+                  DataCell(Text(akun.password,
                       style: GoogleFonts.montserrat(
                         fontSize: 9.7,
                         fontWeight: FontWeight.w400,
@@ -114,7 +128,7 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
                       SizedBox(
                         width: 7,
                       ),
-                      Text("User",
+                      Text(akun.role,
                           style: GoogleFonts.montserrat(
                             fontSize: 9.7,
                             fontWeight: FontWeight.w400,
@@ -135,7 +149,7 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
                         },
                         child: Text('Detail...',
                             style: GoogleFonts.montserrat(
-                              fontSize: 9.7,
+                              fontSize: 13.3,
                               fontWeight: FontWeight.w600,
                               color: Colors.black.withOpacity(0.5),
                             )),
@@ -174,7 +188,7 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
                                         Center(
                                           child: Text("Delete This Account ?",
                                               style: GoogleFonts.montserrat(
-                                                fontSize: 14.6,
+                                                fontSize: 9.7,
                                                 fontWeight: FontWeight.w400,
                                                 color: Colors.black,
                                               )),
@@ -255,6 +269,7 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
                       ),
                     ),
                   )),
-                ])));
+            ]))
+        .toList();
   }
 }
