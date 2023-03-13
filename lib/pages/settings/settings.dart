@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/widgets/custom_text.dart';
 import 'package:telin_project/widgets/setting/add_user.dart';
@@ -35,202 +37,253 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
           child: Column(
             children: [
               ResponsiveWidget(
-                largeScreen:  Container(
-                width: MediaQuery.of(context).size.width,
-                height: 148,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddUser()));
-                      },
-                      child: Container(
-                        width: 170.6,
-                        height: 50.6,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffA5C176), width: 3.3),
-                            borderRadius: BorderRadius.circular(4),
-                            color: Color(0xffB1CC85)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 14.6),
-                          child: Center(
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 15,
-                                  backgroundColor: Colors.white,
-                                  child: Icon(
-                                    Icons.add,
-                                    color: Color(0xffB1CC85),
-                                    size: 20,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Text("Add User",
-                                    style: GoogleFonts.roboto(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13.3,
-                                        color: Colors.white))
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 171.3,
-                    ),
-                    btnDelete?Container():
-                    InkWell(
-                      onTap: (){
-                        setState(() {
-                          btnDelete = true;
-                        });
-                      },
-                      child: Container(
-                        width: 170.6,
-                        height: 50.6,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffE44A51), width: 3.3),
-                            borderRadius: BorderRadius.circular(4),
-                            color: Color(0xffEC1D26)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 14.6),
-                          child: Center(
-                            child: Row(
-                              children: [
-                                CircleAvatar(
+                largeScreen: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 148,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddUser()));
+                        },
+                        child: Container(
+                          width: 170.6,
+                          height: 50.6,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Color(0xffA5C176), width: 3.3),
+                              borderRadius: BorderRadius.circular(4),
+                              color: Color(0xffB1CC85)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 14.6),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
                                     radius: 15,
                                     backgroundColor: Colors.white,
-                                    child: Text("X",
-                                        style: GoogleFonts.roboto(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 13.3,
-                                            color: Color(0xffEC1D26)))),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Text("Delete User",
-                                    style: GoogleFonts.roboto(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13.3,
-                                        color: Colors.white))
-                              ],
+                                    child: Icon(
+                                      Icons.add,
+                                      color: Color(0xffB1CC85),
+                                      size: 20,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text("Add User",
+                                      style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13.3,
+                                          color: Colors.white))
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    )
-                  ],
-                ),
-              ),
-              smallScreen:  Container(
-                width: MediaQuery.of(context).size.width,
-                height: 148,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddUser()));
-                      },
-                      child: Container(
-                        width: 170.6,
-                        height: 50.6,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffA5C176), width: 3.3),
-                            borderRadius: BorderRadius.circular(4),
-                            color: Color(0xffB1CC85)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 14.6),
-                          child: Center(
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 15,
-                                  backgroundColor: Colors.white,
-                                  child: Icon(
-                                    Icons.add,
-                                    color: Color(0xffB1CC85),
-                                    size: 20,
+                      SizedBox(
+                        width: 171.3,
+                      ),
+                      btnDelete
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 59.3, top: 32),
+                              child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      btnDelete = false;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 107.3,
+                                    height: 37.3,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                            color: Color(0xffB8B8B8),
+                                            width: 1)),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.subdirectory_arrow_left,
+                                          color: active,
+                                          size: 28.6,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Back",
+                                          style: GoogleFonts.roboto(
+                                            fontSize: 17.3,
+                                            fontWeight: FontWeight.w400,
+                                            color: active,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )),
+                            )
+                          : InkWell(
+                              onTap: () {
+                                setState(() {
+                                  btnDelete = true;
+                                });
+                              },
+                              child: Container(
+                                width: 170.6,
+                                height: 50.6,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Color(0xffE44A51), width: 3.3),
+                                    borderRadius: BorderRadius.circular(4),
+                                    color: Color(0xffEC1D26)),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 14.6),
+                                  child: Center(
+                                    child: Row(
+                                      children: [
+                                        CircleAvatar(
+                                            radius: 15,
+                                            backgroundColor: Colors.white,
+                                            child: Text("X",
+                                                style: GoogleFonts.roboto(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 13.3,
+                                                    color: Color(0xffEC1D26)))),
+                                        SizedBox(
+                                          width: 15,
+                                        ),
+                                        Text("Delete User",
+                                            style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 13.3,
+                                                color: Colors.white))
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Text("Add User",
-                                    style: GoogleFonts.roboto(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13.3,
-                                        color: Colors.white))
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 40,
-                    ),
-                    btnDelete?Container():
-                    InkWell(
-                      onTap: (){
-                        setState(() {
-                          btnDelete = true;
-                        });
-                      },
-                      child: Container(
-                        width: 170.6,
-                        height: 50.6,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffE44A51), width: 3.3),
-                            borderRadius: BorderRadius.circular(4),
-                            color: Color(0xffEC1D26)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 14.6),
-                          child: Center(
-                            child: Row(
-                              children: [
-                                CircleAvatar(
+                              ),
+                            )
+                    ],
+                  ),
+                ),
+                smallScreen: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 148,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddUser()));
+                        },
+                        child: Container(
+                          width: 170.6,
+                          height: 50.6,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Color(0xffA5C176), width: 3.3),
+                              borderRadius: BorderRadius.circular(4),
+                              color: Color(0xffB1CC85)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 14.6),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
                                     radius: 15,
                                     backgroundColor: Colors.white,
-                                    child: Text("X",
-                                        style: GoogleFonts.roboto(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 13.3,
-                                            color: Color(0xffEC1D26)))),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Text("Delete User",
-                                    style: GoogleFonts.roboto(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13.3,
-                                        color: Colors.white))
-                              ],
+                                    child: Icon(
+                                      Icons.add,
+                                      color: Color(0xffB1CC85),
+                                      size: 20,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text("Add User",
+                                      style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13.3,
+                                          color: Colors.white))
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        width: 40,
+                      ),
+                      btnDelete
+                          ? Container()
+                          : InkWell(
+                              onTap: () {
+                                setState(() {
+                                  btnDelete = true;
+                                });
+                              },
+                              child: Container(
+                                width: 170.6,
+                                height: 50.6,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Color(0xffE44A51), width: 3.3),
+                                    borderRadius: BorderRadius.circular(4),
+                                    color: Color(0xffEC1D26)),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 14.6),
+                                  child: Center(
+                                    child: Row(
+                                      children: [
+                                        CircleAvatar(
+                                            radius: 15,
+                                            backgroundColor: Colors.white,
+                                            child: Text("X",
+                                                style: GoogleFonts.roboto(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 13.3,
+                                                    color: Color(0xffEC1D26)))),
+                                        SizedBox(
+                                          width: 15,
+                                        ),
+                                        Text("Delete User",
+                                            style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 13.3,
+                                                color: Colors.white))
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                    ],
+                  ),
                 ),
               ),
-                ),
-           
-              
               Padding(
                 padding: const EdgeInsets.only(left: 16.6, right: 16.6),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 508.6,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4), color: Colors.white),
+                      borderRadius: BorderRadius.circular(4),
+                      color: Colors.white),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 14, horizontal: 26.6),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 14, horizontal: 26.6),
                     child: Column(
                       children: [
                         Container(
@@ -244,27 +297,26 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                                     borderRadius: BorderRadius.circular(6.6),
                                     border: Border.all(
                                         width: 1, color: Color(0xffC1C1C1)),
-                                    color: Color(0xffF3F3F3)
-                                    ),
-                                child:Padding(
-                                  padding: const EdgeInsets.only(left: 10,bottom: 15),
+                                    color: Color(0xffF3F3F3)),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, bottom: 15),
                                   child: TextField(
-                                      style: GoogleFonts.roboto(
-                                        fontSize: 10.6,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xFF9D9D9D),
-                                      ),
-                                      decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                          hintStyle: GoogleFonts.roboto(
-                                            fontSize: 10.6,
-                                            fontWeight: FontWeight.w400,
-                                            color: Color(0xFF9D9D9D),
-                                          ),
-                                          hintText: "Search"),
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 10.6,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color(0xFF9D9D9D),
                                     ),
-                                ) ,
-                                
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintStyle: GoogleFonts.roboto(
+                                          fontSize: 10.6,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xFF9D9D9D),
+                                        ),
+                                        hintText: "Search"),
+                                  ),
+                                ),
                               )
                             ],
                           ),
@@ -274,63 +326,79 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("User List",style: GoogleFonts.montserrat(
-                                            fontSize: 26.6,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),),
+                              Text(
+                                "User List",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 26.6,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                        btnDelete?
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 14, horizontal: 26.6),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                InkWell(
-                                  onTap: (){
-                                    setState(() {
-                                      btnDelete = false;
-                                    });
-                                  },
-                                  child: Container(
-                                    width:100 ,
-                                    height: 30,
-                                    decoration: BoxDecoration(color: Color(0xffEC1D26),borderRadius: BorderRadius.circular(6)),
-                                    child: Center(
-                                      child: Text("Delete",style: GoogleFonts.roboto(
+                        btnDelete
+                            ? Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 14, horizontal: 26.6),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          QuickAlert.show(
+                                            context: context,
+                                            type: QuickAlertType.confirm,
+                                            text:
+                                                'Do you sure to delete the account',
+                                            confirmBtnText: 'Yes',
+                                            cancelBtnText: 'No',
+                                            customAsset:
+                                                'assets/gift/error.gif',
+                                            width: 400,
+                                            confirmBtnColor: Colors.green,
+                                          );
+                                        },
+                                        child: Container(
+                                          width: 100,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                              color: Color(0xffEC1D26),
+                                              borderRadius:
+                                                  BorderRadius.circular(6)),
+                                          child: Center(
+                                            child: Text(
+                                              "Delete",
+                                              style: GoogleFonts.roboto(
                                                 fontSize: 13.3,
                                                 fontWeight: FontWeight.w500,
                                                 color: Colors.white,
-                                              ),),
-                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ):Container(),
+                                ),
+                              )
+                            : Container(),
                         Expanded(
-                          child:btnDelete?
-                          const ResponsiveWidget(largeScreen: TableAkunDelete(),
-                          mediumScreen: TableAkunDelete(),
-                          smallScreen: TableAkunDeleteSmall(),
-                          mobileScreen: TableAkunDeleteMobile(),
-                          )
-                           :
-                           const ResponsiveWidget(
-                            largeScreen:  TableAkun(),
-                            mediumScreen:TableAkun(),
-                            smallScreen: TableAkunSmall(),
-                            mobileScreen: TableAkunMobile(),
-                            )
-                          
-                          ),
-           
-      
+                            child: btnDelete
+                                ? const ResponsiveWidget(
+                                    largeScreen: TableAkunDelete(),
+                                    mediumScreen: TableAkunDelete(),
+                                    smallScreen: TableAkunDeleteSmall(),
+                                    mobileScreen: TableAkunDeleteMobile(),
+                                  )
+                                : const ResponsiveWidget(
+                                    largeScreen: TableAkun(),
+                                    mediumScreen: TableAkun(),
+                                    smallScreen: TableAkunSmall(),
+                                    mobileScreen: TableAkunMobile(),
+                                  )),
                       ],
                     ),
                   ),
@@ -343,4 +411,3 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
     );
   }
 }
-

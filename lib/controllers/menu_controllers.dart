@@ -34,7 +34,7 @@ class MenuControllers extends GetxController {
       case ArmoringDisplayName:
         return _customIcon(Icons.settings_input_component, itemName);
       case CableTypeDisplayName:
-        return _customIcon(FontAwesomeIcons.magento, itemName);
+        return _customIcon(Icons.cable_sharp, itemName);
       case ManufacturerDisplayName:
         return _customIcon(FontAwesomeIcons.hand, itemName);
       case CoreTypeDisplayName:
@@ -78,6 +78,6 @@ class MenuControllers extends GetxController {
         color: active,
       );
     }
-    return FaIcon(icon, color: isHovering(itemName) ? active : lightGrey);
+    return FaIcon(icon, color: isHovering(itemName) ? active : dark);
   }
 }

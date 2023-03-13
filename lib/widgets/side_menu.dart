@@ -173,6 +173,8 @@ class _SideMenuState extends State<SideMenu> {
                           SideMenuItem(
                             itemName: "Core Type",
                             dropp: false,
+                            size1: 13,
+                            size2: 15,
                             onTap: () {
                               if (!menuController.isActive("Core Type")) {
                                 menuController.changeActiveitemTo("Core Type");

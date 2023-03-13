@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/helpers/responsive.dart';
 
 class AddUser extends StatefulWidget {
@@ -490,19 +491,33 @@ class _AddUserState extends State<AddUser> {
                   SizedBox(
                     height: 43,
                   ),
-                  Container(
-                    width: 120.6,
-                    height: 34.6,
-                    decoration: BoxDecoration(
-                        color: Color(0xffEC1D26),
-                        borderRadius: BorderRadius.circular(6)),
-                    child: Center(
-                      child: Text("Create Account",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 13.3,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          )),
+                  InkWell(
+                    onTap: (){
+                      QuickAlert.show(
+                context: context,
+                type: QuickAlertType.success,
+                text: 'Created Akun Success',
+               
+                width: 400,
+                
+                
+               confirmBtnColor: Colors.green
+              );
+                    },
+                    child: Container(
+                      width: 120.6,
+                      height: 34.6,
+                      decoration: BoxDecoration(
+                          color: Color(0xffEC1D26),
+                          borderRadius: BorderRadius.circular(6)),
+                      child: Center(
+                        child: Text("Create Account",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 13.3,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            )),
+                      ),
                     ),
                   )
                 ],

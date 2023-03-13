@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/helpers/responsive.dart';
 
 class EditAkun extends StatefulWidget {
@@ -465,7 +466,18 @@ class _EditAkunState extends State<EditAkun> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          QuickAlert.show(
+                context: context,
+                type: QuickAlertType.success,
+                text: 'Edit Akun Success',
+               
+                width: 400,
+                
+                
+               confirmBtnColor: Colors.green
+              );
+                        },
                         child: Container(
                           width: 90,
                           height: 37.3,

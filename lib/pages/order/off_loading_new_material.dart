@@ -4,13 +4,12 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
-import 'package:telin_project/widgets/order/add_new_cable_large.dart';
-import 'package:telin_project/widgets/order/add_new_cable_mobile.dart';
-import 'package:telin_project/widgets/order/add_new_cable_small.dart';
-import 'package:telin_project/widgets/order/add_new_noncable_large.dart';
-import 'package:telin_project/widgets/order/add_new_noncable_small.dart';
 
-import '../../widgets/order/add_new_noncable_mobile.dart';
+import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
+import 'package:telin_project/widgets/order/new_material/table/table_new_cable.dart';
+import 'package:telin_project/widgets/order/new_material/table/table_new_non_cable.dart';
+
+
 
 class OffLoadingNewMatrial extends StatefulWidget {
   const OffLoadingNewMatrial({super.key});
@@ -20,80 +19,127 @@ class OffLoadingNewMatrial extends StatefulWidget {
 }
 
 class _OffLoadingNewMatrialState extends State<OffLoadingNewMatrial> {
-  bool selectButon = true;
-  bool selectNonCable = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("New Material",
-                      style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 23.3,
-                          color: Colors.black)),
-                ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 21.3),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 30,
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        selectButon = true;
-                      });
-                    },
-                    child: Text("Cable",
-                        style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 26.6,
-                            color: selectButon? active:dark)),
-                  ),
-                  SizedBox(
-                    width: 100,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        selectButon = false;
-                      });
-                    },
-                    child: Text("Non Cable",
-                        style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 26.6,
-                            color:selectButon?dark: active)),
-                  )
-                ],
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddnewMaterialScreens()));
+                      },
+                      child: Container(
+                        width: 200,
+                        height: 50.6,
+                        decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Color(0xffA5C176), width: 3.3),
+                            borderRadius: BorderRadius.circular(4),
+                            color: Color(0xffB1CC85)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 14.6),
+                          child: Center(
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 15,
+                                  backgroundColor: Colors.white,
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Color(0xffB1CC85),
+                                    size: 20,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text("Add New Material",
+                                    style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13.3,
+                                        color: Colors.white))
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 70,
-            ),
-            selectButon
-                ? ResponsiveWidget(
-                    largeScreen: AddNewCableLarge(),
-                    smallScreen: AddNewCableSmall(),
-                    mobileScreen: AddNewCableMobile(),
-                  )
-                : ResponsiveWidget(
-                    largeScreen: AddNewNonCableLarge(),
-                    smallScreen: AddNewNonCableSmall(),
-                    mobileScreen: AddNewNonCableMobile(),
-                  )
-          ],
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "New Cable",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 300,
+                child: Column(
+                  children: [
+                    Expanded(child: TableNewCable()),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "New Non Cable",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 300,
+                child: Column(
+                  children: [
+                    Expanded(child: TableNewNonCable()),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
