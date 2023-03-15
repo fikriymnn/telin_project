@@ -4,15 +4,15 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 
-class BastWidgetNewMaterial extends StatelessWidget {
-  const BastWidgetNewMaterial({super.key});
+class Invoice extends StatelessWidget {
+  const Invoice({super.key});
 
   @override
   Widget build(BuildContext context) {
      var screenSize = MediaQuery.of(context).size;
     return Container(
       width: 329.3,
-      height: 226,
+      height: 184,
       decoration: BoxDecoration(
           color: Color(0xffF0F0F0),
           borderRadius: BorderRadius.circular(30),
@@ -39,7 +39,7 @@ class BastWidgetNewMaterial extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("BAST-Off Loading (New Material)",
+                    Text("Invoice Packing List",
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
                           fontSize: 20,
@@ -47,9 +47,9 @@ class BastWidgetNewMaterial extends StatelessWidget {
                           color: Colors.black,
                         )),
                     SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
-                    Text("004/BAST-OFF-Loading/WEB/XII/2022",
+                    Text("001/TI/12/22",
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
                           fontSize: 13.3,
@@ -57,7 +57,7 @@ class BastWidgetNewMaterial extends StatelessWidget {
                           color: Colors.black,
                         )),
                          SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     Text("REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
                         textAlign: TextAlign.start,
@@ -75,13 +75,13 @@ class BastWidgetNewMaterial extends StatelessWidget {
             ),
             Container(
               width: screenSize.width,
-              height: 84,
+              height: 42,
               decoration: BoxDecoration(
                   color: light,
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30))),
-              child: Column(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
@@ -96,30 +96,7 @@ class BastWidgetNewMaterial extends StatelessWidget {
                         borderRadius: BorderRadius.circular(6.6),
                       ),
                       child: Center(
-                        child: Text('PRINT BAST',
-                            textAlign: TextAlign.start,
-                            style: GoogleFonts.rubik(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            )),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10,),
-                  InkWell(
-                    onTap: () {
-                     
-                    },
-                    child: Container(
-                      height: 30.6,
-                      width: 123,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF69DF5F),
-                        borderRadius: BorderRadius.circular(6.6),
-                      ),
-                      child: Center(
-                        child: Text('UPLOAD EVIDENT',
+                        child: Text('PRINT INVOICE',
                             textAlign: TextAlign.start,
                             style: GoogleFonts.rubik(
                               fontSize: 10,

@@ -4,15 +4,20 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 
-class InvoiceNewMaterial extends StatelessWidget {
-  const InvoiceNewMaterial({super.key});
+class BastWidget extends StatelessWidget {
+  final String title, projectName, noBast;
+  const BastWidget(
+      {super.key,
+      required this.title,
+      required this.projectName,
+      required this.noBast});
 
   @override
   Widget build(BuildContext context) {
-     var screenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(context).size;
     return Container(
       width: 329.3,
-      height: 184,
+      height: 226,
       decoration: BoxDecoration(
           color: Color(0xffF0F0F0),
           borderRadius: BorderRadius.circular(30),
@@ -39,7 +44,7 @@ class InvoiceNewMaterial extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Invoice Packing List",
+                    Text(title,
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
                           fontSize: 20,
@@ -47,19 +52,19 @@ class InvoiceNewMaterial extends StatelessWidget {
                           color: Colors.black,
                         )),
                     SizedBox(
-                      height: 15,
+                      height: 10,
                     ),
-                    Text("001/TI/12/22",
+                    Text(noBast,
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
                           color: Colors.black,
                         )),
-                         SizedBox(
-                      height: 15,
+                    SizedBox(
+                      height: 10,
                     ),
-                    Text("REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
+                    Text(projectName,
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
                           fontSize: 13.3,
@@ -75,19 +80,17 @@ class InvoiceNewMaterial extends StatelessWidget {
             ),
             Container(
               width: screenSize.width,
-              height: 42,
+              height: 84,
               decoration: BoxDecoration(
                   color: light,
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30))),
-              child: Row(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () {
-                     
-                    },
+                    onTap: () {},
                     child: Container(
                       height: 30.6,
                       width: 123,
@@ -96,7 +99,30 @@ class InvoiceNewMaterial extends StatelessWidget {
                         borderRadius: BorderRadius.circular(6.6),
                       ),
                       child: Center(
-                        child: Text('PRINT INVOICE',
+                        child: Text('PRINT BAST',
+                            textAlign: TextAlign.start,
+                            style: GoogleFonts.rubik(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            )),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      height: 30.6,
+                      width: 123,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF69DF5F),
+                        borderRadius: BorderRadius.circular(6.6),
+                      ),
+                      child: Center(
+                        child: Text('UPLOAD EVIDENT',
                             textAlign: TextAlign.start,
                             style: GoogleFonts.rubik(
                               fontSize: 10,

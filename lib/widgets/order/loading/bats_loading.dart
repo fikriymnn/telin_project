@@ -7,18 +7,17 @@ import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/widgets/bast_widget.dart';
 import 'package:telin_project/widgets/invoice_new.dart';
 
-class BastNewMaterial extends StatefulWidget {
-  const BastNewMaterial({super.key});
+class BastLoading extends StatefulWidget {
+  const BastLoading({super.key});
 
   @override
-  State<BastNewMaterial> createState() => _BastNewMaterialState();
+  State<BastLoading> createState() => _BastLoadingState();
 }
 
-class _BastNewMaterialState extends State<BastNewMaterial> {
+class _BastLoadingState extends State<BastLoading> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
+    return  Padding(
         padding: const EdgeInsets.only(bottom: 32),
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -87,8 +86,8 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
                           width: 205,
                         ),
                         BastWidget(
-                          title: "BAST-Off Loading (New Material)",
-                          noBast: "004/BAST-OFF-Loading/WEB/XII/2022",
+                          title: "BAST-Loading",
+                          noBast: "004/BAST-LOADING/WEB/XII/2022",
                           projectName:
                               "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
                         )
@@ -108,10 +107,11 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
                           height: 100,
                         ),
                         BastWidget(
-                            title: "BAST-Off Loading (New Material)",
-                            noBast: "004/BAST-OFF-Loading/WEB/XII/2022",
-                            projectName:
-                                "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA")
+                          title: "BAST-Loading",
+                          noBast: "004/BAST-LOADING/WEB/XII/2022",
+                          projectName:
+                              "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
+                        )
                       ],
                     ),
                   ),
@@ -120,7 +120,7 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
             ],
           ),
         ),
-      ),
-    );
+      );
+    
   }
 }

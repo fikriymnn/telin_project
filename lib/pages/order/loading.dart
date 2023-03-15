@@ -1,8 +1,11 @@
-import 'package:easy_stepper/easy_stepper.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
 import 'package:telin_project/widgets/order/loading/loading_form.dart';
+import 'package:telin_project/widgets/order/loading/new_order_loading.dart';
+import 'package:telin_project/widgets/order/loading/table_cable_loading.dart';
 import 'package:telin_project/widgets/order/loading/table_loading.dart';
 
 
@@ -34,7 +37,7 @@ class _LoadingScreensState extends State<LoadingScreens> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => FormLoading()));
+                                builder: (context) => NewOrderLoading()));
                       },
                       child: Container(
                         width: 200,
