@@ -1,11 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telin_project/pages/depo.dart';
-import 'package:telin_project/routing/router.dart';
-import 'package:telin_project/routing/routes.dart';
+import 'package:http/http.dart' as http;
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -21,6 +20,43 @@ class _LoginFormState extends State<LoginForm> {
   String text = "";
   late String _password;
   bool _obscureText = true;
+  bool _isLoading = false;
+
+  signIn(String username, String pass) async {
+    String? url = "http://localhost:1000/api/user/signin";
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    Map body = {"username": username, "password": pass};
+    var jsonResponse;
+    var res = await http.post(Uri.parse(url), body: body);
+
+    if (res.statusCode == 200) {
+      jsonResponse = json.decode(res.body);
+
+      print("Response status: ${res.statusCode}");
+
+      print("Response status: ${res.body}");
+
+      if (jsonResponse != null) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        sharedPreferences.setString('token', jsonResponse['token']);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => const Depo(),
+            ),
+            (route) => false);
+      }
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+
+      print("Response status: ${res.body}");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -163,15 +199,16 @@ class _LoginFormState extends State<LoginForm> {
           Padding(
             padding: const EdgeInsets.only(right: 100),
             child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Depo()));
-              },
-              child: Text('Login',
-                  style: GoogleFonts.roboto(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  )),
+              onPressed: userInput.text == "" || passInput.text == ""
+                  ? null
+                  : () {
+                      setState(() {
+                        signIn(
+                          userInput.text,
+                          passInput.text,
+                        );
+                      });
+                    },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -179,6 +216,11 @@ class _LoginFormState extends State<LoginForm> {
                 backgroundColor: const Color(0xffEC1D26),
                 fixedSize: const Size(215, 50),
               ),
+              child: Text('Login',
+                  style: GoogleFonts.roboto(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  )),
             ),
           )
         ],
