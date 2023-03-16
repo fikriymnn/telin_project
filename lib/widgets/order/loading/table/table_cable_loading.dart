@@ -7,7 +7,8 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_armoring_type.dart';
-import 'package:telin_project/widgets/order/loading/input_length_cable.dart';
+import 'package:telin_project/widgets/order/loading/form/input_length_cable.dart';
+
 import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
 
 import 'package:telin_project/widgets/setting/detail_akun.dart';

@@ -4,7 +4,8 @@ import 'package:im_stepper/stepper.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/bats_loading.dart';
 import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
-import 'package:telin_project/widgets/order/loading/loading_form.dart';
+import 'package:telin_project/widgets/order/loading/form/loading_form.dart';
+
 
 class NewOrderLoading extends StatefulWidget {
   const NewOrderLoading({super.key});

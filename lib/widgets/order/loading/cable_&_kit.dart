@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/cart_loading.dart';
-import 'package:telin_project/widgets/order/loading/table_cable_loading.dart';
+import 'package:telin_project/widgets/order/loading/table/table_cable_loading.dart';
+
 
 
 class CableDanKitLoading extends StatelessWidget {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/widgets/order/loading/table/table_cable_cart.dart';
+import 'package:telin_project/widgets/order/loading/table/table_non_cable_cart.dart';
 
-import 'package:telin_project/widgets/order/loading/table_cable_cart.dart';
-import 'package:telin_project/widgets/order/loading/table_non_cable_cart.dart';
+
 
 class CartLoading extends StatefulWidget {
   const CartLoading({super.key});
@@ -67,8 +68,7 @@ class _CartLoadingState extends State<CartLoading> {
                       ),
                     ),
                   ),
-                  ResponsiveWidget(
-                    largeScreen: Container(
+                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -83,13 +83,12 @@ class _CartLoadingState extends State<CartLoading> {
                     ),
                   ),
                  
-                  ),
+                  
                   
                   SizedBox(
                     height: 22,
                   ),
-                  ResponsiveWidget(
-                    largeScreen: Container(
+                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -113,7 +112,7 @@ class _CartLoadingState extends State<CartLoading> {
                     ),
                   ),
                   
-                    ),
+                    
                   
                   Container(
                       height: 400,

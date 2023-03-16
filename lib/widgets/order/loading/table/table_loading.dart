@@ -7,6 +7,8 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_perusahaan.dart';
+
+import 'package:telin_project/widgets/order/loading/form/edit_form_loading.dart';
 import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 class TableLoading extends StatefulWidget {
@@ -171,7 +173,7 @@ class _TableLoadingState extends State<TableLoading> {
                 children: [
                   InkWell(
                     onTap: () {
-                      
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>FormEditLoading()));
                     },
                     child: Container(
                       width: 50,
