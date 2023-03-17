@@ -7,6 +7,7 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_perusahaan.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/bast_existing.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/lakukan_off_loading.dart';
 
 import 'package:telin_project/widgets/order/loading/form/edit_form_loading.dart';
@@ -125,7 +126,12 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
                   ))),
               DataCell(
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BastOffLoading()));
+                  },
                   child: Text('Detail...',
                       style: GoogleFonts.montserrat(
                         fontSize: 13.3,

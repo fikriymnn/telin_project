@@ -2,11 +2,13 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_perusahaan.dart';
+import 'package:telin_project/widgets/order/loading/bats_loading.dart';
 
 import 'package:telin_project/widgets/order/loading/form/edit_form_loading.dart';
 import 'package:telin_project/widgets/setting/detail_akun.dart';
@@ -38,76 +40,64 @@ class _TableLoadingState extends State<TableLoading> {
         border: const TableBorder(top: BorderSide(), bottom: BorderSide()),
         columns: [
           DataColumn2(
-            label: Text(
-              'No',
-              style: GoogleFonts.montserrat(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
+              label: Text(
+                'No',
+                style: GoogleFonts.montserrat(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            fixedWidth: 28
-          ),
+              fixedWidth: 28),
           DataColumn2(
-            label: Center(
-              child: Text('Date',
+              label: Center(
+                child: Text('Date',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    )),
+              ),
+              fixedWidth: 100),
+          DataColumn2(
+              label: Text('Project Name',
                   style: GoogleFonts.montserrat(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   )),
-            ),
-            fixedWidth: 100
-          ),
+              fixedWidth: 200),
           DataColumn2(
-            label: Text('Project Name',
-                style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-            fixedWidth: 200
-          ),
+              label: Text('Vessel Name',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  )),
+              fixedWidth: 150),
           DataColumn2(
-            label: Text('Vessel Name',
-                style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-            fixedWidth: 150
-          ),
+              label: Text('From',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  )),
+              fixedWidth: 100),
           DataColumn2(
-            label: Text('From',
-                style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-            fixedWidth: 100
-          ),
-          DataColumn2(
-            label: Text('To',
-                style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-            fixedWidth: 100
-          ),
-          const DataColumn2(
-            label: Text(''),
-            fixedWidth: 70
-          ),
-          
-          const DataColumn2(
-            label: Text(''),
-            fixedWidth: 200
-          ),
-          const DataColumn2(
-            label: Text(''),
-            fixedWidth: 150
-          ),
+              label: Text('To',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  )),
+              fixedWidth: 100),
+          const DataColumn2(label: Text(''), fixedWidth: 70),
+
+          const DataColumn2(label: Text(''), fixedWidth: 200),
+          // const DataColumn2(
+          //   label: Text(''),
+          //   fixedWidth: 150
+          // ),
         ],
         rows: _createRowsManufacture());
   }
@@ -121,7 +111,7 @@ class _TableLoadingState extends State<TableLoading> {
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
                   ))),
-                  DataCell(Center(
+              DataCell(Center(
                 child: Text(loading.date,
                     style: GoogleFonts.montserrat(
                       fontSize: 10,
@@ -156,7 +146,8 @@ class _TableLoadingState extends State<TableLoading> {
               DataCell(
                 InkWell(
                   onTap: () {
-                    
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => BastLoading()));
                   },
                   child: Text('Detail...',
                       style: GoogleFonts.montserrat(
@@ -166,21 +157,23 @@ class _TableLoadingState extends State<TableLoading> {
                       )),
                 ),
               ),
-              
+
               DataCell(Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>FormEditLoading()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FormEditLoading()));
                     },
                     child: Container(
                       width: 50,
                       height: 19.46,
                       decoration: BoxDecoration(
-                          color: green,
-                          borderRadius: BorderRadius.circular(6)),
+                          color: green, borderRadius: BorderRadius.circular(6)),
                       child: Center(
                           child: Text("Edit",
                               style: GoogleFonts.montserrat(
@@ -223,27 +216,27 @@ class _TableLoadingState extends State<TableLoading> {
                   ),
                 ],
               )),
-              DataCell(
-                InkWell(
-                      onTap: () {
-                        
-                      },
-                      child: Container(
-                        width: 150,
-                        height: 19.46,
-                        decoration: BoxDecoration(
-                            color: dark,
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Center(
-                            child: Text("Lakukan Off-Loading",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
-                                ))),
-                      ),
-                    ),
-              )
+              // DataCell(
+              //   InkWell(
+              //         onTap: () {
+
+              //         },
+              //         child: Container(
+              //           width: 150,
+              //           height: 19.46,
+              //           decoration: BoxDecoration(
+              //               color: dark,
+              //               borderRadius: BorderRadius.circular(6)),
+              //           child: Center(
+              //               child: Text("Lakukan Off-Loading",
+              //                   style: GoogleFonts.montserrat(
+              //                     fontSize: 12,
+              //                     fontWeight: FontWeight.w400,
+              //                     color: Colors.white,
+              //                   ))),
+              //         ),
+              //       ),
+              // )
             ]))
         .toList();
   }

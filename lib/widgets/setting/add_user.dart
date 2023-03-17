@@ -14,7 +14,7 @@ class AddUser extends StatefulWidget {
 
 class _AddUserState extends State<AddUser> {
   String? role;
-  var _obscureText = false;
+  var _obscureText = true;
   bool _isSelected1 = false;
   bool _isSelected2 = false;
   bool _isSelected3 = false;
@@ -114,7 +114,7 @@ class _AddUserState extends State<AddUser> {
                           style: GoogleFonts.montserrat(
                             fontSize: 10.6,
                             fontWeight: FontWeight.w400,
-                            color: Colors.black.withOpacity(0.6),
+                            color: Colors.black,
                           ),
                           decoration: InputDecoration(
                               border: InputBorder.none,
@@ -123,7 +123,7 @@ class _AddUserState extends State<AddUser> {
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black.withOpacity(0.6),
                               ),
-                              hintText: "Gudang"),
+                              hintText: "Input Name"),
                         ),
                       ),
                     ),
@@ -174,7 +174,7 @@ class _AddUserState extends State<AddUser> {
                           style: GoogleFonts.montserrat(
                             fontSize: 10.6,
                             fontWeight: FontWeight.w400,
-                            color: Colors.black.withOpacity(0.6),
+                            color: Colors.black,
                           ),
                           decoration: InputDecoration(
                               border: InputBorder.none,
@@ -183,7 +183,7 @@ class _AddUserState extends State<AddUser> {
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black.withOpacity(0.6),
                               ),
-                              hintText: "Gudang1"),
+                              hintText: "Input Username"),
                         ),
                       ),
                     ),
@@ -238,16 +238,17 @@ class _AddUserState extends State<AddUser> {
                                 style: GoogleFonts.montserrat(
                                   fontSize: 10.6,
                                   fontWeight: FontWeight.w400,
-                                  color: Colors.black.withOpacity(0.6),
+                                  color: Colors.black,
                                 ),
                                 decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black.withOpacity(0.6),
-                                    ),
-                                    hintText: "gudangtelkom1"),
+                                  border: InputBorder.none,
+                                  hintStyle: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black.withOpacity(0.6),
+                                  ),
+                                  hintText: "Input Password",
+                                ),
                               ),
                             ),
                             IconButton(

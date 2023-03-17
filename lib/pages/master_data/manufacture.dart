@@ -4,13 +4,12 @@ import 'package:telin_project/widgets/custom_text.dart';
 import 'package:telin_project/widgets/master_data/add_data/add_manufacture.dart';
 import 'package:telin_project/widgets/master_data/table/table_manufactur.dart';
 
-
 class ManufactureScreens extends StatelessWidget {
   const ManufactureScreens({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 21.3),
       child: Column(
         children: [
@@ -69,10 +68,12 @@ class ManufactureScreens extends StatelessWidget {
               ],
             ),
           ),
-           Expanded(child: TableManufacture())
+          SizedBox(
+            height: 50,
+          ),
+          Expanded(child: TableManufacture())
         ],
       ),
     );
-    
   }
 }
