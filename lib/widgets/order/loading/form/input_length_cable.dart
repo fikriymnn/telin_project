@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -130,7 +129,7 @@ class InputLengthCable extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Spare Cable",
+                                "Initial Length ",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -219,9 +218,7 @@ class InputLengthCable extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                     
-
-                          Navigator.pop(context);
+                      Navigator.pop(context);
                     },
                     child: Container(
                       width: 90,

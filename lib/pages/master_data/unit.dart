@@ -4,13 +4,12 @@ import 'package:telin_project/widgets/custom_text.dart';
 import 'package:telin_project/widgets/master_data/add_data/add_unit.dart';
 import 'package:telin_project/widgets/master_data/table/table_unit.dart';
 
-
 class UnitScreens extends StatelessWidget {
   const UnitScreens({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 21.3),
       child: Column(
         children: [
@@ -69,9 +68,12 @@ class UnitScreens extends StatelessWidget {
               ],
             ),
           ),
-           Expanded(child: TableUnit())
-          
+          SizedBox(
+            height: 50,
+          ),
+          Expanded(child: TableUnit())
         ],
       ),
-    );}
+    );
+  }
 }
