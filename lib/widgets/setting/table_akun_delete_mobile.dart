@@ -33,6 +33,7 @@ class _TableAkunDeleteMobileState extends State<TableAkunDeleteMobile> {
         horizontalMargin: 6,
         dataRowHeight: 30,
         minWidth: 3000,
+        border: TableBorder(top: BorderSide(), bottom: BorderSide(),),
         columns: [
           DataColumn2(
             label: Text(

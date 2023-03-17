@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
-class AddNewNonCableMobile extends StatefulWidget {
-  const AddNewNonCableMobile({super.key});
+class AddNewNonCableSmall extends StatefulWidget {
+  const AddNewNonCableSmall({super.key});
 
   @override
-  State<AddNewNonCableMobile> createState() => _AddNewNonCableMobileState();
+  State<AddNewNonCableSmall> createState() => _AddNewNonCableSmallState();
 }
 
-class _AddNewNonCableMobileState extends State<AddNewNonCableMobile> {
+class _AddNewNonCableSmallState extends State<AddNewNonCableSmall> {
   List<DropdownMenuItem<String>> get dropdownItemsLocation {
     List<DropdownMenuItem<String>> menuItemsLocation = [
       DropdownMenuItem(
@@ -52,239 +54,243 @@ class _AddNewNonCableMobileState extends State<AddNewNonCableMobile> {
     return Column(
       children: [
         Container(
-          child: Column(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: 230,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                child: Column(
                   children: [
-                    Text(
-                      "Item Name",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
+                    Container(
+                      width: 230,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Item Name",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 230,
+                      height: 44,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          border:
+                              Border.all(width: 5, color: Color(0xffF0F0F0)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.25),
+                                blurRadius: 5,
+                                offset: Offset(0, 4))
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 18,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: TextField(
+                            style: GoogleFonts.montserrat(
+                              fontSize: 13.3,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                            ),
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintStyle: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                hintText: "Item Name"),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.6,
+                    ),
+                    Container(
+                      width: 230,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Location",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 230,
+                      height: 44,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          border:
+                              Border.all(width: 5, color: Color(0xffF0F0F0)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.25),
+                                blurRadius: 5,
+                                offset: Offset(0, 4))
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 18, right: 18),
+                        child: Center(
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                                isExpanded: true,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    selectedValueLocation = newValue!;
+                                  });
+                                },
+                                value: selectedValueLocation,
+                                items: dropdownItemsLocation),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.6,
+                    ),
+                    Container(
+                      width: 230,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Part Number",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 230,
+                      height: 44,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          border:
+                              Border.all(width: 5, color: Color(0xffF0F0F0)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.25),
+                                blurRadius: 5,
+                                offset: Offset(0, 4))
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 18,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: TextField(
+                            style: GoogleFonts.montserrat(
+                              fontSize: 13.3,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                            ),
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintStyle: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                hintText: "Part Number"),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.6,
+                    ),
+                    Container(
+                      width: 230,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Serial Number",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 230,
+                      height: 44,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          border:
+                              Border.all(width: 5, color: Color(0xffF0F0F0)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.25),
+                                blurRadius: 5,
+                                offset: Offset(0, 4))
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 18,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: TextField(
+                            style: GoogleFonts.montserrat(
+                              fontSize: 13.3,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                            ),
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintStyle: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                hintText: "Serial Number"),
+                          ),
+                        ),
                       ),
                     ),
                   ],
-                ),
-              ),
-              Container(
-                width: 230,
-                height: 44,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border:
-                        Border.all(width: 5, color: Color(0xffF0F0F0)),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          blurRadius: 5,
-                          offset: Offset(0, 4))
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 18,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: TextField(
-                      style: GoogleFonts.montserrat(
-                        fontSize: 13.3,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintStyle: GoogleFonts.montserrat(
-                            fontSize: 13.3,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          hintText: "Item Name"),
-                    ),
-                  ),
                 ),
               ),
               SizedBox(
-                height: 20.6,
+                width: 40,
               ),
               Container(
-                width: 230,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Location",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 230,
-                height: 44,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border:
-                        Border.all(width: 5, color: Color(0xffF0F0F0)),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          blurRadius: 5,
-                          offset: Offset(0, 4))
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18, right: 18),
-                  child: Center(
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                          isExpanded: true,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 13.3,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedValueLocation = newValue!;
-                            });
-                          },
-                          value: selectedValueLocation,
-                          items: dropdownItemsLocation),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20.6,
-              ),
-              Container(
-                width: 230,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Part Number",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 230,
-                height: 44,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border:
-                        Border.all(width: 5, color: Color(0xffF0F0F0)),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          blurRadius: 5,
-                          offset: Offset(0, 4))
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 18,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: TextField(
-                      style: GoogleFonts.montserrat(
-                        fontSize: 13.3,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintStyle: GoogleFonts.montserrat(
-                            fontSize: 13.3,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          hintText: "Part Number"),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20.6,
-              ),
-              Container(
-                width: 230,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Serial Number",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 230,
-                height: 44,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border:
-                        Border.all(width: 5, color: Color(0xffF0F0F0)),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          blurRadius: 5,
-                          offset: Offset(0, 4))
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 18,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: TextField(
-                      style: GoogleFonts.montserrat(
-                        fontSize: 13.3,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintStyle: GoogleFonts.montserrat(
-                            fontSize: 13.3,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          hintText: "Serial Number"),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        SizedBox(
-          height: 72,
-        ),
-        Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -537,7 +543,15 @@ class _AddNewNonCableMobileState extends State<AddNewNonCableMobile> {
                   ],
                 ),
               ),
-              SizedBox(height: 72,),
+             
+              
+            ],
+          ),
+        ),
+
+        SizedBox(
+          height: 72,
+        ),
         Container(
                 child: Column(
                   children: [
@@ -651,7 +665,18 @@ class _AddNewNonCableMobileState extends State<AddNewNonCableMobile> {
               ),
               SizedBox(height: 72,),
         InkWell(
-          onTap: () {},
+          onTap: () {
+             QuickAlert.show(
+                context: context,
+                type: QuickAlertType.success,
+                text: 'Upload Data Success',
+               
+                width: 400,
+                
+                
+               confirmBtnColor: Colors.green
+              );
+          },
           child: Container(
             width: 90,
             height: 37.3,

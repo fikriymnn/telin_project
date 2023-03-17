@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/helpers/responsive.dart';
 
 
@@ -89,7 +90,18 @@ class _AddArmoringTypeState extends State<AddArmoringType> {
                   height: 100,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    QuickAlert.show(
+                context: context,
+                type: QuickAlertType.success,
+                text: 'Upload Data Success',
+               
+                width: 400,
+                
+                
+               confirmBtnColor: Colors.green
+              );
+                  },
                   child: Container(
                     width: 90,
                     height: 37.3,

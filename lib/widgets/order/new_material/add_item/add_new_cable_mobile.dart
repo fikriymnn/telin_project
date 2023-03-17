@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 class AddNewCableMobile extends StatefulWidget {
   const AddNewCableMobile({super.key});
@@ -770,7 +772,18 @@ class _AddNewCableMobileState extends State<AddNewCableMobile> {
           height: 72,
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+             QuickAlert.show(
+                context: context,
+                type: QuickAlertType.success,
+                text: 'Upload Data Success',
+               
+                width: 400,
+                
+                
+               confirmBtnColor: Colors.green
+              );
+          },
           child: Container(
             width: 90,
             height: 37.3,

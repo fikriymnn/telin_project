@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/widgets/edit_profile/edit_profile.dart';
 
 import 'custom_text.dart';
 
@@ -106,7 +107,9 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                       child: CircleAvatar(
                         backgroundColor: light,
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>EditProfil()));
+                          },
                           icon: Icon(
                             Icons.person_outline,
                             color: dark,
@@ -175,7 +178,10 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                       child: CircleAvatar(
                         backgroundColor: light,
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>EditProfil()));
+                          },
                           icon: Icon(
                             Icons.person_outline,
                             color: dark,
