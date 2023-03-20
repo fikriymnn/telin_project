@@ -3,13 +3,17 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/widgets/order/loading/bast/bast_print.dart';
+
 
 class BastWidget extends StatelessWidget {
   final String title, projectName, noBast;
+  final Function onClick;
   const BastWidget(
       {super.key,
       required this.title,
       required this.projectName,
+      required this.onClick,
       required this.noBast});
 
   @override
@@ -90,7 +94,9 @@ class BastWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      onClick();
+                    },
                     child: Container(
                       height: 30.6,
                       width: 123,
@@ -113,7 +119,11 @@ class BastWidget extends StatelessWidget {
                     height: 10,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () async {
+                     
+
+                      
+                    },
                     child: Container(
                       height: 30.6,
                       width: 123,
@@ -140,4 +150,6 @@ class BastWidget extends StatelessWidget {
       ),
     );
   }
+
+ 
 }

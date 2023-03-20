@@ -91,6 +91,7 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
                           noBast: "004/BAST-OFF-Loading/WEB/XII/2022",
                           projectName:
                               "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
+                              onClick: (){},
                         )
                       ],
                     ),
@@ -111,7 +112,8 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
                             title: "BAST-Off Loading (New Material)",
                             noBast: "004/BAST-OFF-Loading/WEB/XII/2022",
                             projectName:
-                                "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA")
+                                "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
+                                onClick: (){},)
                       ],
                     ),
                   ),

@@ -95,11 +95,16 @@ class _ChartDataState extends State<ChartData> {
       _das.add(Sales("OCC-SC500", rnd.nextInt(100000), () {}));
     }
     {
-      _sa.add(Sales("OCC-SC500/SC-520", rnd.nextInt(100000), () {}));
-      _da.add(Sales("OCC-SC500/SC-520", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("OCC-SC500/SC-520", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("OCC-SC500/SC-520", rnd.nextInt(100000), () {}));
-      _das.add(Sales("OCC-SC500/SC-520", rnd.nextInt(100000), () {}));
+      _sa.add(Sales("""OCC-SC500
+/SC-520""", rnd.nextInt(100000), () {}));
+      _da.add(Sales("""OCC-SC500
+/SC-520""", rnd.nextInt(100000), () {}));
+      _sal.add(Sales("""OCC-SC500
+/SC-520""", rnd.nextInt(100000), () {}));
+      _lwp.add(Sales("""OCC-SC500
+/SC-520""", rnd.nextInt(100000), () {}));
+      _das.add(Sales("""OCC-SC500
+/SC-520""", rnd.nextInt(100000), () {}));
     }
     {
       _sa.add(Sales("OCC-SC530", rnd.nextInt(100000), () {}));

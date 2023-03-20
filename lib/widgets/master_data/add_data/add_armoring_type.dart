@@ -87,6 +87,59 @@ class _AddArmoringTypeState extends State<AddArmoringType> {
                   ),
                 ),
                 SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  width: 230,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Armoring Type ID",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 230,
+                  height: 44,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.25),
+                            blurRadius: 5,
+                            offset: Offset(0, 4))
+                      ]),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 18, bottom: 8),
+                    child: Center(
+                      child: TextField(
+                        style: GoogleFonts.montserrat(
+                          fontSize: 13.3,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintStyle: GoogleFonts.montserrat(
+                              fontSize: 13.3,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                            ),
+                            hintText: "Armoring Type ID"),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
                   height: 100,
                 ),
                 InkWell(

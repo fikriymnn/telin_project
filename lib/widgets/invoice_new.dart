@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/widgets/order/loading/bast/invoice_print.dart';
 
 class Invoice extends StatelessWidget {
   const Invoice({super.key});
@@ -86,7 +87,11 @@ class Invoice extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                     
+                    showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return InvoiceLoadingPrint();
+                                  });
                     },
                     child: Container(
                       height: 30.6,

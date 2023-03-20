@@ -39,7 +39,7 @@ class OffLoadingExistingScreens extends StatelessWidget {
                                       style: GoogleFonts.roboto(
                                         fontSize: 10.6,
                                         fontWeight: FontWeight.w400,
-                                        color: Color(0xFF9D9D9D),
+                                        color: Colors.black,
                                       ),
                                       decoration: InputDecoration(
                                           border: InputBorder.none,

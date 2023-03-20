@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/pages/order/off_loading_existing_material.dart';
 import 'package:telin_project/widgets/bast_widget.dart';
 import 'package:telin_project/widgets/invoice_new.dart';
 
@@ -38,7 +39,7 @@ class _BastOffLoadingState extends State<BastOffLoading> {
                       padding: const EdgeInsets.only(right: 59.3, top: 32),
                       child: InkWell(
                           onTap: () {
-                            Navigator.pop(context);
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>OffLoadingExistingScreens()));
                           },
                           child: Container(
                             width: 107.3,
@@ -89,6 +90,7 @@ class _BastOffLoadingState extends State<BastOffLoading> {
                         title: "BAST- Off Loading ( Existing Material)",
                         noBast: "004/BAST-OFF-LOADING/WEB/XII/2022",
                         projectName: "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
+                        onClick: (){},
                       )
                     ],
                   ),
@@ -109,6 +111,7 @@ class _BastOffLoadingState extends State<BastOffLoading> {
                         title: "BAST- Off Loading ( Existing Material)",
                         noBast: "004/BAST-OFF-LOADING/WEB/XII/2022",
                         projectName: "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
+                        onClick: (){},
                       )
                     ],
                   ),

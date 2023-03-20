@@ -110,9 +110,51 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                             fontWeight: FontWeight.w600,
                             fontSize: 26.6,
                             color: selectButon ? dark : active)),
-                  )
+                  ),
+                 
+                  
+
                 ],
               ),
+            ),
+            SizedBox(height: 50,),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 59.3),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                            onPressed: () {
+                              // showDialog(
+                              //     context: context,
+                              //     builder: (BuildContext context) {
+                              //       return CartLoading();
+                              //     });
+                            },
+                            icon: Icon(
+                              Icons.shopping_cart,
+                              color: active,
+                            )),
+                            SizedBox(width: 40,),
+                             InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: 99.3,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: active),
+                            child: Center(
+                              child: Text("SUBMIT",
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  )),
+                            ),
+                          ),
+                        )
+              ],
+            ),
             ),
             SizedBox(
               height: 70,
