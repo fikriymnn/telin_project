@@ -10,7 +10,7 @@ class Invoice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     var screenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(context).size;
     return Container(
       width: 329.3,
       height: 184,
@@ -57,7 +57,7 @@ class Invoice extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           color: Colors.black,
                         )),
-                         SizedBox(
+                    SizedBox(
                       height: 15,
                     ),
                     Text("REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
@@ -87,11 +87,12 @@ class Invoice extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                    showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return InvoiceLoadingPrint();
-                                  });
+                      printInvoiceLoading().InvoiceLoadingPrinttt();
+                      // showDialog(
+                      //               context: context,
+                      //               builder: (BuildContext context) {
+                      //                 return InvoiceLoadingPrint();
+                      //               });
                     },
                     child: Container(
                       height: 30.6,

@@ -8,8 +8,6 @@ import 'package:telin_project/widgets/bast_widget.dart';
 import 'package:telin_project/widgets/invoice_new.dart';
 import 'package:telin_project/widgets/order/loading/bast/bast_print.dart';
 
-
-
 class BastLoading extends StatefulWidget {
   const BastLoading({super.key});
 
@@ -93,11 +91,12 @@ class _BastLoadingState extends State<BastLoading> {
                         noBast: "004/BAST-LOADING/WEB/XII/2022",
                         projectName: "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
                         onClick: () {
-                          showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return BastLoadingPrint();
-                                  });
+                          printBastLoading().BastLoadingPrinttt();
+                          // showDialog(
+                          //         context: context,
+                          //         builder: (BuildContext context) {
+                          //           return BastLoadingPrint();
+                          //         });
                         },
                       )
                     ],
