@@ -10,7 +10,7 @@ import 'package:telin_project/widgets/order/new_material/add_item/add_new_cable_
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_noncable_large.dart';
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_noncable_mobile.dart';
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_noncable_small.dart';
-
+import 'package:telin_project/widgets/order/new_material/cart_new_material.dart';
 
 class AddnewMaterialScreens extends StatefulWidget {
   const AddnewMaterialScreens({super.key});
@@ -110,6 +110,50 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                             fontWeight: FontWeight.w600,
                             fontSize: 26.6,
                             color: selectButon ? dark : active)),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 59.3),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return CartNewMaterial();
+                            });
+                      },
+                      icon: Icon(
+                        Icons.shopping_cart,
+                        color: active,
+                      )),
+                  SizedBox(
+                    width: 40,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: 99.3,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: active),
+                      child: Center(
+                        child: Text("SUBMIT",
+                            style: GoogleFonts.roboto(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            )),
+                      ),
+                    ),
                   )
                 ],
               ),

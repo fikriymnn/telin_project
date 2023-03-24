@@ -33,7 +33,7 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
         columnSpacing: 6,
         horizontalMargin: 6,
         dataRowHeight: 30,
-            border: TableBorder(top: BorderSide(), bottom: BorderSide()),
+            border: const TableBorder(top: BorderSide(), bottom: BorderSide()),
         columns: [
           DataColumn2(
             label: Text(
@@ -47,7 +47,7 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
           ),
           DataColumn2(
             label: Center(
-              child: Text('Armoring Name',
+              child: Text('Armoring Type',
                   style: GoogleFonts.montserrat(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -56,6 +56,16 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
             ),
           ),
           DataColumn2(
+            label: Center(
+              child: Text('Armoring Type ID',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  )),
+            ),
+          ),
+          const DataColumn2(
             label: Text(''),
           ),
         ],
@@ -79,6 +89,14 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
                       color: Colors.black,
                     )),
               )),
+               DataCell(Center(
+                child: Text(armoring.armoringTypeId,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 14.6,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                    )),
+              )),
               DataCell(Center(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,7 +108,7 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
                             context: context,
                             barrierColor: Colors.transparent,
                             builder: (BuildContext context) {
-                              return EditArmoringType();
+                              return const EditArmoringType();
                             });
                       },
                       child: Container(
@@ -108,7 +126,7 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
                                 ))),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     InkWell(
@@ -149,34 +167,40 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
 }
 
 class Armoring {
-  final String no, armoringName;
+  final String no, armoringName,armoringTypeId;
 
   const Armoring({
     required this.no,
     required this.armoringName,
+    required this.armoringTypeId
   });
 
   static List<Armoring> getArmoring() {
     return <Armoring>[
-      Armoring(
+      const Armoring(
         no: "1",
         armoringName: "Armoring",
+        armoringTypeId: "1"
       ),
-      Armoring(
+      const Armoring(
         no: "2",
         armoringName: "Armoring",
+        armoringTypeId: "1"
       ),
-      Armoring(
+      const Armoring(
         no: "3",
         armoringName: "Armoring",
+        armoringTypeId: "1"
       ),
-      Armoring(
+      const Armoring(
         no: "4",
         armoringName: "Armoring",
+        armoringTypeId: "1"
       ),
-      Armoring(
+      const Armoring(
         no: "5",
         armoringName: "Armoring",
+        armoringTypeId: "1"
       )
     ];
   }

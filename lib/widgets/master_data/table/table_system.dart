@@ -32,7 +32,7 @@ class _TableSystemState extends State<TableSystem> {
         columnSpacing: 6,
         horizontalMargin: 6,
         dataRowHeight: 30,
-        border: TableBorder(top: BorderSide(), bottom: BorderSide()),
+        border: const TableBorder(top: BorderSide(), bottom: BorderSide()),
         columns: [
           DataColumn2(
             label: Text(
@@ -55,6 +55,16 @@ class _TableSystemState extends State<TableSystem> {
             ),
           ),
           DataColumn2(
+            label: Center(
+              child: Text('System ID',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  )),
+            ),
+          ),
+          const DataColumn2(
             label: Text(''),
           ),
         ],
@@ -78,6 +88,14 @@ class _TableSystemState extends State<TableSystem> {
                       color: Colors.black,
                     )),
               )),
+               DataCell(Center(
+                child: Text(system.systemId,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 14.6,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                    )),
+              )),
               DataCell(Center(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,7 +107,7 @@ class _TableSystemState extends State<TableSystem> {
                             context: context,
                             barrierColor: Colors.transparent,
                             builder: (BuildContext context) {
-                              return EditSystem();
+                              return const EditSystem();
                             });
                       },
                       child: Container(
@@ -107,7 +125,7 @@ class _TableSystemState extends State<TableSystem> {
                                 ))),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     InkWell(
@@ -147,34 +165,40 @@ class _TableSystemState extends State<TableSystem> {
 }
 
 class System {
-  final String no, systemName;
+  final String no, systemName,systemId;
 
   const System({
     required this.no,
     required this.systemName,
+    required this.systemId
   });
 
   static List<System> getSystem() {
     return <System>[
-      System(
+      const System(
         no: "1",
         systemName: "SMPCS",
+        systemId: "22"
       ),
-      System(
+      const System(
         no: "2",
         systemName: "SMPCS",
+        systemId: "22"
       ),
-      System(
+      const System(
         no: "3",
         systemName: "SMPCS",
+        systemId: "22"
       ),
-      System(
+      const System(
         no: "4",
         systemName: "SMPCS",
+        systemId: "22"
       ),
-      System(
+      const System(
         no: "5",
         systemName: "SMPCS",
+        systemId: "22"
       )
     ];
   }

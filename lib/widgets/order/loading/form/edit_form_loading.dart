@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/style.dart';
 
 class FormEditLoading extends StatefulWidget {
@@ -135,7 +136,7 @@ class _FormEditLoadingState extends State<FormEditLoading> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Vissel Name",
+                      "Vessel Name",
                       style: GoogleFonts.montserrat(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -321,7 +322,18 @@ class _FormEditLoadingState extends State<FormEditLoading> {
                 height: 50,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  QuickAlert.show(
+                context: context,
+                type: QuickAlertType.success,
+                text: 'Edit Data Success',
+               
+                width: 400,
+                
+                
+               confirmBtnColor: Colors.green
+              );
+                },
                 child: Container(
                   width: 90,
                   height: 37.3,

@@ -46,7 +46,7 @@ class _TableCoreTypeState extends State<TableCoreType> {
           ),
           DataColumn2(
             label: Center(
-              child: Text('Core Name',
+              child: Text('Core Type',
                   style: GoogleFonts.montserrat(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
