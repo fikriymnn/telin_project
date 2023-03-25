@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -7,6 +8,8 @@ import 'package:telin_project/helpers/responsive.dart';
 
 import 'package:telin_project/widgets/setting/edit_akun.dart';
 
+import '../../../api/configAPI.dart';
+
 class AddUnit extends StatefulWidget {
   const AddUnit({super.key});
 
@@ -15,6 +18,14 @@ class AddUnit extends StatefulWidget {
 }
 
 class _AddUnitState extends State<AddUnit> {
+  TextEditingController txtNamaUnit = TextEditingController();
+
+  FocusNode focusNode = new FocusNode();
+
+  Response? response;
+
+  var dio = Dio();
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -70,6 +81,7 @@ class _AddUnitState extends State<AddUnit> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtNamaUnit,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -92,16 +104,17 @@ class _AddUnitState extends State<AddUnit> {
                 ),
                 InkWell(
                   onTap: () {
-                    QuickAlert.show(
-                context: context,
-                type: QuickAlertType.success,
-                text: 'Upload Data Success',
-               
-                width: 400,
-                
-                
-               confirmBtnColor: Colors.green
-              );
+                    if (txtNamaUnit.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'Nama Unit Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else {
+                      inputDataUnit(txtNamaUnit.text);
+                    }
                   },
                   child: Container(
                     width: 90,
@@ -123,5 +136,51 @@ class _AddUnitState extends State<AddUnit> {
             ),
           ))),
     );
+  }
+
+  // Clear the form
+  void _clearForm() {
+    txtNamaUnit.clear();
+  }
+
+  // Fungsi Add Data
+  void inputDataUnit(namaUnit) async {
+    bool status;
+    var msg;
+    try {
+      // var formData = FormData.fromMap({
+      //   'Unit': namaUnit,
+      // });
+
+      response = await dio.post(inputUnit, data: {'unit': namaUnit});
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        FocusScope.of(context).unfocus();
+        _clearForm();
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: '$msg',
+            width: 400,
+            confirmBtnColor: Colors.green);
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 }
