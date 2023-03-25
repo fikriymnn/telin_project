@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -7,6 +8,8 @@ import 'package:telin_project/helpers/responsive.dart';
 
 import 'package:telin_project/widgets/setting/edit_akun.dart';
 
+import '../../../api/configAPI.dart';
+
 class AddLocation extends StatefulWidget {
   const AddLocation({super.key});
 
@@ -15,6 +18,14 @@ class AddLocation extends StatefulWidget {
 }
 
 class _AddLocationState extends State<AddLocation> {
+  TextEditingController txtNamaLocation = TextEditingController();
+
+  FocusNode focusNode = new FocusNode();
+
+  Response? response;
+
+  var dio = Dio();
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -70,6 +81,7 @@ class _AddLocationState extends State<AddLocation> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtNamaLocation,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -92,16 +104,17 @@ class _AddLocationState extends State<AddLocation> {
                 ),
                 InkWell(
                   onTap: () {
-                    QuickAlert.show(
-                context: context,
-                type: QuickAlertType.success,
-                text: 'Upload Data Success',
-               
-                width: 400,
-                
-                
-               confirmBtnColor: Colors.green
-              );
+                    if (txtNamaLocation.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'Nama Location Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else {
+                      inputDataLocation(txtNamaLocation.text);
+                    }
                   },
                   child: Container(
                     width: 90,
@@ -123,5 +136,52 @@ class _AddLocationState extends State<AddLocation> {
             ),
           ))),
     );
+  }
+
+  // Clear the form
+  void _clearForm() {
+    txtNamaLocation.clear();
+  }
+
+  // Fungsi Add Data
+  void inputDataLocation(namaLocation) async {
+    bool status;
+    var msg;
+    try {
+      // var formData = FormData.fromMap({
+      //   'Location': namaLocation,
+      // });
+
+      response =
+          await dio.post(inputLocation, data: {'location': namaLocation});
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        FocusScope.of(context).unfocus();
+        _clearForm();
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: '$msg',
+            width: 400,
+            confirmBtnColor: Colors.green);
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 }

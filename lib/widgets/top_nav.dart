@@ -39,19 +39,13 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                     children: [
                       Visibility(
                         child: CustomText(
-                          text: "DASHBOARD CABLE & NON CABLE SPARE",
+                          text: "DEPO 104 - PELINDO IV MAKASSAR",
                           color: dark,
                           size: 13,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Visibility(
-                        child: CustomText(
-                          text: "DEPO 104 - PELINDO IV MAKASSAR",
-                          color: lightGrey,
-                          size: 13,
-                        ),
-                      ),
+                      
                     ],
                   ),
                   Expanded(
