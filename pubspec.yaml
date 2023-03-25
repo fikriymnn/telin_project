@@ -45,6 +45,8 @@ dependencies:
   im_stepper: ^1.0.1+1
   dio: ^5.0.3
   printing: ^5.10.1
+  printing: ^5.10.1
+
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
