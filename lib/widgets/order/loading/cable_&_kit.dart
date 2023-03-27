@@ -131,12 +131,12 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
                           onTap: () {},
                           child: Container(
                             width: 99.3,
-                            height: 20.33,
+                            height: 30,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: active),
                             child: Center(
-                              child: Text("ADD CABLE",
+                              child: Text("NEXT",
                                   style: GoogleFonts.roboto(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w600,

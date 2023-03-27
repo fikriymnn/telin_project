@@ -85,6 +85,7 @@ class DepoLarge extends StatelessWidget {
                             site: "Batam Site",
                             depo: "Depo Sarana Citranusa Kabil-Batam",
                             route: () {},
+                            titleView: "Coming Soon",
                           ),
                           SizedBox(
                             width: 300,
@@ -96,6 +97,7 @@ class DepoLarge extends StatelessWidget {
                             route: () {
                               Get.offAllNamed(RootRoute);
                             },
+                            titleView: "View Dasboard",
                           ),
                         ],
                       ),
