@@ -234,6 +234,27 @@ class printBastLoading {
               ],
             ),
             TableCableBast(),
+            pw.Row(
+              mainAxisAlignment: pw.MainAxisAlignment.start,
+              children: [
+                pw.Container(
+                  width: 100,
+                  height: 20,
+                  decoration:
+                      pw.BoxDecoration(color: PdfColor.fromInt(0xffFFB800)),
+                  child: pw.Center(
+                    child: pw.Text("NON CABLE",
+                        style: pw.TextStyle(
+                          fontSize: 8,
+                          fontWeight: pw.FontWeight.bold,
+                          color: PdfColors.black,
+                        )),
+                  ),
+                ),
+              ],
+            ),
+            TableNonCableBast(),
+            pw.SizedBox(height: 50),
             pw.Container(
                 child: pw.Row(
                     mainAxisAlignment: pw.MainAxisAlignment.start,
@@ -614,6 +635,198 @@ class printBastLoading {
           width: 60,
         ),
       ])),
+    ]);
+  }
+
+  static TableNonCableBast() {
+    return pw.Column(children: [
+      pw.Container(
+          child: pw.Row(children: [
+        pw.Container(
+            height: 20,
+            width: 20,
+            decoration: pw.BoxDecoration(border: pw.Border.all()),
+            child: pw.Center(
+                child: pw.Text("NO",
+                    style: pw.TextStyle(
+                      fontSize: 8,
+                      fontWeight: pw.FontWeight.normal,
+                      color: PdfColors.black,
+                    )))),
+        pw.Container(
+            height: 20,
+            width: 150,
+            decoration: pw.BoxDecoration(border: pw.Border.all()),
+            child: pw.Center(
+                child: pw.Text("ITEM NAME",
+                    style: pw.TextStyle(
+                      fontSize: 8,
+                      fontWeight: pw.FontWeight.normal,
+                      color: PdfColors.black,
+                    )))),
+        pw.Container(
+            height: 20,
+            width: 60,
+            decoration: pw.BoxDecoration(border: pw.Border.all()),
+            child: pw.Center(
+                child: pw.Text("TYPE",
+                    style: pw.TextStyle(
+                      fontSize: 8,
+                      fontWeight: pw.FontWeight.normal,
+                      color: PdfColors.black,
+                    )))),
+        pw.Container(
+            height: 20,
+            width: 40,
+            decoration: pw.BoxDecoration(border: pw.Border.all()),
+            child: pw.Center(
+                child: pw.Text("""SERIAL
+NUMBER""",
+                    style: pw.TextStyle(
+                      fontSize: 8,
+                      fontWeight: pw.FontWeight.normal,
+                      color: PdfColors.black,
+                    )))),
+        pw.Container(
+            height: 20,
+            width: 60,
+            decoration: pw.BoxDecoration(border: pw.Border.all()),
+            child: pw.Center(
+                child: pw.Text("QTY",
+                    style: pw.TextStyle(
+                      fontSize: 8,
+                      fontWeight: pw.FontWeight.normal,
+                      color: PdfColors.black,
+                    )))),
+        pw.Container(
+            height: 20,
+            width: 60,
+            decoration: pw.BoxDecoration(border: pw.Border.all()),
+            child: pw.Center(
+                child: pw.Text("UNIT",
+                    style: pw.TextStyle(
+                      fontSize: 8,
+                      fontWeight: pw.FontWeight.normal,
+                      color: PdfColors.black,
+                    )))),
+        pw.Container(
+            height: 20,
+            width: 60,
+            decoration: pw.BoxDecoration(border: pw.Border.all()),
+            child: pw.Center(
+                child: pw.Text("WEIGHT",
+                    style: pw.TextStyle(
+                      fontSize: 8,
+                      fontWeight: pw.FontWeight.normal,
+                      color: PdfColors.black,
+                    )))),
+        pw.Container(
+            height: 20,
+            width: 60,
+            decoration: pw.BoxDecoration(border: pw.Border.all()),
+            child: pw.Center(
+                child: pw.Text("REMARK",
+                    style: pw.TextStyle(
+                      fontSize: 8,
+                      fontWeight: pw.FontWeight.normal,
+                      color: PdfColors.black,
+                    )))),
+      ])),
+      pw.ListView.builder(
+          itemCount: 4,
+          itemBuilder: (context, index) {
+            return pw.Container(
+                child: pw.Row(children: [
+              pw.Container(
+                  height: 20,
+                  width: 20,
+                  decoration: pw.BoxDecoration(border: pw.Border.all()),
+                  child: pw.Center(
+                      child: pw.Text("${index + 1}",
+                          style: pw.TextStyle(
+                            fontSize: 6,
+                            fontWeight: pw.FontWeight.normal,
+                            color: PdfColors.black,
+                          )))),
+              pw.Container(
+                  height: 20,
+                  width: 150,
+                  decoration: pw.BoxDecoration(border: pw.Border.all()),
+                  child: pw.Center(
+                      child: pw.Text("UJ REMOULD KIT FOR COMMON COMPONENT",
+                          style: pw.TextStyle(
+                            fontSize: 6,
+                            fontWeight: pw.FontWeight.normal,
+                            color: PdfColors.black,
+                          )))),
+              pw.Container(
+                  height: 20,
+                  width: 60,
+                  decoration: pw.BoxDecoration(border: pw.Border.all()),
+                  child: pw.Center(
+                      child: pw.Text("KIT 17010",
+                          style: pw.TextStyle(
+                            fontSize: 6,
+                            fontWeight: pw.FontWeight.normal,
+                            color: PdfColors.black,
+                          )))),
+              pw.Container(
+                  height: 20,
+                  width: 40,
+                  decoration: pw.BoxDecoration(border: pw.Border.all()),
+                  child: pw.Center(
+                      child: pw.Text("0734465",
+                          style: pw.TextStyle(
+                            fontSize: 6,
+                            fontWeight: pw.FontWeight.normal,
+                            color: PdfColors.black,
+                          )))),
+              pw.Container(
+                  height: 20,
+                  width: 60,
+                  decoration: pw.BoxDecoration(border: pw.Border.all()),
+                  child: pw.Center(
+                      child: pw.Text("4",
+                          style: pw.TextStyle(
+                            fontSize: 6,
+                            fontWeight: pw.FontWeight.normal,
+                            color: PdfColors.black,
+                          )))),
+              pw.Container(
+                  height: 20,
+                  width: 60,
+                  decoration: pw.BoxDecoration(border: pw.Border.all()),
+                  child: pw.Center(
+                      child: pw.Text("PCS",
+                          style: pw.TextStyle(
+                            fontSize: 6,
+                            fontWeight: pw.FontWeight.normal,
+                            color: PdfColors.black,
+                          )))),
+              pw.Container(
+                  height: 20,
+                  width: 60,
+                  decoration: pw.BoxDecoration(border: pw.Border.all()),
+                  child: pw.Center(
+                      child: pw.Text("2.665",
+                          style: pw.TextStyle(
+                            fontSize: 6,
+                            fontWeight: pw.FontWeight.normal,
+                            color: PdfColors.black,
+                          )))),
+              pw.Container(
+                  height: 20,
+                  width: 60,
+                  decoration: pw.BoxDecoration(border: pw.Border.all()),
+                  child: pw.Center(
+                      child: pw.Text("",
+                          style: pw.TextStyle(
+                            fontSize: 6,
+                            fontWeight: pw.FontWeight.normal,
+                            color: PdfColors.black,
+                          )))),
+            ]));
+          })
     ]);
   }
 }

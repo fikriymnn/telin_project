@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/widgets/order/loading/table/table_cable_cart.dart';
 import 'package:telin_project/widgets/order/loading/table/table_non_cable_cart.dart';
-
-
+import 'package:telin_project/widgets/order/loading/table/table_turn_over.dart';
 
 class CartLoading extends StatefulWidget {
   const CartLoading({super.key});
@@ -23,7 +23,6 @@ class _CartLoadingState extends State<CartLoading> {
         child: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
-            
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
             child: Padding(
@@ -46,7 +45,27 @@ class _CartLoadingState extends State<CartLoading> {
                             ),
                           ),
                           Spacer(),
-                          
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              width: 99.3,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: active),
+                              child: Center(
+                                child: Text("SUBMIT",
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 50,
+                          ),
                           InkWell(
                             onTap: () {
                               Navigator.pop(context);
@@ -68,7 +87,7 @@ class _CartLoadingState extends State<CartLoading> {
                       ),
                     ),
                   ),
-                   Container(
+                  Container(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -82,13 +101,10 @@ class _CartLoadingState extends State<CartLoading> {
                       ],
                     ),
                   ),
-                 
-                  
-                  
                   SizedBox(
                     height: 22,
                   ),
-                   Container(
+                  Container(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -111,9 +127,6 @@ class _CartLoadingState extends State<CartLoading> {
                       ],
                     ),
                   ),
-                  
-                    
-                  
                   Container(
                       height: 400,
                       child: Column(
@@ -132,11 +145,20 @@ class _CartLoadingState extends State<CartLoading> {
                       ],
                     ),
                   ),
-                  
-                      SizedBox(
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    height: 250,
+                    child: Column(
+                      children: [
+                        Expanded(child: TableCableTurnOver()),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
                     height: 22,
                   ),
-                 
                 ],
               ),
             ),

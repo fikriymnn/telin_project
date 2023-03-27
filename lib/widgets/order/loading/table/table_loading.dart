@@ -9,6 +9,7 @@ import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_perusahaan.dart';
 import 'package:telin_project/widgets/order/loading/bats_loading.dart';
+import 'package:telin_project/widgets/order/loading/edit_loading.dart';
 
 import 'package:telin_project/widgets/order/loading/form/edit_form_loading.dart';
 import 'package:telin_project/widgets/setting/detail_akun.dart';
@@ -164,10 +165,15 @@ class _TableLoadingState extends State<TableLoading> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FormEditLoading()));
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return EditLoading();
+                          });
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => FormEditLoading()));
                     },
                     child: Container(
                       width: 50,
@@ -207,6 +213,36 @@ class _TableLoadingState extends State<TableLoading> {
                           borderRadius: BorderRadius.circular(6)),
                       child: Center(
                           child: Text("Delete",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                              ))),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.confirm,
+                        text: 'Do you sure to finish this project?',
+                        confirmBtnText: 'Yes',
+                        cancelBtnText: 'No',
+                        customAsset: 'assets/gift/error.gif',
+                        width: 400,
+                        confirmBtnColor: Colors.green,
+                      );
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 19.46,
+                      decoration: BoxDecoration(
+                          color: dark, borderRadius: BorderRadius.circular(6)),
+                      child: Center(
+                          child: Text("Finish",
                               style: GoogleFonts.montserrat(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,

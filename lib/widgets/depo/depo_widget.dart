@@ -9,11 +9,13 @@ class DepoWidget extends StatelessWidget {
     required this.site,
     required this.depo,
     required this.route,
+    required this.titleView,
   });
 
   final Size screenSize;
   final String site;
   final String depo;
+  final String titleView;
   final Function route;
 
   @override
@@ -94,7 +96,7 @@ class DepoWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
-                        child: Text('View Dasboard',
+                        child: Text(titleView,
                             textAlign: TextAlign.start,
                             style: GoogleFonts.rubik(
                               fontSize: 10,
