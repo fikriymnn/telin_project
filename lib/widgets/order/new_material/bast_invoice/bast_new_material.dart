@@ -82,16 +82,12 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Invoice(),
-                        SizedBox(
-                          width: 205,
-                        ),
                         BastWidget(
                           title: "BAST-Off Loading (New Material)",
                           noBast: "004/BAST-OFF-Loading/WEB/XII/2022",
                           projectName:
                               "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-                              onClick: (){},
+                          onClick: () {},
                         )
                       ],
                     ),
@@ -109,11 +105,12 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
                           height: 100,
                         ),
                         BastWidget(
-                            title: "BAST-Off Loading (New Material)",
-                            noBast: "004/BAST-OFF-Loading/WEB/XII/2022",
-                            projectName:
-                                "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-                                onClick: (){},)
+                          title: "BAST-Off Loading (New Material)",
+                          noBast: "004/BAST-OFF-Loading/WEB/XII/2022",
+                          projectName:
+                              "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
+                          onClick: () {},
+                        )
                       ],
                     ),
                   ),

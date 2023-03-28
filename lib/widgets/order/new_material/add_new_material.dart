@@ -137,24 +137,6 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                   SizedBox(
                     width: 40,
                   ),
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      width: 99.3,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: active),
-                      child: Center(
-                        child: Text("SUBMIT",
-                            style: GoogleFonts.roboto(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            )),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),

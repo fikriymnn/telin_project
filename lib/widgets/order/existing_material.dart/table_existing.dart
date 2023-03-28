@@ -154,7 +154,7 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
                     decoration: BoxDecoration(
                         color: dark, borderRadius: BorderRadius.circular(6)),
                     child: Center(
-                        child: Text("Lakukan Off-Loading",
+                        child: Text("Do Off-Loading",
                             style: GoogleFonts.montserrat(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,

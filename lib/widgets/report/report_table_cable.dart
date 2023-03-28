@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/widgets/report/print_report.dart';
 
 class CableReport extends StatefulWidget {
   const CableReport({super.key});
@@ -46,7 +47,9 @@ class _CableReportState extends State<CableReport> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    printReport().ReportPrinttt();
+                  },
                   icon: Icon(Icons.print),
                   label: Text("Print All"),
                   style: ElevatedButton.styleFrom(
