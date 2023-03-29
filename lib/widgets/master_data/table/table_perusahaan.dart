@@ -177,7 +177,7 @@ class _TablePerusahaanState extends State<TablePerusahaan> {
     return DataTable2(
         columnSpacing: 6,
         horizontalMargin: 6,
-        dataRowHeight: 30,
+        dataRowHeight: 40,
         border: TableBorder(top: BorderSide(), bottom: BorderSide()),
         columns: [
           DataColumn2(
