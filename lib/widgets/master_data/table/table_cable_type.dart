@@ -8,9 +8,12 @@ import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/routing/routes.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_cable_type.dart';
 import 'package:telin_project/widgets/setting/detail_akun.dart';
+
+import '../../../constants/controllers.dart';
 
 class TableCableType extends StatefulWidget {
   const TableCableType({super.key});
@@ -83,15 +86,18 @@ class _TableCableTypeState extends State<TableCableType> {
             InkWell(
               onTap: () {
                 QuickAlert.show(
-                  context: context,
-                  type: QuickAlertType.confirm,
-                  text: 'Do you sure to delete this item',
-                  confirmBtnText: 'Yes',
-                  cancelBtnText: 'No',
-                  customAsset: 'assets/gift/error.gif',
-                  width: 400,
-                  confirmBtnColor: Colors.green,
-                );
+                    context: context,
+                    type: QuickAlertType.confirm,
+                    text: 'Do you sure to delete this item',
+                    confirmBtnText: 'Yes',
+                    cancelBtnText: 'No',
+                    customAsset: 'assets/gift/error.gif',
+                    width: 400,
+                    confirmBtnColor: Colors.green,
+                    onConfirmBtnTap: () {
+                      hapusDataCableType('${data['_id']}');
+                      navigationController.navigateTo(CableTypePageRoute);
+                    });
               },
               child: Container(
                 width: 50,
@@ -125,6 +131,43 @@ class _TableCableTypeState extends State<TableCableType> {
         setState(() {
           cableType = response!.data['data'];
         });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void hapusDataCableType(id) async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.delete('$hapusCableType/$id');
+
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            barrierDismissible: true,
+            confirmBtnColor: Colors.red);
       } else {
         QuickAlert.show(
             context: context,

@@ -5,10 +5,12 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/routing/routes.dart';
 
 import 'package:telin_project/widgets/setting/edit_akun.dart';
 
 import '../../../api/configAPI.dart';
+import '../../../constants/controllers.dart';
 
 class AddManufacture extends StatefulWidget {
   const AddManufacture({super.key});
@@ -112,6 +114,7 @@ class _AddManufactureState extends State<AddManufacture> {
                           confirmBtnColor: Colors.red);
                     } else {
                       inputDataManufacturer(txtNamaManufacturer.text);
+                      navigationController.navigateTo(ManufacturerPageRoute);
                     }
                   },
                   child: Container(

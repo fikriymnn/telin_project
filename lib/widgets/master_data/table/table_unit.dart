@@ -6,7 +6,10 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
+import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/pages/master_data/unit.dart';
+import 'package:telin_project/routing/routes.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_unit.dart';
 import 'package:telin_project/widgets/setting/detail_akun.dart';
@@ -80,16 +83,21 @@ class _TableUnitState extends State<TableUnit> {
             ),
             InkWell(
               onTap: () {
+                bool ok = true;
                 QuickAlert.show(
-                  context: context,
-                  type: QuickAlertType.confirm,
-                  text: 'Do you sure to delete this item',
-                  confirmBtnText: 'Yes',
-                  cancelBtnText: 'No',
-                  customAsset: 'assets/gift/error.gif',
-                  width: 400,
-                  confirmBtnColor: Colors.green,
-                );
+                    context: context,
+                    type: QuickAlertType.confirm,
+                    text: 'Do you sure to delete ${data['unit']} ?',
+                    confirmBtnText: 'Yes',
+                    cancelBtnText: 'No',
+                    customAsset: 'assets/gift/error.gif',
+                    width: 400,
+                    confirmBtnColor: Colors.green,
+                    barrierDismissible: true,
+                    onConfirmBtnTap: () {
+                      hapusDataUnit('${data['_id']}');
+                      navigationController.navigateTo(UnitPageRoute);
+                    });
               },
               child: Container(
                 width: 50,
@@ -123,6 +131,44 @@ class _TableUnitState extends State<TableUnit> {
         setState(() {
           unit = response!.data['data'];
         });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void hapusDataUnit(id) async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.delete('$hapusUnit/$id');
+
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        FocusScope.of(context).unfocus();
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            barrierDismissible: true,
+            confirmBtnColor: Colors.red);
       } else {
         QuickAlert.show(
             context: context,

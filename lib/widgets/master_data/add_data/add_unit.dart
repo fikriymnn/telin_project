@@ -4,7 +4,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/routing/routes.dart';
 
 import 'package:telin_project/widgets/setting/edit_akun.dart';
 
@@ -114,6 +116,7 @@ class _AddUnitState extends State<AddUnit> {
                           confirmBtnColor: Colors.red);
                     } else {
                       inputDataUnit(txtNamaUnit.text);
+                      navigationController.navigateTo(UnitPageRoute);
                     }
                   },
                   child: Container(

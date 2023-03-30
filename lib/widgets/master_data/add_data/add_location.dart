@@ -5,10 +5,12 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/routing/routes.dart';
 
 import 'package:telin_project/widgets/setting/edit_akun.dart';
 
 import '../../../api/configAPI.dart';
+import '../../../constants/controllers.dart';
 
 class AddLocation extends StatefulWidget {
   const AddLocation({super.key});
@@ -114,6 +116,7 @@ class _AddLocationState extends State<AddLocation> {
                           confirmBtnColor: Colors.red);
                     } else {
                       inputDataLocation(txtNamaLocation.text);
+                      navigationController.navigateTo(LocationPageRoute);
                     }
                   },
                   child: Container(
