@@ -83,6 +83,7 @@ class _AddSystemState extends State<AddSystem> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtNamaSystem,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
