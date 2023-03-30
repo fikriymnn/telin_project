@@ -1,10 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/routing/routes.dart';
 
+import '../../../constants/controllers.dart';
 
 class AddArmoringType extends StatefulWidget {
   const AddArmoringType({super.key});
@@ -14,6 +18,13 @@ class AddArmoringType extends StatefulWidget {
 }
 
 class _AddArmoringTypeState extends State<AddArmoringType> {
+  TextEditingController txtNamaArmoringType = TextEditingController();
+  TextEditingController txtLabelIdArmoringType = TextEditingController();
+
+  Response? response;
+
+  var dio = Dio();
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -69,6 +80,7 @@ class _AddArmoringTypeState extends State<AddArmoringType> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtNamaArmoringType,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -144,16 +156,18 @@ class _AddArmoringTypeState extends State<AddArmoringType> {
                 ),
                 InkWell(
                   onTap: () {
-                    QuickAlert.show(
-                context: context,
-                type: QuickAlertType.success,
-                text: 'Upload Data Success',
-               
-                width: 400,
-                
-                
-               confirmBtnColor: Colors.green
-              );
+                    if (txtNamaArmoringType.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'Nama Cable Type Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else {
+                      inputDataArmoringType(txtNamaArmoringType.text);
+                      navigationController.navigateTo(ArmoringPageRoute);
+                    }
                   },
                   child: Container(
                     width: 90,
@@ -175,5 +189,46 @@ class _AddArmoringTypeState extends State<AddArmoringType> {
             ),
           ))),
     );
+  }
+
+  void _clearForm() {
+    txtNamaArmoringType.clear();
+  }
+
+  void inputDataArmoringType(namaArmoringType) async {
+    bool status;
+    var msg;
+    try {
+      response = await dio
+          .post(inputArmoring, data: {'armoring_type': namaArmoringType});
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        FocusScope.of(context).unfocus();
+        _clearForm();
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: '$msg',
+            width: 400,
+            confirmBtnColor: Colors.green);
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 }

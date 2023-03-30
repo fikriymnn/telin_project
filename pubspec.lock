@@ -129,6 +129,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.5"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      sha256: f7c26ddb3a10ff033cf1bfbf2c668feb3472327f48385775f7cf25b104f8bfce
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.0"
   disposables:
     dependency: transitive
     description:
@@ -521,18 +529,22 @@ packages:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_charts
-      sha256: "0222ac9d8cb6c671f014effe9bd5c0aef35eadb16471355345ba87cc0ac007b3"
+
+      sha256: "629e5db5dd144f52f46e4bd850c2e1d07408f3fd57dc10c5bcb6990df45d4a58"
       url: "https://pub.dev"
     source: hosted
-    version: "20.4.54"
+    version: "21.1.37"
+
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "3979f0b1c5a97422cadae52d476c21fa3e0fb671ef51de6cae1d646d8b99fe1f"
+
+      sha256: f23067e46b781d488abf8e22e5608ca9972b49562e95f9e46cb6134e968f721b
       url: "https://pub.dev"
     source: hosted
-    version: "20.4.54"
+    version: "21.1.37"
+
   term_glyph:
     dependency: transitive
     description:

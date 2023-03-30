@@ -1,11 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/routing/routes.dart';
 
 import 'package:telin_project/widgets/setting/edit_akun.dart';
+
+import '../../../api/configAPI.dart';
+import '../../../constants/controllers.dart';
 
 class AddManufacture extends StatefulWidget {
   const AddManufacture({super.key});
@@ -15,6 +20,12 @@ class AddManufacture extends StatefulWidget {
 }
 
 class _AddManufactureState extends State<AddManufacture> {
+  TextEditingController txtNamaManufacturer = TextEditingController();
+
+  FocusNode focusNode = new FocusNode();
+
+  Response? response;
+  var dio = Dio();
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -70,6 +81,7 @@ class _AddManufactureState extends State<AddManufacture> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtNamaManufacturer,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -92,16 +104,18 @@ class _AddManufactureState extends State<AddManufacture> {
                 ),
                 InkWell(
                   onTap: () {
-                    QuickAlert.show(
-                context: context,
-                type: QuickAlertType.success,
-                text: 'Upload Data Success',
-               
-                width: 400,
-                
-                
-               confirmBtnColor: Colors.green
-              );
+                    if (txtNamaManufacturer.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'Nama Manufacturer Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else {
+                      inputDataManufacturer(txtNamaManufacturer.text);
+                      navigationController.navigateTo(ManufacturerPageRoute);
+                    }
                   },
                   child: Container(
                     width: 90,
@@ -123,5 +137,49 @@ class _AddManufactureState extends State<AddManufacture> {
             ),
           ))),
     );
+  }
+
+  void _clearForm() {
+    txtNamaManufacturer.clear();
+  }
+
+  void inputDataManufacturer(namaManufacturer) async {
+    bool status;
+    var msg;
+    try {
+      // var formData = FormData.fromMap({
+      //   'manufacturer': namaManufacturer,
+      // });
+      response = await dio
+          .post(inputManufacturer, data: {'manufacturer': namaManufacturer});
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        FocusScope.of(context).unfocus();
+        _clearForm();
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: '$msg',
+            width: 400,
+            confirmBtnColor: Colors.green);
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 }

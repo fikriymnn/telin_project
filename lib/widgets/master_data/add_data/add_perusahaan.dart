@@ -1,11 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/routing/routes.dart';
 
 import 'package:telin_project/widgets/setting/edit_akun.dart';
+
+import '../../../api/configAPI.dart';
+import '../../../constants/controllers.dart';
 
 class AddPerusahaan extends StatefulWidget {
   const AddPerusahaan({super.key});
@@ -15,6 +20,18 @@ class AddPerusahaan extends StatefulWidget {
 }
 
 class _AddPerusahaanState extends State<AddPerusahaan> {
+  TextEditingController txtNamaPerusahaan = TextEditingController();
+  TextEditingController txtAddress = TextEditingController();
+  TextEditingController txtCity = TextEditingController();
+  TextEditingController txtState = TextEditingController();
+  TextEditingController txtPhone = TextEditingController();
+
+  FocusNode focusNode = new FocusNode();
+
+  Response? response;
+
+  var dio = Dio();
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -28,7 +45,7 @@ class _AddPerusahaanState extends State<AddPerusahaan> {
             padding: EdgeInsets.symmetric(vertical: 30),
             child: Column(
               children: [
-                Text("Add New Company",
+                Text("Add New Perusahaan",
                     style: GoogleFonts.montserrat(
                       fontSize: 23.3,
                       fontWeight: FontWeight.bold,
@@ -43,7 +60,7 @@ class _AddPerusahaanState extends State<AddPerusahaan> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Company",
+                        "Perusahaan",
                         style: GoogleFonts.montserrat(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
@@ -70,6 +87,7 @@ class _AddPerusahaanState extends State<AddPerusahaan> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtNamaPerusahaan,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -82,7 +100,7 @@ class _AddPerusahaanState extends State<AddPerusahaan> {
                               fontWeight: FontWeight.w400,
                               color: Colors.black,
                             ),
-                            hintText: "Company Name"),
+                            hintText: "Perusahaan Name"),
                       ),
                     ),
                   ),
@@ -123,6 +141,7 @@ class _AddPerusahaanState extends State<AddPerusahaan> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtAddress,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -176,6 +195,7 @@ class _AddPerusahaanState extends State<AddPerusahaan> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtCity,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -229,6 +249,7 @@ class _AddPerusahaanState extends State<AddPerusahaan> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtState,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -281,7 +302,15 @@ class _AddPerusahaanState extends State<AddPerusahaan> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
-                      child: TextField(
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        validator: (input) {
+                          final isDigitsOnly = int.tryParse(input!);
+                          return isDigitsOnly == null
+                              ? 'Hanya Bisa Berupa Angka'
+                              : null;
+                        },
+                        controller: txtPhone,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -304,16 +333,55 @@ class _AddPerusahaanState extends State<AddPerusahaan> {
                 ),
                 InkWell(
                   onTap: () {
-                    QuickAlert.show(
-                context: context,
-                type: QuickAlertType.success,
-                text: 'Upload Data Success',
-               
-                width: 400,
-                
-                
-               confirmBtnColor: Colors.green
-              );
+                    if (txtNamaPerusahaan.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'Nama Perusahaan Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else if (txtAddress.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'Address Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else if (txtCity.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'City Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else if (txtState.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'State Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else if (txtPhone.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'Phone Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else {
+                      inputDataPerusahaan(
+                          txtNamaPerusahaan.text,
+                          txtAddress.text,
+                          txtCity.text,
+                          txtState.text,
+                          txtPhone.text);
+                      navigationController.navigateTo(CompanyPageRoute);
+                    }
                   },
                   child: Container(
                     width: 90,
@@ -335,5 +403,64 @@ class _AddPerusahaanState extends State<AddPerusahaan> {
             ),
           ))),
     );
+  }
+
+  // Clear the form
+  void _clearForm() {
+    txtNamaPerusahaan.clear();
+    txtAddress.clear();
+    txtCity.clear();
+    txtState.clear();
+    txtPhone.clear();
+  }
+
+  // Fungsi Add Data
+  void inputDataPerusahaan(namaPerusahaan, address, city, state, phone) async {
+    bool status;
+    var msg;
+    try {
+      // final formData = FormData.fromMap({
+      //   'company_name': namaPerusahaan,
+      //   'address': address,
+      //   'city': city,
+      //   'state': state,
+      //   'phone': phone,
+      // });
+      response = await dio.post(inputPerusahaan, data: {
+        'company_name': namaPerusahaan,
+        'address': address,
+        'city': city,
+        'state': state,
+        'phone': phone,
+      });
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        FocusScope.of(context).unfocus();
+        _clearForm();
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: '$msg',
+            width: 400,
+            confirmBtnColor: Colors.green);
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 }
