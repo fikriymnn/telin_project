@@ -1,3 +1,4 @@
+
 String baseUrl = 'http://192.168.43.166:1000';
 
 // Crud Spare Cable
@@ -5,6 +6,7 @@ String inputSpareCable = '$baseUrl/api/spareCable/create';
 
 // Crud Spare Cable
 String inputSpareKit = '$baseUrl/api/spareKit/create';
+
 
 // CRUD System
 String inputSystem = '$baseUrl/api/system/create';
