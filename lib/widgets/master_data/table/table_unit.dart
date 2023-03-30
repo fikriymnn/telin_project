@@ -57,12 +57,14 @@ class _TableUnitState extends State<TableUnit> {
           children: [
             InkWell(
               onTap: () {
-                showDialog(
-                    context: context,
-                    barrierColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return EditUnit();
-                    });
+                // showDialog(
+                //     context: context,
+                //     barrierColor: Colors.transparent,
+                //     builder: (BuildContext context) {
+                //       return EditUnit();
+                //     });
+                Navigator.pushNamed(context, EditUnitPageRoute,
+                    arguments: data);
               },
               child: Container(
                 width: 50,
