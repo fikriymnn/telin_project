@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/bast/bast_print.dart';
 
-
 class BastWidget extends StatelessWidget {
   final String title, projectName, noBast;
   final Function onClick;
@@ -120,9 +119,40 @@ class BastWidget extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () async {
-                     
-
-                      
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              content: Container(
+                                width: 300,
+                                height: 232,
+                                decoration: BoxDecoration(
+                                    color: light,
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 175,
+                                      height: 150,
+                                      child: IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.add_circle,
+                                            color: active,
+                                            size: 100,
+                                          )),
+                                    ),
+                                    Text("ADD FILE",
+                                        style: GoogleFonts.roboto(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ))
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
                     },
                     child: Container(
                       height: 30.6,
@@ -150,6 +180,4 @@ class BastWidget extends StatelessWidget {
       ),
     );
   }
-
- 
 }

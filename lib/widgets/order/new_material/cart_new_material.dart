@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/widgets/order/loading/table/table_cable_cart.dart';
 import 'package:telin_project/widgets/order/loading/table/table_non_cable_cart.dart';
@@ -37,6 +38,27 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              width: 99.3,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: active),
+                              child: Center(
+                                child: Text("SUBMIT",
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
                           InkWell(
                             onTap: () {
                               Navigator.pop(context);
