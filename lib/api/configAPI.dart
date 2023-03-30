@@ -1,4 +1,4 @@
-String baseUrl = 'http://192.168.43.166:1000';
+String baseUrl = 'http://192.168.100.19:1000';
 
 // Crud Spare Cable
 String inputSpareCable = '$baseUrl/api/spareCable/create';
@@ -53,3 +53,6 @@ String inputUnit = '$baseUrl/api/unit/create';
 String getAllUnit = '$baseUrl/api/unit/getall';
 String hapusUnit = '$baseUrl/api/unit/delete';
 String editUnit = '$baseUrl/api/unit/edit';
+
+//User Login
+String userLogin = '$baseUrl/api/user/sigin';

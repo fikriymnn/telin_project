@@ -1,8 +1,15 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/pages/depo.dart';
 import 'package:telin_project/routing/router.dart';
 import 'package:telin_project/routing/routes.dart';
@@ -21,6 +28,37 @@ class _LoginFormState extends State<LoginForm> {
   String text = "";
   late String _password;
   bool _obscureText = true;
+  late SharedPreferences prefs;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initSharedPref();
+  }
+
+  void initSharedPref() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+
+  void loginUser() async {
+    if (userInput.text.isNotEmpty && passInput.text.isNotEmpty) {
+      var reqBody = {"username": userInput.text, "password": passInput.text};
+
+      var response = await http.post(Uri.parse(userLogin),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode(reqBody));
+
+      var jsonResponse = jsonDecode(response.body);
+      if (jsonResponse['status']) {
+        var myToken = jsonResponse['token'];
+        prefs.setString('token', myToken);
+      } else {
+        print("Something went wrong");
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
