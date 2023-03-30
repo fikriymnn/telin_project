@@ -1,4 +1,4 @@
-String baseUrl = 'http://192.168.100.19:1000';
+String baseUrl = 'http://localhost:1000';
 
 // CRUD System
 String inputSystem = '$baseUrl/api/system/create';
