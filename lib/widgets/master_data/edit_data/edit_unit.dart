@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
 
 import 'package:telin_project/widgets/setting/edit_akun.dart';
@@ -15,8 +16,13 @@ class EditUnit extends StatefulWidget {
 }
 
 class _EditUnitState extends State<EditUnit> {
+  TextEditingController txtNamaUnit = TextEditingController();
+  static var dataUnit;
+
   @override
   Widget build(BuildContext context) {
+    dataUnit = ModalRoute.of(context)!.settings.arguments as Map?;
+    print(dataUnit);
     return AlertDialog(
       content: Container(
           width: 900,
@@ -25,9 +31,44 @@ class _EditUnitState extends State<EditUnit> {
               borderRadius: BorderRadius.circular(6), color: Colors.white),
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 30),
+            padding: EdgeInsets.symmetric(vertical: 20),
             child: Column(
               children: [
+                InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: 107.3,
+                      height: 37.3,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border:
+                              Border.all(color: Color(0xffB8B8B8), width: 1)),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.subdirectory_arrow_left,
+                            color: active,
+                            size: 28.6,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Back",
+                            style: GoogleFonts.roboto(
+                              fontSize: 17.3,
+                              fontWeight: FontWeight.w400,
+                              color: active,
+                            ),
+                          )
+                        ],
+                      ),
+                    )),
+                SizedBox(
+                  height: 10,
+                ),
                 Text("Edit Unit",
                     style: GoogleFonts.montserrat(
                       fontSize: 23.3,
@@ -93,16 +134,11 @@ class _EditUnitState extends State<EditUnit> {
                 InkWell(
                   onTap: () {
                     QuickAlert.show(
-                context: context,
-                type: QuickAlertType.success,
-                text: 'Edit Data Success',
-               
-                width: 400,
-                
-                
-               confirmBtnColor: Colors.green
-              );
-
+                        context: context,
+                        type: QuickAlertType.success,
+                        text: 'Edit Data Success',
+                        width: 400,
+                        confirmBtnColor: Colors.green);
                   },
                   child: Container(
                     width: 90,

@@ -1,9 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
+
+import '../../../../api/configAPI.dart';
+import '../bast_invoice/bast_new_material.dart';
 
 class AddNewCableLarge extends StatefulWidget {
   const AddNewCableLarge({super.key});
@@ -13,6 +17,42 @@ class AddNewCableLarge extends StatefulWidget {
 }
 
 class _AddNewCableLargeState extends State<AddNewCableLarge> {
+  TextEditingController txtNamaEvidence = TextEditingController();
+  TextEditingController txtRemark = TextEditingController();
+  TextEditingController txtLenght = TextEditingController();
+  TextEditingController txtE_Core = TextEditingController();
+  TextEditingController txtLable = TextEditingController();
+
+  String? selectionSystem;
+  String? selectionCoreType;
+  String? selectionCableType;
+  String? selectionManufacturer;
+  String? selectionArmoringType;
+  String? selectionLocation;
+
+  List system = [];
+  List coreType = [];
+  List cableType = [];
+  List manufacturer = [];
+  List armoringType = [];
+  List location = [];
+
+  Response? response;
+
+  var dio = Dio();
+  @override
+  void initState() {
+    // TODO: implement initState
+    getDataSystem();
+    getDataArmoringType();
+    getDataCoreType();
+    getDataCableType();
+    getDataManufacturer();
+    getDataLocation();
+
+    super.initState();
+  }
+
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItemsSystem = [
       DropdownMenuItem(child: Text("Select System"), value: "Select System"),
@@ -59,9 +99,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   List<DropdownMenuItem<String>> get dropdownItemsInner {
     List<DropdownMenuItem<String>> menuItemsInner = [
       DropdownMenuItem(child: Text("Select Inner"), value: "Select Inner"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      DropdownMenuItem(child: Text("INNER"), value: "INNER"),
+      DropdownMenuItem(child: Text("OUTER"), value: "OUTER"),
     ];
     return menuItemsInner;
   }
@@ -93,7 +132,6 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   String selectedValueCoreType = "Select Core Type";
   String selectedValueCore = "Select Core";
   String selectedValueInner = "Select Inner";
-  String selectedValueOuter = "Select Outer";
   String selectedValueSystem = "Select System";
   @override
   Widget build(BuildContext context) {
@@ -145,19 +183,25 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           child: Center(
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
-                                  isExpanded: true,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      selectedValueSystem = newValue!;
-                                    });
-                                  },
-                                  value: selectedValueSystem,
-                                  items: dropdownItemsSystem),
+                                isExpanded: true,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (newVal) {
+                                  setState(() {
+                                    selectionSystem = newVal!;
+                                  });
+                                },
+                                value: selectionSystem,
+                                items: system.map((system) {
+                                  return DropdownMenuItem(
+                                    child: Text(system['system']),
+                                    value: system['_id'].toString(),
+                                  );
+                                }).toList(),
+                              ),
                             ),
                           ),
                         ),
@@ -200,19 +244,25 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           child: Center(
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
-                                  isExpanded: true,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      selectedValueCableType = newValue!;
-                                    });
-                                  },
-                                  value: selectedValueCableType,
-                                  items: dropdownItemsCableType),
+                                isExpanded: true,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (newVal) {
+                                  setState(() {
+                                    selectionCableType = newVal!;
+                                  });
+                                },
+                                value: selectionCableType,
+                                items: cableType.map((cableType) {
+                                  return DropdownMenuItem(
+                                    child: Text(cableType['cable_type']),
+                                    value: cableType['_id'].toString(),
+                                  );
+                                }).toList(),
+                              ),
                             ),
                           ),
                         ),
@@ -255,19 +305,25 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           child: Center(
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
-                                  isExpanded: true,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      selectedValueManufacture = newValue!;
-                                    });
-                                  },
-                                  value: selectedValueManufacture,
-                                  items: dropdownItemsManufacture),
+                                isExpanded: true,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (newVal) {
+                                  setState(() {
+                                    selectionManufacturer = newVal!;
+                                  });
+                                },
+                                value: selectionManufacturer,
+                                items: manufacturer.map((manufacturer) {
+                                  return DropdownMenuItem(
+                                    child: Text(manufacturer['manufacturer']),
+                                    value: manufacturer['_id'].toString(),
+                                  );
+                                }).toList(),
+                              ),
                             ),
                           ),
                         ),
@@ -310,19 +366,25 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           child: Center(
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
-                                  isExpanded: true,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      selectedValueArmoringType = newValue!;
-                                    });
-                                  },
-                                  value: selectedValueArmoringType,
-                                  items: dropdownItemsArmoringType),
+                                isExpanded: true,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (newVal) {
+                                  setState(() {
+                                    selectionArmoringType = newVal!;
+                                  });
+                                },
+                                value: selectionArmoringType,
+                                items: armoringType.map((armoringType) {
+                                  return DropdownMenuItem(
+                                    child: Text(armoringType['armoring_type']),
+                                    value: armoringType['_id'].toString(),
+                                  );
+                                }).toList(),
+                              ),
                             ),
                           ),
                         ),
@@ -377,6 +439,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(bottom: 8),
                                   child: TextField(
+                                    controller: txtLenght,
                                     style: GoogleFonts.montserrat(
                                       fontSize: 13.3,
                                       fontWeight: FontWeight.w400,
@@ -453,6 +516,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
                           child: Center(
                             child: TextField(
+                              controller: txtLable,
                               style: GoogleFonts.montserrat(
                                 fontSize: 13.3,
                                 fontWeight: FontWeight.w400,
@@ -528,61 +592,6 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                       SizedBox(
                         height: 20.6,
                       ),
-                      Container(
-                        width: 230,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Outer",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 230,
-                        height: 44,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.25),
-                                  blurRadius: 5,
-                                  offset: Offset(0, 4))
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 18, right: 18),
-                          child: Center(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                  isExpanded: true,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      selectedValueOuter = newValue!;
-                                    });
-                                  },
-                                  value: selectedValueOuter,
-                                  items: dropdownItemsOuter),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.6,
-                      ),
                     ],
                   ),
                 ),
@@ -626,6 +635,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
                           child: Center(
                             child: TextField(
+                              controller: txtNamaEvidence,
                               style: GoogleFonts.montserrat(
                                 fontSize: 13.3,
                                 fontWeight: FontWeight.w400,
@@ -680,6 +690,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
                           child: Center(
                             child: TextField(
+                              controller: txtRemark,
                               style: GoogleFonts.montserrat(
                                 fontSize: 13.3,
                                 fontWeight: FontWeight.w400,
@@ -735,19 +746,25 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           child: Center(
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
-                                  isExpanded: true,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      selectedValueCoreType = newValue!;
-                                    });
-                                  },
-                                  value: selectedValueCoreType,
-                                  items: dropdownItemsCoreType),
+                                isExpanded: true,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (newVal) {
+                                  setState(() {
+                                    selectionCoreType = newVal!;
+                                  });
+                                },
+                                value: selectionCoreType,
+                                items: coreType.map((coreType) {
+                                  return DropdownMenuItem(
+                                    child: Text(coreType['core_type']),
+                                    value: coreType['_id'].toString(),
+                                  );
+                                }).toList(),
+                              ),
                             ),
                           ),
                         ),
@@ -789,6 +806,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
                           child: Center(
                             child: TextField(
+                              controller: txtE_Core,
                               style: GoogleFonts.montserrat(
                                 fontSize: 13.3,
                                 fontWeight: FontWeight.w400,
@@ -817,16 +835,109 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
           ),
           InkWell(
             onTap: () {
-              QuickAlert.show(
-                context: context,
-                type: QuickAlertType.success,
-                text: 'Upload Data Success',
-               
-                width: 400,
-                
-                
-               confirmBtnColor: Colors.green
-              );
+              if (selectionSystem == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'Nama System Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else if (selectionCableType == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'Cable Type Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else if (selectionManufacturer == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'Manufacturer Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else if (selectionArmoringType == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'Armoring Type Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else if (txtLenght.text == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'State Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else if (txtLable.text == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'State Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else if (selectionLocation == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'Location Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else if (txtNamaEvidence.text == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'Evidence Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else if (txtRemark.text == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'Remark Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else if (selectionCoreType == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'Core Type Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else if (txtE_Core.text == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'E Core Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else {
+                inputDataNewMaterialCable(
+                  selectionSystem,
+                  selectionCableType,
+                  selectionManufacturer,
+                  selectionArmoringType,
+                  txtLenght.text,
+                  txtLable.text,
+                  selectedValueInner,
+                  txtNamaEvidence.text,
+                  txtRemark.text,
+                  selectionCoreType,
+                  txtE_Core.text,
+                );
+              }
             },
             child: Container(
               width: 90,
@@ -847,5 +958,252 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
         ],
       ),
     );
+  }
+
+  void getDataCoreType() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllCoreType);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          coreType = response!.data['data'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void getDataCableType() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllCableType);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          cableType = response!.data['data'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void getDataManufacturer() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllManufacturer);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          manufacturer = response!.data['data'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void getDataArmoringType() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllArmoring);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          armoringType = response!.data['data'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void getDataSystem() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllSystem);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          system = response!.data['data'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void getDataLocation() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllLocation);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          location = response!.data['data'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  // Clear the form
+  void _clearForm() {
+    // txtNamaUnit.clear();
+  }
+
+  // Fungsi Add Data
+  void inputDataNewMaterialCable(system, cableType, manufacturer, armoringType,
+      length, label, inner, evidence, remark, coreType, eCore) async {
+    bool status;
+    var msg;
+    try {
+      // var formData = FormData.fromMap({
+      //   'Unit': namaUnit,
+      // });
+
+      response = await dio.post(inputSpareCable, data: {
+        'system': system,
+        'cable_type': cableType,
+        'manufacturer': manufacturer,
+        'armoring_type': armoringType,
+        'length_report': length,
+        'label': label,
+        'tank': inner,
+        'evidence': evidence,
+        'remark': remark,
+        'core_type': coreType,
+        'E_core': eCore,
+      });
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        FocusScope.of(context).unfocus();
+        _clearForm();
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: '$msg',
+            width: 400,
+            confirmBtnColor: Colors.green);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => BastNewMaterial()));
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 }
