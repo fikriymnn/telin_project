@@ -7,10 +7,12 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/routing/routes.dart';
 
 import 'package:telin_project/widgets/setting/edit_akun.dart';
 
 import '../../../api/configAPI.dart';
+import '../../../constants/controllers.dart';
 
 class AddSystem extends StatefulWidget {
   const AddSystem({super.key});
@@ -98,7 +100,7 @@ class _AddSystemState extends State<AddSystem> {
                     ),
                   ),
                 ),
-                 SizedBox(
+                SizedBox(
                   height: 30,
                 ),
                 Container(
@@ -209,12 +211,18 @@ class _AddSystemState extends State<AddSystem> {
                 ),
                 InkWell(
                   onTap: () {
-                    QuickAlert.show(
-                        context: context,
-                        type: QuickAlertType.success,
-                        text: 'Upload Data Success',
-                        width: 400,
-                        confirmBtnColor: Colors.green);
+                    if (txtNamaSystem.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'Nama System Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else {
+                      inputDataSystem(txtNamaSystem.text);
+                      navigationController.navigateTo(SystemPageRoute);
+                    }
                   },
                   child: Container(
                     width: 90,

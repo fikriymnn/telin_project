@@ -1,10 +1,16 @@
-String baseUrl = 'http://192.168.118.7:1000';
+String baseUrl = 'http://192.168.100.19:1000';
 
 // CRUD System
 String inputSystem = '$baseUrl/api/system/create';
 String editSystem = '$baseUrl/api/system/edit';
 String getAllSystem = '$baseUrl/api/system/getall';
 String hapusSystem = '$baseUrl/api/system/delete';
+
+// CRUD Armoring Type
+String inputArmoring = '$baseUrl/api/armoringType/create';
+String editArmoring = '$baseUrl/api/armoringType/edit';
+String getAllArmoring = '$baseUrl/api/armoringType/getall';
+String hapusArmoring = '$baseUrl/api/armoringType/delete';
 
 // CRUD Manufacturer
 String inputManufacturer = '$baseUrl/api/manufacturer/create';
