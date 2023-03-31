@@ -10,7 +10,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telin_project/api/configAPI.dart';
+import 'package:telin_project/layout.dart';
 import 'package:telin_project/pages/depo.dart';
+import 'package:telin_project/pages/home/home.dart';
 import 'package:telin_project/routing/router.dart';
 import 'package:telin_project/routing/routes.dart';
 
@@ -53,8 +55,20 @@ class _LoginFormState extends State<LoginForm> {
       if (jsonResponse['status']) {
         var myToken = jsonResponse['token'];
         prefs.setString('token', myToken);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Depo(
+                      token: myToken,
+                    )));
       } else {
-        print("Something went wrong");
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: 'Username atau Password salah',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
       }
     }
   }
@@ -202,8 +216,25 @@ class _LoginFormState extends State<LoginForm> {
             padding: const EdgeInsets.only(right: 100),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Depo()));
+                if (userInput.text == '') {
+                  QuickAlert.show(
+                      context: context,
+                      type: QuickAlertType.info,
+                      title: 'Peringatan',
+                      text: 'Username Tidak Boleh Kosong',
+                      width: 400,
+                      confirmBtnColor: Colors.red);
+                } else if (passInput.text == '') {
+                  QuickAlert.show(
+                      context: context,
+                      type: QuickAlertType.info,
+                      title: 'Peringatan',
+                      text: 'Password Tidak Boleh Kosong',
+                      width: 400,
+                      confirmBtnColor: Colors.red);
+                } else {
+                  loginUser();
+                }
               },
               child: Text('Login',
                   style: GoogleFonts.roboto(
