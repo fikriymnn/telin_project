@@ -9,7 +9,7 @@ import 'package:telin_project/pages/inventory/list_tank.dart';
 import 'package:telin_project/pages/inventory/rak.dart';
 import 'package:telin_project/pages/inventory/refrigerator.dart';
 import 'package:telin_project/widgets/custom_text.dart';
-import 'package:telin_project/widgets/inventory/cage/cage.dart';
+import 'package:telin_project/widgets/inventory/cage/cage1.dart';
 import 'package:telin_project/widgets/inventory/floor/floor.dart';
 import 'package:telin_project/widgets/inventory/rak/rak_a1.dart';
 import 'package:telin_project/widgets/inventory/refregerator/refregerator.dart';
@@ -291,14 +291,6 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                 appBar: AppBar(
                                   backgroundColor: Colors.white,
                                   elevation: 0,
-                                  title: Text(
-                                    "CAGE",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
                                   actions: [
                                     Padding(
                                       padding: const EdgeInsets.only(
@@ -340,7 +332,7 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                     ),
                                   ],
                                 ),
-                                body: TableCage(),
+                                body: CageInventory(),
                               );
                             });
                       },

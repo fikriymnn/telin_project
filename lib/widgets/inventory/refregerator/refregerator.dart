@@ -1,9 +1,11 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_armoring_type.dart';
@@ -21,13 +23,103 @@ class TableRefregerator extends StatefulWidget {
 }
 
 class _TableRefregeratorState extends State<TableRefregerator> {
-  late List<Refregerator> refregerator;
-  List<Refregerator> selectedRow = [];
+  List refregerator = [];
+
+  Response? response;
+
+  var dio = Dio();
+
   @override
   void initState() {
     // TODO: implement initState
-    refregerator = Refregerator.getRefregerator();
+    getDatarefregerator();
     super.initState();
+  }
+
+  DataRow _resultsAPI(index, data) {
+    return DataRow(cells: [
+      DataCell(Text("${data['no'] == null ? "-" : data['no']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['rak_number'] == null ? "-" : data['rak_number']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['item_name'] == null ? "-" : data['item_name']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(
+          Text("${data['part_number'] == null ? "-" : data['part_number']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+      DataCell(
+          Text("${data['serial_number'] == null ? "-" : data['serial_number']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+      DataCell(Text("${data['system'] == null ? "-" : data['system']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['weight_kg'] == null ? "-" : data['weight_kg']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['qty'] == null ? "-" : data['qty']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['unit'] == null ? "-" : data['unit']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(
+          Text("${data['description'] == null ? "-" : data['description']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+    ]);
+  }
+
+  void getDatarefregerator() async {
+    try {
+      response = await dio.get(getRefrigerator);
+
+      setState(() {
+        refregerator = response!.data;
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
@@ -60,7 +152,7 @@ class _TableRefregeratorState extends State<TableRefregerator> {
       child: DataTable2(
           columnSpacing: 6,
           horizontalMargin: 6,
-          dataRowHeight: 30,
+          dataRowHeight: 40,
           showBottomBorder: false,
           minWidth: 3000,
           columns: [
@@ -179,184 +271,7 @@ class _TableRefregeratorState extends State<TableRefregerator> {
   }
 
   List<DataRow> _createRowsArmoring() {
-    return refregerator
-        .map((refregerator) => DataRow(cells: [
-              DataCell(Text(refregerator.no,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(refregerator.location,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(refregerator.itemName,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(refregerator.partNumber,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(refregerator.serialNumber,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(refregerator.system,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(refregerator.weight,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(refregerator.qty,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(refregerator.unit,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(refregerator.deskripsi,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-            ]))
-        .toList();
-  }
-}
-
-class Refregerator {
-  final String no,
-      location,
-      system,
-      itemName,
-      partNumber,
-      serialNumber,
-      weight,
-      qty,
-      unit,
-      deskripsi;
-
-  const Refregerator({
-    required this.no,
-    required this.system,
-    required this.location,
-    required this.itemName,
-    required this.partNumber,
-    required this.serialNumber,
-    required this.weight,
-    required this.qty,
-    required this.unit,
-    required this.deskripsi,
-  });
-
-  static List<Refregerator> getRefregerator() {
-    return <Refregerator>[
-      const Refregerator(
-        no: "1",
-        system: "IKK",
-        location: "Refregerator",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Refregerator(
-        no: "2",
-        system: "IKK",
-        location: "Refregerator",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Refregerator(
-        no: "3",
-        system: "IKK",
-        location: "Refregerator",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Refregerator(
-        no: "4",
-        system: "IKK",
-        location: "Refregerator ",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Refregerator(
-        no: "5",
-        system: "IKK",
-        location: "Refregerator ",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Refregerator(
-        no: "6",
-        system: "IKK",
-        location: "Refregerator",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Refregerator(
-        no: "7",
-        system: "IKK",
-        location: "Refregerator",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-    ];
+    return List.generate(refregerator.length,
+        (index) => _resultsAPI(index, refregerator[index]));
   }
 }

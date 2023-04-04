@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/widgets/inventory/cage/cage.dart';
+import 'package:telin_project/widgets/inventory/cage/cage1.dart';
 import 'package:telin_project/widgets/inventory/rak/rak_a1.dart';
 import 'package:telin_project/widgets/inventory/refregerator/refregerator.dart';
 

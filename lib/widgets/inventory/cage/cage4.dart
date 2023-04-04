@@ -1,4 +1,5 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -13,21 +14,112 @@ import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_m
 
 import 'package:telin_project/widgets/setting/detail_akun.dart';
 
-class TableCage extends StatefulWidget {
-  const TableCage({super.key});
+import '../../../api/configAPI.dart';
+
+class TableCage4 extends StatefulWidget {
+  const TableCage4({super.key});
 
   @override
-  State<TableCage> createState() => _TableCageState();
+  State<TableCage4> createState() => _TableCage4State();
 }
 
-class _TableCageState extends State<TableCage> {
-  late List<Cage> cage;
-  List<Cage> selectedRow = [];
+class _TableCage4State extends State<TableCage4> {
+  List cage4 = [];
+
+  Response? response;
+
+  var dio = Dio();
+
   @override
   void initState() {
     // TODO: implement initState
-    cage = Cage.getCage();
+    getDatareCage4();
     super.initState();
+  }
+
+  DataRow _resultsAPI(index, data) {
+    return DataRow(cells: [
+      DataCell(Text("${data['no'] == null ? "-" : data['no']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['rak_number'] == null ? "-" : data['rak_number']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['item_name'] == null ? "-" : data['item_name']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(
+          Text("${data['part_number'] == null ? "-" : data['part_number']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+      DataCell(
+          Text("${data['serial_number'] == null ? "-" : data['serial_number']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+      DataCell(Text("${data['system'] == null ? "-" : data['system']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['weight_kg'] == null ? "-" : data['weight_kg']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['qty'] == null ? "-" : data['qty']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['unit'] == null ? "-" : data['unit']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['desription'] == null ? "-" : data['desription']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+    ]);
+  }
+
+  void getDatareCage4() async {
+    try {
+      response = await dio.get(getCage4);
+
+      setState(() {
+        cage4 = response!.data;
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
@@ -56,8 +148,8 @@ class _TableCageState extends State<TableCage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: DataTable2(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: DataTable2(
           columnSpacing: 6,
           horizontalMargin: 6,
           dataRowHeight: 30,
@@ -174,189 +266,8 @@ class _TableCageState extends State<TableCage> {
                 ),
                 fixedWidth: 300),
           ],
-          rows: _createRowsArmoring()),
-    );
-  }
-
-  List<DataRow> _createRowsArmoring() {
-    return cage
-        .map((cage) => DataRow(cells: [
-              DataCell(Text(cage.no,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(cage.location,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(cage.itemName,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(cage.partNumber,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(cage.serialNumber,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(cage.system,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(cage.weight,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(cage.qty,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(cage.unit,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(cage.deskripsi,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-            ]))
-        .toList();
-  }
-}
-
-class Cage {
-  final String no,
-      location,
-      system,
-      itemName,
-      partNumber,
-      serialNumber,
-      weight,
-      qty,
-      unit,
-      deskripsi;
-
-  const Cage({
-    required this.no,
-    required this.system,
-    required this.location,
-    required this.itemName,
-    required this.partNumber,
-    required this.serialNumber,
-    required this.weight,
-    required this.qty,
-    required this.unit,
-    required this.deskripsi,
-  });
-
-  static List<Cage> getCage() {
-    return <Cage>[
-      const Cage(
-        no: "1",
-        system: "IKK",
-        location: "Cage 1",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Cage(
-        no: "2",
-        system: "IKK",
-        location: "Cage 1",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Cage(
-        no: "3",
-        system: "IKK",
-        location: "Cage 1",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Cage(
-        no: "4",
-        system: "IKK",
-        location: "Cage 1",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Cage(
-        no: "5",
-        system: "IKK",
-        location: "Cage 1",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Cage(
-        no: "6",
-        system: "IKK",
-        location: "Cage 1",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Cage(
-        no: "7",
-        system: "IKK",
-        location: "Cage 1",
-        itemName: "OADM BRANCHING UNIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-    ];
+          rows: List.generate(
+              cage4.length, (index) => _resultsAPI(index, cage4[index])),
+        ));
   }
 }
