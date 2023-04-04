@@ -1,5 +1,11 @@
 String baseUrl = 'http://localhost:1000';
 
+// Crud Spare Cable
+String inputSpareCable = '$baseUrl/api/spareCable/create';
+
+// Crud Spare Cable
+String inputSpareKit = '$baseUrl/api/spareKit/create';
+
 // CRUD System
 String inputSystem = '$baseUrl/api/system/create';
 String editSystem = '$baseUrl/api/system/edit';
