@@ -127,7 +127,7 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                     ),
                                   ],
                                 ),
-                                body: TableRakA1(),
+                                body: RacksInventory(),
                               );
                             });
                       },

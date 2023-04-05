@@ -23,6 +23,10 @@ class TableTank1 extends StatefulWidget {
 }
 
 class _TableTank1State extends State<TableTank1> {
+  String? selectionSystem;
+  String? selectionArmoringType;
+  List system = [];
+  List armoringType = [];
   List tank1 = [];
 
   Response? response;

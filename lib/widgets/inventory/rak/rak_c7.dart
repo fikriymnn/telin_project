@@ -15,15 +15,15 @@ import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_m
 
 import 'package:telin_project/widgets/setting/detail_akun.dart';
 
-class TableRakA1 extends StatefulWidget {
-  const TableRakA1({super.key});
+class TableRakC7 extends StatefulWidget {
+  const TableRakC7({super.key});
 
   @override
-  State<TableRakA1> createState() => _TableRakA1State();
+  State<TableRakC7> createState() => _TableRakC7State();
 }
 
-class _TableRakA1State extends State<TableRakA1> {
-  List rakA1 = [];
+class _TableRakC7State extends State<TableRakC7> {
+  List rakC7 = [];
 
   Response? response;
 
@@ -32,7 +32,7 @@ class _TableRakA1State extends State<TableRakA1> {
   @override
   void initState() {
     // TODO: implement initState
-    getDataRakA1();
+    getDataRakC7();
     super.initState();
   }
 
@@ -104,12 +104,12 @@ class _TableRakA1State extends State<TableRakA1> {
     ]);
   }
 
-  void getDataRakA1() async {
+  void getDataRakC7() async {
     try {
-      response = await dio.get(getRakA1);
+      response = await dio.get(getRakC7);
 
       setState(() {
-        rakA1 = response!.data;
+        rakC7 = response!.data;
       });
     } catch (e) {
       QuickAlert.show(
@@ -267,7 +267,7 @@ class _TableRakA1State extends State<TableRakA1> {
                 fixedWidth: 250),
           ],
           rows: List.generate(
-              rakA1.length, (index) => _resultsAPI(index, rakA1[index]))),
+              rakC7.length, (index) => _resultsAPI(index, rakC7[index]))),
     );
   }
 }
