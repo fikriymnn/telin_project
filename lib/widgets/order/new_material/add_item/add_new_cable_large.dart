@@ -28,7 +28,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   String? selectionCableType;
   String? selectionManufacturer;
   String? selectionArmoringType;
-  String? selectionLocation;
+  String? selectionInner;
 
   List system = [];
   List coreType = [];
@@ -51,6 +51,28 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
     getDataLocation();
 
     super.initState();
+  }
+
+  List<DropdownMenuItem<String>> get dropdownTankLocation {
+    List<DropdownMenuItem<String>> menuTankLocation = [
+      DropdownMenuItem(
+          child: Text("Select Tank Location"), value: "Select Tank Location"),
+      DropdownMenuItem(child: Text("TANK-1"), value: "TANK-1"),
+      DropdownMenuItem(child: Text("TANK-2"), value: "TANK-2"),
+      DropdownMenuItem(child: Text("TANK-3"), value: "TANK-3"),
+      DropdownMenuItem(child: Text("TANK-4"), value: "TANK-4"),
+      DropdownMenuItem(child: Text("TANK-5"), value: "TANK-5"),
+      DropdownMenuItem(child: Text("TANK-6"), value: "TANK-6"),
+      DropdownMenuItem(child: Text("TANK-7"), value: "TANK-7"),
+      DropdownMenuItem(child: Text("TANK-8"), value: "TANK-8"),
+      DropdownMenuItem(child: Text("TANK-9"), value: "TANK-9"),
+      DropdownMenuItem(child: Text("TANK-10"), value: "TANK-10"),
+      DropdownMenuItem(child: Text("TANK-11"), value: "TANK-11"),
+      DropdownMenuItem(child: Text("CABLE CAGE A"), value: "CABLE CAGE A"),
+      DropdownMenuItem(child: Text("CABLE CAGE B"), value: "CABLE CAGE B"),
+      DropdownMenuItem(child: Text("FLOOR DEPO"), value: "FLOOR DEPO"),
+    ];
+    return menuTankLocation;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
@@ -133,6 +155,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   String selectedValueCore = "Select Core";
   String selectedValueInner = "Select Inner";
   String selectedValueSystem = "Select System";
+  String selectedValueTankLocation = "Select Tank Location";
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -592,6 +616,58 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                       SizedBox(
                         height: 20.6,
                       ),
+                      Container(
+                        width: 230,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Tank Location",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 230,
+                        height: 44,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            border:
+                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.25),
+                                  blurRadius: 5,
+                                  offset: Offset(0, 4))
+                            ]),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 18, right: 18),
+                          child: Center(
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton(
+                                  isExpanded: true,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      selectedValueTankLocation = newValue!;
+                                    });
+                                  },
+                                  value: selectedValueTankLocation,
+                                  items: dropdownTankLocation),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -883,12 +959,20 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     text: 'State Tidak Boleh Kosong',
                     width: 400,
                     confirmBtnColor: Colors.red);
-              } else if (selectionLocation == '') {
+              } else if (selectedValueInner == '') {
                 QuickAlert.show(
                     context: context,
                     type: QuickAlertType.error,
                     title: 'Peringatan',
-                    text: 'Location Tidak Boleh Kosong',
+                    text: 'Tank Tidak Boleh Kosong',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+              } else if (selectedValueTankLocation == '') {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'Tank Location Tidak Boleh Kosong',
                     width: 400,
                     confirmBtnColor: Colors.red);
               } else if (txtNamaEvidence.text == '') {
@@ -932,6 +1016,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                   txtLenght.text,
                   txtLable.text,
                   selectedValueInner,
+                  selectedValueTankLocation,
                   txtNamaEvidence.text,
                   txtRemark.text,
                   selectionCoreType,
@@ -1152,8 +1237,19 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   }
 
   // Fungsi Add Data
-  void inputDataNewMaterialCable(system, cableType, manufacturer, armoringType,
-      length, label, inner, evidence, remark, coreType, eCore) async {
+  void inputDataNewMaterialCable(
+      system,
+      cableType,
+      manufacturer,
+      armoringType,
+      length,
+      label,
+      inner,
+      tankLocation,
+      evidence,
+      remark,
+      coreType,
+      eCore) async {
     bool status;
     var msg;
     try {
@@ -1169,6 +1265,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
         'length_report': length,
         'label': label,
         'tank': inner,
+        'tank_location': tankLocation,
         'evidence': evidence,
         'remark': remark,
         'core_type': coreType,
