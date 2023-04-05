@@ -53,6 +53,7 @@ String inputUnit = '$baseUrl/api/unit/create';
 String getAllUnit = '$baseUrl/api/unit/getall';
 String hapusUnit = '$baseUrl/api/unit/delete';
 String editUnit = '$baseUrl/api/unit/edit';
+String getIdUnit = '$baseUrl/api/unit/get';
 
 //User Login
 String userLogin = '$baseUrl/api/user/signin';

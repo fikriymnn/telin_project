@@ -191,6 +191,17 @@ class _TableUnitState extends State<TableUnit> {
     }
   }
 
+  void getDataById(int id) async {
+    bool status;
+    var msg;
+    try {
+      var response = await dio.get('$getIdUnit/$id');
+      return response.data;
+    } on DioError catch (e) {
+      // handle error
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return DataTable2(
