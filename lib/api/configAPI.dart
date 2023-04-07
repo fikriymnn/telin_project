@@ -1,12 +1,10 @@
-
-String baseUrl = 'http://192.168.43.166:1000';
+String baseUrl = 'http://192.168.100.19:1000';
 
 // Crud Spare Cable
 String inputSpareCable = '$baseUrl/api/spareCable/create';
 
 // Crud Spare Cable
 String inputSpareKit = '$baseUrl/api/spareKit/create';
-
 
 // CRUD System
 String inputSystem = '$baseUrl/api/system/create';
@@ -55,3 +53,7 @@ String inputUnit = '$baseUrl/api/unit/create';
 String getAllUnit = '$baseUrl/api/unit/getall';
 String hapusUnit = '$baseUrl/api/unit/delete';
 String editUnit = '$baseUrl/api/unit/edit';
+String getIdUnit = '$baseUrl/api/unit/get';
+
+//User Login
+String userLogin = '$baseUrl/api/user/signin';

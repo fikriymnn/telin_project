@@ -21,7 +21,7 @@ class _EditUnitState extends State<EditUnit> {
 
   @override
   Widget build(BuildContext context) {
-    dataUnit = ModalRoute.of(context)!.settings.arguments as Map?;
+    dataUnit = ModalRoute.of(context)!.settings.arguments as Map;
     print(dataUnit);
     return AlertDialog(
       content: Container(
