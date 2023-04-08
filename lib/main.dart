@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/pages/depo.dart';
-
+import 'dart:io';
 import 'package:telin_project/controllers/navigation_controllers.dart';
 import 'package:telin_project/layout.dart';
 import 'package:telin_project/pages/404/error_page.dart';

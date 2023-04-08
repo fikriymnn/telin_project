@@ -1,5 +1,19 @@
 String baseUrl = 'http://192.168.43.166:1000';
 
+//Get Account
+String getSuperAdmin = '$baseUrl/api/user/super-admin';
+String getAdmin = '$baseUrl/api/user/admin';
+
+// Loading
+String addLoading = '$baseUrl/api/loading/';
+String getLoading = '$baseUrl/api/loading/';
+
+// Crud Spare Cable
+String inputSpareCable = '$baseUrl/api/spareCable/create';
+
+// Crud Spare Cable
+String inputSpareKit = '$baseUrl/api/spareKit/create';
+
 // CRUD System
 String inputSystem = '$baseUrl/api/system/create';
 String editSystem = '$baseUrl/api/system/edit';
@@ -41,3 +55,9 @@ String inputUnit = '$baseUrl/api/unit/create';
 String getAllUnit = '$baseUrl/api/unit/getall';
 String hapusUnit = '$baseUrl/api/unit/delete';
 String editUnit = '$baseUrl/api/unit/edit';
+
+// CRUD Armoring Type
+String inputArmoringType = '$baseUrl/api/armoringType/create';
+String getAllArmoringType = '$baseUrl/api/armoringType/getall';
+String hapusArmoringType = '$baseUrl/api/armoringType/delete';
+String editArmoringType = '$baseUrl/api/armoringType/edit';

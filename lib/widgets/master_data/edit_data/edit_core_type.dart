@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -7,14 +8,25 @@ import 'package:telin_project/helpers/responsive.dart';
 
 import 'package:telin_project/widgets/setting/edit_akun.dart';
 
+import '../../../api/configAPI.dart';
+
 class EditCoreType extends StatefulWidget {
-  const EditCoreType({super.key});
+  final List data;
+  const EditCoreType({super.key, required this.data});
 
   @override
   State<EditCoreType> createState() => _EditCoreTypeState();
 }
 
 class _EditCoreTypeState extends State<EditCoreType> {
+  TextEditingController txtNamaCoreType = TextEditingController();
+
+  FocusNode focusNode = new FocusNode();
+
+  var coreType;
+  Response? response;
+
+  var dio = Dio();
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -70,6 +82,8 @@ class _EditCoreTypeState extends State<EditCoreType> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtNamaCoreType
+                          ..text = '${coreType['core_type']}',
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -92,16 +106,23 @@ class _EditCoreTypeState extends State<EditCoreType> {
                 ),
                 InkWell(
                   onTap: () {
+                    if (txtNamaCoreType.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          text: 'Nama Core Type Tidak Boleh Kosong',
+                          title: 'Peringatan',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else {
+                      editDataCoreType(txtNamaCoreType.text, coreType);
+                    }
                     QuickAlert.show(
-                context: context,
-                type: QuickAlertType.success,
-                text: 'Edit Data Success',
-               
-                width: 400,
-                
-                
-               confirmBtnColor: Colors.green
-              );
+                        context: context,
+                        type: QuickAlertType.success,
+                        text: 'Edit Data Success',
+                        width: 400,
+                        confirmBtnColor: Colors.green);
                   },
                   child: Container(
                     width: 90,
@@ -123,5 +144,78 @@ class _EditCoreTypeState extends State<EditCoreType> {
             ),
           ))),
     );
+  }
+
+  void getDataCoreType() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllCoreType);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      txtNamaCoreType.text = coreType[0]['core_type'];
+      if (status) {
+        setState(() {
+          coreType = response!.data['data'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void editDataCoreType(namaCoreType, data) async {
+    bool status;
+    var msg;
+    try {
+      // var formData = FormData.fromMap({
+      //   'core_type': namaCoreType,
+
+      // });
+
+      response = await dio.put('$editCoreType/ ${data['_id']}',
+          data: {'core_type': namaCoreType});
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.green);
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 }
