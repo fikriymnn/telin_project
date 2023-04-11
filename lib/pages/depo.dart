@@ -11,24 +11,13 @@ import '../widgets/depo/depo_widget_medium.dart';
 import '../widgets/depo/depo_widget_small.dart';
 
 class Depo extends StatefulWidget {
-  final token;
-  const Depo({super.key, this.token});
+  const Depo({super.key});
 
   @override
   State<Depo> createState() => _DepoState();
 }
 
 class _DepoState extends State<Depo> {
-  late String username;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
-
-    username = jwtDecodedToken['username'];
-  }
-
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
