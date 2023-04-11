@@ -45,7 +45,7 @@ dependencies:
   im_stepper: ^1.0.1+1
   dio: ^5.0.3
   printing: ^5.10.1
-  excel: ^2.0.4
+  syncfusion_flutter_xlsio: ^21.1.38
   
 
 dev_dependencies:

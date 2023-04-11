@@ -55,6 +55,10 @@ String getAllUnit = '$baseUrl/api/unit/getall';
 String hapusUnit = '$baseUrl/api/unit/delete';
 String editUnit = '$baseUrl/api/unit/edit';
 
+// Get Report
+String getReportCable = '$baseUrl/api/report';
+String getReportSpareKits = '$baseUrl/api/report/spare_kits';
+
 // Get Inventory
 String getTank1 = '$baseUrl/api/inventory/cable/TANK-1';
 String getTank2 = '$baseUrl/api/inventory/cable/TANK-2';
