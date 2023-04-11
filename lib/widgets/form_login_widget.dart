@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
@@ -43,34 +44,60 @@ class _LoginFormState extends State<LoginForm> {
     prefs = await SharedPreferences.getInstance();
   }
 
-  void loginUser() async {
-    if (userInput.text.isNotEmpty && passInput.text.isNotEmpty) {
-      var reqBody = {"username": userInput.text, "password": passInput.text};
+  Future<Response?> loginUser() async {
+    var dio = Dio();
+    try {
+      var response = await dio.post(userLogin,
+          data: {"username": userInput.text, "password": passInput.text},
+          options: Options(
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+          ));
 
-      var response = await http.post(Uri.parse(userLogin),
-          headers: {'Content-Type': 'application/json'},
-          body: jsonEncode(reqBody));
-
-      var jsonResponse = jsonDecode(response.body);
-      if (jsonResponse['status'] == 200) {
-        var myToken = jsonResponse['token'];
-        prefs.setString('token', myToken);
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => Depo(
-                      token: myToken,
-                    )));
-      } else {
-        QuickAlert.show(
-            context: context,
-            type: QuickAlertType.error,
-            text: 'Username atau Password salah',
-            title: 'Peringatan',
-            width: 400,
-            confirmBtnColor: Colors.red);
-      }
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Depo()));
+      return response;
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Username atau Password salah',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
     }
+    return null;
+    // if (userInput.text.isNotEmpty && passInput.text.isNotEmpty) {
+    //   var reqBody = {"username": userInput.text, "password": passInput.text};
+
+    //   var response = await http.post(Uri.parse(userLogin),
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         'Accept': 'application/json',
+    //       },
+    //       body: jsonEncode(reqBody));
+
+    //   var jsonResponse = jsonDecode(response.body);
+    //   if (jsonResponse['status']) {
+    //     var myToken = jsonResponse['token'];
+    //     prefs.setString('token', myToken);
+    //     Navigator.push(
+    //         context,
+    //         MaterialPageRoute(
+    //             builder: (context) => Depo(
+    //                   token: myToken,
+    //                 )));
+    //   } else {
+    //     QuickAlert.show(
+    //         context: context,
+    //         type: QuickAlertType.error,
+    //         text: 'Username atau Password salah',
+    //         title: 'Peringatan',
+    //         width: 400,
+    //         confirmBtnColor: Colors.red);
+    //   }
+    // }
   }
 
   @override
