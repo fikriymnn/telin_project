@@ -52,7 +52,7 @@ class _LoginFormState extends State<LoginForm> {
           body: jsonEncode(reqBody));
 
       var jsonResponse = jsonDecode(response.body);
-      if (jsonResponse['status']) {
+      if (jsonResponse['status'] == 200) {
         var myToken = jsonResponse['token'];
         prefs.setString('token', myToken);
         Navigator.push(
