@@ -48,8 +48,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(LocationScreens());
     case UnitPageRoute:
       return _getPageRoute(UnitScreens());
-    case EditUnitPageRoute:
-      return _getPageRoute(EditUnit());
+    // case EditUnitPageRoute:
+    //   return _getPageRoute(EditUnit());
     case CompanyPageRoute:
       return _getPageRoute(PerusahaanScreens());
     case OrderPageRoute:

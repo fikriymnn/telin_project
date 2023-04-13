@@ -29,7 +29,6 @@ class _TableUnitState extends State<TableUnit> {
 
   @override
   void initState() {
-    // TODO: implement initState
     getDataUnit();
     super.initState();
   }
@@ -63,8 +62,11 @@ class _TableUnitState extends State<TableUnit> {
                 //     builder: (BuildContext context) {
                 //       return EditUnit();
                 //     });
-                Navigator.pushNamed(context, EditUnitPageRoute,
-                    arguments: data);
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EditUnit(
+                          id: data['_id'],
+                          unitName: data['unit'],
+                        )));
               },
               child: Container(
                 width: 50,
