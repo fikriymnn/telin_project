@@ -86,12 +86,15 @@ class _TablePerusahaanState extends State<TablePerusahaan> {
           children: [
             InkWell(
               onTap: () {
-                showDialog(
-                    context: context,
-                    barrierColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return EditPerusahaan();
-                    });
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EditPerusahaan(
+                          id: data['_id'],
+                          companyName: data['company_name'],
+                          address: data['address'],
+                          city: data['city'],
+                          state: data['state'],
+                          phone: data['phone'],
+                        )));
               },
               child: Container(
                 width: 50,

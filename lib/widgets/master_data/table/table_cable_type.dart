@@ -59,12 +59,11 @@ class _TableCableTypeState extends State<TableCableType> {
           children: [
             InkWell(
               onTap: () {
-                showDialog(
-                    context: context,
-                    barrierColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return EditCableType();
-                    });
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EditCableType(
+                          id: data['_id'],
+                          cableTypeName: data['cable_type'],
+                        )));
               },
               child: Container(
                 width: 50,

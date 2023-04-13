@@ -58,12 +58,11 @@ class _TableCoreTypeState extends State<TableCoreType> {
           children: [
             InkWell(
               onTap: () {
-                showDialog(
-                    context: context,
-                    barrierColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return EditCoreType();
-                    });
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EditCoreType(
+                          id: data['_id'],
+                          coreTypeName: data['core_type'],
+                        )));
               },
               child: Container(
                 width: 50,

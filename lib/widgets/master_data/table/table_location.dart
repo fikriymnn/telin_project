@@ -58,12 +58,11 @@ class _TableLocationState extends State<TableLocation> {
           children: [
             InkWell(
               onTap: () {
-                showDialog(
-                    context: context,
-                    barrierColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return EditLocation();
-                    });
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EditLocation(
+                          id: data['_id'],
+                          locationName: data['location'],
+                        )));
               },
               child: Container(
                 width: 50,
