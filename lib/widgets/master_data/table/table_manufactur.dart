@@ -57,12 +57,11 @@ class _TableManufactureState extends State<TableManufacture> {
           children: [
             InkWell(
               onTap: () {
-                showDialog(
-                    context: context,
-                    barrierColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return EditManufacture();
-                    });
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EditManufacture(
+                          id: data['_id'],
+                          namaManufacture: data['manufacturer'],
+                        )));
               },
               child: Container(
                 width: 50,

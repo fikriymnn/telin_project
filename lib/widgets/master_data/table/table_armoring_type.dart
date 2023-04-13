@@ -67,12 +67,11 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
           children: [
             InkWell(
               onTap: () {
-                showDialog(
-                    context: context,
-                    barrierColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return const EditArmoringType();
-                    });
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EditArmoringType(
+                          id: data['_id'],
+                          armoringName: data['armoring_type'],
+                        )));
               },
               child: Container(
                 width: 50,
