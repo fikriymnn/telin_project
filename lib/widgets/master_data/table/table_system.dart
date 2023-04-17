@@ -63,12 +63,11 @@ class _TableSystemState extends State<TableSystem> {
           children: [
             InkWell(
               onTap: () {
-                showDialog(
-                    context: context,
-                    barrierColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return const EditSystem();
-                    });
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EditSystem(
+                          id: data['_id'],
+                          systemName: data['system'],
+                        )));
               },
               child: Container(
                 width: 50,

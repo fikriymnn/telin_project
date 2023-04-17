@@ -33,21 +33,27 @@ dependencies:
   cupertino_icons: ^1.0.2
   data_table_2: ^2.3.12
   dependencies: null
+  dio: ^5.0.3
+  excel: ^2.0.4
   flutter:
     sdk: flutter
   flutter_datetime_picker: ^1.5.1
   font_awesome_flutter: ^10.3.0
   get: ^4.6.5
   google_fonts: ^4.0.1
-  syncfusion_flutter_charts: ^21.1.37
-  url_strategy: ^0.2.0
-  quickalert: ^1.0.1
+  http: ^0.13.5
   im_stepper: ^1.0.1+1
-  dio: ^5.0.3
+  jwt_decoder: ^2.0.1
   printing: ^5.10.1
+
   syncfusion_flutter_xlsio: ^21.1.38
   excel: ^2.1.0
-  
+
+  quickalert: ^1.0.1
+  shared_preferences: ^2.0.20
+  syncfusion_flutter_charts: ^21.1.37
+  url_strategy: ^0.2.0
+
 
 dev_dependencies:
   flutter_lints: ^2.0.0

@@ -1,4 +1,10 @@
-String baseUrl = 'http://localhost:1000';
+String baseUrl = 'http://192.168.100.19:1000';
+
+// Crud Spare Cable
+String inputSpareCable = '$baseUrl/api/spareCable/create';
+
+// Crud Spare Cable
+String inputSpareKit = '$baseUrl/api/spareKit/create';
 
 // Crud Spare Cable
 String inputSpareCable = '$baseUrl/api/spareCable/create';
@@ -55,11 +61,12 @@ String getAllUnit = '$baseUrl/api/unit/getall';
 String hapusUnit = '$baseUrl/api/unit/delete';
 String editUnit = '$baseUrl/api/unit/edit';
 
-// Get Report
+
+
 String getReportCable = '$baseUrl/api/report';
 String getReportSpareKits = '$baseUrl/api/report/spare_kits';
 
-// Get Inventory
+
 String getTank1 = '$baseUrl/api/inventory/cable/TANK-1';
 String getTank2 = '$baseUrl/api/inventory/cable/TANK-2';
 String getTank3 = '$baseUrl/api/inventory/cable/TANK-3';
@@ -103,3 +110,9 @@ String getRakC4 = '$baseUrl/api/inventory/kit/RAK C4';
 String getRakC5 = '$baseUrl/api/inventory/kit/RAK C5';
 String getRakC6 = '$baseUrl/api/inventory/kit/RAK C6';
 String getRakC7 = '$baseUrl/api/inventory/kit/RAK C7';
+
+String getIdUnit = '$baseUrl/api/unit/get';
+
+//User Login
+String userLogin = '$baseUrl/api/user/signin';
+

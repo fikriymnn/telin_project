@@ -1,20 +1,83 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/routing/routes.dart';
 
 import 'package:telin_project/widgets/setting/edit_akun.dart';
 
+import '../../../constants/controllers.dart';
+import '../../../constants/style.dart';
+
 class EditLocation extends StatefulWidget {
-  const EditLocation({super.key});
+  final String id;
+  final String locationName;
+
+  const EditLocation({super.key, required this.id, required this.locationName});
 
   @override
   State<EditLocation> createState() => _EditLocationState();
 }
 
 class _EditLocationState extends State<EditLocation> {
+  Response? response;
+
+  var dio = Dio();
+  late final TextEditingController _txtNamaLocation;
+
+  @override
+  void initState() {
+    super.initState();
+    _txtNamaLocation = TextEditingController(text: widget.locationName);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _txtNamaLocation.dispose();
+  }
+
+  void editDataLocation(id, namaLocation) async {
+    bool status;
+    var msg;
+    try {
+      response =
+          await dio.put('$editLocation/$id', data: {'location': namaLocation});
+
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        FocusScope.of(context).unfocus();
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: '$msg',
+            width: 400,
+            confirmBtnColor: Colors.green);
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -28,6 +91,41 @@ class _EditLocationState extends State<EditLocation> {
             padding: EdgeInsets.symmetric(vertical: 30),
             child: Column(
               children: [
+                InkWell(
+                    onTap: () {
+                      navigationController.navigateTo(LocationPageRoute);
+                    },
+                    child: Container(
+                      width: 107.3,
+                      height: 37.3,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border:
+                              Border.all(color: Color(0xffB8B8B8), width: 1)),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.subdirectory_arrow_left,
+                            color: active,
+                            size: 28.6,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Back",
+                            style: GoogleFonts.roboto(
+                              fontSize: 17.3,
+                              fontWeight: FontWeight.w400,
+                              color: active,
+                            ),
+                          )
+                        ],
+                      ),
+                    )),
+                SizedBox(
+                  height: 10,
+                ),
                 Text("Edit Location",
                     style: GoogleFonts.montserrat(
                       fontSize: 23.3,
@@ -70,6 +168,7 @@ class _EditLocationState extends State<EditLocation> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: _txtNamaLocation,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -92,16 +191,7 @@ class _EditLocationState extends State<EditLocation> {
                 ),
                 InkWell(
                   onTap: () {
-                    QuickAlert.show(
-                context: context,
-                type: QuickAlertType.success,
-                text: 'Edit Data Success',
-               
-                width: 400,
-                
-                
-               confirmBtnColor: Colors.green
-              );
+                    editDataLocation(widget.id, _txtNamaLocation.text);
                   },
                   child: Container(
                     width: 90,

@@ -14,6 +14,7 @@ import 'package:telin_project/pages/order/loading.dart';
 import 'package:telin_project/pages/order/off_loading_existing_material.dart';
 import 'package:telin_project/pages/order/off_loading_new_material.dart';
 import 'package:telin_project/routing/routes.dart';
+import 'package:telin_project/widgets/master_data/edit_data/edit_unit.dart';
 import 'package:telin_project/widgets/report/report_table_cable.dart';
 import 'package:telin_project/widgets/report/report_table_noncable.dart';
 
@@ -47,6 +48,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(LocationScreens());
     case UnitPageRoute:
       return _getPageRoute(UnitScreens());
+    // case EditUnitPageRoute:
+    //   return _getPageRoute(EditUnit());
     case CompanyPageRoute:
       return _getPageRoute(PerusahaanScreens());
     case OrderPageRoute:

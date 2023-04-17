@@ -29,7 +29,6 @@ class _TableUnitState extends State<TableUnit> {
 
   @override
   void initState() {
-    // TODO: implement initState
     getDataUnit();
     super.initState();
   }
@@ -57,12 +56,17 @@ class _TableUnitState extends State<TableUnit> {
           children: [
             InkWell(
               onTap: () {
-                showDialog(
-                    context: context,
-                    barrierColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return EditUnit();
-                    });
+                // showDialog(
+                //     context: context,
+                //     barrierColor: Colors.transparent,
+                //     builder: (BuildContext context) {
+                //       return EditUnit();
+                //     });
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EditUnit(
+                          id: data['_id'],
+                          unitName: data['unit'],
+                        )));
               },
               child: Container(
                 width: 50,
@@ -186,6 +190,17 @@ class _TableUnitState extends State<TableUnit> {
           title: 'Peringatan',
           width: 400,
           confirmBtnColor: Colors.red);
+    }
+  }
+
+  void getDataById(int id) async {
+    bool status;
+    var msg;
+    try {
+      var response = await dio.get('$getIdUnit/$id');
+      return response.data;
+    } on DioError catch (e) {
+      // handle error
     }
   }
 

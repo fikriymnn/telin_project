@@ -29,6 +29,7 @@ const LocationPageRoute = "/Location";
 
 const UnitDisplayName = "Unit";
 const UnitPageRoute = "/Unit";
+const EditUnitPageRoute = "/Unit/edit";
 
 const CompanyDisplayName = "Company";
 const CompanyPageRoute = "/Company";

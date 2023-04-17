@@ -6,6 +6,9 @@ import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_m
 
 import '../../../../api/configAPI.dart';
 
+import '../../../../api/configAPI.dart';
+import '../bast_invoice/bast_new_material.dart';
+
 class AddNewNonCableLarge extends StatefulWidget {
   const AddNewNonCableLarge({super.key});
 
