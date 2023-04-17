@@ -15,15 +15,15 @@ import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_m
 
 import 'package:telin_project/widgets/setting/detail_akun.dart';
 
-class TableTank9 extends StatefulWidget {
-  const TableTank9({super.key});
+class TableRakC6 extends StatefulWidget {
+  const TableRakC6({super.key});
 
   @override
-  State<TableTank9> createState() => _TableTank9State();
+  State<TableRakC6> createState() => _TableRakC6State();
 }
 
-class _TableTank9State extends State<TableTank9> {
-  List tank9 = [];
+class _TableRakC6State extends State<TableRakC6> {
+  List rakC6 = [];
 
   Response? response;
 
@@ -32,89 +32,63 @@ class _TableTank9State extends State<TableTank9> {
   @override
   void initState() {
     // TODO: implement initState
-    getDataTank9();
+    getDataRakC6();
     super.initState();
   }
 
   DataRow _resultsAPI(index, data) {
     return DataRow(cells: [
-      DataCell(Text("${index + 1}",
+      DataCell(Text("${data['no'] == null ? "-" : data['no']}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${''}",
+      DataCell(Text("${data['rak_number'] == null ? "-" : data['rak_number']}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
+      DataCell(Text("${data['item_name'] == null ? "-" : data['item_name']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(
+          Text("${data['part_number'] == null ? "-" : data['part_number']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+      DataCell(
+          Text("${data['serial_number'] == null ? "-" : data['serial_number']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
       DataCell(Text("${data['system'] == null ? "-" : data['system']}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(
-          Text("${data['armoring_type'] == null ? "-" : data['armoring_type']}",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
-      DataCell(Text("${data['cable_type'] == null ? "-" : data['cable_type']}",
+      DataCell(Text("${data['weight_kg'] == null ? "-" : data['weight_kg']}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(
-          Text("${data['manufacturer'] == null ? "-" : data['manufacturer']}",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
-      DataCell(
-          Text("${data['length_report'] == null ? "-" : data['length_report']}",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
-      DataCell(Text("${data['core_type'] == null ? "-" : data['core_type']}",
+      DataCell(Text("${data['qty'] == null ? "-" : data['qty']}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['core'] == null ? "-" : data['core']}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['tank'] == null ? "-" : data['tank']}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(
-          Text("${data['tank_location'] == null ? "-" : data['tank_location']}",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
-      DataCell(Text("${data['tank_level'] == null ? "-" : data['tank_level']}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['remark'] == null ? "-" : data['remark']}",
+      DataCell(Text("${data['unit'] == null ? "-" : data['unit']}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -126,16 +100,16 @@ class _TableTank9State extends State<TableTank9> {
                 fontSize: 10,
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
-              )))
+              ))),
     ]);
   }
 
-  void getDataTank9() async {
+  void getDataRakC6() async {
     try {
-      response = await dio.get(getTank9);
+      response = await dio.get(getRakC6);
 
       setState(() {
-        tank9 = response!.data;
+        rakC6 = response!.data;
       });
     } catch (e) {
       QuickAlert.show(
@@ -178,7 +152,7 @@ class _TableTank9State extends State<TableTank9> {
       child: DataTable2(
           columnSpacing: 6,
           horizontalMargin: 6,
-          dataRowHeight: 30,
+          dataRowHeight: 40,
           showBottomBorder: false,
           minWidth: 3000,
           columns: [
@@ -194,7 +168,37 @@ class _TableTank9State extends State<TableTank9> {
                 fixedWidth: 50),
             DataColumn2(
                 label: Text(
-                  'LABLE',
+                  'LOCATION',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+                fixedWidth: 100),
+            DataColumn2(
+                label: Text(
+                  'ITEM NAME',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+                fixedWidth: 300),
+            DataColumn2(
+                label: Text(
+                  'PART NUMBER',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+                fixedWidth: 100),
+            DataColumn2(
+                label: Text(
+                  "SERIAL NUMBER",
                   style: GoogleFonts.montserrat(
                     fontSize: 10,
                     fontWeight: FontWeight.w600,
@@ -220,25 +224,8 @@ class _TableTank9State extends State<TableTank9> {
                 ),
                 fixedWidth: 100),
             DataColumn2(
-                label: DropdownButtonHideUnderline(
-                  child: DropdownButton(
-                      style: GoogleFonts.montserrat(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          selectedValueArmoring = newValue!;
-                        });
-                      },
-                      value: selectedValueArmoring,
-                      items: dropdownItemsArmoring),
-                ),
-                fixedWidth: 120),
-            DataColumn2(
                 label: Text(
-                  "CABLE TYPE",
+                  "WEIGHT (KG)",
                   style: GoogleFonts.montserrat(
                     fontSize: 10,
                     fontWeight: FontWeight.w600,
@@ -248,7 +235,7 @@ class _TableTank9State extends State<TableTank9> {
                 fixedWidth: 100),
             DataColumn2(
                 label: Text(
-                  "MANUFACTURE",
+                  "QTY",
                   style: GoogleFonts.montserrat(
                     fontSize: 10,
                     fontWeight: FontWeight.w600,
@@ -258,9 +245,7 @@ class _TableTank9State extends State<TableTank9> {
                 fixedWidth: 100),
             DataColumn2(
                 label: Text(
-                  """LENGTH
-(METER)
-              """,
+                  "UNIT",
                   style: GoogleFonts.montserrat(
                     fontSize: 10,
                     fontWeight: FontWeight.w600,
@@ -269,79 +254,20 @@ class _TableTank9State extends State<TableTank9> {
                 ),
                 fixedWidth: 100),
             DataColumn2(
-                label: Text(
-                  "CORE TYPE",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
+                label: Center(
+                  child: Text(
+                    "DESCRIPTION",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-                fixedWidth: 100),
-            DataColumn2(
-                label: Text(
-                  "\u03A3 CORE",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
-                fixedWidth: 90),
-            DataColumn2(
-                label: Text(
-                  "TANK",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
-                fixedWidth: 50),
-            DataColumn2(
-                label: Text(
-                  """TANK
-LOCATION""",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
-                fixedWidth: 60),
-            DataColumn2(
-                label: Text(
-                  "TANK LEVEL",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
-                fixedWidth: 100),
-            DataColumn2(
-                label: Text(
-                  "REMARK",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
-                fixedWidth: 150),
-            DataColumn2(
-                label: Text(
-                  "DESKRIPTION",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
-                fixedWidth: 80),
+                fixedWidth: 250),
           ],
           rows: List.generate(
-              tank9.length, (index) => _resultsAPI(index, tank9[index]))),
+              rakC6.length, (index) => _resultsAPI(index, rakC6[index]))),
     );
   }
 }

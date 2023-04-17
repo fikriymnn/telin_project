@@ -6,6 +6,13 @@ String inputSpareCable = '$baseUrl/api/spareCable/create';
 // Crud Spare Cable
 String inputSpareKit = '$baseUrl/api/spareKit/create';
 
+// Crud Spare Cable
+String inputSpareCable = '$baseUrl/api/spareCable/create';
+
+// Crud Spare Cable
+String inputSpareKit = '$baseUrl/api/spareKit/create';
+String getAllSpareKit = '$baseUrl/api/spareKit/getall';
+
 // CRUD System
 String inputSystem = '$baseUrl/api/system/create';
 String editSystem = '$baseUrl/api/system/edit';
@@ -53,7 +60,59 @@ String inputUnit = '$baseUrl/api/unit/create';
 String getAllUnit = '$baseUrl/api/unit/getall';
 String hapusUnit = '$baseUrl/api/unit/delete';
 String editUnit = '$baseUrl/api/unit/edit';
+
+
+
+String getReportCable = '$baseUrl/api/report';
+String getReportSpareKits = '$baseUrl/api/report/spare_kits';
+
+
+String getTank1 = '$baseUrl/api/inventory/cable/TANK-1';
+String getTank2 = '$baseUrl/api/inventory/cable/TANK-2';
+String getTank3 = '$baseUrl/api/inventory/cable/TANK-3';
+String getTank4 = '$baseUrl/api/inventory/cable/TANK-4';
+String getTank5 = '$baseUrl/api/inventory/cable/TANK-5';
+String getTank6 = '$baseUrl/api/inventory/cable/TANK-6';
+String getTank7 = '$baseUrl/api/inventory/cable/TANK-7';
+String getTank8 = '$baseUrl/api/inventory/cable/TANK-8';
+String getTank9 = '$baseUrl/api/inventory/cable/TANK-9';
+String getTank10 = '$baseUrl/api/inventory/cable/TANK-10';
+String getTank11 = '$baseUrl/api/inventory/cable/TANK-11';
+String getFloor = '$baseUrl/api/inventory/kit/FLOOR';
+String getRefrigerator = '$baseUrl/api/inventory/kit/LEMARI PENDINGIN';
+String getCage1 = '$baseUrl/api/inventory/kit/CAGE 1';
+String getCage2 = '$baseUrl/api/inventory/kit/CAGE 2';
+String getCage3 = '$baseUrl/api/inventory/kit/CAGE 3';
+String getCage4 = '$baseUrl/api/inventory/kit/CAGE 4';
+String getCage5 = '$baseUrl/api/inventory/kit/CAGE 5';
+String getCage6 = '$baseUrl/api/inventory/kit/CAGE 6';
+String getCage7 = '$baseUrl/api/inventory/kit/CAGE 7';
+String getCage8 = '$baseUrl/api/inventory/kit/CAGE 8';
+String getCage9 = '$baseUrl/api/inventory/kit/CAGE 9';
+String getRakA1 = '$baseUrl/api/inventory/kit/RAK A1';
+String getRakA2 = '$baseUrl/api/inventory/kit/RAK A2';
+String getRakA3 = '$baseUrl/api/inventory/kit/RAK A3';
+String getRakA4 = '$baseUrl/api/inventory/kit/RAK A4';
+String getRakA5 = '$baseUrl/api/inventory/kit/RAK A5';
+String getRakA6 = '$baseUrl/api/inventory/kit/RAK A6';
+String getRakA7 = '$baseUrl/api/inventory/kit/RAK A7';
+String getRakB1 = '$baseUrl/api/inventory/kit/RAK B1';
+String getRakB2 = '$baseUrl/api/inventory/kit/RAK B2';
+String getRakB3 = '$baseUrl/api/inventory/kit/RAK B3';
+String getRakB4 = '$baseUrl/api/inventory/kit/RAK B4';
+String getRakB5 = '$baseUrl/api/inventory/kit/RAK B5';
+String getRakB6 = '$baseUrl/api/inventory/kit/RAK B6';
+String getRakB7 = '$baseUrl/api/inventory/kit/RAK B7';
+String getRakC1 = '$baseUrl/api/inventory/kit/RAK C1';
+String getRakC2 = '$baseUrl/api/inventory/kit/RAK C2';
+String getRakC3 = '$baseUrl/api/inventory/kit/RAK C3';
+String getRakC4 = '$baseUrl/api/inventory/kit/RAK C4';
+String getRakC5 = '$baseUrl/api/inventory/kit/RAK C5';
+String getRakC6 = '$baseUrl/api/inventory/kit/RAK C6';
+String getRakC7 = '$baseUrl/api/inventory/kit/RAK C7';
+
 String getIdUnit = '$baseUrl/api/unit/get';
 
 //User Login
 String userLogin = '$baseUrl/api/user/signin';
+

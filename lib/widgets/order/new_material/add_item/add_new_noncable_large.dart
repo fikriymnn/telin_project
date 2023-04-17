@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quickalert/models/quickalert_type.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
+
+import '../../../../api/configAPI.dart';
 
 import '../../../../api/configAPI.dart';
 import '../bast_invoice/bast_new_material.dart';

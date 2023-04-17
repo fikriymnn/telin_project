@@ -45,10 +45,15 @@ dependencies:
   im_stepper: ^1.0.1+1
   jwt_decoder: ^2.0.1
   printing: ^5.10.1
+
+  syncfusion_flutter_xlsio: ^21.1.38
+  excel: ^2.1.0
+
   quickalert: ^1.0.1
   shared_preferences: ^2.0.20
   syncfusion_flutter_charts: ^21.1.37
   url_strategy: ^0.2.0
+
 
 dev_dependencies:
   flutter_lints: ^2.0.0

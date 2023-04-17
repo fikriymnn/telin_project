@@ -28,7 +28,11 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   String? selectionCableType;
   String? selectionManufacturer;
   String? selectionArmoringType;
+
+  String? selectionLocation;
+
   String? selectionInner;
+
 
   List system = [];
   List coreType = [];
@@ -53,6 +57,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
     super.initState();
   }
 
+
   List<DropdownMenuItem<String>> get dropdownTankLocation {
     List<DropdownMenuItem<String>> menuTankLocation = [
       DropdownMenuItem(
@@ -74,6 +79,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
     ];
     return menuTankLocation;
   }
+
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItemsSystem = [
@@ -616,6 +622,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                       SizedBox(
                         height: 20.6,
                       ),
+
                       Container(
                         width: 230,
                         child: Row(
@@ -668,6 +675,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -959,11 +967,18 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     text: 'State Tidak Boleh Kosong',
                     width: 400,
                     confirmBtnColor: Colors.red);
+
+              } else if (selectionLocation == '') {
+
               } else if (selectedValueInner == '') {
+
                 QuickAlert.show(
                     context: context,
                     type: QuickAlertType.error,
                     title: 'Peringatan',
+
+                    text: 'Location Tidak Boleh Kosong',
+
                     text: 'Tank Tidak Boleh Kosong',
                     width: 400,
                     confirmBtnColor: Colors.red);
@@ -973,6 +988,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     type: QuickAlertType.error,
                     title: 'Peringatan',
                     text: 'Tank Location Tidak Boleh Kosong',
+
                     width: 400,
                     confirmBtnColor: Colors.red);
               } else if (txtNamaEvidence.text == '') {
@@ -1016,7 +1032,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                   txtLenght.text,
                   txtLable.text,
                   selectedValueInner,
+
+
                   selectedValueTankLocation,
+
                   txtNamaEvidence.text,
                   txtRemark.text,
                   selectionCoreType,
@@ -1237,6 +1256,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   }
 
   // Fungsi Add Data
+
+  void inputDataNewMaterialCable(system, cableType, manufacturer, armoringType,
+      length, label, inner, evidence, remark, coreType, eCore) async {
+
   void inputDataNewMaterialCable(
       system,
       cableType,
@@ -1250,6 +1273,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       remark,
       coreType,
       eCore) async {
+
     bool status;
     var msg;
     try {
@@ -1265,7 +1289,9 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
         'length_report': length,
         'label': label,
         'tank': inner,
+
         'tank_location': tankLocation,
+
         'evidence': evidence,
         'remark': remark,
         'core_type': coreType,

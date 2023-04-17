@@ -1,9 +1,11 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_armoring_type.dart';
@@ -21,13 +23,103 @@ class TableFloor extends StatefulWidget {
 }
 
 class _TableFloorState extends State<TableFloor> {
-  late List<Floor> floor;
-  List<Floor> selectedRow = [];
+  List floor = [];
+
+  Response? response;
+
+  var dio = Dio();
+
   @override
   void initState() {
     // TODO: implement initState
-    floor = Floor.getFloor();
+    getDatareFloor();
     super.initState();
+  }
+
+  DataRow _resultsAPI(index, data) {
+    return DataRow(cells: [
+      DataCell(Text("${data['no'] == null ? "-" : data['no']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['rak_number'] == null ? "-" : data['rak_number']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['item_name'] == null ? "-" : data['item_name']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(
+          Text("${data['part_number'] == null ? "-" : data['part_number']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+      DataCell(
+          Text("${data['serial_number'] == null ? "-" : data['serial_number']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+      DataCell(Text("${data['system'] == null ? "-" : data['system']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['weight_kg'] == null ? "-" : data['weight_kg']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['qty'] == null ? "-" : data['qty']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['unit'] == null ? "-" : data['unit']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(
+          Text("${data['description'] == null ? "-" : data['description']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+    ]);
+  }
+
+  void getDatareFloor() async {
+    try {
+      response = await dio.get(getFloor);
+
+      setState(() {
+        floor = response!.data;
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
@@ -56,8 +148,8 @@ class _TableFloorState extends State<TableFloor> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: DataTable2(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: DataTable2(
           columnSpacing: 6,
           horizontalMargin: 6,
           dataRowHeight: 30,
@@ -74,6 +166,16 @@ class _TableFloorState extends State<TableFloor> {
                   ),
                 ),
                 fixedWidth: 50),
+            DataColumn2(
+                label: Text(
+                  'LOCATION',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+                fixedWidth: 100),
             DataColumn2(
                 label: Text(
                   'ITEM NAME',
@@ -162,176 +264,10 @@ class _TableFloorState extends State<TableFloor> {
                     ),
                   ),
                 ),
-                fixedWidth: 300),
+                fixedWidth: 250),
           ],
-          rows: _createRowsArmoring()),
-    );
-  }
-
-  List<DataRow> _createRowsArmoring() {
-    return floor
-        .map((floor) => DataRow(cells: [
-              DataCell(Text(floor.no,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(floor.itemName,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(floor.partNumber,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(floor.serialNumber,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(floor.system,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(floor.weight,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(floor.qty,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(floor.unit,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(floor.deskripsi,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-            ]))
-        .toList();
-  }
-}
-
-class Floor {
-  final String no,
-      system,
-      itemName,
-      partNumber,
-      serialNumber,
-      weight,
-      qty,
-      unit,
-      deskripsi;
-
-  const Floor({
-    required this.no,
-    required this.system,
-    required this.itemName,
-    required this.partNumber,
-    required this.serialNumber,
-    required this.weight,
-    required this.qty,
-    required this.unit,
-    required this.deskripsi,
-  });
-
-  static List<Floor> getFloor() {
-    return <Floor>[
-      const Floor(
-        no: "1",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Floor(
-        no: "2",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Floor(
-        no: "3",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Floor(
-        no: "4",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Floor(
-        no: "5",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Floor(
-        no: "6",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const Floor(
-        no: "7",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-    ];
+          rows: List.generate(
+              floor.length, (index) => _resultsAPI(index, floor[index])),
+        ));
   }
 }

@@ -1,9 +1,11 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_armoring_type.dart';
@@ -21,13 +23,103 @@ class TableRakA1 extends StatefulWidget {
 }
 
 class _TableRakA1State extends State<TableRakA1> {
-  late List<RakA1> rakA1;
-  List<RakA1> selectedRow = [];
+  List rakA1 = [];
+
+  Response? response;
+
+  var dio = Dio();
+
   @override
   void initState() {
     // TODO: implement initState
-    rakA1 = RakA1.getRakA1();
+    getDataRakA1();
     super.initState();
+  }
+
+  DataRow _resultsAPI(index, data) {
+    return DataRow(cells: [
+      DataCell(Text("${data['no'] == null ? "-" : data['no']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['rak_number'] == null ? "-" : data['rak_number']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['item_name'] == null ? "-" : data['item_name']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(
+          Text("${data['part_number'] == null ? "-" : data['part_number']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+      DataCell(
+          Text("${data['serial_number'] == null ? "-" : data['serial_number']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+      DataCell(Text("${data['system'] == null ? "-" : data['system']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['weight_kg'] == null ? "-" : data['weight_kg']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['qty'] == null ? "-" : data['qty']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['unit'] == null ? "-" : data['unit']}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(
+          Text("${data['description'] == null ? "-" : data['description']}",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+    ]);
+  }
+
+  void getDataRakA1() async {
+    try {
+      response = await dio.get(getRakA1);
+
+      setState(() {
+        rakA1 = response!.data;
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
@@ -60,7 +152,7 @@ class _TableRakA1State extends State<TableRakA1> {
       child: DataTable2(
           columnSpacing: 6,
           horizontalMargin: 6,
-          dataRowHeight: 30,
+          dataRowHeight: 40,
           showBottomBorder: false,
           minWidth: 3000,
           columns: [
@@ -74,6 +166,16 @@ class _TableRakA1State extends State<TableRakA1> {
                   ),
                 ),
                 fixedWidth: 50),
+            DataColumn2(
+                label: Text(
+                  'LOCATION',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+                fixedWidth: 100),
             DataColumn2(
                 label: Text(
                   'ITEM NAME',
@@ -162,176 +264,10 @@ class _TableRakA1State extends State<TableRakA1> {
                     ),
                   ),
                 ),
-                fixedWidth: 300),
+                fixedWidth: 250),
           ],
-          rows: _createRowsArmoring()),
+          rows: List.generate(
+              rakA1.length, (index) => _resultsAPI(index, rakA1[index]))),
     );
-  }
-
-  List<DataRow> _createRowsArmoring() {
-    return rakA1
-        .map((rakA1) => DataRow(cells: [
-              DataCell(Text(rakA1.no,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(rakA1.itemName,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(rakA1.partNumber,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(rakA1.serialNumber,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(rakA1.system,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(rakA1.weight,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(rakA1.qty,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(rakA1.unit,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-              DataCell(Text(rakA1.deskripsi,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ))),
-            ]))
-        .toList();
-  }
-}
-
-class RakA1 {
-  final String no,
-      system,
-      itemName,
-      partNumber,
-      serialNumber,
-      weight,
-      qty,
-      unit,
-      deskripsi;
-
-  const RakA1({
-    required this.no,
-    required this.system,
-    required this.itemName,
-    required this.partNumber,
-    required this.serialNumber,
-    required this.weight,
-    required this.qty,
-    required this.unit,
-    required this.deskripsi,
-  });
-
-  static List<RakA1> getRakA1() {
-    return <RakA1>[
-      const RakA1(
-        no: "1",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const RakA1(
-        no: "2",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const RakA1(
-        no: "3",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const RakA1(
-        no: "4",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const RakA1(
-        no: "5",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const RakA1(
-        no: "6",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-      const RakA1(
-        no: "7",
-        system: "IKK",
-        itemName: "UQJ ARMOURLESS/ ARMOURED TRANSITION KIT",
-        partNumber: "KIT-30032",
-        serialNumber: "829476",
-        weight: "10.30",
-        qty: "1",
-        unit: "unit",
-        deskripsi: "",
-      ),
-    ];
   }
 }

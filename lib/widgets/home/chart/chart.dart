@@ -11,9 +11,7 @@ class ChartData extends StatefulWidget {
   State<ChartData> createState() => _ChartDataState();
 }
 
-class onklik{
-  
-}
+class onklik {}
 
 class Sales {
   Function onClick;
@@ -128,14 +126,11 @@ class _ChartDataState extends State<ChartData> {
       _das.add(Sales("URC-1", rnd.nextInt(100000), () {}));
     }
 
-    
     _chartdata.add(
       charts.Series(
           id: 'Sales',
-          
-          colorFn: (datum, index) =>charts.Color(r: 48, g: 120, b: 240) ,
+          colorFn: (datum, index) => charts.Color(r: 48, g: 120, b: 240),
           data: _sa,
-         
           domainFn: (Sales sales, __) => sales.year,
           measureFn: (Sales sales, __) => sales.sales,
           displayName: 'Sales'),
@@ -188,7 +183,8 @@ class _ChartDataState extends State<ChartData> {
     ];
     return menuItems;
   }
-   String selectedValueGrafik = "Cable By Jumlah";
+
+  String selectedValueGrafik = "Cable By Jumlah";
 
   @override
   void initState() {
@@ -198,7 +194,6 @@ class _ChartDataState extends State<ChartData> {
 
   @override
   Widget build(BuildContext context) {
-   
     return Container(
       height: 327.6,
       child: Column(
