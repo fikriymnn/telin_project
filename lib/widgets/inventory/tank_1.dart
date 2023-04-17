@@ -37,6 +37,8 @@ class _TableTank1State extends State<TableTank1> {
   void initState() {
     // TODO: implement initState
     getDataTank1();
+    getDataSystem();
+    getDataArmoringType();
     super.initState();
   }
 
@@ -141,6 +143,68 @@ class _TableTank1State extends State<TableTank1> {
       setState(() {
         tank1 = response!.data;
       });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void getDataArmoringType() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllArmoring);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          armoringType = response!.data['data'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void getDataSystem() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllSystem);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          system = response!.data['data'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
     } catch (e) {
       QuickAlert.show(
           context: context,

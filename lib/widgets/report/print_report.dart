@@ -10,7 +10,9 @@ class printReport {
     final Workbook workbook = new Workbook();
 //Accessing worksheet via index.
     final Worksheet sheet = workbook.worksheets[0];
+
 //Add Text.
+
     sheet.getRangeByName('A1').setText('No');
     sheet.getRangeByName('B1').setText('Lable ID');
     sheet.getRangeByName('C1').setText('System');
@@ -31,7 +33,7 @@ class printReport {
     AnchorElement(
         href:
             "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
-      ..setAttribute("download", "output.xlsx")
+      ..setAttribute("download", "output1.xlsx")
       ..click();
   }
 }
