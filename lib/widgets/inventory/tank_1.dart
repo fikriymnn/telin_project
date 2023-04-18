@@ -219,10 +219,8 @@ class _TableTank1State extends State<TableTank1> {
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(child: Text("SYSTEM"), value: "SYSTEM"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
     ];
+
     return menuItems;
   }
 
@@ -273,6 +271,16 @@ class _TableTank1State extends State<TableTank1> {
             DataColumn2(
                 label: DropdownButtonHideUnderline(
                   child: DropdownButton(
+                      isExpanded: true,
+                      hint: Text(
+                        "SYSTEM",
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
                       style: GoogleFonts.montserrat(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
@@ -280,28 +288,50 @@ class _TableTank1State extends State<TableTank1> {
                       ),
                       onChanged: (String? newValue) {
                         setState(() {
-                          selectedValueSystem = newValue!;
+                          selectionSystem = newValue!;
                         });
                       },
-                      value: selectedValueSystem,
-                      items: dropdownItemsSystem),
+                      value: selectionSystem,
+                      items: system.map((system) {
+                        return DropdownMenuItem(
+                          child: Text(
+                            system['system'],
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          value: system['_id'].toString(),
+                        );
+                      }).toList()),
                 ),
                 fixedWidth: 100),
             DataColumn2(
                 label: DropdownButtonHideUnderline(
                   child: DropdownButton(
+                    hint: Text(
+                      "ARMORING TYPE",
                       style: GoogleFonts.montserrat(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          selectedValueArmoring = newValue!;
-                        });
-                      },
-                      value: selectedValueArmoring,
-                      items: dropdownItemsArmoring),
+                    ),
+                    style: GoogleFonts.montserrat(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectionArmoringType = newValue!;
+                      });
+                    },
+                    value: selectionArmoringType,
+                    items: armoringType.map((armoringType) {
+                      return DropdownMenuItem(
+                        child: Text(armoringType['armoring_type']),
+                        value: armoringType['_id'].toString(),
+                      );
+                    }).toList(),
+                  ),
                 ),
                 fixedWidth: 120),
             DataColumn2(

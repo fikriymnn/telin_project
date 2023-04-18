@@ -23,6 +23,10 @@ class TableTank9 extends StatefulWidget {
 }
 
 class _TableTank9State extends State<TableTank9> {
+  String? selectionSystem;
+  String? selectionArmoringType;
+  List system = [];
+  List armoringType = [];
   List tank9 = [];
 
   Response? response;
@@ -33,6 +37,8 @@ class _TableTank9State extends State<TableTank9> {
   void initState() {
     // TODO: implement initState
     getDataTank9();
+    getDataSystem();
+    getDataArmoringType();
     super.initState();
   }
 
@@ -148,6 +154,68 @@ class _TableTank9State extends State<TableTank9> {
     }
   }
 
+  void getDataArmoringType() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllArmoring);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          armoringType = response!.data['data'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void getDataSystem() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllSystem);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          system = response!.data['data'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(child: Text("SYSTEM"), value: "SYSTEM"),
@@ -205,6 +273,16 @@ class _TableTank9State extends State<TableTank9> {
             DataColumn2(
                 label: DropdownButtonHideUnderline(
                   child: DropdownButton(
+                      isExpanded: true,
+                      hint: Text(
+                        "SYSTEM",
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
                       style: GoogleFonts.montserrat(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
@@ -212,28 +290,50 @@ class _TableTank9State extends State<TableTank9> {
                       ),
                       onChanged: (String? newValue) {
                         setState(() {
-                          selectedValueSystem = newValue!;
+                          selectionSystem = newValue!;
                         });
                       },
-                      value: selectedValueSystem,
-                      items: dropdownItemsSystem),
+                      value: selectionSystem,
+                      items: system.map((system) {
+                        return DropdownMenuItem(
+                          child: Text(
+                            system['system'],
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          value: system['_id'].toString(),
+                        );
+                      }).toList()),
                 ),
                 fixedWidth: 100),
             DataColumn2(
                 label: DropdownButtonHideUnderline(
                   child: DropdownButton(
+                    hint: Text(
+                      "ARMORING TYPE",
                       style: GoogleFonts.montserrat(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          selectedValueArmoring = newValue!;
-                        });
-                      },
-                      value: selectedValueArmoring,
-                      items: dropdownItemsArmoring),
+                    ),
+                    style: GoogleFonts.montserrat(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectionArmoringType = newValue!;
+                      });
+                    },
+                    value: selectionArmoringType,
+                    items: armoringType.map((armoringType) {
+                      return DropdownMenuItem(
+                        child: Text(armoringType['armoring_type']),
+                        value: armoringType['_id'].toString(),
+                      );
+                    }).toList(),
+                  ),
                 ),
                 fixedWidth: 120),
             DataColumn2(
