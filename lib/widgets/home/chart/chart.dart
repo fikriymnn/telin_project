@@ -1,7 +1,11 @@
 import 'dart:math';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter_new/flutter.dart' as charts;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
+
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 
 class ChartData extends StatefulWidget {
@@ -43,11 +47,11 @@ class _ChartDataState extends State<ChartData> {
     _chartdata = <charts.Series<Sales, String>>[];
     final rnd = new Random();
     {
-      _sa.add(Sales("MINISUB-36", rnd.nextInt(10000), () {}));
-      _da.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
-      _das.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
+      _sa.add(Sales("MINISUB-36", minisub36Sa, () {}));
+      _da.add(Sales("MINISUB-36", minisub36Sa, () {}));
+      _sal.add(Sales("MINISUB-36", minisub36Sa, () {}));
+      _lwp.add(Sales("MINISUB-36", minisub36Sa, () {}));
+      _das.add(Sales("MINISUB-36", minisub36Sa, () {}));
     }
     {
       _sa.add(Sales("MINISUB-R", rnd.nextInt(100000), () {}));
@@ -190,6 +194,29 @@ class _ChartDataState extends State<ChartData> {
   void initState() {
     // TODO: implement initState
     makeData();
+  }
+
+  int minisub36Sa = 0;
+
+  Response? response;
+
+  var dio = Dio();
+  void getDataMinisub36() async {
+    try {
+      response = await dio.get('$getChartMinisub36');
+
+      setState(() {
+        minisub36Sa = response!.data['legth'];
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 
   @override
