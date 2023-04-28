@@ -1,7 +1,7 @@
-String baseUrl = 'http://192.168.248.11:1000';
+String baseUrl = 'http://192.168.100.31:1000';
 
 //dashboard chart
-String getChartMinisub36 = '$baseUrl/api/dashboard/chart/MINISUB-36/SA';
+String getChart = '$baseUrl/api/dashboard/chart/cable_type';
 
 // Crud Spare Cable
 String inputSpareCable = '$baseUrl/api/spareCable/create';
