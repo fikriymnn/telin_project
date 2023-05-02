@@ -1,7 +1,12 @@
 import 'dart:math';
+import 'package:dio/dio.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter_new/flutter.dart' as charts;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
+
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 
 class ChartData extends StatefulWidget {
@@ -41,89 +46,83 @@ class _ChartDataState extends State<ChartData> {
     _lw = <Sales>[];
 
     _chartdata = <charts.Series<Sales, String>>[];
-    final rnd = new Random();
+
     {
-      _sa.add(Sales("MINISUB-36", rnd.nextInt(10000), () {}));
-      _da.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
-      _das.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
+      _sa.add(Sales("MINISUB-36", 34543, () {}));
+      _da.add(Sales("MINISUB-36", 10000, () {}));
+      _sal.add(Sales("MINISUB-36", 12000, () {}));
+      _lwp.add(Sales("MINISUB-36", 9000, () {}));
+      _das.add(Sales("MINISUB-36", 100000, () {}));
     }
     {
-      _sa.add(Sales("MINISUB-R", rnd.nextInt(100000), () {}));
-      _da.add(Sales("MINISUB-R", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("MINISUB-R", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("MINISUB-R", rnd.nextInt(100000), () {}));
-      _das.add(Sales("MINISUB-R", rnd.nextInt(100000), () {}));
+      _sa.add(Sales("MINISUB-R", 45645, () {}));
+      _da.add(Sales("MINISUB-R", 43645, () {}));
+      _sal.add(Sales("MINISUB-R", 8000, () {}));
+      _lwp.add(Sales("MINISUB-R", 5000, () {}));
+      _das.add(Sales("MINISUB-R", 8797, () {}));
     }
 
     {
-      _sa.add(Sales("OCC-4", rnd.nextInt(100000), () {}));
-      _da.add(Sales("OCC-4", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("OCC-4", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("OCC-4", rnd.nextInt(100000), () {}));
-      _das.add(Sales("OCC-4", rnd.nextInt(100000), () {}));
+      _sa.add(Sales("OCC-4", 90899, () {}));
+      _da.add(Sales("OCC-4", 69889, () {}));
+      _sal.add(Sales("OCC-4", 8798, () {}));
+      _lwp.add(Sales("OCC-4", 78978, () {}));
+      _das.add(Sales("OCC-4", 89871, () {}));
     }
     {
-      _sa.add(Sales("OCC-SC22S", rnd.nextInt(100000), () {}));
-      _da.add(Sales("OCC-SC22S", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("OCC-SC22S", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("OCC-SC22S", rnd.nextInt(100000), () {}));
-      _das.add(Sales("OCC-SC22S", rnd.nextInt(100000), () {}));
+      _sa.add(Sales("OCC-SC22S", 23532, () {}));
+      _da.add(Sales("OCC-SC22S", 32432, () {}));
+      _sal.add(Sales("OCC-SC22S", 56544, () {}));
+      _lwp.add(Sales("OCC-SC22S", 76876, () {}));
+      _das.add(Sales("OCC-SC22S", 80989, () {}));
+    }
+
+    {
+      _sa.add(Sales("OCC-SC300", 4578, () {}));
+      _da.add(Sales("OCC-SC300", 78777, () {}));
+      _sal.add(Sales("OCC-SC300", 78976, () {}));
+      _lwp.add(Sales("OCC-SC300", 98089, () {}));
+      _das.add(Sales("OCC-SC300", 4644, () {}));
     }
     {
-      _sa.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
-      _da.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
-      _das.add(Sales("MINISUB-36", rnd.nextInt(100000), () {}));
-    }
-    {
-      _sa.add(Sales("OCC-SC300", rnd.nextInt(100000), () {}));
-      _da.add(Sales("OCC-SC300", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("OCC-SC300", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("OCC-SC300", rnd.nextInt(100000), () {}));
-      _das.add(Sales("OCC-SC300", rnd.nextInt(100000), () {}));
-    }
-    {
-      _sa.add(Sales("OCC-SC500", rnd.nextInt(100000), () {}));
-      _da.add(Sales("OCC-SC500", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("OCC-SC500", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("OCC-SC500", rnd.nextInt(100000), () {}));
-      _das.add(Sales("OCC-SC500", rnd.nextInt(100000), () {}));
+      _sa.add(Sales("OCC-SC500", 5464, () {}));
+      _da.add(Sales("OCC-SC500", 4564, () {}));
+      _sal.add(Sales("OCC-SC500", 65767, () {}));
+      _lwp.add(Sales("OCC-SC500", 90987, () {}));
+      _das.add(Sales("OCC-SC500", 46455, () {}));
     }
     {
       _sa.add(Sales("""OCC-SC500
-/SC-520""", rnd.nextInt(100000), () {}));
+/SC-520""", 54754, () {}));
       _da.add(Sales("""OCC-SC500
-/SC-520""", rnd.nextInt(100000), () {}));
+/SC-520""", 7687, () {}));
       _sal.add(Sales("""OCC-SC500
-/SC-520""", rnd.nextInt(100000), () {}));
+/SC-520""", 78765, () {}));
       _lwp.add(Sales("""OCC-SC500
-/SC-520""", rnd.nextInt(100000), () {}));
+/SC-520""", 8777, () {}));
       _das.add(Sales("""OCC-SC500
-/SC-520""", rnd.nextInt(100000), () {}));
+/SC-520""", 54764, () {}));
     }
     {
-      _sa.add(Sales("OCC-SC530", rnd.nextInt(100000), () {}));
-      _da.add(Sales("OCC-SC530", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("OCC-SC530", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("OCC-SC530", rnd.nextInt(100000), () {}));
-      _das.add(Sales("OCC-SC530", rnd.nextInt(100000), () {}));
+      _sa.add(Sales("OCC-SC530", 54745, () {}));
+      _da.add(Sales("OCC-SC530", 4444, () {}));
+      _sal.add(Sales("OCC-SC530", 5555, () {}));
+      _lwp.add(Sales("OCC-SC530", 55656, () {}));
+      _das.add(Sales("OCC-SC530", 45654, () {}));
     }
     {
-      _sa.add(Sales("OS-SS", rnd.nextInt(100000), () {}));
-      _da.add(Sales("OS-SS", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("OS-SS", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("OS-SS", rnd.nextInt(100000), () {}));
-      _das.add(Sales("OS-SS", rnd.nextInt(100000), () {}));
+      _sa.add(Sales("OS-SS", 54754, () {}));
+      _da.add(Sales("OS-SS", 54746, () {}));
+      _sal.add(Sales("OS-SS", 6767, () {}));
+      _lwp.add(Sales("OS-SS", 76876, () {}));
+      _das.add(Sales("OS-SS", 76978, () {}));
     }
     {
-      _sa.add(Sales("URC-1", rnd.nextInt(100000), () {}));
-      _da.add(Sales("URC-1", rnd.nextInt(100000), () {}));
-      _sal.add(Sales("URC-1", rnd.nextInt(100000), () {}));
-      _lwp.add(Sales("URC-1", rnd.nextInt(100000), () {}));
-      _das.add(Sales("URC-1", rnd.nextInt(100000), () {}));
+      _sa.add(Sales("URC-1", 76897, () {}));
+      _da.add(Sales("URC-1", 79899, () {}));
+      _sal.add(Sales("URC-1", 8908, () {}));
+      _lwp.add(Sales("URC-1", 1111, () {}));
+      _das.add(Sales("URC-1", 2222, () {}));
     }
 
     _chartdata.add(
@@ -190,6 +189,271 @@ class _ChartDataState extends State<ChartData> {
   void initState() {
     // TODO: implement initState
     makeData();
+    showingTooltip = -1;
+    getDataMinisub36();
+  }
+
+  List minisub36Sa = [];
+
+  Response? response;
+
+  var dio = Dio();
+  void getDataMinisub36() async {
+    try {
+      response = await dio.get('$getChart');
+
+      setState(() {
+        minisub36Sa = response!.data;
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  late int showingTooltip;
+
+  BarChartGroupData generateGroupData(
+    data,
+    index,
+    int x,
+  ) {
+    return BarChartGroupData(
+      x: x,
+      showingTooltipIndicators: showingTooltip == x ? [0] : [],
+      barRods: [
+        BarChartRodData(
+          //SA
+
+          color: data['armoring_types'][0]['armoring_type'] == "SA"
+              ? Color(0xff3078F0)
+              : data['armoring_types'][0]['armoring_type'] == "DA"
+                  ? Color(0xff886C08)
+                  : data['armoring_types'][0]['armoring_type'] == "SAL"
+                      ? Color(0xffCF0C18)
+                      : data['armoring_types'][0]['armoring_type'] == "LWP"
+                          ? Color(0xff13D33D)
+                          : data['armoring_types'][0]['armoring_type'] == "DAS"
+                              ? Color(0xffE94410)
+                              : data['armoring_types'][0]['armoring_type'] ==
+                                      "LWS"
+                                  ? Color(0xff2E2E2E)
+                                  : data['armoring_types'][0]
+                                              ['armoring_type'] ==
+                                          "LWA"
+                                      ? Color(0xff9B1FC7)
+                                      : data['armoring_types'][0]
+                                                  ['armoring_type'] ==
+                                              "LW"
+                                          ? Color(0xffFFBDBD)
+                                          : null,
+          toY: data['armoring_types'][0]['armoring_type'] == null
+              ? 0
+              : data['armoring_types'][0]['length'],
+        ),
+        // BarChartRodData(
+        //   //DA
+        //   color: data['armoring_types'][1]['armoring_type'] == "SA"
+        //       ? Color(0xff3078F0)
+        //       : data['armoring_types'][1]['armoring_type'] == "DA"
+        //           ? Color(0xff886C08)
+        //           : data['armoring_types'][1]['armoring_type'] == "SAL"
+        //               ? Color(0xffCF0C18)
+        //               : data['armoring_types'][1]['armoring_type'] == "LWP"
+        //                   ? Color(0xff13D33D)
+        //                   : data['armoring_types'][1]['armoring_type'] == "DAS"
+        //                       ? Color(0xffE94410)
+        //                       : data['armoring_types'][1]['armoring_type'] ==
+        //                               "LWS"
+        //                           ? Color(0xff2E2E2E)
+        //                           : data['armoring_types'][1]
+        //                                       ['armoring_type'] ==
+        //                                   "LWA"
+        //                               ? Color(0xff9B1FC7)
+        //                               : data['armoring_types'][1]
+        //                                           ['armoring_type'] ==
+        //                                       "LW"
+        //                                   ? Color(0xffFFBDBD)
+        //                                   : null,
+        //   toY: data['armoring_types'][1]['length'] == null
+        //       ? 0
+        //       : data['armoring_types'][1]['length'],
+        // ),
+        // BarChartRodData(
+        //   //SAL
+        //   color: data['armoring_types'][2]['armoring_type'] == "SA"
+        //       ? Color(0xff3078F0)
+        //       : data['armoring_types'][2]['armoring_type'] == "DA"
+        //           ? Color(0xff886C08)
+        //           : data['armoring_types'][2]['armoring_type'] == "SAL"
+        //               ? Color(0xffCF0C18)
+        //               : data['armoring_types'][2]['armoring_type'] == "LWP"
+        //                   ? Color(0xff13D33D)
+        //                   : data['armoring_types'][2]['armoring_type'] == "DAS"
+        //                       ? Color(0xffE94410)
+        //                       : data['armoring_types'][2]['armoring_type'] ==
+        //                               "LWS"
+        //                           ? Color(0xff2E2E2E)
+        //                           : data['armoring_types'][2]
+        //                                       ['armoring_type'] ==
+        //                                   "LWA"
+        //                               ? Color(0xff9B1FC7)
+        //                               : data['armoring_types'][2]
+        //                                           ['armoring_type'] ==
+        //                                       "LW"
+        //                                   ? Color(0xffFFBDBD)
+        //                                   : null,
+        //   toY: data['armoring_types'][2]['length'] == null
+        //       ? 0
+        //       : data['armoring_types'][2]['length'],
+        // ),
+        // BarChartRodData(
+        //   //LWP
+        //   color: data['armoring_types'][3]['armoring_type'] == "SA"
+        //       ? Color(0xff3078F0)
+        //       : data['armoring_types'][3]['armoring_type'] == "DA"
+        //           ? Color(0xff886C08)
+        //           : data['armoring_types'][3]['armoring_type'] == "SAL"
+        //               ? Color(0xffCF0C18)
+        //               : data['armoring_types'][3]['armoring_type'] == "LWP"
+        //                   ? Color(0xff13D33D)
+        //                   : data['armoring_types'][3]['armoring_type'] == "DAS"
+        //                       ? Color(0xffE94410)
+        //                       : data['armoring_types'][3]['armoring_type'] ==
+        //                               "LWS"
+        //                           ? Color(0xff2E2E2E)
+        //                           : data['armoring_types'][3]
+        //                                       ['armoring_type'] ==
+        //                                   "LWA"
+        //                               ? Color(0xff9B1FC7)
+        //                               : data['armoring_types'][3]
+        //                                           ['armoring_type'] ==
+        //                                       "LW"
+        //                                   ? Color(0xffFFBDBD)
+        //                                   : null,
+        //   toY: data['armoring_types'][3]['length'] == null
+        //       ? 0
+        //       : data['armoring_types'][3]['length'],
+        // ),
+        // BarChartRodData(
+        //   //DAS
+        //   color: data['armoring_types'][4]['armoring_type'] == "SA"
+        //       ? Color(0xff3078F0)
+        //       : data['armoring_types'][4]['armoring_type'] == "DA"
+        //           ? Color(0xff886C08)
+        //           : data['armoring_types'][4]['armoring_type'] == "SAL"
+        //               ? Color(0xffCF0C18)
+        //               : data['armoring_types'][4]['armoring_type'] == "LWP"
+        //                   ? Color(0xff13D33D)
+        //                   : data['armoring_types'][4]['armoring_type'] == "DAS"
+        //                       ? Color(0xffE94410)
+        //                       : data['armoring_types'][4]['armoring_type'] ==
+        //                               "LWS"
+        //                           ? Color(0xff2E2E2E)
+        //                           : data['armoring_types'][4]
+        //                                       ['armoring_type'] ==
+        //                                   "LWA"
+        //                               ? Color(0xff9B1FC7)
+        //                               : data['armoring_types'][4]
+        //                                           ['armoring_type'] ==
+        //                                       "LW"
+        //                                   ? Color(0xffFFBDBD)
+        //                                   : null,
+        //   toY: data['armoring_types'][4]['length'] == null
+        //       ? 0
+        //       : data['armoring_types'][4]['length'],
+        // ),
+        // BarChartRodData(
+        //   //LWS
+        //   color: data['armoring_types'][5]['armoring_type'] == "SA"
+        //       ? Color(0xff3078F0)
+        //       : data['armoring_types'][5]['armoring_type'] == "DA"
+        //           ? Color(0xff886C08)
+        //           : data['armoring_types'][5]['armoring_type'] == "SAL"
+        //               ? Color(0xffCF0C18)
+        //               : data['armoring_types'][5]['armoring_type'] == "LWP"
+        //                   ? Color(0xff13D33D)
+        //                   : data['armoring_types'][5]['armoring_type'] == "DAS"
+        //                       ? Color(0xffE94410)
+        //                       : data['armoring_types'][5]['armoring_type'] ==
+        //                               "LWS"
+        //                           ? Color(0xff2E2E2E)
+        //                           : data['armoring_types'][5]
+        //                                       ['armoring_type'] ==
+        //                                   "LWA"
+        //                               ? Color(0xff9B1FC7)
+        //                               : data['armoring_types'][5]
+        //                                           ['armoring_type'] ==
+        //                                       "LW"
+        //                                   ? Color(0xffFFBDBD)
+        //                                   : null,
+        //   toY: data['armoring_types'][5]['length'] == null
+        //       ? 0
+        //       : data['armoring_types'][5]['length'],
+        // ),
+        // BarChartRodData(
+        //   //LWA
+        //   color: data['armoring_types'][6]['armoring_type'] == "SA"
+        //       ? Color(0xff3078F0)
+        //       : data['armoring_types'][6]['armoring_type'] == "DA"
+        //           ? Color(0xff886C08)
+        //           : data['armoring_types'][6]['armoring_type'] == "SAL"
+        //               ? Color(0xffCF0C18)
+        //               : data['armoring_types'][6]['armoring_type'] == "LWP"
+        //                   ? Color(0xff13D33D)
+        //                   : data['armoring_types'][6]['armoring_type'] == "DAS"
+        //                       ? Color(0xffE94410)
+        //                       : data['armoring_types'][6]['armoring_type'] ==
+        //                               "LWS"
+        //                           ? Color(0xff2E2E2E)
+        //                           : data['armoring_types'][6]
+        //                                       ['armoring_type'] ==
+        //                                   "LWA"
+        //                               ? Color(0xff9B1FC7)
+        //                               : data['armoring_types'][6]
+        //                                           ['armoring_type'] ==
+        //                                       "LW"
+        //                                   ? Color(0xffFFBDBD)
+        //                                   : null,
+        //   toY: data['armoring_types'][6]['length'] == null
+        //       ? 0
+        //       : data['armoring_types'][6]['length'],
+        // ),
+        // BarChartRodData(
+        //   //LW
+        //   color: data['armoring_types'][7]['armoring_type'] == "SA"
+        //       ? Color(0xff3078F0)
+        //       : data['armoring_types'][7]['armoring_type'] == "DA"
+        //           ? Color(0xff886C08)
+        //           : data['armoring_types'][7]['armoring_type'] == "SAL"
+        //               ? Color(0xffCF0C18)
+        //               : data['armoring_types'][7]['armoring_type'] == "LWP"
+        //                   ? Color(0xff13D33D)
+        //                   : data['armoring_types'][7]['armoring_type'] == "DAS"
+        //                       ? Color(0xffE94410)
+        //                       : data['armoring_types'][7]['armoring_type'] ==
+        //                               "LWS"
+        //                           ? Color(0xff2E2E2E)
+        //                           : data['armoring_types'][7]
+        //                                       ['armoring_type'] ==
+        //                                   "LWA"
+        //                               ? Color(0xff9B1FC7)
+        //                               : data['armoring_types'][7]
+        //                                           ['armoring_type'] ==
+        //                                       "LW"
+        //                                   ? Color(0xffFFBDBD)
+        //                                   : null,
+        //   toY: data['armoring_types'][7]['length'] == null
+        //       ? 0
+        //       : data['armoring_types'][7]['length'],
+        // ),
+      ],
+    );
   }
 
   @override
@@ -391,12 +655,89 @@ class _ChartDataState extends State<ChartData> {
               ),
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
           Expanded(
-              child: charts.BarChart(
-            _chartdata,
+              child: BarChart(
+            BarChartData(
+              groupsSpace: 10,
+              barGroups: List.generate(minisub36Sa.length,
+                  (index) => generateGroupData(minisub36Sa[index], index, 0)),
+              barTouchData: BarTouchData(
+                  enabled: true,
+                  handleBuiltInTouches: false,
+                  touchCallback: (event, response) {
+                    if (response != null &&
+                        response.spot != null &&
+                        event is FlTapUpEvent) {
+                      setState(() {
+                        final x = response.spot!.touchedBarGroup.x;
+                        final isShowing = showingTooltip == x;
+                        if (isShowing) {
+                          showingTooltip = -1;
+                        } else {
+                          showingTooltip = x;
+                        }
+                      });
+                    }
+                  },
+                  mouseCursorResolver: (event, response) {
+                    return response == null || response.spot == null
+                        ? MouseCursor.defer
+                        : SystemMouseCursors.click;
+                  }),
+              titlesData: FlTitlesData(
+                show: true,
+                rightTitles: AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+                topTitles: AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+                bottomTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    getTitlesWidget: getTitles,
+                    reservedSize: 42,
+                  ),
+                ),
+              ),
+            ),
           )),
         ],
       ),
+    );
+  }
+
+  Widget getTitles(double value, TitleMeta meta) {
+    final titles = <String>[
+      'MINISUB-36',
+      'MINISUB-R',
+      'OCC-4',
+      'OCC-SC22S',
+      'OCC-SC300',
+      'OCC-SC500',
+      """OCC-SC500
+/SC-520""",
+      'OCC-SC530',
+      'OS-SS',
+      'URC-1'
+    ];
+
+    final Widget text = Text(
+      titles[value.toInt()],
+      style: const TextStyle(
+        color: Color(0xff7589a2),
+        fontWeight: FontWeight.bold,
+        fontSize: 5,
+      ),
+    );
+
+    return SideTitleWidget(
+      axisSide: meta.axisSide,
+      space: 16, //margin top
+      child: text,
     );
   }
 }

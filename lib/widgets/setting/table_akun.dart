@@ -17,13 +17,14 @@ class TableAkun extends StatefulWidget {
 
 class _TableAkunState extends State<TableAkun> {
   late List<Akun> akun;
- List <Akun> selectedRow = [];
- @override
+  List<Akun> selectedRow = [];
+  @override
   void initState() {
     // TODO: implement initState
     akun = Akun.getAkun();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return DataTable2(
@@ -31,7 +32,10 @@ class _TableAkunState extends State<TableAkun> {
         horizontalMargin: 6,
         dataRowHeight: 30,
         minWidth: 3000,
-        border: TableBorder(top: BorderSide(), bottom: BorderSide(),),
+        border: TableBorder(
+          top: BorderSide(),
+          bottom: BorderSide(),
+        ),
         columns: [
           DataColumn2(
             label: Text(
@@ -89,109 +93,104 @@ class _TableAkunState extends State<TableAkun> {
             label: Text(''),
           ),
         ],
-        rows: _createRows()
-        );
+        rows: _createRows());
   }
-
 
   List<DataRow> _createRows() {
     return akun
-        .map((akun) => DataRow(
-         
-          cells: [
-            DataCell(Text(akun.no,
+        .map((akun) => DataRow(cells: [
+              DataCell(Text(akun.no,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14.6,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ))),
+              DataCell(Text(akun.name,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14.6,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ))),
+              DataCell(Text(akun.username,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14.6,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ))),
+              DataCell(Text(akun.password,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14.6,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ))),
+              DataCell(Row(
+                children: [
+                  CircleAvatar(
+                    radius: 5,
+                    backgroundColor: Color(0xff24EB2C),
+                  ),
+                  SizedBox(
+                    width: 7,
+                  ),
+                  Text(akun.role,
                       style: GoogleFonts.montserrat(
                         fontSize: 14.6,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
-                      ))),
-                  DataCell(Text(akun.name,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 14.6,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ))),
-                  DataCell(Text(akun.username,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 14.6,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ))),
-                  DataCell(Text(akun.password,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 14.6,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ))),
-                  DataCell(Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 5,
-                        backgroundColor: Color(0xff24EB2C),
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Text(akun.role,
+                      )),
+                ],
+              )),
+              DataCell(
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          barrierColor: Colors.transparent,
+                          builder: (BuildContext context) {
+                            return DetailAkun();
+                          });
+                    },
+                    child: Text('Detail...',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 13.3,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black.withOpacity(0.5),
+                        )),
+                  ),
+                ),
+              ),
+              DataCell(Center(
+                child: InkWell(
+                  onTap: () {
+                    QuickAlert.show(
+                      context: context,
+                      type: QuickAlertType.confirm,
+                      text: 'Do you sure to delete this account',
+                      confirmBtnText: 'Yes',
+                      cancelBtnText: 'No',
+                      customAsset: 'assets/gift/error.gif',
+                      width: 400,
+                      confirmBtnColor: Colors.green,
+                    );
+                  },
+                  child: Container(
+                    width: 21.41,
+                    height: 19.46,
+                    decoration: BoxDecoration(
+                        color: Color(0xffEC1D26),
+                        borderRadius: BorderRadius.circular(6)),
+                    child: Center(
+                      child: Text("X",
                           style: GoogleFonts.montserrat(
-                            fontSize: 14.6,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
+                            fontSize: 13.3,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           )),
-                    ],
-                  )),
-                  DataCell(
-                    Center(
-                      child: InkWell(
-                        onTap: () {
-                          showDialog(
-                              context: context,
-                              barrierColor: Colors.transparent,
-                              builder: (BuildContext context) {
-                                return DetailAkun();
-                              });
-                        },
-                        child: Text('Detail...',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 13.3,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black.withOpacity(0.5),
-                            )),
-                      ),
                     ),
                   ),
-                  DataCell(Center(
-                    child: InkWell(
-                      onTap: () {
-                        QuickAlert.show(
-                          context: context,
-                          type: QuickAlertType.confirm,
-                          text: 'Do you sure to delete this account',
-                          confirmBtnText: 'Yes',
-                          cancelBtnText: 'No',
-                          customAsset: 'assets/gift/error.gif',
-                          width: 400,
-                          confirmBtnColor: Colors.green,
-                          
-                        );
-                      },
-                      child: Container(
-                        width: 21.41,
-                        height: 19.46,
-                        decoration: BoxDecoration(
-                            color: Color(0xffEC1D26),
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Center(
-                          child: Text("X",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                              )),
-                        ),
-                      ),
-                    ),
-                  )),
+                ),
+              )),
             ]))
         .toList();
   }

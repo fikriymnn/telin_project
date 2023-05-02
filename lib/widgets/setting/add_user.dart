@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/helpers/responsive.dart';
 
 class AddUser extends StatefulWidget {
@@ -13,11 +15,18 @@ class AddUser extends StatefulWidget {
 }
 
 class _AddUserState extends State<AddUser> {
+  TextEditingController txtNama = TextEditingController();
+  TextEditingController txtusername = TextEditingController();
+  TextEditingController txtpassword = TextEditingController();
+
   String? role;
   var _obscureText = true;
   bool _isSelected1 = false;
   bool _isSelected2 = false;
   bool _isSelected3 = false;
+  Response? response;
+
+  var dio = Dio();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -111,6 +120,7 @@ class _AddUserState extends State<AddUser> {
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
                       child: Center(
                         child: TextField(
+                          controller: txtNama,
                           style: GoogleFonts.montserrat(
                             fontSize: 10.6,
                             fontWeight: FontWeight.w400,
@@ -171,6 +181,7 @@ class _AddUserState extends State<AddUser> {
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
                       child: Center(
                         child: TextField(
+                          controller: txtusername,
                           style: GoogleFonts.montserrat(
                             fontSize: 10.6,
                             fontWeight: FontWeight.w400,
@@ -233,7 +244,8 @@ class _AddUserState extends State<AddUser> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: TextFormField(
+                              child: TextField(
+                                controller: txtpassword,
                                 obscureText: _obscureText,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 10.6,
@@ -317,7 +329,7 @@ class _AddUserState extends State<AddUser> {
                                             : Colors.black.withOpacity(0.6),
                                       ),
                                     ),
-                                    value: "Super Admin",
+                                    value: "super-admin",
                                     activeColor: Color(0xffEC1D26),
                                     groupValue: role,
                                     onChanged: (value) {
@@ -356,7 +368,7 @@ class _AddUserState extends State<AddUser> {
                                               : Colors.black.withOpacity(0.6),
                                         ),
                                       ),
-                                      value: "Admin",
+                                      value: "admin",
                                       activeColor: Color(0xffEC1D26),
                                       groupValue: role,
                                       onChanged: (value) {
@@ -396,7 +408,7 @@ class _AddUserState extends State<AddUser> {
                                               : Colors.black.withOpacity(0.6),
                                         ),
                                       ),
-                                      value: "User",
+                                      value: "user",
                                       activeColor: Color(0xffEC1D26),
                                       groupValue: role,
                                       onChanged: (value) {
@@ -560,12 +572,42 @@ class _AddUserState extends State<AddUser> {
                   ),
                   InkWell(
                     onTap: () {
-                      QuickAlert.show(
-                          context: context,
-                          type: QuickAlertType.success,
-                          text: 'Created Akun Success',
-                          width: 400,
-                          confirmBtnColor: Colors.green);
+                      if (txtNama == '') {
+                        QuickAlert.show(
+                            context: context,
+                            type: QuickAlertType.error,
+                            title: 'Peringatan',
+                            text: 'Nama Tidak Boleh Kosong',
+                            width: 400,
+                            confirmBtnColor: Colors.red);
+                      } else if (txtusername == '') {
+                        QuickAlert.show(
+                            context: context,
+                            type: QuickAlertType.error,
+                            title: 'Peringatan',
+                            text: 'Username Tidak Boleh Kosong',
+                            width: 400,
+                            confirmBtnColor: Colors.red);
+                      } else if (txtpassword == '') {
+                        QuickAlert.show(
+                            context: context,
+                            type: QuickAlertType.error,
+                            title: 'Peringatan',
+                            text: 'Password Tidak Boleh Kosong',
+                            width: 400,
+                            confirmBtnColor: Colors.red);
+                      } else if (role == '') {
+                        QuickAlert.show(
+                            context: context,
+                            type: QuickAlertType.error,
+                            title: 'Peringatan',
+                            text: 'Role Type Tidak Boleh Kosong',
+                            width: 400,
+                            confirmBtnColor: Colors.red);
+                      } else {
+                        inputDataAkun(txtNama.text, txtusername.text,
+                            txtpassword.text, role);
+                      }
                     },
                     child: Container(
                       width: 120.6,
@@ -590,5 +632,43 @@ class _AddUserState extends State<AddUser> {
         ),
       ),
     );
+  }
+
+  void _clearForm() {
+    txtNama.clear();
+    txtusername.clear();
+    txtpassword.clear();
+    role = null;
+    bool _isSelected1 = false;
+    bool _isSelected2 = false;
+    bool _isSelected3 = false;
+  }
+
+  void inputDataAkun(nama, userName, password, role) async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.post(inputAkun, data: {
+        'name': nama,
+        'username': userName,
+        'password': password,
+        'role': role
+      });
+      _clearForm();
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: '$msg',
+          width: 400,
+          confirmBtnColor: Colors.green);
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 }
