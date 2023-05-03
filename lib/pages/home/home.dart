@@ -31,7 +31,7 @@ class _HomeViewPageState extends State<HomeViewPage> {
                       fit: BoxFit.fill)),
               height: 327.6,
               child: Padding(
-                padding: EdgeInsets.only(left: 146, right: 146),
+                padding: EdgeInsets.only(left: 20, right: 20),
                 child: ChartData(),
               ),
             ),

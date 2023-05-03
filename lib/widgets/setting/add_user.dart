@@ -18,6 +18,7 @@ class _AddUserState extends State<AddUser> {
   TextEditingController txtNama = TextEditingController();
   TextEditingController txtusername = TextEditingController();
   TextEditingController txtpassword = TextEditingController();
+  TextEditingController txtemail = TextEditingController();
 
   String? role;
   var _obscureText = true;
@@ -195,6 +196,67 @@ class _AddUserState extends State<AddUser> {
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               hintText: "Input Username"),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Email",
+                          style: GoogleFonts.montserrat(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 298.6,
+                    height: 44,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.25),
+                              blurRadius: 5,
+                              offset: Offset(0, 4))
+                        ]),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 18, bottom: 8),
+                      child: Center(
+                        child: TextField(
+                          controller: txtemail,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 10.6,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                          ),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintStyle: GoogleFonts.montserrat(
+                                fontSize: 13.3,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black.withOpacity(0.6),
+                              ),
+                              hintText: "Input Email"),
                         ),
                       ),
                     ),
@@ -606,7 +668,7 @@ class _AddUserState extends State<AddUser> {
                             confirmBtnColor: Colors.red);
                       } else {
                         inputDataAkun(txtNama.text, txtusername.text,
-                            txtpassword.text, role);
+                            txtpassword.text, role, txtemail.text);
                       }
                     },
                     child: Container(
@@ -638,13 +700,10 @@ class _AddUserState extends State<AddUser> {
     txtNama.clear();
     txtusername.clear();
     txtpassword.clear();
-    role = null;
-    bool _isSelected1 = false;
-    bool _isSelected2 = false;
-    bool _isSelected3 = false;
+    txtemail.clear();
   }
 
-  void inputDataAkun(nama, userName, password, role) async {
+  void inputDataAkun(nama, userName, password, role, email) async {
     bool status;
     var msg;
     try {
@@ -652,6 +711,7 @@ class _AddUserState extends State<AddUser> {
         'name': nama,
         'username': userName,
         'password': password,
+        'email': email,
         'role': role
       });
       _clearForm();

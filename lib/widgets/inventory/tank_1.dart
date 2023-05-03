@@ -28,6 +28,7 @@ class _TableTank1State extends State<TableTank1> {
   List system = [];
   List armoringType = [];
   List tank1 = [];
+  late List<DataTank> dataTable;
 
   Response? response;
 
@@ -39,6 +40,7 @@ class _TableTank1State extends State<TableTank1> {
     getDataTank1();
     getDataSystem();
     getDataArmoringType();
+
     super.initState();
   }
 
@@ -357,7 +359,7 @@ class _TableTank1State extends State<TableTank1> {
             DataColumn2(
                 label: Text(
                   """LENGTH
-(METER)
+      (METER)
               """,
                   style: GoogleFonts.montserrat(
                     fontSize: 10,
@@ -399,7 +401,7 @@ class _TableTank1State extends State<TableTank1> {
             DataColumn2(
                 label: Text(
                   """TANK
-LOCATION""",
+      LOCATION""",
                   style: GoogleFonts.montserrat(
                     fontSize: 10,
                     fontWeight: FontWeight.w600,
@@ -442,4 +444,51 @@ LOCATION""",
               tank1.length, (index) => _resultsAPI(index, tank1[index]))),
     );
   }
+}
+
+class MyWidget extends StatefulWidget {
+  const MyWidget({super.key});
+
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+class DataTank {
+  String no;
+  String lable;
+  String system;
+  String armoring;
+  String cableType;
+  String manufacture;
+  String length;
+  String coreType;
+  String core;
+  String tank;
+  String tankLevel;
+  String remark;
+  String deskription;
+
+  DataTank(
+      {required this.no,
+      required this.lable,
+      required this.system,
+      required this.armoring,
+      required this.cableType,
+      required this.manufacture,
+      required this.length,
+      required this.coreType,
+      required this.tank,
+      required this.tankLevel,
+      required this.remark,
+      required this.deskription,
+      required this.core});
+
+  var dio = Dio();
 }
