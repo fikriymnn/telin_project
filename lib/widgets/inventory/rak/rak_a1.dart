@@ -106,7 +106,7 @@ class _TableRakA1State extends State<TableRakA1> {
 
   void getDataRakA1() async {
     try {
-      response = await dio.get(getRakA1);
+      response = await dio.get(getRak);
 
       setState(() {
         rakA1 = response!.data;
