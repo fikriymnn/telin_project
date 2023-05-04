@@ -29,7 +29,7 @@ class _HomeViewPageState extends State<HomeViewPage> {
                   image: DecorationImage(
                       image: AssetImage('assets/images/background_home.png'),
                       fit: BoxFit.fill)),
-              height: 327.6,
+              height: 380,
               child: Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: ChartData(),
