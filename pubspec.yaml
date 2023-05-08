@@ -54,6 +54,7 @@ dependencies:
   url_strategy: ^0.2.0
   fl_chart: ^0.62.0
   advanced_datatable: ^0.0.8
+  file_picker: ^5.2.11
 
 
 dev_dependencies:
