@@ -221,11 +221,11 @@ class _ChartDataState extends State<ChartData> {
   BarChartGroupData generateGroupData(
     data,
     index,
-    int x,
   ) {
     return BarChartGroupData(
-      x: x,
-      showingTooltipIndicators: showingTooltip == x ? [0] : [],
+      x: int.parse(data['nomor']),
+      showingTooltipIndicators:
+          showingTooltip == int.parse(data['nomor']) ? [0] : [],
       barRods: [
         BarChartRodData(
           //SA
@@ -663,26 +663,31 @@ class _ChartDataState extends State<ChartData> {
               child: BarChart(
             BarChartData(
               groupsSpace: 10,
-              barGroups: List.generate(minisub36Sa.length,
-                  (index) => generateGroupData(minisub36Sa[index], index, 0)),
+              barGroups: List.generate(
+                  minisub36Sa.length,
+                  (index) => generateGroupData(
+                        minisub36Sa[index],
+                        index,
+                      )),
               barTouchData: BarTouchData(
                   enabled: true,
-                  handleBuiltInTouches: false,
-                  touchCallback: (event, response) {
-                    if (response != null &&
-                        response.spot != null &&
-                        event is FlTapUpEvent) {
-                      setState(() {
-                        final x = response.spot!.touchedBarGroup.x;
-                        final isShowing = showingTooltip == x;
-                        if (isShowing) {
-                          showingTooltip = -1;
-                        } else {
-                          showingTooltip = x;
-                        }
-                      });
-                    }
-                  },
+                  handleBuiltInTouches: true,
+
+                  // touchCallback: (event, response) {
+                  //   if (response != null &&
+                  //       response.spot != null &&
+                  //       event is FlTapUpEvent) {
+                  //     setState(() {
+                  //       final x = response.spot!.touchedBarGroup.x;
+                  //       final isShowing = showingTooltip == x;
+                  //       if (isShowing) {
+                  //         showingTooltip = -1;
+                  //       } else {
+                  //         showingTooltip = x;
+                  //       }
+                  //     });
+                  //   }
+                  // },
                   mouseCursorResolver: (event, response) {
                     return response == null || response.spot == null
                         ? MouseCursor.defer
@@ -713,6 +718,7 @@ class _ChartDataState extends State<ChartData> {
 
   Widget getTitles(double value, TitleMeta meta) {
     final titles = <String>[
+      '',
       'OCC-SC500',
       'OAL C4',
       'MINISUB-36',
@@ -729,18 +735,27 @@ class _ChartDataState extends State<ChartData> {
       ''
     ];
 
-    final Widget text = Text(
-      titles[value.toInt()],
-      style: const TextStyle(
-        color: Color(0xff7589a2),
-        fontWeight: FontWeight.bold,
-        fontSize: 5,
+    final Widget text = Container(
+      width: 50,
+      child: Column(
+        children: [
+          Flexible(
+            child: Text(
+              titles[value.toInt()],
+              style: GoogleFonts.montserrat(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
       ),
     );
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      space: 16, //margin top
+      space: 0, //margin top
       child: text,
     );
   }

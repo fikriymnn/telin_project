@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
+import 'package:file_picker/file_picker.dart';
 
 import '../../../../api/configAPI.dart';
 import '../bast_invoice/bast_new_material.dart';
@@ -22,6 +24,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   TextEditingController txtLenght = TextEditingController();
   TextEditingController txtE_Core = TextEditingController();
   TextEditingController txtLable = TextEditingController();
+
+  PlatformFile? pickedFile;
 
   String? selectionSystem;
   String? selectionCoreType;
@@ -133,6 +137,63 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   String selectedValueCore = "Select Core";
   String selectedValueInner = "Select Inner";
   String selectedValueSystem = "Select System";
+
+  Future selecFile() async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      setState(() {
+        pickedFile = result.files.first;
+      });
+    }
+    return;
+  }
+
+  //  String? _fileName;
+  // String? _saveAsFileName;
+  // PlatformFile? _paths;
+  // String? _directoryPath;
+  // String? _extension;
+  // bool _isLoading = false;
+  // bool _lockParentWindow = false;
+  // bool _userAborted = false;
+  // bool _multiPick = false;
+  // FileType _pickingType = FileType.any;
+
+  //  void _pickFiles() async {
+  //   _resetState();
+  //   try {
+  //     _directoryPath = null;
+  //     final _paths = await FilePicker.platform.pickFiles(
+  //     )
+  //        ;
+  //   } on PlatformException catch (e) {
+  //    Text('Unsupported operation' + e.toString());
+  //   } catch (e) {
+  //     Text(e.toString());
+  //   }
+  //   if (!mounted) return;
+  //   setState(() {
+  //     _isLoading = false;
+  //     _fileName =
+  //         _paths != null ? _paths!.first.name : '...';
+  //     _userAborted = _paths == null;
+  //   });
+  // }
+
+  //  void _resetState() {
+  //   if (!mounted) {
+  //     return;
+  //   }
+  //   setState(() {
+  //     _isLoading = true;
+  //     _directoryPath = null;
+  //     _fileName = null;
+  //     _paths = null;
+  //     _saveAsFileName = null;
+  //     _userAborted = false;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -601,6 +662,78 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                 Container(
                   child: Column(
                     children: [
+                      Container(
+                        width: 230,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Evidence",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 230,
+                        height: 44,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            border:
+                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.25),
+                                  blurRadius: 5,
+                                  offset: Offset(0, 4))
+                            ]),
+                        child: Padding(
+                            padding: const EdgeInsets.only(left: 18, bottom: 8),
+                            child: Row(
+                              children: [
+                                TextButton.icon(
+                                    onPressed: () async {
+                                      FilePickerResult? result =
+                                          await FilePicker.platform.pickFiles();
+
+                                      if (result != null) {
+                                        setState(() {
+                                          pickedFile = result.files.first;
+                                        });
+                                      } else {
+                                        // User canceled the picker
+                                      }
+                                    },
+                                    icon: Icon(Icons.upload_file),
+                                    label: Text(
+                                      "Upload File",
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                    )),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                if (pickedFile != null)
+                                  Text(pickedFile!.name,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ))
+                              ],
+                            )),
+                      ),
+                      SizedBox(
+                        height: 20.6,
+                      ),
                       Container(
                         width: 230,
                         child: Row(

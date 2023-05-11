@@ -1,4 +1,4 @@
-String baseUrl = 'http://192.168.100.25:1000';
+String baseUrl = 'http://192.168.100.31:1000';
 
 //dashboard chart
 String getChart = '$baseUrl/api/dashboard/chart/cable_type';
