@@ -24,6 +24,7 @@ class TableRakA2 extends StatefulWidget {
 
 class _TableRakA2State extends State<TableRakA2> {
   List rakA2 = [];
+  late List<RakCoba> rakCoba;
 
   Response? response;
 
@@ -32,6 +33,7 @@ class _TableRakA2State extends State<TableRakA2> {
   @override
   void initState() {
     // TODO: implement initState
+
     getDataRakA2();
     super.initState();
   }
@@ -266,8 +268,124 @@ class _TableRakA2State extends State<TableRakA2> {
                 ),
                 fixedWidth: 250),
           ],
-          rows: List.generate(
-              rakA2.length, (index) => _resultsAPI(index, rakA2[index]))),
+          rows: RakCoba.fromJson(rakA2.asMap())
+              .map((RakCoba) => DataRow(cells: [
+                    DataCell(Text("${RakCoba.no == null ? "-" : RakCoba.no}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ))),
+                    DataCell(Text(
+                        "${RakCoba.location == null ? "-" : RakCoba.location}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ))),
+                    DataCell(Text(
+                        "${RakCoba.itemName == null ? "-" : RakCoba.itemName}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ))),
+                    DataCell(Text(
+                        "${RakCoba.partNumber == null ? "-" : RakCoba.partNumber}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ))),
+                    DataCell(Text(
+                        "${RakCoba.serialNumber == null ? "-" : RakCoba.serialNumber}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ))),
+                    DataCell(
+                        Text("${RakCoba.system == null ? "-" : RakCoba.system}",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                            ))),
+                    DataCell(
+                        Text("${RakCoba.weight == null ? "-" : RakCoba.weight}",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                            ))),
+                    DataCell(Text("${RakCoba.qty == null ? "-" : RakCoba.qty}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ))),
+                    DataCell(
+                        Text("${RakCoba.unit == null ? "-" : RakCoba.unit}",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                            ))),
+                    DataCell(Text(
+                        "${RakCoba.deskripsi == null ? "-" : RakCoba.deskripsi}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        )))
+                  ]))
+              .toList()
+          // List.generate(
+          //     rakA2.length, (index) => _resultsAPI(index, rakA2[index]))
+          ),
     );
+  }
+}
+
+class RakCoba {
+  final String no,
+      system,
+      location,
+      itemName,
+      partNumber,
+      serialNumber,
+      weight,
+      qty,
+      unit,
+      deskripsi;
+
+  const RakCoba({
+    required this.no,
+    required this.system,
+    required this.itemName,
+    required this.location,
+    required this.partNumber,
+    required this.serialNumber,
+    required this.weight,
+    required this.qty,
+    required this.unit,
+    required this.deskripsi,
+  });
+
+  static List<RakCoba> fromJson(json) {
+    return <RakCoba>[
+      RakCoba(
+        deskripsi: json['description'],
+        itemName: json['item_name'],
+        no: json['no'],
+        location: json['location'],
+        partNumber: json['part_number'],
+        qty: json['qty'],
+        serialNumber: json['serial_number'],
+        system: json['system'],
+        unit: json['unit'],
+        weight: json['weight_kg'],
+      )
+    ];
   }
 }

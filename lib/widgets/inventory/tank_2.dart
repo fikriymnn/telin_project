@@ -445,3 +445,51 @@ LOCATION""",
     );
   }
 }
+
+class DataTank {
+  String lable;
+  String system;
+  String armoring;
+  String cableType;
+  String manufacture;
+  String length;
+  String coreType;
+  String core;
+  String tank;
+  String tankLocation;
+  String tankLevel;
+  String remark;
+  String deskription;
+
+  DataTank(
+      {required this.lable,
+      required this.system,
+      required this.armoring,
+      required this.cableType,
+      required this.manufacture,
+      required this.length,
+      required this.coreType,
+      required this.tank,
+      required this.tankLocation,
+      required this.tankLevel,
+      required this.remark,
+      required this.deskription,
+      required this.core});
+
+  static DataTank fromJson(json) {
+    return DataTank(
+        lable: json['lable'],
+        system: json['system'],
+        armoring: json['armoring_type'],
+        cableType: json['cable_type'],
+        manufacture: json['manufacture'],
+        length: json['length'],
+        coreType: json['core_type'],
+        tank: json['tank'],
+        tankLocation: json['tank_location'],
+        tankLevel: json['tank_level'],
+        remark: json['remark'],
+        deskription: json['description'],
+        core: json['core']);
+  }
+}

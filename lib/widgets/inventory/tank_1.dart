@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +10,6 @@ import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_armoring_type.dart';
 import 'package:telin_project/widgets/order/loading/form/input_length_cable.dart';
-import 'package:http/http.dart' as http;
 
 import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
 
@@ -26,15 +23,6 @@ class TableTank1 extends StatefulWidget {
 }
 
 class _TableTank1State extends State<TableTank1> {
-  late Future<List<DataTank>> dataTank;
-
-  static Future<List<DataTank>> getDataTank() async {
-    String url = getTank1;
-    final response = await http.get(Uri.parse(url));
-    final body = json.decode(response.body);
-    return body.map<DataTank>(DataTank.fromJson).toList();
-  }
-
   String? selectionSystem;
   String? selectionArmoringType;
   List system = [];
@@ -49,7 +37,6 @@ class _TableTank1State extends State<TableTank1> {
   @override
   void initState() {
     // TODO: implement initState
-    dataTank = getDataTank();
     getDataTank1();
     getDataSystem();
     getDataArmoringType();
@@ -474,6 +461,7 @@ class _MyWidgetState extends State<MyWidget> {
 }
 
 class DataTank {
+  String no;
   String lable;
   String system;
   String armoring;
@@ -483,13 +471,13 @@ class DataTank {
   String coreType;
   String core;
   String tank;
-  String tankLocation;
   String tankLevel;
   String remark;
   String deskription;
 
   DataTank(
-      {required this.lable,
+      {required this.no,
+      required this.lable,
       required this.system,
       required this.armoring,
       required this.cableType,
@@ -497,36 +485,10 @@ class DataTank {
       required this.length,
       required this.coreType,
       required this.tank,
-      required this.tankLocation,
       required this.tankLevel,
       required this.remark,
       required this.deskription,
       required this.core});
 
-  static DataTank fromJson(json) => DataTank(
-      lable: json['lable'],
-      system: json['system'],
-      armoring: json['armoring_type'],
-      cableType: json['cable_type'],
-      manufacture: json['manufacture'],
-      length: json['length'],
-      coreType: json['core_type'],
-      tank: json['tank'],
-      tankLocation: json['tank_location'],
-      tankLevel: json['tank_level'],
-      remark: json['remark'],
-      deskription: json['description'],
-      core: json['core']);
-}
-
-class getData {
-  var data = [];
-  String feachurl = getTank1;
-  getDataTank1() async {
-    var url = Uri.parse(feachurl);
-    var response = await http.get(url);
-    if (response.statusCode == 200) {
-      data = json.decode(response.body);
-    }
-  }
+  var dio = Dio();
 }

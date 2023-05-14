@@ -15,11 +15,9 @@ class TableAkunDeleteSmall extends StatefulWidget {
 }
 
 class _TableAkunDeleteSmallState extends State<TableAkunDeleteSmall> {
-
-
- late List<Akun> akun;
- List <Akun> selectedRow = [];
- @override
+  late List<Akun> akun;
+  List<Akun> selectedRow = [];
+  @override
   void initState() {
     // TODO: implement initState
     akun = Akun.getAkun();
@@ -33,7 +31,10 @@ class _TableAkunDeleteSmallState extends State<TableAkunDeleteSmall> {
         horizontalMargin: 6,
         dataRowHeight: 30,
         minWidth: 3000,
-        border: TableBorder(top: BorderSide(), bottom: BorderSide(),),
+        border: TableBorder(
+          top: BorderSide(),
+          bottom: BorderSide(),
+        ),
         columns: [
           DataColumn2(
             label: Text(
@@ -91,35 +92,27 @@ class _TableAkunDeleteSmallState extends State<TableAkunDeleteSmall> {
             label: Text(''),
           ),
         ],
-        rows:_createRows()
-        
-        
-        
-);
+        rows: _createRows());
   }
 
-List<DataRow> _createRows() {
+  List<DataRow> _createRows() {
     return akun
         .map((akun) => DataRow(
-          selected: selectedRow.contains(akun),
-          
-          onSelectChanged: (isSelected) {
-            setState(() {
-              final isAdding = isSelected != null && isSelected;
+                selected: selectedRow.contains(akun),
+                onSelectChanged: (isSelected) {
+                  setState(() {
+                    final isAdding = isSelected != null && isSelected;
 
-              isAdding
-              ?selectedRow.add(akun)
-              :selectedRow.remove(akun); 
-            });
-          },
-          cells: [
-             DataCell(
-                      Text(akun.no,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 14.6,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ))),
+                    isAdding ? selectedRow.add(akun) : selectedRow.remove(akun);
+                  });
+                },
+                cells: [
+                  DataCell(Text(akun.no,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 14.6,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                      ))),
                   DataCell(Text(akun.name,
                       style: GoogleFonts.montserrat(
                         fontSize: 14.6,
@@ -159,12 +152,12 @@ List<DataRow> _createRows() {
                     Center(
                       child: InkWell(
                         onTap: () {
-                          showDialog(
-                              context: context,
-                              barrierColor: Colors.transparent,
-                              builder: (BuildContext context) {
-                                return DetailAkun();
-                              });
+                          // showDialog(
+                          //     context: context,
+                          //     barrierColor: Colors.transparent,
+                          //     builder: (BuildContext context) {
+                          //       return DetailAkun();
+                          //     });
                         },
                         child: Text('Detail...',
                             style: GoogleFonts.montserrat(
@@ -176,10 +169,7 @@ List<DataRow> _createRows() {
                     ),
                   ),
                   DataCell(Text(""))
-            ]))
+                ]))
         .toList();
   }
 }
-
-
- 
