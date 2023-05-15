@@ -43,6 +43,7 @@ class _EditAkunState extends State<EditAkun> {
     _txtUserName = TextEditingController(text: widget.username);
     _txtEmail = TextEditingController(text: widget.email);
     _txtPassword = TextEditingController(text: widget.password);
+    role = widget.role;
   }
 
   @override
@@ -85,13 +86,12 @@ class _EditAkunState extends State<EditAkun> {
   }
 
   var _obscureText = false;
+  String? role;
   bool _isSelected1 = false;
   bool _isSelected2 = false;
   bool _isSelected3 = false;
   @override
   Widget build(BuildContext context) {
-    String? role = widget.role;
-
     return Container(
       width: 942,
       height: 592.6,
@@ -700,7 +700,7 @@ class _EditAkunState extends State<EditAkun> {
                       InkWell(
                         onTap: () {
                           edituser(widget.id, _txtName.text, _txtUserName.text,
-                              _txtEmail.text, _txtPassword, role);
+                              _txtEmail.text, _txtPassword.text, role);
                         },
                         child: Container(
                           width: 90,

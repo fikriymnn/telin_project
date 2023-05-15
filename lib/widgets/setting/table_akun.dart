@@ -142,16 +142,7 @@ class _TableAkunState extends State<TableAkun> {
       DataCell(Center(
         child: InkWell(
           onTap: () {
-            QuickAlert.show(
-              context: context,
-              type: QuickAlertType.confirm,
-              text: 'Do you sure to delete this account',
-              confirmBtnText: 'Yes',
-              cancelBtnText: 'No',
-              customAsset: 'assets/gift/error.gif',
-              width: 400,
-              confirmBtnColor: Colors.green,
-            );
+            hapusDataUser(data['_id']);
           },
           child: Container(
             width: 21.41,
@@ -180,6 +171,33 @@ class _TableAkunState extends State<TableAkun> {
       setState(() {
         users = response!.data;
       });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void hapusDataUser(id) async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.delete('$deleteUser/$id');
+
+      msg = response!.data['message'];
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: '$msg',
+          title: 'Peringatan',
+          width: 400,
+          barrierDismissible: true,
+          confirmBtnColor: Colors.red);
     } catch (e) {
       QuickAlert.show(
           context: context,

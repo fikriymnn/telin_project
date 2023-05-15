@@ -268,81 +268,81 @@ class _TableRakA2State extends State<TableRakA2> {
                 ),
                 fixedWidth: 250),
           ],
-          rows: RakCoba.fromJson(rakA2.asMap())
-              .map((RakCoba) => DataRow(cells: [
-                    DataCell(Text("${RakCoba.no == null ? "-" : RakCoba.no}",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ))),
-                    DataCell(Text(
-                        "${RakCoba.location == null ? "-" : RakCoba.location}",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ))),
-                    DataCell(Text(
-                        "${RakCoba.itemName == null ? "-" : RakCoba.itemName}",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ))),
-                    DataCell(Text(
-                        "${RakCoba.partNumber == null ? "-" : RakCoba.partNumber}",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ))),
-                    DataCell(Text(
-                        "${RakCoba.serialNumber == null ? "-" : RakCoba.serialNumber}",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ))),
-                    DataCell(
-                        Text("${RakCoba.system == null ? "-" : RakCoba.system}",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black,
-                            ))),
-                    DataCell(
-                        Text("${RakCoba.weight == null ? "-" : RakCoba.weight}",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black,
-                            ))),
-                    DataCell(Text("${RakCoba.qty == null ? "-" : RakCoba.qty}",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ))),
-                    DataCell(
-                        Text("${RakCoba.unit == null ? "-" : RakCoba.unit}",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black,
-                            ))),
-                    DataCell(Text(
-                        "${RakCoba.deskripsi == null ? "-" : RakCoba.deskripsi}",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        )))
-                  ]))
-              .toList()
-          // List.generate(
-          //     rakA2.length, (index) => _resultsAPI(index, rakA2[index]))
-          ),
+          rows:
+              // RakCoba.fromJson(rakA2[1])
+              //     .map((RakCoba) => DataRow(cells: [
+              //           DataCell(Text("${RakCoba.no == null ? "-" : RakCoba.no}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(Text(
+              //               "${RakCoba.location == null ? "-" : RakCoba.location}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(Text(
+              //               "${RakCoba.itemName == null ? "-" : RakCoba.itemName}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(Text(
+              //               "${RakCoba.partNumber == null ? "-" : RakCoba.partNumber}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(Text(
+              //               "${RakCoba.serialNumber == null ? "-" : RakCoba.serialNumber}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(
+              //               Text("${RakCoba.system == null ? "-" : RakCoba.system}",
+              //                   style: GoogleFonts.montserrat(
+              //                     fontSize: 10,
+              //                     fontWeight: FontWeight.w400,
+              //                     color: Colors.black,
+              //                   ))),
+              //           DataCell(
+              //               Text("${RakCoba.weight == null ? "-" : RakCoba.weight}",
+              //                   style: GoogleFonts.montserrat(
+              //                     fontSize: 10,
+              //                     fontWeight: FontWeight.w400,
+              //                     color: Colors.black,
+              //                   ))),
+              //           DataCell(Text("${RakCoba.qty == null ? "-" : RakCoba.qty}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(
+              //               Text("${RakCoba.unit == null ? "-" : RakCoba.unit}",
+              //                   style: GoogleFonts.montserrat(
+              //                     fontSize: 10,
+              //                     fontWeight: FontWeight.w400,
+              //                     color: Colors.black,
+              //                   ))),
+              //           DataCell(Text(
+              //               "${RakCoba.deskripsi == null ? "-" : RakCoba.deskripsi}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               )))
+              //         ]))
+              //     .toList()
+              List.generate(
+                  rakA2.length, (index) => _resultsAPI(index, rakA2[index]))),
     );
   }
 }

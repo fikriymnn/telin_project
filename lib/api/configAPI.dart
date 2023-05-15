@@ -1,8 +1,9 @@
-String baseUrl = 'http://192.168.126.11:1000';
+String baseUrl = 'http://192.168.100.31:1000';
 
 //Setting
 String getUser = '$baseUrl/api/setting';
 String editUser = '$baseUrl/api/setting';
+String deleteUser = '$baseUrl/api/user';
 
 //dashboard chart
 String getChart = '$baseUrl/api/dashboard/chart/cable_type';
