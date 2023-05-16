@@ -53,12 +53,6 @@ class _TableAkunState extends State<TableAkun> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['password'] == null ? "-" : data['password']}",
-          style: GoogleFonts.montserrat(
-            fontSize: 14.6,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
       DataCell(Row(
         children: [
           CircleAvatar(
@@ -250,15 +244,6 @@ class _TableAkunState extends State<TableAkun> {
                     color: Colors.black,
                   )),
               size: ColumnSize.L),
-          DataColumn2(
-            fixedWidth: 196.6,
-            label: Text('Password',
-                style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-          ),
           DataColumn2(
             fixedWidth: 240.6,
             label: Text('Role',

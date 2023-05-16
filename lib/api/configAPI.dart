@@ -1,5 +1,8 @@
 String baseUrl = 'http://192.168.100.31:1000';
 
+//loading
+String newloading = '$baseUrl/api/loading/';
+
 //Setting
 String getUser = '$baseUrl/api/setting';
 String editUser = '$baseUrl/api/setting';

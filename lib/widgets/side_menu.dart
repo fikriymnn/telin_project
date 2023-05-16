@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
@@ -91,7 +92,6 @@ class _SideMenuState extends State<SideMenu> {
             SideMenuItem(
               itemName: "Master Data",
               dropp: true,
-              
               activess: dropdownMasterData,
               onTap: () {
                 setState(() {
@@ -407,10 +407,20 @@ class _SideMenuState extends State<SideMenu> {
               itemName: "Log Out",
               dropp: false,
               onTap: () {
-                if (AuthenticationPageRoute == AuthenticationPageRoute) {
-                  menuController.changeActiveitemTo(HomePageDisplayName);
-                  Get.offAllNamed(AuthenticationPageRoute);
-                }
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.warning,
+                    text: 'Are You Sure?',
+                    title: 'Log Out',
+                    width: 400,
+                    confirmBtnColor: Colors.red,
+                    onCancelBtnTap: () {},
+                    onConfirmBtnTap: () {
+                      if (AuthenticationPageRoute == AuthenticationPageRoute) {
+                        menuController.changeActiveitemTo(HomePageDisplayName);
+                        Get.offAllNamed(AuthenticationPageRoute);
+                      }
+                    });
               },
             ),
           ]),

@@ -42,7 +42,6 @@ class _EditAkunState extends State<EditAkun> {
     _txtName = TextEditingController(text: widget.name);
     _txtUserName = TextEditingController(text: widget.username);
     _txtEmail = TextEditingController(text: widget.email);
-    _txtPassword = TextEditingController(text: widget.password);
     role = widget.role;
   }
 
@@ -59,13 +58,22 @@ class _EditAkunState extends State<EditAkun> {
     bool status;
     var msg;
     try {
-      response = await dio.put('$editUser/$id', data: {
-        'name': nama,
-        'username': username,
-        'email': email,
-        'password': password,
-        'role': role
-      });
+      if (password == null) {
+        response = await dio.put('$editUser/$id', data: {
+          'name': nama,
+          'username': username,
+          'email': email,
+          'role': role
+        });
+      } else {
+        response = await dio.put('$editUser/$id', data: {
+          'name': nama,
+          'username': username,
+          'email': email,
+          'password': password,
+          'role': role
+        });
+      }
 
       FocusScope.of(context).unfocus();
       QuickAlert.show(

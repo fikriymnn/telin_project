@@ -6,7 +6,6 @@ import 'package:telin_project/widgets/order/loading/bats_loading.dart';
 import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
 import 'package:telin_project/widgets/order/loading/form/loading_form.dart';
 
-
 class NewOrderLoading extends StatefulWidget {
   const NewOrderLoading({super.key});
 
@@ -79,7 +78,15 @@ class _NewOrderLoadingState extends State<NewOrderLoading> {
         return BastLoading();
 
       default:
-        return FormLoading();
+        return FormLoading(
+          next: () {
+            if (activeStep < upperBound) {
+              setState(() {
+                activeStep++;
+              });
+            }
+          },
+        );
     }
   }
 
