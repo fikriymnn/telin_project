@@ -1,17 +1,10 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
-import 'package:telin_project/widgets/master_data/edit_data/edit_armoring_type.dart';
 import 'package:telin_project/widgets/order/loading/form/input_qty_non_cable.dart';
 
-import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
 
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 class TableNonCableLoading extends StatefulWidget {
   const TableNonCableLoading({super.key});
@@ -32,29 +25,29 @@ class _TableNonCableLoadingState extends State<TableNonCableLoading> {
 
    List<DropdownMenuItem<String>> get dropdownItemsLocation {
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text("LOCATION"), value: "LOCATION"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "LOCATION", child: Text("LOCATION")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItems;
   }
    List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text("SYSTEM"), value: "SYSTEM"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "SYSTEM", child: Text("SYSTEM")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItems;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsUnit {
     List<DropdownMenuItem<String>> menuItemsUnit = [
-      DropdownMenuItem(child: Text("UNIT"), value: "UNIT"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "UNIT", child: Text("UNIT")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsUnit;
   }
@@ -280,7 +273,7 @@ class _TableNonCableLoadingState extends State<TableNonCableLoading> {
                   showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
-                                          return InputQtyNonCable();
+                                          return const InputQtyNonCable();
                                         });
                 }, child: Text("Take",
                             style: GoogleFonts.montserrat(

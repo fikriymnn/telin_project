@@ -1,11 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/setting/akun.dart';
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 class TableAkunDelete extends StatefulWidget {
   const TableAkunDelete({super.key});
@@ -31,7 +27,7 @@ class _TableAkunDeleteState extends State<TableAkunDelete> {
         horizontalMargin: 6,
         dataRowHeight: 30,
         minWidth: 3000,
-        border: TableBorder(
+        border: const TableBorder(
           top: BorderSide(),
           bottom: BorderSide(),
         ),
@@ -83,11 +79,11 @@ class _TableAkunDeleteState extends State<TableAkunDelete> {
                   color: Colors.black,
                 )),
           ),
-          DataColumn2(
+          const DataColumn2(
             fixedWidth: 91.3,
             label: Text(''),
           ),
-          DataColumn2(
+          const DataColumn2(
             fixedWidth: 53.3,
             label: Text(''),
           ),
@@ -133,11 +129,11 @@ class _TableAkunDeleteState extends State<TableAkunDelete> {
                       ))),
                   DataCell(Row(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 5,
                         backgroundColor: Color(0xff24EB2C),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 7,
                       ),
                       Text(akun.role,
@@ -168,7 +164,7 @@ class _TableAkunDeleteState extends State<TableAkunDelete> {
                       ),
                     ),
                   ),
-                  DataCell(Text(""))
+                  const DataCell(Text(""))
                 ]))
         .toList();
   }

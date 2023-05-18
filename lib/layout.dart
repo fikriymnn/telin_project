@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/widgets/large_screen.dart';
 import 'package:telin_project/widgets/small_screen.dart';
@@ -10,7 +7,7 @@ import 'package:telin_project/widgets/top_nav.dart';
 import 'widgets/side_menu.dart';
 
 class SiteLayout extends StatefulWidget {
-  SiteLayout({super.key});
+  const SiteLayout({super.key});
 
   @override
   State<SiteLayout> createState() => _SiteLayoutState();

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/widgets/setting/edit_akun.dart';
 
 class DetailAkun extends StatefulWidget {
   final String id;
@@ -25,7 +22,7 @@ class DetailAkun extends StatefulWidget {
 }
 
 class _DetailAkunState extends State<DetailAkun> {
-  var _obscureText = false;
+  final _obscureText = false;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -67,13 +64,13 @@ class _DetailAkunState extends State<DetailAkun> {
                     height: 44,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                        border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
                               color: Colors.black.withOpacity(0.25),
                               blurRadius: 5,
-                              offset: Offset(0, 4))
+                              offset: const Offset(0, 4))
                         ]),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -90,7 +87,7 @@ class _DetailAkunState extends State<DetailAkun> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -118,13 +115,13 @@ class _DetailAkunState extends State<DetailAkun> {
                     height: 44,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                        border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
                               color: Colors.black.withOpacity(0.25),
                               blurRadius: 5,
-                              offset: Offset(0, 4))
+                              offset: const Offset(0, 4))
                         ]),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -141,7 +138,7 @@ class _DetailAkunState extends State<DetailAkun> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -169,13 +166,13 @@ class _DetailAkunState extends State<DetailAkun> {
                     height: 44,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                        border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
                               color: Colors.black.withOpacity(0.25),
                               blurRadius: 5,
-                              offset: Offset(0, 4))
+                              offset: const Offset(0, 4))
                         ]),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -189,7 +186,7 @@ class _DetailAkunState extends State<DetailAkun> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
@@ -218,7 +215,7 @@ class _DetailAkunState extends State<DetailAkun> {
                                 width: 154.6,
                                 height: 46.6,
                                 decoration: BoxDecoration(
-                                  color: Color(0xffEC1D26),
+                                  color: const Color(0xffEC1D26),
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                                 child: Center(
@@ -231,11 +228,11 @@ class _DetailAkunState extends State<DetailAkun> {
                                           const EdgeInsets.only(left: 13.3),
                                       child: Row(
                                         children: [
-                                          CircleAvatar(
+                                          const CircleAvatar(
                                             radius: 8,
                                             backgroundColor: Color(0xffEC1D26),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           Text(
@@ -258,7 +255,7 @@ class _DetailAkunState extends State<DetailAkun> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 101.3,
                   ),
                   Container(
@@ -272,7 +269,7 @@ class _DetailAkunState extends State<DetailAkun> {
                             height: 37.3,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
-                                color: Color(0xffEC1D26)),
+                                color: const Color(0xffEC1D26)),
                             child: Center(
                               child: Text("Done",
                                   style: GoogleFonts.roboto(
@@ -293,6 +290,5 @@ class _DetailAkunState extends State<DetailAkun> {
         ),
       ),
     );
-    ;
   }
 }

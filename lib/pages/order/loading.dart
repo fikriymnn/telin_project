@@ -23,10 +23,10 @@ class _LoadingScreensState extends State<LoadingScreens> {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
                 height: 30,
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
@@ -35,22 +35,22 @@ class _LoadingScreensState extends State<LoadingScreens> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => NewOrderLoading()));
+                                builder: (context) => const NewOrderLoading()));
                       },
                       child: Container(
                         width: 200,
                         height: 50.6,
                         decoration: BoxDecoration(
                             border:
-                                Border.all(color: Color(0xffA5C176), width: 3.3),
+                                Border.all(color: const Color(0xffA5C176), width: 3.3),
                             borderRadius: BorderRadius.circular(4),
-                            color: Color(0xffB1CC85)),
+                            color: const Color(0xffB1CC85)),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 14.6),
                           child: Center(
                             child: Row(
                               children: [
-                                CircleAvatar(
+                                const CircleAvatar(
                                   radius: 15,
                                   backgroundColor: Colors.white,
                                   child: Icon(
@@ -59,7 +59,7 @@ class _LoadingScreensState extends State<LoadingScreens> {
                                     size: 20,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
                                 Text("Add Loading",
@@ -76,10 +76,10 @@ class _LoadingScreensState extends State<LoadingScreens> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-          Expanded(child: TableLoading())
+          const Expanded(child: TableLoading())
         ],
       ),
     );

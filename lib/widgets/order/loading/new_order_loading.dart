@@ -25,7 +25,7 @@ class _NewOrderLoadingState extends State<NewOrderLoading> {
         child: Column(
           children: [
             NumberStepper(
-              numbers: [
+              numbers: const [
                 1,
                 2,
                 3,
@@ -64,7 +64,7 @@ class _NewOrderLoadingState extends State<NewOrderLoading> {
           });
         }
       },
-      child: Text('Next'),
+      child: const Text('Next'),
     );
   }
 
@@ -72,10 +72,10 @@ class _NewOrderLoadingState extends State<NewOrderLoading> {
   contentLoading() {
     switch (activeStep) {
       case 1:
-        return CableDanKitLoading();
+        return const CableDanKitLoading();
 
       case 2:
-        return BastLoading();
+        return const BastLoading();
 
       default:
         return FormLoading(
@@ -101,7 +101,7 @@ class _NewOrderLoadingState extends State<NewOrderLoading> {
           });
         }
       },
-      child: Text('Prev'),
+      child: const Text('Prev'),
     );
   }
 }

@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
@@ -45,13 +43,13 @@ class _FormLoadingState extends State<FormLoading> {
     return Padding(
       padding: const EdgeInsets.only(left: 25, top: 15, bottom: 30),
       child: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 width: 500,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -64,7 +62,7 @@ class _FormLoadingState extends State<FormLoading> {
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Text(
@@ -83,13 +81,13 @@ class _FormLoadingState extends State<FormLoading> {
                 height: 44,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
                           color: Colors.black.withOpacity(0.25),
                           blurRadius: 5,
-                          offset: Offset(0, 4))
+                          offset: const Offset(0, 4))
                     ]),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -113,7 +111,7 @@ class _FormLoadingState extends State<FormLoading> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
@@ -123,7 +121,7 @@ class _FormLoadingState extends State<FormLoading> {
                     Container(
                       child: Column(
                         children: [
-                          Container(
+                          SizedBox(
                             width: 230,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -139,7 +137,7 @@ class _FormLoadingState extends State<FormLoading> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Container(
@@ -148,13 +146,13 @@ class _FormLoadingState extends State<FormLoading> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 border: Border.all(
-                                    width: 5, color: Color(0xffF0F0F0)),
+                                    width: 5, color: const Color(0xffF0F0F0)),
                                 color: Colors.white,
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.black.withOpacity(0.25),
                                       blurRadius: 5,
-                                      offset: Offset(0, 4))
+                                      offset: const Offset(0, 4))
                                 ]),
                             child: Padding(
                               padding:
@@ -179,10 +177,10 @@ class _FormLoadingState extends State<FormLoading> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Container(
+                          SizedBox(
                             width: 230,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -198,7 +196,7 @@ class _FormLoadingState extends State<FormLoading> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Container(
@@ -207,13 +205,13 @@ class _FormLoadingState extends State<FormLoading> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 border: Border.all(
-                                    width: 5, color: Color(0xffF0F0F0)),
+                                    width: 5, color: const Color(0xffF0F0F0)),
                                 color: Colors.white,
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.black.withOpacity(0.25),
                                       blurRadius: 5,
-                                      offset: Offset(0, 4))
+                                      offset: const Offset(0, 4))
                                 ]),
                             child: Padding(
                               padding:
@@ -238,10 +236,10 @@ class _FormLoadingState extends State<FormLoading> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Container(
+                          SizedBox(
                             width: 230,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -257,7 +255,7 @@ class _FormLoadingState extends State<FormLoading> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Container(
@@ -266,13 +264,13 @@ class _FormLoadingState extends State<FormLoading> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 border: Border.all(
-                                    width: 5, color: Color(0xffF0F0F0)),
+                                    width: 5, color: const Color(0xffF0F0F0)),
                                 color: Colors.white,
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.black.withOpacity(0.25),
                                       blurRadius: 5,
-                                      offset: Offset(0, 4))
+                                      offset: const Offset(0, 4))
                                 ]),
                             child: Padding(
                               padding:
@@ -294,8 +292,8 @@ class _FormLoadingState extends State<FormLoading> {
                                     value: selectedValueDiserahkan,
                                     items: user.map((user) {
                                       return DropdownMenuItem(
-                                        child: Text(user['name']),
                                         value: user['_id'].toString(),
+                                        child: Text(user['name']),
                                       );
                                     }).toList(),
                                   ),
@@ -303,10 +301,10 @@ class _FormLoadingState extends State<FormLoading> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Container(
+                          SizedBox(
                             width: 230,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -322,7 +320,7 @@ class _FormLoadingState extends State<FormLoading> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Container(
@@ -331,13 +329,13 @@ class _FormLoadingState extends State<FormLoading> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 border: Border.all(
-                                    width: 5, color: Color(0xffF0F0F0)),
+                                    width: 5, color: const Color(0xffF0F0F0)),
                                 color: Colors.white,
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.black.withOpacity(0.25),
                                       blurRadius: 5,
-                                      offset: Offset(0, 4))
+                                      offset: const Offset(0, 4))
                                 ]),
                             child: Padding(
                                 padding:
@@ -359,8 +357,8 @@ class _FormLoadingState extends State<FormLoading> {
                                       value: selectedValueDiketahui,
                                       items: user.map((user) {
                                         return DropdownMenuItem(
-                                          child: Text(user['name']),
                                           value: user['_id'].toString(),
+                                          child: Text(user['name']),
                                         );
                                       }).toList(),
                                     ),
@@ -370,13 +368,13 @@ class _FormLoadingState extends State<FormLoading> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 100,
                     ),
                     Container(
                       child: Column(
                         children: [
-                          Container(
+                          SizedBox(
                             width: 230,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -392,7 +390,7 @@ class _FormLoadingState extends State<FormLoading> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Container(
@@ -401,13 +399,13 @@ class _FormLoadingState extends State<FormLoading> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 border: Border.all(
-                                    width: 5, color: Color(0xffF0F0F0)),
+                                    width: 5, color: const Color(0xffF0F0F0)),
                                 color: Colors.white,
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.black.withOpacity(0.25),
                                       blurRadius: 5,
-                                      offset: Offset(0, 4))
+                                      offset: const Offset(0, 4))
                                 ]),
                             child: Padding(
                               padding:
@@ -432,10 +430,10 @@ class _FormLoadingState extends State<FormLoading> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Container(
+                          SizedBox(
                             width: 230,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -451,7 +449,7 @@ class _FormLoadingState extends State<FormLoading> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Container(
@@ -460,13 +458,13 @@ class _FormLoadingState extends State<FormLoading> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 border: Border.all(
-                                    width: 5, color: Color(0xffF0F0F0)),
+                                    width: 5, color: const Color(0xffF0F0F0)),
                                 color: Colors.white,
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.black.withOpacity(0.25),
                                       blurRadius: 5,
-                                      offset: Offset(0, 4))
+                                      offset: const Offset(0, 4))
                                 ]),
                             child: Padding(
                               padding:
@@ -491,10 +489,10 @@ class _FormLoadingState extends State<FormLoading> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Container(
+                          SizedBox(
                             width: 230,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -510,7 +508,7 @@ class _FormLoadingState extends State<FormLoading> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Container(
@@ -519,13 +517,13 @@ class _FormLoadingState extends State<FormLoading> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 border: Border.all(
-                                    width: 5, color: Color(0xffF0F0F0)),
+                                    width: 5, color: const Color(0xffF0F0F0)),
                                 color: Colors.white,
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.black.withOpacity(0.25),
                                       blurRadius: 5,
-                                      offset: Offset(0, 4))
+                                      offset: const Offset(0, 4))
                                 ]),
                             child: Padding(
                               padding:
@@ -550,10 +548,10 @@ class _FormLoadingState extends State<FormLoading> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Container(
+                          SizedBox(
                             width: 230,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -569,7 +567,7 @@ class _FormLoadingState extends State<FormLoading> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Container(
@@ -578,13 +576,13 @@ class _FormLoadingState extends State<FormLoading> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 border: Border.all(
-                                    width: 5, color: Color(0xffF0F0F0)),
+                                    width: 5, color: const Color(0xffF0F0F0)),
                                 color: Colors.white,
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.black.withOpacity(0.25),
                                       blurRadius: 5,
-                                      offset: Offset(0, 4))
+                                      offset: const Offset(0, 4))
                                 ]),
                             child: Padding(
                               padding:
@@ -606,8 +604,8 @@ class _FormLoadingState extends State<FormLoading> {
                                     value: selectedValuePerusahaan,
                                     items: perusahaan.map((perusahaan) {
                                       return DropdownMenuItem(
-                                        child: Text(perusahaan['company_name']),
                                         value: perusahaan['_id'].toString(),
+                                        child: Text(perusahaan['company_name']),
                                       );
                                     }).toList(),
                                   ),
@@ -621,7 +619,7 @@ class _FormLoadingState extends State<FormLoading> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               InkWell(
@@ -644,7 +642,7 @@ class _FormLoadingState extends State<FormLoading> {
                   height: 37.3,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      color: Color(0xffEC1D26)),
+                      color: const Color(0xffEC1D26)),
                   child: Center(
                     child: Text("NEXT",
                         style: GoogleFonts.roboto(

@@ -1,14 +1,10 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
-import 'package:telin_project/widgets/setting/akun.dart';
 import 'package:telin_project/widgets/setting/detail_akun.dart';
 import 'package:telin_project/widgets/setting/edit_akun.dart';
 
@@ -41,19 +37,19 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['name'] == null ? "-" : data['name']}",
+      DataCell(Text("${data['name'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 14.6,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['username'] == null ? "-" : data['username']}",
+      DataCell(Text("${data['username'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 14.6,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['password'] == null ? "-" : data['password']}",
+      DataCell(Text("${data['password'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 14.6,
             fontWeight: FontWeight.w400,
@@ -61,14 +57,14 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
           ))),
       DataCell(Row(
         children: [
-          CircleAvatar(
+          const CircleAvatar(
             radius: 5,
             backgroundColor: Color(0xff24EB2C),
           ),
-          SizedBox(
+          const SizedBox(
             width: 7,
           ),
-          Text("${data['role'] == null ? "-" : data['role']}",
+          Text("${data['role'] ?? "-"}",
               style: GoogleFonts.montserrat(
                 fontSize: 14.6,
                 fontWeight: FontWeight.w400,
@@ -85,14 +81,14 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
                   barrierColor: Colors.transparent,
                   builder: (BuildContext context) {
                     return DetailAkun(
-                      email: "${data['email'] == null ? "-" : data['email']}",
-                      id: "${data['_id'] == null ? "-" : data['_id']}",
-                      name: "${data['name'] == null ? "-" : data['name']}",
+                      email: "${data['email'] ?? "-"}",
+                      id: "${data['_id'] ?? "-"}",
+                      name: "${data['name'] ?? "-"}",
                       password:
-                          "${data['password'] == null ? "-" : data['password']}",
-                      role: "${data['role'] == null ? "-" : data['role']}",
+                          "${data['password'] ?? "-"}",
+                      role: "${data['role'] ?? "-"}",
                       username:
-                          "${data['username'] == null ? "-" : data['username']}",
+                          "${data['username'] ?? "-"}",
                     );
                   });
             },
@@ -113,14 +109,14 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
                 MaterialPageRoute(
                     builder: (context) => EditAkun(
                           email:
-                              "${data['email'] == null ? "-" : data['email']}",
-                          id: "${data['_id'] == null ? "-" : data['_id']}",
-                          name: "${data['name'] == null ? "-" : data['name']}",
+                              "${data['email'] ?? "-"}",
+                          id: "${data['_id'] ?? "-"}",
+                          name: "${data['name'] ?? "-"}",
                           password:
-                              "${data['password'] == null ? "-" : data['password']}",
-                          role: "${data['role'] == null ? "-" : data['role']}",
+                              "${data['password'] ?? "-"}",
+                          role: "${data['role'] ?? "-"}",
                           username:
-                              "${data['username'] == null ? "-" : data['username']}",
+                              "${data['username'] ?? "-"}",
                         )));
           },
           child: Container(
@@ -157,7 +153,7 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
             width: 21.41,
             height: 19.46,
             decoration: BoxDecoration(
-                color: Color(0xffEC1D26),
+                color: const Color(0xffEC1D26),
                 borderRadius: BorderRadius.circular(6)),
             child: Center(
               child: Text("X",
@@ -198,7 +194,7 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
         horizontalMargin: 6,
         dataRowHeight: 30,
         minWidth: 3000,
-        border: TableBorder(
+        border: const TableBorder(
           top: BorderSide(),
           bottom: BorderSide(),
         ),
@@ -250,11 +246,11 @@ class _TableAkunMobileState extends State<TableAkunMobile> {
                   color: Colors.black,
                 )),
           ),
-          DataColumn2(
+          const DataColumn2(
             fixedWidth: 50,
             label: Text(''),
           ),
-          DataColumn2(
+          const DataColumn2(
             fixedWidth: 23,
             label: Text(''),
           ),

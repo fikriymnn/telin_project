@@ -28,7 +28,7 @@ class _InventoryViewPageState extends State<InventoryViewPage> {
                       showBottomSheet(
                         context: context,
                         builder: (context) {
-                          return ListTank();
+                          return const ListTank();
                         },
                       );
                       // Navigator.push(
@@ -60,7 +60,7 @@ class _InventoryViewPageState extends State<InventoryViewPage> {
                 ],
               ),
             ),
-            InventoriMapView()
+            const InventoriMapView()
           ],
         ),
       ),

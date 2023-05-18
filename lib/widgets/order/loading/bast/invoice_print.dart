@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/constants/style.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
-import 'package:telin_project/widgets/order/loading/bast/table_bast_print.dart';
 import 'package:telin_project/widgets/order/loading/bast/table_invoice.dart';
-import 'package:telin_project/widgets/order/new_material/table/table_new_cable.dart';
 
 class printInvoiceLoading {
   Future<void> InvoiceLoadingPrinttt() async {
     final doc = pw.Document();
     final TelinLogo =
         await imageFromAssetBundle('assets/images/logo_telin_login.png');
-    final font = await GoogleFonts.montserrat();
+    final font = GoogleFonts.montserrat();
 
     doc.addPage(pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
-        margin: pw.EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        margin: const pw.EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         build: (pw.Context context) {
           return [
             pw.Container(
@@ -968,7 +963,7 @@ class printInvoiceLoading {
                               width: 367.3,
                               height: 26.6,
                               decoration: pw.BoxDecoration(
-                                  color: PdfColor.fromInt(0xffD9D9D9),
+                                  color: const PdfColor.fromInt(0xffD9D9D9),
                                   border: pw.Border.all(width: 2),
                                   borderRadius: pw.BorderRadius.circular(5)),
                               child: pw.Padding(
@@ -1051,18 +1046,18 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
   Widget build(BuildContext context) {
     return AlertDialog(
       content: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
             width: 794,
             height: 1000,
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               child: Column(
                 children: [
                   Container(
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                        Container(
+                        SizedBox(
                             width: 140,
                             height: 70,
                             child: Image.asset(
@@ -1087,7 +1082,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                           ),
                         )
                       ])),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Container(
@@ -1103,7 +1098,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Container(
@@ -1113,7 +1108,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                         Container(
                           child: Column(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 332,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -1142,7 +1137,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                       Container(
                                         child: Row(
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               width: 40,
                                               child: Text("Name",
                                                   style: GoogleFonts.montserrat(
@@ -1151,7 +1146,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                     color: Colors.black,
                                                   )),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
                                             Text(
@@ -1164,7 +1159,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Container(
@@ -1172,7 +1167,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               width: 40,
                                               child: Text("Addres",
                                                   style: GoogleFonts.montserrat(
@@ -1181,7 +1176,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                     color: Colors.black,
                                                   )),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
                                             Flexible(
@@ -1196,7 +1191,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Container(
@@ -1205,7 +1200,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                             Container(
                                               child: Row(
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: 40,
                                                     child: Text("City",
                                                         style: GoogleFonts
@@ -1216,7 +1211,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                           color: Colors.black,
                                                         )),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 20,
                                                   ),
                                                   Text(": Jakarta",
@@ -1230,7 +1225,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 50,
                                             ),
                                             Text("State",
@@ -1239,7 +1234,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                   fontWeight: FontWeight.w500,
                                                   color: Colors.black,
                                                 )),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
                                             Text(": Indonesia",
@@ -1251,13 +1246,13 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Container(
                                         child: Row(
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               width: 40,
                                               child: Text("Phone",
                                                   style: GoogleFonts.montserrat(
@@ -1266,7 +1261,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                     color: Colors.black,
                                                   )),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
                                             Text(": +62 822-3754-1321 (Hanif)",
@@ -1288,7 +1283,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                         Container(
                           child: Column(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 332,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -1317,7 +1312,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                       Container(
                                         child: Row(
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               width: 40,
                                               child: Text("Name",
                                                   style: GoogleFonts.montserrat(
@@ -1326,7 +1321,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                     color: Colors.black,
                                                   )),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
                                             Text(": PT. Dagang Samudera Hutama",
@@ -1338,13 +1333,13 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Container(
                                         child: Row(
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               width: 40,
                                               child: Text("Ship",
                                                   style: GoogleFonts.montserrat(
@@ -1353,7 +1348,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                     color: Colors.black,
                                                   )),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
                                             Text(": -",
@@ -1365,7 +1360,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Container(
@@ -1373,7 +1368,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               width: 40,
                                               child: Text("Addres",
                                                   style: GoogleFonts.montserrat(
@@ -1382,7 +1377,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                     color: Colors.black,
                                                   )),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
                                             Flexible(
@@ -1397,7 +1392,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Container(
@@ -1406,7 +1401,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                             Container(
                                               child: Row(
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: 40,
                                                     child: Text("City",
                                                         style: GoogleFonts
@@ -1417,7 +1412,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                           color: Colors.black,
                                                         )),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 20,
                                                   ),
                                                   Text(": Jakarta",
@@ -1431,7 +1426,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 50,
                                             ),
                                             Text("State",
@@ -1440,7 +1435,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                   fontWeight: FontWeight.w500,
                                                   color: Colors.black,
                                                 )),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
                                             Text(": Indonesia",
@@ -1452,13 +1447,13 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Container(
                                         child: Row(
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               width: 40,
                                               child: Text("Phone",
                                                   style: GoogleFonts.montserrat(
@@ -1467,7 +1462,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                                     color: Colors.black,
                                                   )),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
                                             Text(": +62 851-6102-1791 (Ryan)",
@@ -1493,7 +1488,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Text("Port Off Loading",
                               style: GoogleFonts.montserrat(
@@ -1502,7 +1497,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                 color: Colors.black,
                               )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         Text(": Makassar",
@@ -1518,7 +1513,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Text("Port Off Discharge",
                               style: GoogleFonts.montserrat(
@@ -1527,7 +1522,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                 color: Colors.black,
                               )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         Text(": Ambon",
@@ -1539,14 +1534,14 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Container(
+                  SizedBox(
                     height: 320,
                     child: Column(
                       children: [
-                        Expanded(child: TableInvoiceLoadingPrint()),
+                        const Expanded(child: TableInvoiceLoadingPrint()),
                         Container(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -1554,7 +1549,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                               Container(
                                 width: 150,
                                 height: 20,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     border: Border(
                                         left: BorderSide(width: 2),
                                         top: BorderSide(width: 2),
@@ -1572,7 +1567,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                               Container(
                                 width: 80,
                                 height: 20,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     border: Border(
                                         left: BorderSide(width: 2),
                                         top: BorderSide(width: 2),
@@ -1590,7 +1585,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                               Container(
                                 width: 90,
                                 height: 20,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     border: Border(
                                         left: BorderSide(width: 2),
                                         top: BorderSide(width: 2),
@@ -1608,7 +1603,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                               Container(
                                 width: 90,
                                 height: 20,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     border: Border(
                                         left: BorderSide(width: 2),
                                         top: BorderSide(width: 2),
@@ -1626,7 +1621,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                               Container(
                                 width: 90,
                                 height: 20,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     border: Border(
                                         left: BorderSide(width: 2),
                                         top: BorderSide(width: 2),
@@ -1644,7 +1639,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                               Container(
                                 width: 97,
                                 height: 20,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     border: Border(
                                         left: BorderSide(width: 2),
                                         top: BorderSide(width: 2),
@@ -1666,7 +1661,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
@@ -1677,7 +1672,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 100,
                                 child: Text("Terbilang",
                                     style: GoogleFonts.montserrat(
@@ -1690,7 +1685,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                                 width: 367.3,
                                 height: 26.6,
                                 decoration: BoxDecoration(
-                                    color: Color(0xffD9D9D9),
+                                    color: const Color(0xffD9D9D9),
                                     border: Border.all(width: 2),
                                     borderRadius: BorderRadius.circular(5)),
                                 child: Padding(
@@ -1715,7 +1710,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
@@ -1752,7 +1747,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 60,
                   ),
                   Container(
@@ -1766,7 +1761,7 @@ class _InvoiceLoadingPrintState extends State<InvoiceLoadingPrint> {
                             height: 37.3,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
-                                color: Color(0xffEC1D26)),
+                                color: const Color(0xffEC1D26)),
                             child: Center(
                               child: Text("Print",
                                   style: GoogleFonts.roboto(

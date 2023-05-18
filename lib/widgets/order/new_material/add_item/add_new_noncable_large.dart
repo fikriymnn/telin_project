@@ -6,8 +6,6 @@ import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_m
 
 import '../../../../api/configAPI.dart';
 
-import '../../../../api/configAPI.dart';
-import '../bast_invoice/bast_new_material.dart';
 
 class AddNewNonCableLarge extends StatefulWidget {
   const AddNewNonCableLarge({super.key});
@@ -50,31 +48,32 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
 
   List<DropdownMenuItem<String>> get dropdownItemsLocation {
     List<DropdownMenuItem<String>> menuItemsLocation = [
-      DropdownMenuItem(
-          child: Text("Select Location"), value: "Select Location"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Location",
+          child: Text("Select Location")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsLocation;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItemsSystem = [
-      DropdownMenuItem(child: Text("Select System"), value: "Select System"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "Select System", child: Text("Select System")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsSystem;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsUnit {
     List<DropdownMenuItem<String>> menuItemsUnit = [
-      DropdownMenuItem(child: Text("Select Unit"), value: "Select Unit"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "Select Unit", child: Text("Select Unit")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsUnit;
   }
@@ -98,7 +97,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                 Container(
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -120,13 +119,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -153,10 +152,10 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -178,13 +177,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -205,8 +204,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                 value: selectionLocation,
                                 items: location.map((location) {
                                   return DropdownMenuItem(
-                                    child: Text(location['location']),
                                     value: location['_id'].toString(),
+                                    child: Text(location['location']),
                                   );
                                 }).toList(),
                               ),
@@ -214,10 +213,10 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -239,13 +238,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -272,10 +271,10 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -297,13 +296,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -333,14 +332,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 40,
                 ),
                 Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -362,13 +361,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -400,7 +399,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                               Container(
                                 width: 68.6,
                                 height: 44,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(6),
                                         bottomRight: Radius.circular(6)),
@@ -420,10 +419,10 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -445,13 +444,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -478,10 +477,10 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -503,13 +502,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -530,8 +529,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                 value: selectionSystem,
                                 items: system.map((system) {
                                   return DropdownMenuItem(
-                                    child: Text(system['system']),
                                     value: system['_id'].toString(),
+                                    child: Text(system['system']),
                                   );
                                 }).toList(),
                               ),
@@ -539,10 +538,10 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -564,13 +563,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -591,8 +590,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                 value: selectionUnit,
                                 items: unit.map((unit) {
                                   return DropdownMenuItem(
-                                    child: Text(unit['unit']),
                                     value: unit['_id'].toString(),
+                                    child: Text(unit['unit']),
                                   );
                                 }).toList(),
                               ),
@@ -603,13 +602,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 40,
                 ),
                 Container(
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -631,13 +630,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -661,10 +660,10 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -686,13 +685,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -722,7 +721,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 72,
           ),
           InkWell(
@@ -826,7 +825,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
               height: 37.3,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                  color: Color(0xffEC1D26)),
+                  color: const Color(0xffEC1D26)),
               child: Center(
                 child: Text("Done",
                     style: GoogleFonts.roboto(
@@ -881,7 +880,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
             width: 400,
             confirmBtnColor: Colors.green);
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BastNewMaterial()));
+            MaterialPageRoute(builder: (context) => const BastNewMaterial()));
       } else {
         QuickAlert.show(
             context: context,

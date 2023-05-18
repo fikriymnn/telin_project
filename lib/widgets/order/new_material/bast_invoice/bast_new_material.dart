@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
@@ -22,7 +20,7 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
         padding: const EdgeInsets.only(bottom: 32),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/images/background_depo.png'),
                   fit: BoxFit.fill)),
@@ -30,7 +28,7 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 30),
-                child: Container(
+                child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -47,7 +45,7 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
-                                      color: Color(0xffB8B8B8), width: 1)),
+                                      color: const Color(0xffB8B8B8), width: 1)),
                               child: Row(
                                 children: [
                                   Icon(
@@ -55,7 +53,7 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
                                     color: active,
                                     size: 28.6,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Text(
@@ -100,8 +98,8 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Invoice(),
-                        SizedBox(
+                        const Invoice(),
+                        const SizedBox(
                           height: 100,
                         ),
                         BastWidget(

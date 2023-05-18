@@ -1,18 +1,13 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/pages/master_data/unit.dart';
 import 'package:telin_project/routing/routes.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_unit.dart';
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 class TableUnit extends StatefulWidget {
   const TableUnit({super.key});
@@ -82,7 +77,7 @@ class _TableUnitState extends State<TableUnit> {
                         ))),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             InkWell(
@@ -199,7 +194,7 @@ class _TableUnitState extends State<TableUnit> {
     try {
       var response = await dio.get('$getIdUnit/$id');
       return response.data;
-    } on DioError catch (e) {
+    } on DioError {
       // handle error
     }
   }
@@ -210,7 +205,7 @@ class _TableUnitState extends State<TableUnit> {
         columnSpacing: 6,
         horizontalMargin: 6,
         dataRowHeight: 30,
-        border: TableBorder(top: BorderSide(), bottom: BorderSide()),
+        border: const TableBorder(top: BorderSide(), bottom: BorderSide()),
         columns: [
           DataColumn2(
             label: Text(
@@ -232,7 +227,7 @@ class _TableUnitState extends State<TableUnit> {
                   )),
             ),
           ),
-          DataColumn2(
+          const DataColumn2(
             label: Text(''),
           ),
         ],

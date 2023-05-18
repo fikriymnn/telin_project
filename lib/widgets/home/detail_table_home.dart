@@ -31,7 +31,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 19.3, vertical: 12.6),
-                    child: Container(
+                    child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Row(
                         children: [
@@ -43,7 +43,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                               color: Colors.black,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           InkWell(
                             onTap: () {},
                             child: Container(
@@ -51,7 +51,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                               height: 30,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(33.3),
-                                  color: Color(0xff75B212)),
+                                  color: const Color(0xff75B212)),
                               child: Center(
                                 child: Text("View Invoice/BAST",
                                     style: GoogleFonts.roboto(
@@ -62,7 +62,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 50,
                           ),
                           InkWell(
@@ -71,7 +71,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                             },
                             child: CircleAvatar(
                               radius: 15,
-                              backgroundColor: Color(0xFFED1D25),
+                              backgroundColor: const Color(0xFFED1D25),
                               child: Center(
                                 child: Text("X",
                                     style: GoogleFonts.roboto(
@@ -87,7 +87,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                     ),
                   ),
                   ResponsiveWidget(
-                    largeScreen: Container(
+                    largeScreen: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -102,11 +102,11 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
                   ResponsiveWidget(
-                    largeScreen: Container(
+                    largeScreen: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +117,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                                 fontWeight: FontWeight.w900,
                                 color: Colors.black,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 284,
                           ),
                           Text("BANDUNG - JAKARTA",
@@ -130,17 +130,17 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       ),
                     ),
                   ),
-                  Container(
+                  const SizedBox(
                       height: 400,
                       child: Column(
                         children: [
                           Flexible(child: TableCableHome()),
                         ],
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Container(
+                  const SizedBox(
                     height: 250,
                     child: Column(
                       children: [
@@ -148,14 +148,14 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       ],
                     ),
                   ),
-                  Container(
+                  const SizedBox(
                       height: 400,
                       child: Column(
                         children: [
                           Flexible(child: TableCableTurnOver()),
                         ],
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
                 ],

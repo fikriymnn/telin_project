@@ -22,7 +22,7 @@ bool dropDownReport = false;
 class _SideMenuUserState extends State<SideMenuUser> {
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
 
     return Container(
       decoration: BoxDecoration(
@@ -32,7 +32,7 @@ class _SideMenuUserState extends State<SideMenuUser> {
             color: Colors.black.withOpacity(0.25),
             spreadRadius: 0,
             blurRadius: 12,
-            offset: Offset(4, 12), // changes position of shadow
+            offset: const Offset(4, 12), // changes position of shadow
           ),
         ],
       ),
@@ -43,12 +43,12 @@ class _SideMenuUserState extends State<SideMenuUser> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(height: 40),
-                SizedBox(width: _width / 48),
+                SizedBox(width: width / 48),
                 Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: Image.asset("assets/images/logo_telin_top_nav.png"),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Flexible(
@@ -59,7 +59,7 @@ class _SideMenuUserState extends State<SideMenuUser> {
                     color: dark,
                   ),
                 ),
-                SizedBox(width: _width / 48),
+                SizedBox(width: width / 48),
               ],
             ),
           Divider(
@@ -102,7 +102,7 @@ class _SideMenuUserState extends State<SideMenuUser> {
                 ? Padding(
                     padding: const EdgeInsets.only(left: 30),
                     child: Container(
-                      width: _width,
+                      width: width,
                       decoration:
                           BoxDecoration(color: lightGrey.withOpacity(0.10)),
                       child: Column(
@@ -116,8 +116,9 @@ class _SideMenuUserState extends State<SideMenuUser> {
                               if (!menuController.isActive("Cable Report")) {
                                 menuController
                                     .changeActiveitemTo("Cable Report");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(CableReportPageRoute);
                               }
@@ -133,8 +134,9 @@ class _SideMenuUserState extends State<SideMenuUser> {
                                   .isActive("Non Cable Report")) {
                                 menuController
                                     .changeActiveitemTo("Non Cable Report");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(NonCableReportPageRoute);
                               }

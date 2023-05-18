@@ -1,9 +1,6 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
@@ -41,57 +38,55 @@ class _NonCableReportState extends State<NonCableReport> {
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(Text('${data['location'] == null ? "-" : data['location']}',
+        DataCell(Text('${data['location'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(Text('${data['item_name'] == null ? "-" : data['item_name']}',
+        DataCell(Text('${data['item_name'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(
-            Text('${data['part_number'] == null ? "-" : data['part_number']}',
-                style: GoogleFonts.montserrat(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ))),
-        DataCell(Text(
-            '${data['serial_number'] == null ? "-" : data['serial_number']}',
+        DataCell(Text('${data['part_number'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(Text('${data['system'] == null ? "-" : data['system']}',
+        DataCell(Text('${data['serial_number'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(Text('${data['weight'] == null ? "-" : data['weight']}',
+        DataCell(Text('${data['system'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(Text('${data['qty'] == null ? "-" : data['qty']}',
+        DataCell(Text('${data['weight'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(Text('${data['unit'] == null ? "-" : data['unit']}',
+        DataCell(Text('${data['qty'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(Text('${data['remark'] == null ? "-" : data['remark']}',
+        DataCell(Text('${data['unit'] ?? "-"}',
+            style: GoogleFonts.montserrat(
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            ))),
+        DataCell(Text('${data['remark'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
@@ -106,7 +101,7 @@ class _NonCableReportState extends State<NonCableReport> {
                 height: 28.6,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6.6),
-                    color: Color(0xFFDDDDDD)),
+                    color: const Color(0xFFDDDDDD)),
                 child: Center(
                   child: Text(
                     "Print",
@@ -145,40 +140,40 @@ class _NonCableReportState extends State<NonCableReport> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    DatePicker.showDatePicker(context, showTitleActions: true,
-                        onChanged: (date) {
-                      print('change $date');
-                    }, onConfirm: (date) {
-                      print('confirm $date');
-                      _date = '${date.year}/${date.month}/${date.day}';
-                      setState(() {});
-                    }, currentTime: DateTime.now(), locale: LocaleType.en);
-                  },
-                  icon: Icon(Icons.date_range),
-                  label: Text("$_date"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: dark,
-                    // Background color
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: ElevatedButton.icon(
+              //     onPressed: () {
+              //       DatePicker.showDatePicker(context, showTitleActions: true,
+              //           onChanged: (date) {
+              //         print('change $date');
+              //       }, onConfirm: (date) {
+              //         print('confirm $date');
+              //         _date = '${date.year}/${date.month}/${date.day}';
+              //         setState(() {});
+              //       }, currentTime: DateTime.now(), locale: LocaleType.en);
+              //     },
+              //     icon: const Icon(Icons.date_range),
+              //     label: Text(_date),
+              //     style: ElevatedButton.styleFrom(
+              //       backgroundColor: dark,
+              //       // Background color
+              //     ),
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton.icon(
                   onPressed: () {},
-                  icon: Icon(Icons.print),
-                  label: Text("Print All"),
+                  icon: const Icon(Icons.print),
+                  label: const Text("Print All"),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: active, // Background color
                   ),
@@ -186,7 +181,7 @@ class _NonCableReportState extends State<NonCableReport> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Expanded(
@@ -197,7 +192,8 @@ class _NonCableReportState extends State<NonCableReport> {
                   horizontalMargin: 6,
                   dataRowHeight: 40,
                   minWidth: 3000,
-                  border: TableBorder(top: BorderSide(), bottom: BorderSide()),
+                  border: const TableBorder(
+                      top: BorderSide(), bottom: BorderSide()),
                   columns: [
                     DataColumn2(
                       label: Text(

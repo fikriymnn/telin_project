@@ -1,8 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
@@ -59,73 +56,77 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItemsSystem = [
-      DropdownMenuItem(child: Text("Select System"), value: "Select System"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "Select System", child: Text("Select System")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsSystem;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsCableType {
     List<DropdownMenuItem<String>> menuItemsCableType = [
-      DropdownMenuItem(
-          child: Text("Select Cable Type"), value: "Select Cable Type"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Cable Type",
+          child: Text("Select Cable Type")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsCableType;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsManufacture {
     List<DropdownMenuItem<String>> menuItemsManufacture = [
-      DropdownMenuItem(
-          child: Text("Select Manufacture"), value: "Select Manufacture"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Manufacture",
+          child: Text("Select Manufacture")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsManufacture;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsArmoringType {
     List<DropdownMenuItem<String>> menuItemsArmoringType = [
-      DropdownMenuItem(
-          child: Text("Select Armoring Type"), value: "Select Armoring Type"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Armoring Type",
+          child: Text("Select Armoring Type")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsArmoringType;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsInner {
     List<DropdownMenuItem<String>> menuItemsInner = [
-      DropdownMenuItem(child: Text("Select Inner"), value: "Select Inner"),
-      DropdownMenuItem(child: Text("INNER"), value: "INNER"),
-      DropdownMenuItem(child: Text("OUTER"), value: "OUTER"),
+      const DropdownMenuItem(value: "Select Inner", child: Text("Select Inner")),
+      const DropdownMenuItem(value: "INNER", child: Text("INNER")),
+      const DropdownMenuItem(value: "OUTER", child: Text("OUTER")),
     ];
     return menuItemsInner;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsOuter {
     List<DropdownMenuItem<String>> menuItemsOuter = [
-      DropdownMenuItem(child: Text("Select Outer"), value: "Select Outer"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "Select Outer", child: Text("Select Outer")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsOuter;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsCoreType {
     List<DropdownMenuItem<String>> menuItemsCoreType = [
-      DropdownMenuItem(
-          child: Text("Select Core Type"), value: "Select Core Type"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Core Type",
+          child: Text("Select Core Type")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsCoreType;
   }
@@ -200,7 +201,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       padding: const EdgeInsets.only(bottom: 20),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -209,7 +210,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                 Container(
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -231,13 +232,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -258,8 +259,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                 value: selectionSystem,
                                 items: system.map((system) {
                                   return DropdownMenuItem(
-                                    child: Text(system['system']),
                                     value: system['_id'].toString(),
+                                    child: Text(system['system']),
                                   );
                                 }).toList(),
                               ),
@@ -267,10 +268,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -292,13 +293,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -319,8 +320,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                 value: selectionCableType,
                                 items: cableType.map((cableType) {
                                   return DropdownMenuItem(
-                                    child: Text(cableType['cable_type']),
                                     value: cableType['_id'].toString(),
+                                    child: Text(cableType['cable_type']),
                                   );
                                 }).toList(),
                               ),
@@ -328,10 +329,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -353,13 +354,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -380,8 +381,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                 value: selectionManufacturer,
                                 items: manufacturer.map((manufacturer) {
                                   return DropdownMenuItem(
-                                    child: Text(manufacturer['manufacturer']),
                                     value: manufacturer['_id'].toString(),
+                                    child: Text(manufacturer['manufacturer']),
                                   );
                                 }).toList(),
                               ),
@@ -389,10 +390,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -414,13 +415,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -441,8 +442,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                 value: selectionArmoringType,
                                 items: armoringType.map((armoringType) {
                                   return DropdownMenuItem(
-                                    child: Text(armoringType['armoring_type']),
                                     value: armoringType['_id'].toString(),
+                                    child: Text(armoringType['armoring_type']),
                                   );
                                 }).toList(),
                               ),
@@ -453,14 +454,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 40,
                 ),
                 Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -482,13 +483,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -520,7 +521,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                               Container(
                                 width: 68.6,
                                 height: 44,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(6),
                                         bottomRight: Radius.circular(6)),
@@ -540,10 +541,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -565,13 +566,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -595,10 +596,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -620,13 +621,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -650,19 +651,19 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 40,
                 ),
                 Container(
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -684,13 +685,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                             padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -709,7 +710,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                         // User canceled the picker
                                       }
                                     },
-                                    icon: Icon(Icons.upload_file),
+                                    icon: const Icon(Icons.upload_file),
                                     label: Text(
                                       "Upload File",
                                       style: GoogleFonts.montserrat(
@@ -718,7 +719,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                         color: Colors.black,
                                       ),
                                     )),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 if (pickedFile != null)
@@ -731,10 +732,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                               ],
                             )),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -756,13 +757,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -786,10 +787,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -811,13 +812,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -841,10 +842,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -866,13 +867,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -893,8 +894,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                 value: selectionCoreType,
                                 items: coreType.map((coreType) {
                                   return DropdownMenuItem(
-                                    child: Text(coreType['core_type']),
                                     value: coreType['_id'].toString(),
+                                    child: Text(coreType['core_type']),
                                   );
                                 }).toList(),
                               ),
@@ -902,10 +903,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -927,13 +928,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -963,7 +964,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 72,
           ),
           InkWell(
@@ -1077,7 +1078,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
               height: 37.3,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                  color: Color(0xffEC1D26)),
+                  color: const Color(0xffEC1D26)),
               child: Center(
                 child: Text("Done",
                     style: GoogleFonts.roboto(
@@ -1319,7 +1320,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
             width: 400,
             confirmBtnColor: Colors.green);
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BastNewMaterial()));
+            MaterialPageRoute(builder: (context) => const BastNewMaterial()));
       } else {
         QuickAlert.show(
             context: context,

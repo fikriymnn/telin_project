@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/helpers/responsive.dart';
-import 'package:telin_project/widgets/order/loading/edit_add_cable.dart';
 import 'package:telin_project/widgets/order/loading/form/edit_form_loading.dart';
-import 'package:telin_project/widgets/order/loading/table/table_cable_cart.dart';
 import 'package:telin_project/widgets/order/loading/table/table_cable_edit.dart';
 import 'package:telin_project/widgets/order/loading/table/table_cable_loading.dart';
-import 'package:telin_project/widgets/order/loading/table/table_non_cable_cart.dart';
 import 'package:telin_project/widgets/order/loading/table/table_non_cable_loading.dart';
 import 'package:telin_project/widgets/order/loading/table/table_turn_over.dart';
 
@@ -39,7 +35,7 @@ class _EditLoadingState extends State<EditLoading> {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 19.3, vertical: 12.6),
-                    child: Container(
+                    child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Row(
                         children: [
@@ -51,13 +47,13 @@ class _EditLoadingState extends State<EditLoading> {
                               color: Colors.black,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           InkWell(
                             onTap: () {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return FormEditLoading();
+                                    return const FormEditLoading();
                                   });
                             },
                             child: Container(
@@ -76,7 +72,7 @@ class _EditLoadingState extends State<EditLoading> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 50,
                           ),
                           InkWell(
@@ -97,7 +93,7 @@ class _EditLoadingState extends State<EditLoading> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 50,
                           ),
                           InkWell(
@@ -106,7 +102,7 @@ class _EditLoadingState extends State<EditLoading> {
                             },
                             child: CircleAvatar(
                               radius: 15,
-                              backgroundColor: Color(0xFFED1D25),
+                              backgroundColor: const Color(0xFFED1D25),
                               child: Center(
                                 child: Text("X",
                                     style: GoogleFonts.roboto(
@@ -121,7 +117,7 @@ class _EditLoadingState extends State<EditLoading> {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -135,10 +131,10 @@ class _EditLoadingState extends State<EditLoading> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -149,7 +145,7 @@ class _EditLoadingState extends State<EditLoading> {
                               fontWeight: FontWeight.w900,
                               color: Colors.black,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 284,
                         ),
                         Text("BANDUNG - JAKARTA",
@@ -161,18 +157,18 @@ class _EditLoadingState extends State<EditLoading> {
                       ],
                     ),
                   ),
-                  Container(
+                  const SizedBox(
                       height: 400,
                       child: Column(
                         children: [
                           Flexible(child: TableCableEdit()),
                         ],
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 100),
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -202,7 +198,7 @@ class _EditLoadingState extends State<EditLoading> {
                                                             10),
                                                     border: Border.all(
                                                         color:
-                                                            Color(0xffB8B8B8),
+                                                            const Color(0xffB8B8B8),
                                                         width: 1)),
                                                 child: Row(
                                                   children: [
@@ -212,7 +208,7 @@ class _EditLoadingState extends State<EditLoading> {
                                                       color: active,
                                                       size: 28.6,
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 10,
                                                     ),
                                                     Text(
@@ -230,7 +226,7 @@ class _EditLoadingState extends State<EditLoading> {
                                         ),
                                       ],
                                     ),
-                                    body: TableCableLoading(),
+                                    body: const TableCableLoading(),
                                   );
                                 });
                           },
@@ -253,10 +249,10 @@ class _EditLoadingState extends State<EditLoading> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Container(
+                  const SizedBox(
                     height: 250,
                     child: Column(
                       children: [
@@ -264,11 +260,11 @@ class _EditLoadingState extends State<EditLoading> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 100),
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -298,7 +294,7 @@ class _EditLoadingState extends State<EditLoading> {
                                                             10),
                                                     border: Border.all(
                                                         color:
-                                                            Color(0xffB8B8B8),
+                                                            const Color(0xffB8B8B8),
                                                         width: 1)),
                                                 child: Row(
                                                   children: [
@@ -308,7 +304,7 @@ class _EditLoadingState extends State<EditLoading> {
                                                       color: active,
                                                       size: 28.6,
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 10,
                                                     ),
                                                     Text(
@@ -326,7 +322,7 @@ class _EditLoadingState extends State<EditLoading> {
                                         ),
                                       ],
                                     ),
-                                    body: TableNonCableLoading(),
+                                    body: const TableNonCableLoading(),
                                   );
                                 });
                           },
@@ -349,10 +345,10 @@ class _EditLoadingState extends State<EditLoading> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Container(
+                  const SizedBox(
                     height: 250,
                     child: Column(
                       children: [
@@ -360,7 +356,7 @@ class _EditLoadingState extends State<EditLoading> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
                 ],

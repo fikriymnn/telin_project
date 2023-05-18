@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/widgets/inventory/tank_1.dart';
 import 'package:telin_project/widgets/inventory/tank_10.dart';
@@ -47,7 +45,7 @@ class ListTank extends StatelessWidget {
               // physics: NeverScrollableScrollPhysics(),
               children: [
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(
                     'TANK 1',
                     style: GoogleFonts.montserrat(
@@ -57,10 +55,10 @@ class ListTank extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    width: screnSize.width, height: 550, child: TableTank1()),
+                SizedBox(
+                    width: screnSize.width, height: 550, child: const TableTank1()),
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(
                     'TANK 2',
                     style: GoogleFonts.montserrat(
@@ -70,10 +68,10 @@ class ListTank extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    width: screnSize.width, height: 550, child: TableTank2()),
+                SizedBox(
+                    width: screnSize.width, height: 550, child: const TableTank2()),
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(
                     'TANK 3',
                     style: GoogleFonts.montserrat(
@@ -83,10 +81,10 @@ class ListTank extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    width: screnSize.width, height: 550, child: TableTank3()),
+                SizedBox(
+                    width: screnSize.width, height: 550, child: const TableTank3()),
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(
                     'TANK 4',
                     style: GoogleFonts.montserrat(
@@ -96,10 +94,10 @@ class ListTank extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    width: screnSize.width, height: 550, child: TableTank4()),
+                SizedBox(
+                    width: screnSize.width, height: 550, child: const TableTank4()),
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(
                     'TANK 5',
                     style: GoogleFonts.montserrat(
@@ -109,10 +107,10 @@ class ListTank extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    width: screnSize.width, height: 550, child: TableTank5()),
+                SizedBox(
+                    width: screnSize.width, height: 550, child: const TableTank5()),
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(
                     'TANK 6',
                     style: GoogleFonts.montserrat(
@@ -122,10 +120,10 @@ class ListTank extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    width: screnSize.width, height: 550, child: TableTank6()),
+                SizedBox(
+                    width: screnSize.width, height: 550, child: const TableTank6()),
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(
                     'TANK 7',
                     style: GoogleFonts.montserrat(
@@ -135,10 +133,10 @@ class ListTank extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    width: screnSize.width, height: 550, child: TableTank7()),
+                SizedBox(
+                    width: screnSize.width, height: 550, child: const TableTank7()),
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(
                     'TANK 8',
                     style: GoogleFonts.montserrat(
@@ -148,10 +146,10 @@ class ListTank extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    width: screnSize.width, height: 550, child: TableTank8()),
+                SizedBox(
+                    width: screnSize.width, height: 550, child: const TableTank8()),
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(
                     'TANK 9',
                     style: GoogleFonts.montserrat(
@@ -161,10 +159,10 @@ class ListTank extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    width: screnSize.width, height: 550, child: TableTank9()),
+                SizedBox(
+                    width: screnSize.width, height: 550, child: const TableTank9()),
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(
                     'TANK 10',
                     style: GoogleFonts.montserrat(
@@ -174,10 +172,10 @@ class ListTank extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    width: screnSize.width, height: 550, child: TableTank10()),
+                SizedBox(
+                    width: screnSize.width, height: 550, child: const TableTank10()),
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(
                     'TANK 11',
                     style: GoogleFonts.montserrat(
@@ -187,8 +185,8 @@ class ListTank extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    width: screnSize.width, height: 550, child: TableTank11()),
+                SizedBox(
+                    width: screnSize.width, height: 550, child: const TableTank11()),
               ],
             ),
           ),

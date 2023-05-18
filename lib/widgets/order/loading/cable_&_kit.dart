@@ -22,7 +22,7 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +43,7 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
                                   fontSize: 15,
                                   color: selectButon ? active : dark)),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 30,
                         ),
                         TextButton(
@@ -87,14 +87,14 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return CartLoading();
+                                    return const CartLoading();
                                   });
                             },
                             icon: Icon(
                               Icons.shopping_cart,
                               color: active,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Container(
@@ -103,28 +103,28 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(
-                                  width: 1, color: Color(0xffC1C1C1)),
-                              color: Color(0xffF3F3F3)),
+                                  width: 1, color: const Color(0xffC1C1C1)),
+                              color: const Color(0xffF3F3F3)),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10, bottom: 7),
                             child: TextField(
                               style: GoogleFonts.roboto(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w400,
-                                color: Color(0xFF9D9D9D),
+                                color: const Color(0xFF9D9D9D),
                               ),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintStyle: GoogleFonts.roboto(
                                     fontSize: 10,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xFF9D9D9D),
+                                    color: const Color(0xFF9D9D9D),
                                   ),
                                   hintText: "Search"),
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         InkWell(
@@ -153,14 +153,14 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
             ),
           ),
           selectButon
-              ? Container(
+              ? const SizedBox(
                   height: 400,
                   child: Column(
                     children: [
                       Expanded(child: TableCableLoading()),
                     ],
                   ))
-              : Container(
+              : const SizedBox(
                   height: 400,
                   child: Column(
                     children: [

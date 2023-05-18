@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/table_existing.dart';
 
@@ -15,7 +13,7 @@ class OffLoadingExistingScreens extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 24),
+              padding: const EdgeInsets.symmetric(vertical: 24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -30,8 +28,8 @@ class OffLoadingExistingScreens extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(6.6),
                                       border: Border.all(
-                                          width: 1, color: Color(0xffC1C1C1)),
-                                      color: Color(0xffF3F3F3)),
+                                          width: 1, color: const Color(0xffC1C1C1)),
+                                      color: const Color(0xffF3F3F3)),
                                   child: Padding(
                                     padding: const EdgeInsets.only(
                                         left: 10, bottom: 15),
@@ -46,7 +44,7 @@ class OffLoadingExistingScreens extends StatelessWidget {
                                           hintStyle: GoogleFonts.roboto(
                                             fontSize: 10.6,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xFF9D9D9D),
+                                            color: const Color(0xFF9D9D9D),
                                           ),
                                           hintText: "Search"),
                                     ),
@@ -56,7 +54,7 @@ class OffLoadingExistingScreens extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(child: TableExistingMaterial())
+            const Expanded(child: TableExistingMaterial())
           ],
         ),
       ) ,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/bast/invoice_print.dart';
@@ -15,16 +13,16 @@ class Invoice extends StatelessWidget {
       width: 329.3,
       height: 184,
       decoration: BoxDecoration(
-          color: Color(0xffF0F0F0),
+          color: const Color(0xffF0F0F0),
           borderRadius: BorderRadius.circular(30),
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withOpacity(0.25),
                 blurRadius: 25,
-                offset: Offset(0, 4))
+                offset: const Offset(0, 4))
           ]),
       child: Padding(
-        padding: EdgeInsets.all(6.6),
+        padding: const EdgeInsets.all(6.6),
         child: Column(
           children: [
             Container(
@@ -32,7 +30,7 @@ class Invoice extends StatelessWidget {
               height: 124.6,
               decoration: BoxDecoration(
                   color: light,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30))),
               child: Padding(
@@ -47,7 +45,7 @@ class Invoice extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Text("001/TI/12/22",
@@ -57,7 +55,7 @@ class Invoice extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           color: Colors.black,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Text("REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
@@ -71,7 +69,7 @@ class Invoice extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 3.3,
             ),
             Container(
@@ -79,7 +77,7 @@ class Invoice extends StatelessWidget {
               height: 42,
               decoration: BoxDecoration(
                   color: light,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30))),
               child: Row(

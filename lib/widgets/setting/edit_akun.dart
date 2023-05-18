@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
@@ -107,7 +105,7 @@ class _EditAkunState extends State<EditAkun> {
           borderRadius: BorderRadius.circular(6), color: Colors.white),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -124,15 +122,15 @@ class _EditAkunState extends State<EditAkun> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border:
-                                Border.all(color: Color(0xffB8B8B8), width: 1)),
+                                Border.all(color: const Color(0xffB8B8B8), width: 1)),
                         child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.subdirectory_arrow_left,
                               color: Color(0xffED1D25),
                               size: 28.6,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Text(
@@ -140,7 +138,7 @@ class _EditAkunState extends State<EditAkun> {
                               style: GoogleFonts.roboto(
                                 fontSize: 17.3,
                                 fontWeight: FontWeight.w400,
-                                color: Color(0xffED1D25),
+                                color: const Color(0xffED1D25),
                               ),
                             )
                           ],
@@ -181,13 +179,13 @@ class _EditAkunState extends State<EditAkun> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.25),
                             blurRadius: 5,
-                            offset: Offset(0, 4))
+                            offset: const Offset(0, 4))
                       ]),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -214,7 +212,7 @@ class _EditAkunState extends State<EditAkun> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
@@ -242,13 +240,13 @@ class _EditAkunState extends State<EditAkun> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.25),
                             blurRadius: 5,
-                            offset: Offset(0, 4))
+                            offset: const Offset(0, 4))
                       ]),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -275,7 +273,7 @@ class _EditAkunState extends State<EditAkun> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
@@ -303,13 +301,13 @@ class _EditAkunState extends State<EditAkun> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.25),
                             blurRadius: 5,
-                            offset: Offset(0, 4))
+                            offset: const Offset(0, 4))
                       ]),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -336,7 +334,7 @@ class _EditAkunState extends State<EditAkun> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
@@ -364,13 +362,13 @@ class _EditAkunState extends State<EditAkun> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.25),
                             blurRadius: 5,
-                            offset: Offset(0, 4))
+                            offset: const Offset(0, 4))
                       ]),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -414,7 +412,7 @@ class _EditAkunState extends State<EditAkun> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
@@ -446,8 +444,8 @@ class _EditAkunState extends State<EditAkun> {
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color: _isSelected1
-                                            ? Color(0xffEC1D26)
-                                            : Color(0xffF0F0F0),
+                                            ? const Color(0xffEC1D26)
+                                            : const Color(0xffF0F0F0),
                                         width: 4),
                                     borderRadius: BorderRadius.circular(6),
                                     color: Colors.white),
@@ -458,12 +456,12 @@ class _EditAkunState extends State<EditAkun> {
                                       fontSize: 13.3,
                                       fontWeight: FontWeight.w400,
                                       color: _isSelected1
-                                          ? Color(0xffEC1D26)
+                                          ? const Color(0xffEC1D26)
                                           : Colors.black.withOpacity(0.6),
                                     ),
                                   ),
                                   value: "super-admin",
-                                  activeColor: Color(0xffEC1D26),
+                                  activeColor: const Color(0xffEC1D26),
                                   groupValue: role,
                                   onChanged: (value) {
                                     setState(() {
@@ -475,7 +473,7 @@ class _EditAkunState extends State<EditAkun> {
                                   },
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 15.3,
                               ),
                               Container(
@@ -484,8 +482,8 @@ class _EditAkunState extends State<EditAkun> {
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color: _isSelected2
-                                            ? Color(0xffEC1D26)
-                                            : Color(0xffF0F0F0),
+                                            ? const Color(0xffEC1D26)
+                                            : const Color(0xffF0F0F0),
                                         width: 4),
                                     borderRadius: BorderRadius.circular(6),
                                     color: Colors.white),
@@ -497,12 +495,12 @@ class _EditAkunState extends State<EditAkun> {
                                         fontSize: 13.3,
                                         fontWeight: FontWeight.w400,
                                         color: _isSelected2
-                                            ? Color(0xffEC1D26)
+                                            ? const Color(0xffEC1D26)
                                             : Colors.black.withOpacity(0.6),
                                       ),
                                     ),
                                     value: "admin",
-                                    activeColor: Color(0xffEC1D26),
+                                    activeColor: const Color(0xffEC1D26),
                                     groupValue: role,
                                     onChanged: (value) {
                                       setState(() {
@@ -515,7 +513,7 @@ class _EditAkunState extends State<EditAkun> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 15.3,
                               ),
                               Container(
@@ -524,8 +522,8 @@ class _EditAkunState extends State<EditAkun> {
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color: _isSelected3
-                                            ? Color(0xffEC1D26)
-                                            : Color(0xffF0F0F0),
+                                            ? const Color(0xffEC1D26)
+                                            : const Color(0xffF0F0F0),
                                         width: 4),
                                     borderRadius: BorderRadius.circular(6),
                                     color: Colors.white),
@@ -537,12 +535,12 @@ class _EditAkunState extends State<EditAkun> {
                                         fontSize: 13.3,
                                         fontWeight: FontWeight.w400,
                                         color: _isSelected3
-                                            ? Color(0xffEC1D26)
+                                            ? const Color(0xffEC1D26)
                                             : Colors.black.withOpacity(0.6),
                                       ),
                                     ),
                                     value: "user",
-                                    activeColor: Color(0xffEC1D26),
+                                    activeColor: const Color(0xffEC1D26),
                                     groupValue: role,
                                     onChanged: (value) {
                                       setState(() {
@@ -558,7 +556,7 @@ class _EditAkunState extends State<EditAkun> {
                             ],
                           ),
                         ),
-                        smallScreen: Container(
+                        smallScreen: SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -574,8 +572,8 @@ class _EditAkunState extends State<EditAkun> {
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                               color: _isSelected1
-                                                  ? Color(0xffEC1D26)
-                                                  : Color(0xffF0F0F0),
+                                                  ? const Color(0xffEC1D26)
+                                                  : const Color(0xffF0F0F0),
                                               width: 4),
                                           borderRadius:
                                               BorderRadius.circular(6),
@@ -587,12 +585,12 @@ class _EditAkunState extends State<EditAkun> {
                                             fontSize: 13.3,
                                             fontWeight: FontWeight.w400,
                                             color: _isSelected1
-                                                ? Color(0xffEC1D26)
+                                                ? const Color(0xffEC1D26)
                                                 : Colors.black.withOpacity(0.6),
                                           ),
                                         ),
                                         value: "super-admin",
-                                        activeColor: Color(0xffEC1D26),
+                                        activeColor: const Color(0xffEC1D26),
                                         groupValue: role,
                                         onChanged: (value) {
                                           setState(() {
@@ -604,7 +602,7 @@ class _EditAkunState extends State<EditAkun> {
                                         },
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 15.3,
                                     ),
                                     Container(
@@ -613,8 +611,8 @@ class _EditAkunState extends State<EditAkun> {
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                               color: _isSelected2
-                                                  ? Color(0xffEC1D26)
-                                                  : Color(0xffF0F0F0),
+                                                  ? const Color(0xffEC1D26)
+                                                  : const Color(0xffF0F0F0),
                                               width: 4),
                                           borderRadius:
                                               BorderRadius.circular(6),
@@ -627,13 +625,13 @@ class _EditAkunState extends State<EditAkun> {
                                               fontSize: 13.3,
                                               fontWeight: FontWeight.w400,
                                               color: _isSelected2
-                                                  ? Color(0xffEC1D26)
+                                                  ? const Color(0xffEC1D26)
                                                   : Colors.black
                                                       .withOpacity(0.6),
                                             ),
                                           ),
                                           value: "admin",
-                                          activeColor: Color(0xffEC1D26),
+                                          activeColor: const Color(0xffEC1D26),
                                           groupValue: role,
                                           onChanged: (value) {
                                             setState(() {
@@ -646,7 +644,7 @@ class _EditAkunState extends State<EditAkun> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 15.3,
                                     ),
                                     Container(
@@ -655,8 +653,8 @@ class _EditAkunState extends State<EditAkun> {
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                               color: _isSelected3
-                                                  ? Color(0xffEC1D26)
-                                                  : Color(0xffF0F0F0),
+                                                  ? const Color(0xffEC1D26)
+                                                  : const Color(0xffF0F0F0),
                                               width: 4),
                                           borderRadius:
                                               BorderRadius.circular(6),
@@ -669,13 +667,13 @@ class _EditAkunState extends State<EditAkun> {
                                               fontSize: 13.3,
                                               fontWeight: FontWeight.w400,
                                               color: _isSelected3
-                                                  ? Color(0xffEC1D26)
+                                                  ? const Color(0xffEC1D26)
                                                   : Colors.black
                                                       .withOpacity(0.6),
                                             ),
                                           ),
                                           value: "user",
-                                          activeColor: Color(0xffEC1D26),
+                                          activeColor: const Color(0xffEC1D26),
                                           groupValue: role,
                                           onChanged: (value) {
                                             setState(() {
@@ -698,7 +696,7 @@ class _EditAkunState extends State<EditAkun> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 101.3,
                 ),
                 Container(
@@ -715,7 +713,7 @@ class _EditAkunState extends State<EditAkun> {
                           height: 37.3,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
-                              color: Color(0xffEC1D26)),
+                              color: const Color(0xffEC1D26)),
                           child: Center(
                             child: Text("Done",
                                 style: GoogleFonts.roboto(
@@ -736,6 +734,5 @@ class _EditAkunState extends State<EditAkun> {
       ),
     );
 
-    ;
   }
 }

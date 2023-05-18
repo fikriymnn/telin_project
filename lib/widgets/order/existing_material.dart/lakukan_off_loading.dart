@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/bast_existing.dart';
@@ -24,7 +22,7 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Row(
                   children: [
@@ -43,7 +41,7 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 150,
                     ),
                     Container(
@@ -54,14 +52,14 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return CartLoading();
+                                      return const CartLoading();
                                     });
                               },
                               icon: Icon(
                                 Icons.shopping_cart,
                                 color: active,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Container(
@@ -70,8 +68,8 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
-                                    width: 1, color: Color(0xffC1C1C1)),
-                                color: Color(0xffF3F3F3)),
+                                    width: 1, color: const Color(0xffC1C1C1)),
+                                color: const Color(0xffF3F3F3)),
                             child: Padding(
                               padding:
                                   const EdgeInsets.only(left: 10, bottom: 7),
@@ -79,20 +77,20 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                                 style: GoogleFonts.roboto(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xFF9D9D9D),
+                                  color: const Color(0xFF9D9D9D),
                                 ),
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintStyle: GoogleFonts.roboto(
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400,
-                                      color: Color(0xFF9D9D9D),
+                                      color: const Color(0xFF9D9D9D),
                                     ),
                                     hintText: "Search"),
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           InkWell(
@@ -100,7 +98,7 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => BastOffLoading()));
+                                      builder: (context) => const BastOffLoading()));
                             },
                             child: Container(
                               width: 90,
@@ -125,7 +123,7 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -139,10 +137,10 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 22,
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -153,7 +151,7 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                         fontWeight: FontWeight.w900,
                         color: Colors.black,
                       )),
-                  SizedBox(
+                  const SizedBox(
                     width: 284,
                   ),
                   Text("BANDUNG - JAKARTA",
@@ -165,20 +163,20 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Container(
+            const SizedBox(
                 height: 400,
                 child: Column(
                   children: [
                     Flexible(child: TableCableOffLoading()),
                   ],
                 )),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Container(
+            const SizedBox(
               height: 250,
               child: Column(
                 children: [

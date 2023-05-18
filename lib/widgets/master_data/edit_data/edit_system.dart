@@ -1,13 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
-import 'package:telin_project/helpers/responsive.dart';
 
-import 'package:telin_project/widgets/setting/edit_akun.dart';
 
 import '../../../constants/controllers.dart';
 import '../../../constants/style.dart';
@@ -86,7 +82,7 @@ class _EditSystemState extends State<EditSystem> {
             borderRadius: BorderRadius.circular(6), color: Colors.white),
         child: SingleChildScrollView(
             child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 30),
+          padding: const EdgeInsets.symmetric(vertical: 30),
           child: Column(
             children: [
               InkWell(
@@ -98,7 +94,7 @@ class _EditSystemState extends State<EditSystem> {
                     height: 37.3,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Color(0xffB8B8B8), width: 1)),
+                        border: Border.all(color: const Color(0xffB8B8B8), width: 1)),
                     child: Row(
                       children: [
                         Icon(
@@ -106,7 +102,7 @@ class _EditSystemState extends State<EditSystem> {
                           color: active,
                           size: 28.6,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Text(
@@ -120,7 +116,7 @@ class _EditSystemState extends State<EditSystem> {
                       ],
                     ),
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text("Edit System",
@@ -129,10 +125,10 @@ class _EditSystemState extends State<EditSystem> {
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Container(
+              SizedBox(
                 width: 230,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -153,13 +149,13 @@ class _EditSystemState extends State<EditSystem> {
                 height: 44,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
                           color: Colors.black.withOpacity(0.25),
                           blurRadius: 5,
-                          offset: Offset(0, 4))
+                          offset: const Offset(0, 4))
                     ]),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -183,10 +179,10 @@ class _EditSystemState extends State<EditSystem> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Container(
+              SizedBox(
                 width: 230,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -207,13 +203,13 @@ class _EditSystemState extends State<EditSystem> {
                 height: 44,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
                           color: Colors.black.withOpacity(0.25),
                           blurRadius: 5,
-                          offset: Offset(0, 4))
+                          offset: const Offset(0, 4))
                     ]),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -236,7 +232,7 @@ class _EditSystemState extends State<EditSystem> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 100,
               ),
               InkWell(
@@ -248,7 +244,7 @@ class _EditSystemState extends State<EditSystem> {
                   height: 37.3,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      color: Color(0xffEC1D26)),
+                      color: const Color(0xffEC1D26)),
                   child: Center(
                     child: Text("Edit",
                         style: GoogleFonts.roboto(

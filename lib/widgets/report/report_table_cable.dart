@@ -1,7 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
@@ -46,60 +46,55 @@ class _CableReportState extends State<CableReport> {
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(Text('${data['system'] == null ? "-" : data['system']}',
+        DataCell(Text('${data['system'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(
-            Text('${data['cable_type'] == null ? "-" : data['cable_type']}',
-                style: GoogleFonts.montserrat(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ))),
-        DataCell(
-            Text('${data['manufacturer'] == null ? "-" : data['manufacturer']}',
-                style: GoogleFonts.montserrat(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ))),
-        DataCell(Text(
-            '${data['armoring_type'] == null ? "-" : data['armoring_type']}',
+        DataCell(Text('${data['cable_type'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(Text('${data['core_type'] == null ? "-" : data['core_type']}',
+        DataCell(Text('${data['manufacturer'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(
-            Text('${data['sigma_core'] == null ? "-" : data['sigma_core']}',
-                style: GoogleFonts.montserrat(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ))),
-        DataCell(Text(
-            '${data['length_report'] == null ? "-" : data['length_report']}',
+        DataCell(Text('${data['armoring_type'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(Text('${data['tank'] == null ? "-" : data['tank']}',
+        DataCell(Text('${data['core_type'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ))),
-        DataCell(Text('${data['count'] == null ? "-" : data['count']}',
+        DataCell(Text('${data['sigma_core'] ?? "-"}',
+            style: GoogleFonts.montserrat(
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            ))),
+        DataCell(Text('${data['length_report'] ?? "-"}',
+            style: GoogleFonts.montserrat(
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            ))),
+        DataCell(Text('${data['tank'] ?? "-"}',
+            style: GoogleFonts.montserrat(
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            ))),
+        DataCell(Text('${data['count'] ?? "-"}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
@@ -126,7 +121,7 @@ class _CableReportState extends State<CableReport> {
                 height: 28.6,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6.6),
-                    color: Color(0xFFDDDDDD)),
+                    color: const Color(0xFFDDDDDD)),
                 child: Center(
                   child: Text(
                     "Print",
@@ -165,63 +160,63 @@ class _CableReportState extends State<CableReport> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    DatePicker.showDatePicker(context, showTitleActions: true,
-                        onChanged: (date) {
-                      print('change $date');
-                    }, onConfirm: (date) {
-                      print('confirm $date');
-                      _from = '${date.year}/${date.month}/${date.day}';
-                      setState(() {});
-                    }, currentTime: DateTime.now(), locale: LocaleType.en);
-                  },
-                  icon: Icon(Icons.date_range),
-                  label: Text("$_from"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: dark,
-                    // Background color
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    DatePicker.showDatePicker(context, showTitleActions: true,
-                        onChanged: (date) {
-                      print('change $date');
-                    }, onConfirm: (date) {
-                      print('confirm $date');
-                      _to = '${date.year}/${date.month}/${date.day}';
-                      setState(() {});
-                    }, currentTime: DateTime.now(), locale: LocaleType.en);
-                  },
-                  icon: Icon(Icons.date_range),
-                  label: Text("$_to"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: dark,
-                    // Background color
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: ElevatedButton.icon(
+              //     onPressed: () {
+              //       DatePicker.showDatePicker(context, showTitleActions: true,
+              //           onChanged: (date) {
+              //         print('change $date');
+              //       }, onConfirm: (date) {
+              //         print('confirm $date');
+              //         _from = '${date.year}/${date.month}/${date.day}';
+              //         setState(() {});
+              //       }, currentTime: DateTime.now(), locale: LocaleType.en);
+              //     },
+              //     icon: const Icon(Icons.date_range),
+              //     label: Text(_from),
+              //     style: ElevatedButton.styleFrom(
+              //       backgroundColor: dark,
+              //       // Background color
+              //     ),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: ElevatedButton.icon(
+              //     onPressed: () {
+              //       DatePicker.showDatePicker(context, showTitleActions: true,
+              //           onChanged: (date) {
+              //         print('change $date');
+              //       }, onConfirm: (date) {
+              //         print('confirm $date');
+              //         _to = '${date.year}/${date.month}/${date.day}';
+              //         setState(() {});
+              //       }, currentTime: DateTime.now(), locale: LocaleType.en);
+              //     },
+              //     icon: const Icon(Icons.date_range),
+              //     label: Text(_to),
+              //     style: ElevatedButton.styleFrom(
+              //       backgroundColor: dark,
+              //       // Background color
+              //     ),
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton.icon(
                   onPressed: () {
                     printReport().ReportPrinttt();
                   },
-                  icon: Icon(Icons.print),
-                  label: Text("Print All"),
+                  icon: const Icon(Icons.print),
+                  label: const Text("Print All"),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: active, // Background color
                   ),
@@ -229,7 +224,7 @@ class _CableReportState extends State<CableReport> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Expanded(
@@ -240,7 +235,8 @@ class _CableReportState extends State<CableReport> {
                   horizontalMargin: 6,
                   dataRowHeight: 40,
                   minWidth: 3000,
-                  border: TableBorder(top: BorderSide(), bottom: BorderSide()),
+                  border: const TableBorder(
+                      top: BorderSide(), bottom: BorderSide()),
                   columns: [
                     DataColumn2(
                       label: Text(

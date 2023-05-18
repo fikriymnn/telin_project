@@ -1,17 +1,10 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
-import 'package:telin_project/widgets/master_data/edit_data/edit_perusahaan.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/bast_existing.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/lakukan_off_loading.dart';
 
-import 'package:telin_project/widgets/order/loading/form/edit_form_loading.dart';
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 class TableExistingMaterial extends StatefulWidget {
   const TableExistingMaterial({super.key});
@@ -130,7 +123,7 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => BastOffLoading()));
+                            builder: (context) => const BastOffLoading()));
                   },
                   child: Text('Detail...',
                       style: GoogleFonts.montserrat(
@@ -146,7 +139,7 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LakukanOffLoading()));
+                            builder: (context) => const LakukanOffLoading()));
                   },
                   child: Container(
                     width: 150,

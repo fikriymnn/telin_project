@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/helpers/responsive.dart';
-import 'package:telin_project/widgets/order/loading/table/table_cable_cart.dart';
-import 'package:telin_project/widgets/order/loading/table/table_non_cable_cart.dart';
 import 'package:telin_project/widgets/order/new_material/table/table_cart_new_cable.dart';
 import 'package:telin_project/widgets/order/new_material/table/table_cart_new_material.dart';
 
@@ -33,7 +30,7 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 19.3, vertical: 12.6),
-                    child: Container(
+                    child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -56,7 +53,7 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 30,
                           ),
                           InkWell(
@@ -65,7 +62,7 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                             },
                             child: CircleAvatar(
                               radius: 15,
-                              backgroundColor: Color(0xFFED1D25),
+                              backgroundColor: const Color(0xFFED1D25),
                               child: Center(
                                 child: Text("X",
                                     style: GoogleFonts.roboto(
@@ -80,20 +77,20 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
-                  Container(
+                  const SizedBox(
                       height: 400,
                       child: Column(
                         children: [
                           Flexible(child: TableCartNewCable()),
                         ],
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Container(
+                  const SizedBox(
                     height: 250,
                     child: Column(
                       children: [
@@ -101,7 +98,7 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
                 ],

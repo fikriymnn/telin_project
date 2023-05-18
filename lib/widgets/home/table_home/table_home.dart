@@ -1,7 +1,5 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 
@@ -14,13 +12,13 @@ class TableHome extends StatelessWidget {
         padding: const EdgeInsets.only(left: 146, right: 146),
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -30,7 +28,7 @@ class TableHome extends StatelessWidget {
                             style: GoogleFonts.roboto(
                               fontSize: 33.3,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFFED1D25),
+                              color: const Color(0xFFED1D25),
                             ),
                           )
                         ],
@@ -41,9 +39,9 @@ class TableHome extends StatelessWidget {
                     width: 242,
                     height: 27.3,
                     decoration: BoxDecoration(
-                        color: Color(0xFFF3F3F3),
+                        color: const Color(0xFFF3F3F3),
                         border: Border.all(width: 1),
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(10))),
                     child: Padding(
@@ -69,13 +67,13 @@ class TableHome extends StatelessWidget {
                                     hintStyle: GoogleFonts.roboto(
                                       fontSize: 11.3,
                                       fontWeight: FontWeight.w400,
-                                      color: Color(0xFF9D9D9D),
+                                      color: const Color(0xFF9D9D9D),
                                     ),
                                     hintText: "Search"),
                               ),
                             ),
                           ),
-                          Icon(
+                          const Icon(
                             Icons.search,
                             size: 16,
                             color: Color(0xFF9D9D9D),
@@ -93,7 +91,7 @@ class TableHome extends StatelessWidget {
                   horizontalMargin: 12,
                   dataRowHeight: 40,
                   minWidth: 3000,
-                  border: TableBorder(top: BorderSide(),left: BorderSide(),right: BorderSide(),bottom: BorderSide()),
+                  border: const TableBorder(top: BorderSide(),left: BorderSide(),right: BorderSide(),bottom: BorderSide()),
                   columns: [
                     DataColumn2(
                       label: Center(
@@ -152,7 +150,7 @@ class TableHome extends StatelessWidget {
                             )),
                       ),
                     ),
-                    DataColumn2(
+                    const DataColumn2(
                       fixedWidth: 80,
                       label: Text(''),
                     ),
@@ -212,7 +210,7 @@ class TableHome extends StatelessWidget {
                                     showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
-                                          return DetailTableHome();
+                                          return const DetailTableHome();
                                         });
                                   },
                                   child: Container(
@@ -221,7 +219,7 @@ class TableHome extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(6.6),
-                                        color: Color(0xFFDDDDDD)),
+                                        color: const Color(0xFFDDDDDD)),
                                     child: Center(
                                       child: Text(
                                         "Detail",

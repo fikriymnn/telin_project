@@ -19,7 +19,7 @@ class VerticalMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return InkWell(
         onTap: () => onTap(),
         onHover: (value) {
@@ -96,7 +96,7 @@ class VerticalMenuItemDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return InkWell(
         onTap: () => onTap(),
         onHover: (value) {
@@ -151,8 +151,8 @@ class VerticalMenuItemDropDown extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               activess == false
-                                  ? Flexible(child: Icon(Icons.arrow_drop_down))
-                                  : Flexible(child: Icon(Icons.arrow_drop_up))
+                                  ? const Flexible(child: Icon(Icons.arrow_drop_down))
+                                  : const Flexible(child: Icon(Icons.arrow_drop_up))
                             ],
                           ),
                         )

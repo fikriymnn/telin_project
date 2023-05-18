@@ -1,17 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quickalert/quickalert.dart';
-import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
-import 'package:telin_project/widgets/master_data/edit_data/edit_perusahaan.dart';
-import 'package:telin_project/widgets/order/loading/bats_loading.dart';
 
-import 'package:telin_project/widgets/order/loading/form/edit_form_loading.dart';
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 class TableBastLoadingPrint extends StatefulWidget {
   const TableBastLoadingPrint({super.key});

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/pages/order/off_loading_new_material.dart';
-import 'package:telin_project/widgets/custom_text.dart';
 
 class OrderViewPage extends StatelessWidget {
   const OrderViewPage({super.key});
@@ -13,15 +12,15 @@ class OrderViewPage extends StatelessWidget {
         children: [
           InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>OffLoadingNewMatrial()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const OffLoadingNewMatrial()));
                   },
                   child: Container(
                     width: 170.6,
                     height: 50.6,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                        border: Border.all(color: const Color(0xffA5C176), width: 3.3),
                         borderRadius: BorderRadius.circular(4),
-                        color: Color(0xffB1CC85)),
+                        color: const Color(0xffB1CC85)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 14.6),
                       child: Center(

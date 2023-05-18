@@ -1,13 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/routing/routes.dart';
 
-import 'package:telin_project/widgets/setting/edit_akun.dart';
 
 import '../../../api/configAPI.dart';
 import '../../../constants/controllers.dart';
@@ -22,7 +18,7 @@ class AddManufacture extends StatefulWidget {
 class _AddManufactureState extends State<AddManufacture> {
   TextEditingController txtNamaManufacturer = TextEditingController();
 
-  FocusNode focusNode = new FocusNode();
+  FocusNode focusNode = FocusNode();
 
   Response? response;
   var dio = Dio();
@@ -36,7 +32,7 @@ class _AddManufactureState extends State<AddManufacture> {
               borderRadius: BorderRadius.circular(6), color: Colors.white),
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 30),
+            padding: const EdgeInsets.symmetric(vertical: 30),
             child: Column(
               children: [
                 Text("Add New Manufacture",
@@ -45,10 +41,10 @@ class _AddManufactureState extends State<AddManufacture> {
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Container(
+                SizedBox(
                   width: 230,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -69,13 +65,13 @@ class _AddManufactureState extends State<AddManufacture> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.25),
                             blurRadius: 5,
-                            offset: Offset(0, 4))
+                            offset: const Offset(0, 4))
                       ]),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -99,7 +95,7 @@ class _AddManufactureState extends State<AddManufacture> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 InkWell(
@@ -122,7 +118,7 @@ class _AddManufactureState extends State<AddManufacture> {
                     height: 37.3,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        color: Color(0xffEC1D26)),
+                        color: const Color(0xffEC1D26)),
                     child: Center(
                       child: Text("Submit",
                           style: GoogleFonts.roboto(

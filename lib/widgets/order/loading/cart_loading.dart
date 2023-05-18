@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/widgets/order/loading/table/table_cable_cart.dart';
 import 'package:telin_project/widgets/order/loading/table/table_non_cable_cart.dart';
 import 'package:telin_project/widgets/order/loading/table/table_turn_over.dart';
@@ -32,7 +31,7 @@ class _CartLoadingState extends State<CartLoading> {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 19.3, vertical: 12.6),
-                    child: Container(
+                    child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Row(
                         children: [
@@ -44,7 +43,7 @@ class _CartLoadingState extends State<CartLoading> {
                               color: Colors.black,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           InkWell(
                             onTap: () {},
                             child: Container(
@@ -63,7 +62,7 @@ class _CartLoadingState extends State<CartLoading> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 50,
                           ),
                           InkWell(
@@ -72,7 +71,7 @@ class _CartLoadingState extends State<CartLoading> {
                             },
                             child: CircleAvatar(
                               radius: 15,
-                              backgroundColor: Color(0xFFED1D25),
+                              backgroundColor: const Color(0xFFED1D25),
                               child: Center(
                                 child: Text("X",
                                     style: GoogleFonts.roboto(
@@ -87,7 +86,7 @@ class _CartLoadingState extends State<CartLoading> {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -101,10 +100,10 @@ class _CartLoadingState extends State<CartLoading> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +114,7 @@ class _CartLoadingState extends State<CartLoading> {
                               fontWeight: FontWeight.w900,
                               color: Colors.black,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 284,
                         ),
                         Text("BANDUNG - JAKARTA",
@@ -127,17 +126,17 @@ class _CartLoadingState extends State<CartLoading> {
                       ],
                     ),
                   ),
-                  Container(
+                  const SizedBox(
                       height: 400,
                       child: Column(
                         children: [
                           Flexible(child: TableCableCart()),
                         ],
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Container(
+                  const SizedBox(
                     height: 250,
                     child: Column(
                       children: [
@@ -145,10 +144,10 @@ class _CartLoadingState extends State<CartLoading> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Container(
+                  const SizedBox(
                     height: 250,
                     child: Column(
                       children: [
@@ -156,7 +155,7 @@ class _CartLoadingState extends State<CartLoading> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
                 ],

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/widgets/inventory/cage/cage1.dart';
-import 'package:telin_project/widgets/inventory/rak/rak_a1.dart';
 import 'package:telin_project/widgets/inventory/refregerator/refregerator.dart';
 
 class RefregeratorInventory extends StatelessWidget {
@@ -41,7 +37,7 @@ class RefregeratorInventory extends StatelessWidget {
                 // physics: NeverScrollableScrollPhysics(),
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: Text(
                       'REFREGERATOR',
                       style: GoogleFonts.montserrat(
@@ -51,10 +47,10 @@ class RefregeratorInventory extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                       height: screnSize.height,
                       width: screnSize.width,
-                      child: TableRefregerator()),
+                      child: const TableRefregerator()),
                 ],
               ),
             ),

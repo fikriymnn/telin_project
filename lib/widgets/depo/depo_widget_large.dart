@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/layout.dart';
 import 'package:telin_project/routing/routes.dart';
 
 import 'package:telin_project/widgets/depo/depo_widget.dart';
@@ -16,7 +13,7 @@ class DepoLarge extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-        Container(
+        SizedBox(
           width: screenSize.width,
           child: Row(
             children: [
@@ -45,7 +42,7 @@ class DepoLarge extends StatelessWidget {
             ],
           ),
         ),
-        Divider(
+        const Divider(
           height: 10,
           color: Colors.black,
         ),
@@ -57,13 +54,13 @@ class DepoLarge extends StatelessWidget {
                 image: DecorationImage(
                     image: AssetImage("assets/images/background_depo.png"),
                     fit: BoxFit.fill)),
-            child: Container(
+            child: SizedBox(
               width: screenSize.width,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 86.6),
+                      padding: const EdgeInsets.only(top: 86.6),
                       child: Text('Choose Your Site !',
                           textAlign: TextAlign.start,
                           style: GoogleFonts.roboto(
@@ -72,10 +69,10 @@ class DepoLarge extends StatelessWidget {
                             color: Colors.black,
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 66.6,
                     ),
-                    Container(
+                    SizedBox(
                       width: screenSize.width,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -87,7 +84,7 @@ class DepoLarge extends StatelessWidget {
                             route: () {},
                             titleView: "Coming Soon",
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 300,
                           ),
                           DepoWidget(

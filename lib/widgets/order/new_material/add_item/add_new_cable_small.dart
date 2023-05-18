@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
@@ -15,77 +13,84 @@ class AddNewCableSmall extends StatefulWidget {
 class _AddNewCableSmallState extends State<AddNewCableSmall> {
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItemsSystem = [
-      DropdownMenuItem(
-          child: Text("Select System"), value: "Select System"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select System",
+          child: Text("Select System")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsSystem;
   }
 
    List<DropdownMenuItem<String>> get dropdownItemsCableType {
     List<DropdownMenuItem<String>> menuItemsCableType = [
-      DropdownMenuItem(
-          child: Text("Select Cable Type"), value: "Select Cable Type"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Cable Type",
+          child: Text("Select Cable Type")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsCableType;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsManufacture {
     List<DropdownMenuItem<String>> menuItemsManufacture = [
-      DropdownMenuItem(
-          child: Text("Select Manufacture"), value: "Select Manufacture"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Manufacture",
+          child: Text("Select Manufacture")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsManufacture;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsArmoringType {
     List<DropdownMenuItem<String>> menuItemsArmoringType = [
-      DropdownMenuItem(
-          child: Text("Select Armoring Type"), value: "Select Armoring Type"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Armoring Type",
+          child: Text("Select Armoring Type")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsArmoringType;
   }
    
    List<DropdownMenuItem<String>> get dropdownItemsInner {
     List<DropdownMenuItem<String>> menuItemsInner = [
-      DropdownMenuItem(
-          child: Text("Select Inner"), value: "Select Inner"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Inner",
+          child: Text("Select Inner")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsInner;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsOuter {
     List<DropdownMenuItem<String>> menuItemsOuter = [
-      DropdownMenuItem(
-          child: Text("Select Outer"), value: "Select Outer"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Outer",
+          child: Text("Select Outer")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsOuter;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsCoreType {
     List<DropdownMenuItem<String>> menuItemsCoreType = [
-      DropdownMenuItem(
-          child: Text("Select Core Type"), value: "Select Core Type"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Core Type",
+          child: Text("Select Core Type")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsCoreType;
   }
@@ -112,7 +117,7 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
     return Column(
           children: [
             
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -120,7 +125,7 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                   Container(
                     child: Column(
                       children: [
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -142,13 +147,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 18, right: 18),
@@ -172,10 +177,10 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20.6,
                         ),
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -197,13 +202,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 18, right: 18),
@@ -227,10 +232,10 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20.6,
                         ),
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -252,13 +257,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 18, right: 18),
@@ -282,10 +287,10 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20.6,
                         ),
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -307,13 +312,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 18, right: 18),
@@ -340,14 +345,14 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 40,
                   ),
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -369,13 +374,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(
@@ -406,7 +411,7 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                                 Container(
                                   width: 68.6,
                                   height: 44,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                           topRight: Radius.circular(6),
                                           bottomRight: Radius.circular(6)),
@@ -426,10 +431,10 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20.6,
                         ),
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -451,13 +456,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -480,8 +485,8 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20.6,),
-                        Container(
+                        const SizedBox(height: 20.6,),
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -503,13 +508,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 18, right: 18),
@@ -533,10 +538,10 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20.6,
                         ),
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -558,13 +563,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 18, right: 18),
@@ -599,12 +604,12 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                 ],
               ),
             ),
-            SizedBox(height: 72,),
+            const SizedBox(height: 72,),
             Container(
                     child: Column(
                       children: [
                         
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -626,13 +631,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -655,8 +660,8 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20.6,),
-                        Container(
+                        const SizedBox(height: 20.6,),
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -678,13 +683,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -707,10 +712,10 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20.6,
                         ),
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -732,13 +737,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 18, right: 18),
@@ -762,10 +767,10 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20.6,
                         ),
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -787,13 +792,13 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -819,7 +824,7 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                       ],
                     ),
                   ),
-            SizedBox(
+            const SizedBox(
               height: 72,
             ),
             InkWell(
@@ -840,7 +845,7 @@ class _AddNewCableSmallState extends State<AddNewCableSmall> {
                 height: 37.3,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    color: Color(0xffEC1D26)),
+                    color: const Color(0xffEC1D26)),
                 child: Center(
                   child: Text("Done",
                       style: GoogleFonts.roboto(

@@ -1,21 +1,12 @@
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telin_project/api/configAPI.dart';
-import 'package:telin_project/layout.dart';
 import 'package:telin_project/pages/depo.dart';
-import 'package:telin_project/pages/home/home.dart';
-import 'package:telin_project/routing/router.dart';
-import 'package:telin_project/routing/routes.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -56,7 +47,7 @@ class _LoginFormState extends State<LoginForm> {
             },
           ));
 
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Depo()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const Depo()));
       return response;
     } catch (e) {
       QuickAlert.show(
@@ -263,11 +254,6 @@ class _LoginFormState extends State<LoginForm> {
                   loginUser();
                 }
               },
-              child: Text('Login',
-                  style: GoogleFonts.roboto(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  )),
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -275,6 +261,11 @@ class _LoginFormState extends State<LoginForm> {
                 backgroundColor: const Color(0xffEC1D26),
                 fixedSize: const Size(215, 50),
               ),
+              child: Text('Login',
+                  style: GoogleFonts.roboto(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  )),
             ),
           )
         ],

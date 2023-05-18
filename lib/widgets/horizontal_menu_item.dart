@@ -19,7 +19,7 @@ class HorizontalMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return InkWell(
         onTap: () => onTap(),
         onHover: (value) {
@@ -45,7 +45,7 @@ class HorizontalMenuItem extends StatelessWidget {
                       color: active,
                     ),
                   ),
-                  SizedBox(width: _width / 80),
+                  SizedBox(width: width / 80),
                   Padding(
                     padding: const EdgeInsets.all(16),
                     child: menuController.returnIconFor(itemName),
@@ -91,7 +91,7 @@ class HorizontalMenuItemDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return InkWell(
         onTap: () => onTap(),
         onHover: (value) {
@@ -117,7 +117,7 @@ class HorizontalMenuItemDropDown extends StatelessWidget {
                       color: active,
                     ),
                   ),
-                  SizedBox(width: _width / 80),
+                  SizedBox(width: width / 80),
                   Padding(
                     padding: const EdgeInsets.all(16),
                     child: menuController.returnIconFor(itemName),
@@ -138,8 +138,8 @@ class HorizontalMenuItemDropDown extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   activess == false
-                      ? Flexible(child: Icon(Icons.arrow_drop_down))
-                      : Flexible(child: Icon(Icons.arrow_drop_up))
+                      ? const Flexible(child: Icon(Icons.arrow_drop_down))
+                      : const Flexible(child: Icon(Icons.arrow_drop_up))
                 ],
               ),
             )));

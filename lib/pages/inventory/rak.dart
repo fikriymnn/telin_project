@@ -1,29 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/widgets/inventory/rak/rak_a1.dart';
 
-import '../../widgets/inventory/rak/rak_a2.dart';
-import '../../widgets/inventory/rak/rak_a3.dart';
-import '../../widgets/inventory/rak/rak_a4.dart';
-import '../../widgets/inventory/rak/rak_a5.dart';
-import '../../widgets/inventory/rak/rak_a6.dart';
-import '../../widgets/inventory/rak/rak_a7.dart';
-import '../../widgets/inventory/rak/rak_b1.dart';
-import '../../widgets/inventory/rak/rak_b2.dart';
-import '../../widgets/inventory/rak/rak_b3.dart';
-import '../../widgets/inventory/rak/rak_b4.dart';
-import '../../widgets/inventory/rak/rak_b5.dart';
-import '../../widgets/inventory/rak/rak_b6.dart';
-import '../../widgets/inventory/rak/rak_b7.dart';
-import '../../widgets/inventory/rak/rak_c1.dart';
-import '../../widgets/inventory/rak/rak_c2.dart';
-import '../../widgets/inventory/rak/rak_c3.dart';
-import '../../widgets/inventory/rak/rak_c4.dart';
-import '../../widgets/inventory/rak/rak_c5.dart';
-import '../../widgets/inventory/rak/rak_c6.dart';
-import '../../widgets/inventory/rak/rak_c7.dart';
 
 class RacksInventory extends StatelessWidget {
   const RacksInventory({super.key});
@@ -60,7 +38,7 @@ class RacksInventory extends StatelessWidget {
                 // physics: NeverScrollableScrollPhysics(),
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: Text(
                       'RAK',
                       style: GoogleFonts.montserrat(
@@ -70,10 +48,10 @@ class RacksInventory extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                       height: screnSize.height,
                       width: screnSize.width,
-                      child: TableRakA1()),
+                      child: const TableRakA1()),
                   // Padding(
                   //   padding: EdgeInsets.all(15.0),
                   //   child: Text(

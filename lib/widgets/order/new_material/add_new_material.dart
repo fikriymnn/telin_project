@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
@@ -28,7 +26,7 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,7 +48,7 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(
-                                  color: Color(0xffB8B8B8), width: 1)),
+                                  color: const Color(0xffB8B8B8), width: 1)),
                           child: Row(
                             children: [
                               Icon(
@@ -58,7 +56,7 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                                 color: active,
                                 size: 28.6,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Text(
@@ -76,10 +74,10 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -96,7 +94,7 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                             fontSize: 26.6,
                             color: selectButon ? active : dark)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 100,
                   ),
                   TextButton(
@@ -114,11 +112,11 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 59.3),
+              padding: const EdgeInsets.symmetric(horizontal: 59.3),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -127,29 +125,29 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return CartNewMaterial();
+                              return const CartNewMaterial();
                             });
                       },
                       icon: Icon(
                         Icons.shopping_cart,
                         color: active,
                       )),
-                  SizedBox(
+                  const SizedBox(
                     width: 40,
                   ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 70,
             ),
             selectButon
-                ? ResponsiveWidget(
+                ? const ResponsiveWidget(
                     largeScreen: AddNewCableLarge(),
                     smallScreen: AddNewCableSmall(),
                     mobileScreen: AddNewCableMobile(),
                   )
-                : ResponsiveWidget(
+                : const ResponsiveWidget(
                     largeScreen: AddNewNonCableLarge(),
                     smallScreen: AddNewNonCableSmall(),
                     mobileScreen: AddNewNonCableMobile(),

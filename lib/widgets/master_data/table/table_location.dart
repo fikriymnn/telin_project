@@ -1,16 +1,12 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/routing/routes.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_location.dart';
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 import '../../../constants/controllers.dart';
 
@@ -78,7 +74,7 @@ class _TableLocationState extends State<TableLocation> {
                         ))),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             InkWell(
@@ -191,7 +187,7 @@ class _TableLocationState extends State<TableLocation> {
         columnSpacing: 6,
         horizontalMargin: 6,
         dataRowHeight: 30,
-        border: TableBorder(top: BorderSide(), bottom: BorderSide()),
+        border: const TableBorder(top: BorderSide(), bottom: BorderSide()),
         columns: [
           DataColumn2(
             label: Text(
@@ -213,7 +209,7 @@ class _TableLocationState extends State<TableLocation> {
                   )),
             ),
           ),
-          DataColumn2(
+          const DataColumn2(
             label: Text(''),
           ),
         ],

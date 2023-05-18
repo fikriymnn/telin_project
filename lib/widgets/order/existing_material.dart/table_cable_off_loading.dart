@@ -1,7 +1,5 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/form/input_length_cable.dart';
@@ -15,20 +13,20 @@ class TableCableOffLoading extends StatefulWidget {
 
 List<DropdownMenuItem<String>> get dropdownItemsSystem {
   List<DropdownMenuItem<String>> menuItems = [
-    DropdownMenuItem(child: Text("SYSTEM"), value: "SYSTEM"),
-    DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-    DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-    DropdownMenuItem(child: Text("England"), value: "England"),
+    const DropdownMenuItem(value: "SYSTEM", child: Text("SYSTEM")),
+    const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+    const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+    const DropdownMenuItem(value: "England", child: Text("England")),
   ];
   return menuItems;
 }
 
 List<DropdownMenuItem<String>> get dropdownItemsArmoring {
   List<DropdownMenuItem<String>> menuItemsArmoring = [
-    DropdownMenuItem(child: Text("ARMORING TYPE"), value: "ARMORING TYPE"),
-    DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-    DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-    DropdownMenuItem(child: Text("England"), value: "England"),
+    const DropdownMenuItem(value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
+    const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+    const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+    const DropdownMenuItem(value: "England", child: Text("England")),
   ];
   return menuItemsArmoring;
 }
@@ -43,7 +41,7 @@ class _TableCableOffLoadingState extends State<TableCableOffLoading> {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 19.3),
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Text("CABLE",
                 style: GoogleFonts.montserrat(
@@ -53,7 +51,7 @@ class _TableCableOffLoadingState extends State<TableCableOffLoading> {
                 )),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Expanded(
@@ -283,7 +281,7 @@ class _TableCableOffLoadingState extends State<TableCableOffLoading> {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return InputLengthCable();
+                                      return const InputLengthCable();
                                     });
                               },
                               child: Text("Take",

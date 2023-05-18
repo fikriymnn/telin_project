@@ -1,13 +1,10 @@
-import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:charts_flutter_new/flutter.dart' as charts;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 
 import 'package:telin_project/api/configAPI.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
 
 class ChartData extends StatefulWidget {
   const ChartData({super.key});
@@ -175,10 +172,12 @@ class _ChartDataState extends State<ChartData> {
   List<String> list = <String>['One', 'Two', 'Three', 'Four'];
   List<DropdownMenuItem<String>> get dropdownItemsGrafik {
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(
-          child: Text("Cable By Jumlah"), value: "Cable By Jumlah"),
-      DropdownMenuItem(
-          child: Text("Cable By Length"), value: "Cable By Lenghth"),
+      const DropdownMenuItem(
+          value: "Cable By Jumlah",
+          child: Text("Cable By Jumlah")),
+      const DropdownMenuItem(
+          value: "Cable By Lenghth",
+          child: Text("Cable By Length")),
     ];
     return menuItems;
   }
@@ -200,7 +199,7 @@ class _ChartDataState extends State<ChartData> {
   var dio = Dio();
   void getDataMinisub36() async {
     try {
-      response = await dio.get('$getChart');
+      response = await dio.get(getChart);
 
       setState(() {
         minisub36Sa = response!.data;
@@ -231,226 +230,212 @@ class _ChartDataState extends State<ChartData> {
           //SA
 
           color: data['armoring_types'][0]['armoring_type'] == "SA"
-              ? Color(0xff3078F0)
+              ? const Color(0xff3078F0)
               : data['armoring_types'][0]['armoring_type'] == "DA"
-                  ? Color(0xff886C08)
+                  ? const Color(0xff886C08)
                   : data['armoring_types'][0]['armoring_type'] == "SAL"
-                      ? Color(0xffCF0C18)
+                      ? const Color(0xffCF0C18)
                       : data['armoring_types'][0]['armoring_type'] == "LWP"
-                          ? Color(0xff13D33D)
+                          ? const Color(0xff13D33D)
                           : data['armoring_types'][0]['armoring_type'] == "DAS"
-                              ? Color(0xffE94410)
+                              ? const Color(0xffE94410)
                               : data['armoring_types'][0]['armoring_type'] ==
                                       "LWS"
-                                  ? Color(0xff2E2E2E)
+                                  ? const Color(0xff2E2E2E)
                                   : data['armoring_types'][0]
                                               ['armoring_type'] ==
                                           "LWA"
-                                      ? Color(0xff9B1FC7)
+                                      ? const Color(0xff9B1FC7)
                                       : data['armoring_types'][0]
                                                   ['armoring_type'] ==
                                               "LW"
-                                          ? Color(0xffFFBDBD)
+                                          ? const Color(0xffFFBDBD)
                                           : null,
           toY: data['armoring_types'][0]['length'],
         ),
         BarChartRodData(
           //DA
           color: data['armoring_types'][1]['armoring_type'] == "SA"
-              ? Color(0xff3078F0)
+              ? const Color(0xff3078F0)
               : data['armoring_types'][1]['armoring_type'] == "DA"
-                  ? Color(0xff886C08)
+                  ? const Color(0xff886C08)
                   : data['armoring_types'][1]['armoring_type'] == "SAL"
-                      ? Color(0xffCF0C18)
+                      ? const Color(0xffCF0C18)
                       : data['armoring_types'][1]['armoring_type'] == "LWP"
-                          ? Color(0xff13D33D)
+                          ? const Color(0xff13D33D)
                           : data['armoring_types'][1]['armoring_type'] == "DAS"
-                              ? Color(0xffE94410)
+                              ? const Color(0xffE94410)
                               : data['armoring_types'][1]['armoring_type'] ==
                                       "LWS"
-                                  ? Color(0xff2E2E2E)
+                                  ? const Color(0xff2E2E2E)
                                   : data['armoring_types'][1]
                                               ['armoring_type'] ==
                                           "LWA"
-                                      ? Color(0xff9B1FC7)
+                                      ? const Color(0xff9B1FC7)
                                       : data['armoring_types'][1]
                                                   ['armoring_type'] ==
                                               "LW"
-                                          ? Color(0xffFFBDBD)
+                                          ? const Color(0xffFFBDBD)
                                           : null,
-          toY: data['armoring_types'][1]['length'] == null
-              ? 0
-              : data['armoring_types'][1]['length'],
+          toY: data['armoring_types'][1]['length'] ?? 0,
         ),
         BarChartRodData(
           //SAL
           color: data['armoring_types'][2]['armoring_type'] == "SA"
-              ? Color(0xff3078F0)
+              ? const Color(0xff3078F0)
               : data['armoring_types'][2]['armoring_type'] == "DA"
-                  ? Color(0xff886C08)
+                  ? const Color(0xff886C08)
                   : data['armoring_types'][2]['armoring_type'] == "SAL"
-                      ? Color(0xffCF0C18)
+                      ? const Color(0xffCF0C18)
                       : data['armoring_types'][2]['armoring_type'] == "LWP"
-                          ? Color(0xff13D33D)
+                          ? const Color(0xff13D33D)
                           : data['armoring_types'][2]['armoring_type'] == "DAS"
-                              ? Color(0xffE94410)
+                              ? const Color(0xffE94410)
                               : data['armoring_types'][2]['armoring_type'] ==
                                       "LWS"
-                                  ? Color(0xff2E2E2E)
+                                  ? const Color(0xff2E2E2E)
                                   : data['armoring_types'][2]
                                               ['armoring_type'] ==
                                           "LWA"
-                                      ? Color(0xff9B1FC7)
+                                      ? const Color(0xff9B1FC7)
                                       : data['armoring_types'][2]
                                                   ['armoring_type'] ==
                                               "LW"
-                                          ? Color(0xffFFBDBD)
+                                          ? const Color(0xffFFBDBD)
                                           : null,
-          toY: data['armoring_types'][2]['length'] == null
-              ? 0
-              : data['armoring_types'][2]['length'],
+          toY: data['armoring_types'][2]['length'] ?? 0,
         ),
         BarChartRodData(
           //LWP
           color: data['armoring_types'][3]['armoring_type'] == "SA"
-              ? Color(0xff3078F0)
+              ? const Color(0xff3078F0)
               : data['armoring_types'][3]['armoring_type'] == "DA"
-                  ? Color(0xff886C08)
+                  ? const Color(0xff886C08)
                   : data['armoring_types'][3]['armoring_type'] == "SAL"
-                      ? Color(0xffCF0C18)
+                      ? const Color(0xffCF0C18)
                       : data['armoring_types'][3]['armoring_type'] == "LWP"
-                          ? Color(0xff13D33D)
+                          ? const Color(0xff13D33D)
                           : data['armoring_types'][3]['armoring_type'] == "DAS"
-                              ? Color(0xffE94410)
+                              ? const Color(0xffE94410)
                               : data['armoring_types'][3]['armoring_type'] ==
                                       "LWS"
-                                  ? Color(0xff2E2E2E)
+                                  ? const Color(0xff2E2E2E)
                                   : data['armoring_types'][3]
                                               ['armoring_type'] ==
                                           "LWA"
-                                      ? Color(0xff9B1FC7)
+                                      ? const Color(0xff9B1FC7)
                                       : data['armoring_types'][3]
                                                   ['armoring_type'] ==
                                               "LW"
-                                          ? Color(0xffFFBDBD)
+                                          ? const Color(0xffFFBDBD)
                                           : null,
-          toY: data['armoring_types'][3]['length'] == null
-              ? 0
-              : data['armoring_types'][3]['length'],
+          toY: data['armoring_types'][3]['length'] ?? 0,
         ),
         BarChartRodData(
           //DAS
           color: data['armoring_types'][4]['armoring_type'] == "SA"
-              ? Color(0xff3078F0)
+              ? const Color(0xff3078F0)
               : data['armoring_types'][4]['armoring_type'] == "DA"
-                  ? Color(0xff886C08)
+                  ? const Color(0xff886C08)
                   : data['armoring_types'][4]['armoring_type'] == "SAL"
-                      ? Color(0xffCF0C18)
+                      ? const Color(0xffCF0C18)
                       : data['armoring_types'][4]['armoring_type'] == "LWP"
-                          ? Color(0xff13D33D)
+                          ? const Color(0xff13D33D)
                           : data['armoring_types'][4]['armoring_type'] == "DAS"
-                              ? Color(0xffE94410)
+                              ? const Color(0xffE94410)
                               : data['armoring_types'][4]['armoring_type'] ==
                                       "LWS"
-                                  ? Color(0xff2E2E2E)
+                                  ? const Color(0xff2E2E2E)
                                   : data['armoring_types'][4]
                                               ['armoring_type'] ==
                                           "LWA"
-                                      ? Color(0xff9B1FC7)
+                                      ? const Color(0xff9B1FC7)
                                       : data['armoring_types'][4]
                                                   ['armoring_type'] ==
                                               "LW"
-                                          ? Color(0xffFFBDBD)
+                                          ? const Color(0xffFFBDBD)
                                           : null,
-          toY: data['armoring_types'][4]['length'] == null
-              ? 0
-              : data['armoring_types'][4]['length'],
+          toY: data['armoring_types'][4]['length'] ?? 0,
         ),
         BarChartRodData(
           //LWS
 
           color: data['armoring_types'][5]['armoring_type'] == "SA"
-              ? Color(0xff3078F0)
+              ? const Color(0xff3078F0)
               : data['armoring_types'][5]['armoring_type'] == "DA"
-                  ? Color(0xff886C08)
+                  ? const Color(0xff886C08)
                   : data['armoring_types'][5]['armoring_type'] == "SAL"
-                      ? Color(0xffCF0C18)
+                      ? const Color(0xffCF0C18)
                       : data['armoring_types'][5]['armoring_type'] == "LWP"
-                          ? Color(0xff13D33D)
+                          ? const Color(0xff13D33D)
                           : data['armoring_types'][5]['armoring_type'] == "DAS"
-                              ? Color(0xffE94410)
+                              ? const Color(0xffE94410)
                               : data['armoring_types'][5]['armoring_type'] ==
                                       "LWS"
-                                  ? Color(0xff2E2E2E)
+                                  ? const Color(0xff2E2E2E)
                                   : data['armoring_types'][5]
                                               ['armoring_type'] ==
                                           "LWA"
-                                      ? Color(0xff9B1FC7)
+                                      ? const Color(0xff9B1FC7)
                                       : data['armoring_types'][5]
                                                   ['armoring_type'] ==
                                               "LW"
-                                          ? Color(0xffFFBDBD)
+                                          ? const Color(0xffFFBDBD)
                                           : null,
-          toY: data['armoring_types'][5]['length'] == null
-              ? 0
-              : data['armoring_types'][5]['length'],
+          toY: data['armoring_types'][5]['length'] ?? 0,
         ),
         BarChartRodData(
           //LWA
 
           color: data['armoring_types'][6]['armoring_type'] == "SA"
-              ? Color(0xff3078F0)
+              ? const Color(0xff3078F0)
               : data['armoring_types'][6]['armoring_type'] == "DA"
-                  ? Color(0xff886C08)
+                  ? const Color(0xff886C08)
                   : data['armoring_types'][6]['armoring_type'] == "SAL"
-                      ? Color(0xffCF0C18)
+                      ? const Color(0xffCF0C18)
                       : data['armoring_types'][6]['armoring_type'] == "LWP"
-                          ? Color(0xff13D33D)
+                          ? const Color(0xff13D33D)
                           : data['armoring_types'][6]['armoring_type'] == "DAS"
-                              ? Color(0xffE94410)
+                              ? const Color(0xffE94410)
                               : data['armoring_types'][6]['armoring_type'] ==
                                       "LWS"
-                                  ? Color(0xff2E2E2E)
+                                  ? const Color(0xff2E2E2E)
                                   : data['armoring_types'][6]
                                               ['armoring_type'] ==
                                           "LWA"
-                                      ? Color(0xff9B1FC7)
+                                      ? const Color(0xff9B1FC7)
                                       : data['armoring_types'][6]
                                                   ['armoring_type'] ==
                                               "LW"
-                                          ? Color(0xffFFBDBD)
+                                          ? const Color(0xffFFBDBD)
                                           : null,
-          toY: data['armoring_types'][6]['length'] == null
-              ? 0
-              : data['armoring_types'][6]['length'],
+          toY: data['armoring_types'][6]['length'] ?? 0,
         ),
         BarChartRodData(
           //LW
           color: data['armoring_types'][7]['armoring_type'] == "SA"
-              ? Color(0xff3078F0)
+              ? const Color(0xff3078F0)
               : data['armoring_types'][7]['armoring_type'] == "DA"
-                  ? Color(0xff886C08)
+                  ? const Color(0xff886C08)
                   : data['armoring_types'][7]['armoring_type'] == "SAL"
-                      ? Color(0xffCF0C18)
+                      ? const Color(0xffCF0C18)
                       : data['armoring_types'][7]['armoring_type'] == "LWP"
-                          ? Color(0xff13D33D)
+                          ? const Color(0xff13D33D)
                           : data['armoring_types'][7]['armoring_type'] == "DAS"
-                              ? Color(0xffE94410)
+                              ? const Color(0xffE94410)
                               : data['armoring_types'][7]['armoring_type'] ==
                                       "LWS"
-                                  ? Color(0xff2E2E2E)
+                                  ? const Color(0xff2E2E2E)
                                   : data['armoring_types'][7]
                                               ['armoring_type'] ==
                                           "LWA"
-                                      ? Color(0xff9B1FC7)
+                                      ? const Color(0xff9B1FC7)
                                       : data['armoring_types'][7]
                                                   ['armoring_type'] ==
                                               "LW"
-                                          ? Color(0xffFFBDBD)
+                                          ? const Color(0xffFFBDBD)
                                           : null,
-          toY: data['armoring_types'][7]['length'] == null
-              ? 0
-              : data['armoring_types'][7]['length'],
+          toY: data['armoring_types'][7]['length'] ?? 0,
         ),
       ],
     );
@@ -459,13 +444,13 @@ class _ChartDataState extends State<ChartData> {
   @override
   Widget build(BuildContext context) {
     int item = 0;
-    return Container(
+    return SizedBox(
       height: 327.6,
       child: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -473,13 +458,13 @@ class _ChartDataState extends State<ChartData> {
                   Container(
                     child: Row(
                       children: [
-                        SizedBox(width: 90),
+                        const SizedBox(width: 90),
                         Container(
                           width: 25.3,
                           height: 12.5,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: Color(0xff3078F0)),
+                              color: const Color(0xff3078F0)),
                           child: Center(
                             child: Text("SA",
                                 style: GoogleFonts.montserrat(
@@ -489,7 +474,7 @@ class _ChartDataState extends State<ChartData> {
                                 )),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 13.3,
                         ),
                         Container(
@@ -497,7 +482,7 @@ class _ChartDataState extends State<ChartData> {
                           height: 12.5,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: Color(0xff886C08)),
+                              color: const Color(0xff886C08)),
                           child: Center(
                             child: Text("DA",
                                 style: GoogleFonts.montserrat(
@@ -507,7 +492,7 @@ class _ChartDataState extends State<ChartData> {
                                 )),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 13.3,
                         ),
                         Container(
@@ -515,7 +500,7 @@ class _ChartDataState extends State<ChartData> {
                           height: 12.5,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: Color(0xffCF0C18)),
+                              color: const Color(0xffCF0C18)),
                           child: Center(
                             child: Text("SAL",
                                 style: GoogleFonts.montserrat(
@@ -525,7 +510,7 @@ class _ChartDataState extends State<ChartData> {
                                 )),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 13.3,
                         ),
                         Container(
@@ -533,7 +518,7 @@ class _ChartDataState extends State<ChartData> {
                           height: 12.5,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: Color(0xff13D33D)),
+                              color: const Color(0xff13D33D)),
                           child: Center(
                             child: Text("LWP",
                                 style: GoogleFonts.montserrat(
@@ -543,7 +528,7 @@ class _ChartDataState extends State<ChartData> {
                                 )),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 13.3,
                         ),
                         Container(
@@ -551,7 +536,7 @@ class _ChartDataState extends State<ChartData> {
                           height: 12.5,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: Color(0xffE94410)),
+                              color: const Color(0xffE94410)),
                           child: Center(
                             child: Text("DAS",
                                 style: GoogleFonts.montserrat(
@@ -561,7 +546,7 @@ class _ChartDataState extends State<ChartData> {
                                 )),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 13.3,
                         ),
                         Container(
@@ -569,7 +554,7 @@ class _ChartDataState extends State<ChartData> {
                           height: 12.5,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: Color(0xff2E2E2E)),
+                              color: const Color(0xff2E2E2E)),
                           child: Center(
                             child: Text("LWS",
                                 style: GoogleFonts.montserrat(
@@ -579,7 +564,7 @@ class _ChartDataState extends State<ChartData> {
                                 )),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 13.3,
                         ),
                         Container(
@@ -587,7 +572,7 @@ class _ChartDataState extends State<ChartData> {
                           height: 12.5,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: Color(0xff9B1FC7)),
+                              color: const Color(0xff9B1FC7)),
                           child: Center(
                             child: Text("LWA",
                                 style: GoogleFonts.montserrat(
@@ -597,7 +582,7 @@ class _ChartDataState extends State<ChartData> {
                                 )),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 13.3,
                         ),
                         Container(
@@ -605,7 +590,7 @@ class _ChartDataState extends State<ChartData> {
                           height: 12.5,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: Color(0xffFFBDBD)),
+                              color: const Color(0xffFFBDBD)),
                           child: Center(
                             child: Text("LW",
                                 style: GoogleFonts.montserrat(
@@ -622,15 +607,15 @@ class _ChartDataState extends State<ChartData> {
                     width: 102.6,
                     height: 28,
                     decoration: BoxDecoration(
-                        color: Color(0xffF0F0F0),
-                        border: Border.all(color: Color(0xffDADADA)),
+                        color: const Color(0xffF0F0F0),
+                        border: Border.all(color: const Color(0xffDADADA)),
                         borderRadius: BorderRadius.circular(4),
                         boxShadow: [
                           BoxShadow(
-                            color: Color(0xff000000).withOpacity(0.25),
+                            color: const Color(0xff000000).withOpacity(0.25),
                             spreadRadius: 0,
                             blurRadius: 4,
-                            offset: Offset(0, 1),
+                            offset: const Offset(0, 1),
                           )
                         ]),
                     child: Center(
@@ -646,7 +631,7 @@ class _ChartDataState extends State<ChartData> {
                                 selectedValueGrafik = newValue!;
                               });
                             },
-                            dropdownColor: Color(0xffF0F0F0),
+                            dropdownColor: const Color(0xffF0F0F0),
                             value: selectedValueGrafik,
                             items: dropdownItemsGrafik),
                       ),
@@ -656,7 +641,7 @@ class _ChartDataState extends State<ChartData> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Expanded(
@@ -735,7 +720,7 @@ class _ChartDataState extends State<ChartData> {
       ''
     ];
 
-    final Widget text = Container(
+    final Widget text = SizedBox(
       width: 50,
       child: Column(
         children: [

@@ -1,13 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/constants/style.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
-import 'package:telin_project/widgets/order/loading/bast/table_bast_print.dart';
-import 'package:telin_project/widgets/order/new_material/table/table_new_cable.dart';
 
 class printBastLoading {
   Future<void> BastLoadingPrinttt() async {
@@ -19,7 +12,7 @@ class printBastLoading {
 
     doc.addPage(pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
-        margin: pw.EdgeInsets.all(47.5),
+        margin: const pw.EdgeInsets.all(47.5),
         build: (pw.Context context) {
           return [
             pw.Column(children: [
@@ -60,7 +53,7 @@ class printBastLoading {
                           ),
                           pw.Text(
                             "Berita Acata Serah Terima Barang (Masuk)",
-                            style: pw.TextStyle(
+                            style: const pw.TextStyle(
                               fontSize: 10,
                             ),
                           ),
@@ -80,7 +73,7 @@ class printBastLoading {
                           ),
                           pw.Text(
                             "Pada hari ini KAMIS, 08 DESEMBER 2022 telah diserah terimakan barang atau material:",
-                            style: pw.TextStyle(
+                            style: const pw.TextStyle(
                               fontSize: 10,
                             ),
                           ),
@@ -225,7 +218,7 @@ class printBastLoading {
                     width: 100,
                     height: 20,
                     decoration:
-                        pw.BoxDecoration(color: PdfColor.fromInt(0xffFFB800)),
+                        const pw.BoxDecoration(color: PdfColor.fromInt(0xffFFB800)),
                     child: pw.Center(
                       child: pw.Text("CABLE",
                           style: pw.TextStyle(
@@ -245,7 +238,7 @@ class printBastLoading {
                     width: 100,
                     height: 20,
                     decoration:
-                        pw.BoxDecoration(color: PdfColor.fromInt(0xffFFB800)),
+                        const pw.BoxDecoration(color: PdfColor.fromInt(0xffFFB800)),
                     child: pw.Center(
                       child: pw.Text("NON CABLE",
                           style: pw.TextStyle(
@@ -612,7 +605,7 @@ class printBastLoading {
             height: 20,
             width: 60,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(), color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
                 child: pw.Text("TOTAL",
                     style: pw.TextStyle(
@@ -625,7 +618,7 @@ class printBastLoading {
             height: 20,
             width: 60,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(), color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
                 child: pw.Text("21.783",
                     style: pw.TextStyle(
@@ -753,7 +746,7 @@ NUMBER""",
                       itemCount: 1,
                       itemBuilder: (context, index) {
                         return pw.Padding(
-                          padding: pw.EdgeInsets.symmetric(vertical: 5),
+                          padding: const pw.EdgeInsets.symmetric(vertical: 5),
                           child: pw.Container(
                               width: 20,
                               child: pw.Center(
@@ -771,7 +764,7 @@ NUMBER""",
                       itemCount: 1,
                       itemBuilder: (context, index) {
                         return pw.Padding(
-                          padding: pw.EdgeInsets.symmetric(vertical: 5),
+                          padding: const pw.EdgeInsets.symmetric(vertical: 5),
                           child: pw.Container(
                               width: 150,
                               child: pw.Center(
@@ -790,7 +783,7 @@ NUMBER""",
                       itemCount: 1,
                       itemBuilder: (context, index) {
                         return pw.Padding(
-                          padding: pw.EdgeInsets.symmetric(vertical: 5),
+                          padding: const pw.EdgeInsets.symmetric(vertical: 5),
                           child: pw.Container(
                               width: 60,
                               child: pw.Center(
@@ -809,7 +802,7 @@ NUMBER""",
                           itemCount: 3,
                           itemBuilder: (context, index) {
                             return pw.Padding(
-                                padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                padding: const pw.EdgeInsets.symmetric(vertical: 5),
                                 child: pw.Container(
                                     width: 60,
                                     child: pw.Center(
@@ -827,7 +820,7 @@ NUMBER""",
                           itemCount: 3,
                           itemBuilder: (context, index) {
                             return pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(vertical: 5),
+                              padding: const pw.EdgeInsets.symmetric(vertical: 5),
                               child: pw.Container(
                                   width: 30,
                                   child: pw.Center(
@@ -846,7 +839,7 @@ NUMBER""",
                           itemCount: 3,
                           itemBuilder: (context, index) {
                             return pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(vertical: 5),
+                              padding: const pw.EdgeInsets.symmetric(vertical: 5),
                               child: pw.Container(
                                   width: 40,
                                   child: pw.Center(
@@ -865,7 +858,7 @@ NUMBER""",
                           itemCount: 3,
                           itemBuilder: (context, index) {
                             return pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(vertical: 5),
+                              padding: const pw.EdgeInsets.symmetric(vertical: 5),
                               child: pw.Container(
                                   width: 60,
                                   child: pw.Center(
@@ -884,7 +877,7 @@ NUMBER""",
                           itemCount: 3,
                           itemBuilder: (context, index) {
                             return pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(vertical: 5),
+                              padding: const pw.EdgeInsets.symmetric(vertical: 5),
                               child: pw.Container(
                                   width: 80,
                                   child: pw.Center(
@@ -994,7 +987,7 @@ NUMBER""",
             height: 20,
             width: 120,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(), color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
                 child: pw.Text("GRANDE TOTAL",
                     style: pw.TextStyle(
@@ -1007,7 +1000,7 @@ NUMBER""",
             height: 20,
             width: 30,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(), color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
                 child: pw.Text("44",
                     style: pw.TextStyle(
@@ -1020,7 +1013,7 @@ NUMBER""",
             height: 20,
             width: 40,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(), color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
                 child: pw.Text("",
                     style: pw.TextStyle(
@@ -1033,7 +1026,7 @@ NUMBER""",
             height: 20,
             width: 60,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(), color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
                 child: pw.Text("1.451.89",
                     style: pw.TextStyle(

@@ -1,15 +1,10 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
-import 'package:telin_project/widgets/master_data/edit_data/edit_armoring_type.dart';
 import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
 
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 class TableNewNonCable extends StatefulWidget {
   const TableNewNonCable({super.key});
@@ -34,7 +29,7 @@ class _TableNewNonCableState extends State<TableNewNonCable> {
         columnSpacing: 6,
         horizontalMargin: 6,
         dataRowHeight: 30,
-        border: TableBorder(top: BorderSide(), bottom: BorderSide()),
+        border: const TableBorder(top: BorderSide(), bottom: BorderSide()),
         showBottomBorder: false,
         columns: [
           DataColumn2(
@@ -181,7 +176,7 @@ class _TableNewNonCableState extends State<TableNewNonCable> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => BastNewMaterial()));
+                            builder: (context) => const BastNewMaterial()));
                   },
                   child: Text("detail..",
                       style: GoogleFonts.montserrat(

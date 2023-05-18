@@ -1,19 +1,11 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
-import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
-import 'package:telin_project/widgets/master_data/edit_data/edit_armoring_type.dart';
-import 'package:telin_project/widgets/order/loading/form/input_length_cable.dart';
 
-import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
 
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 class TableTank8 extends StatefulWidget {
   const TableTank8({super.key});
@@ -50,84 +42,84 @@ class _TableTank8State extends State<TableTank8> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${''}",
+      DataCell(Text('',
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['system'] == null ? "-" : data['system']}",
+      DataCell(Text("${data['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
       DataCell(
-          Text("${data['armoring_type'] == null ? "-" : data['armoring_type']}",
+          Text("${data['armoring_type'] ?? "-"}",
               style: GoogleFonts.montserrat(
                 fontSize: 10,
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
               ))),
-      DataCell(Text("${data['cable_type'] == null ? "-" : data['cable_type']}",
+      DataCell(Text("${data['cable_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
       DataCell(
-          Text("${data['manufacturer'] == null ? "-" : data['manufacturer']}",
+          Text("${data['manufacturer'] ?? "-"}",
               style: GoogleFonts.montserrat(
                 fontSize: 10,
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
               ))),
       DataCell(
-          Text("${data['length_report'] == null ? "-" : data['length_report']}",
+          Text("${data['length_report'] ?? "-"}",
               style: GoogleFonts.montserrat(
                 fontSize: 10,
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
               ))),
-      DataCell(Text("${data['core_type'] == null ? "-" : data['core_type']}",
+      DataCell(Text("${data['core_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['core'] == null ? "-" : data['core']}",
+      DataCell(Text("${data['core'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['tank'] == null ? "-" : data['tank']}",
+      DataCell(Text("${data['tank'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
       DataCell(
-          Text("${data['tank_location'] == null ? "-" : data['tank_location']}",
+          Text("${data['tank_location'] ?? "-"}",
               style: GoogleFonts.montserrat(
                 fontSize: 10,
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
               ))),
-      DataCell(Text("${data['tank_level'] == null ? "-" : data['tank_level']}",
+      DataCell(Text("${data['tank_level'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['remark'] == null ? "-" : data['remark']}",
+      DataCell(Text("${data['remark'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
       DataCell(
-          Text("${data['description'] == null ? "-" : data['description']}",
+          Text("${data['description'] ?? "-"}",
               style: GoogleFonts.montserrat(
                 fontSize: 10,
                 fontWeight: FontWeight.w400,
@@ -218,20 +210,20 @@ class _TableTank8State extends State<TableTank8> {
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text("SYSTEM"), value: "SYSTEM"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "SYSTEM", child: Text("SYSTEM")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItems;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsArmoring {
     List<DropdownMenuItem<String>> menuItemsArmoring = [
-      DropdownMenuItem(child: Text("ARMORING TYPE"), value: "ARMORING TYPE"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsArmoring;
   }
@@ -296,11 +288,11 @@ class _TableTank8State extends State<TableTank8> {
                       value: selectionSystem,
                       items: system.map((system) {
                         return DropdownMenuItem(
+                          value: system['_id'].toString(),
                           child: Text(
                             system['system'],
                             overflow: TextOverflow.ellipsis,
                           ),
-                          value: system['_id'].toString(),
                         );
                       }).toList()),
                 ),
@@ -329,8 +321,8 @@ class _TableTank8State extends State<TableTank8> {
                     value: selectionArmoringType,
                     items: armoringType.map((armoringType) {
                       return DropdownMenuItem(
-                        child: Text(armoringType['armoring_type']),
                         value: armoringType['_id'].toString(),
+                        child: Text(armoringType['armoring_type']),
                       );
                     }).toList(),
                   ),
