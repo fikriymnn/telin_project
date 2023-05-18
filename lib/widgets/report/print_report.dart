@@ -1,6 +1,5 @@
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'dart:convert';
-import 'dart:html';
 
 class printReport {
   Future<void> ReportPrinttt() async {
@@ -27,11 +26,11 @@ class printReport {
     final List<int> bytes = workbook.saveAsStream();
 
 //Dispose the workbook.
-    workbook.dispose();
-    AnchorElement(
-        href:
-            "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
-      ..setAttribute("download", "output1.xlsx")
-      ..click();
+    // workbook.dispose();
+    // AnchorElement(
+    //     href:
+    //         "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
+    //   ..setAttribute("download", "output1.xlsx")
+    //   ..click();
   }
 }
