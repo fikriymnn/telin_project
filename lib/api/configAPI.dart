@@ -1,11 +1,14 @@
-String baseUrl = 'http://192.168.100.31:1000';
+String baseUrl = 'http://192.168.153.11:1000';
 
 //loading
 String newloading = '$baseUrl/api/loading/';
 String addCableToLoading = '$baseUrl/api/loading/cable';
+String addSparekitToLoading = '$baseUrl/api/loading/kit';
 
 //allCable
 String getAllCable = '$baseUrl/api/spareCable/';
+String getAllKit = '$baseUrl/api/spareKit/';
+String getLoadingById = '$baseUrl/api/loading';
 
 //Setting
 String getUser = '$baseUrl/api/setting';

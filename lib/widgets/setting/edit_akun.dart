@@ -32,7 +32,7 @@ class _EditAkunState extends State<EditAkun> {
   late final TextEditingController _txtName;
   late final TextEditingController _txtUserName;
   late final TextEditingController _txtEmail;
-  late final TextEditingController _txtPassword;
+  final TextEditingController _txtPassword = TextEditingController();
 
   @override
   void initState() {
@@ -121,8 +121,8 @@ class _EditAkunState extends State<EditAkun> {
                         height: 37.3,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            border:
-                                Border.all(color: const Color(0xffB8B8B8), width: 1)),
+                            border: Border.all(
+                                color: const Color(0xffB8B8B8), width: 1)),
                         child: Row(
                           children: [
                             const Icon(
@@ -179,7 +179,8 @@ class _EditAkunState extends State<EditAkun> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                      border:
+                          Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -240,7 +241,8 @@ class _EditAkunState extends State<EditAkun> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                      border:
+                          Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -301,7 +303,8 @@ class _EditAkunState extends State<EditAkun> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                      border:
+                          Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -362,7 +365,8 @@ class _EditAkunState extends State<EditAkun> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                      border:
+                          Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -391,7 +395,7 @@ class _EditAkunState extends State<EditAkun> {
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black.withOpacity(0.6),
                                   ),
-                                  hintText: "gudangtelkom1"),
+                                  hintText: "password"),
                             ),
                           ),
                           IconButton(
@@ -733,6 +737,5 @@ class _EditAkunState extends State<EditAkun> {
         ],
       ),
     );
-
   }
 }

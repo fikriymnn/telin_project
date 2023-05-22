@@ -52,7 +52,9 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return const CartLoading();
+                                      return CartLoading(
+                                        idLoading: "",
+                                      );
                                     });
                               },
                               icon: Icon(
@@ -98,7 +100,8 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const BastOffLoading()));
+                                      builder: (context) =>
+                                          const BastOffLoading()));
                             },
                             child: Container(
                               width: 90,

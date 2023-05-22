@@ -1,10 +1,23 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 
-class InputQtyNonCable extends StatelessWidget {
-  const InputQtyNonCable({super.key});
+class InputQtyNonCable extends StatefulWidget {
+  const InputQtyNonCable(
+      {super.key, required this.idLoading, required this.idKit});
+  final String idLoading, idKit;
 
+  @override
+  State<InputQtyNonCable> createState() => _InputQtyNonCableState();
+}
+
+class _InputQtyNonCableState extends State<InputQtyNonCable> {
+  Response? response;
+
+  var dio = Dio();
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -301,6 +314,7 @@ class InputQtyNonCable extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
+                      addKitLoading(widget.idKit, widget.idLoading);
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -326,5 +340,33 @@ class InputQtyNonCable extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void addKitLoading(sparekitId, loadingId) async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.post('$addSparekitToLoading/$loadingId',
+          data: {'kits_id': sparekitId});
+
+      msg = response!.data['message'];
+
+      FocusScope.of(context).unfocus();
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: '$msg',
+          width: 400,
+          confirmBtnColor: Colors.green);
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 }

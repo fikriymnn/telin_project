@@ -324,7 +324,9 @@ class _EditLoadingState extends State<EditLoading> {
                                         ),
                                       ],
                                     ),
-                                    body: const TableNonCableLoading(),
+                                    body: const TableNonCableLoading(
+                                      loadingId: "",
+                                    ),
                                   );
                                 });
                           },

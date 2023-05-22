@@ -88,7 +88,9 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return const CartLoading();
+                                    return CartLoading(
+                                      idLoading: widget.id,
+                                    );
                                   });
                             },
                             icon: Icon(
@@ -164,11 +166,14 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
                       )),
                     ],
                   ))
-              : const SizedBox(
+              : SizedBox(
                   height: 400,
                   child: Column(
                     children: [
-                      Expanded(child: TableNonCableLoading()),
+                      Expanded(
+                          child: TableNonCableLoading(
+                        loadingId: widget.id,
+                      )),
                     ],
                   ))
         ],

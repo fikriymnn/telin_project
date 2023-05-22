@@ -1,18 +1,46 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/table/table_cable_cart.dart';
 import 'package:telin_project/widgets/order/loading/table/table_non_cable_cart.dart';
 import 'package:telin_project/widgets/order/loading/table/table_turn_over.dart';
 
 class CartLoading extends StatefulWidget {
-  const CartLoading({super.key});
+  const CartLoading({super.key, required this.idLoading});
+
+  final String idLoading;
 
   @override
   State<CartLoading> createState() => _CartLoadingState();
 }
 
 class _CartLoadingState extends State<CartLoading> {
+  List LoadingById = [];
+  Response? response;
+
+  var dio = Dio();
+
+  void getDataTank1() async {
+    try {
+      response = await dio.get('$getLoadingById/${widget.idLoading}');
+
+      setState(() {
+        LoadingById = response!.data;
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +119,7 @@ class _CartLoadingState extends State<CartLoading> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
+                        Text("${LoadingById[0]['project_name']}",
                             style: GoogleFonts.montserrat(
                               fontSize: 13.3,
                               fontWeight: FontWeight.w900,
@@ -108,7 +136,7 @@ class _CartLoadingState extends State<CartLoading> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("LCT NAPOLEON",
+                        Text("${LoadingById[0]['perusahaan']}",
                             style: GoogleFonts.montserrat(
                               fontSize: 13.3,
                               fontWeight: FontWeight.w900,
@@ -117,7 +145,8 @@ class _CartLoadingState extends State<CartLoading> {
                         const SizedBox(
                           width: 284,
                         ),
-                        Text("BANDUNG - JAKARTA",
+                        Text(
+                            "${LoadingById[0]['from']} - ${LoadingById[0]['to']}",
                             style: GoogleFonts.montserrat(
                               fontSize: 13.3,
                               fontWeight: FontWeight.w900,
