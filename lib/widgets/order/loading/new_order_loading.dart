@@ -72,21 +72,13 @@ class _NewOrderLoadingState extends State<NewOrderLoading> {
   contentLoading() {
     switch (activeStep) {
       case 1:
-        return const CableDanKitLoading();
+        return const CableDanKitLoading(id: "xckik");
 
       case 2:
         return const BastLoading();
 
       default:
-        return FormLoading(
-          next: () {
-            if (activeStep < upperBound) {
-              setState(() {
-                activeStep++;
-              });
-            }
-          },
-        );
+        return FormLoading();
     }
   }
 

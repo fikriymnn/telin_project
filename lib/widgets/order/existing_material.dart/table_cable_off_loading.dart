@@ -23,7 +23,8 @@ List<DropdownMenuItem<String>> get dropdownItemsSystem {
 
 List<DropdownMenuItem<String>> get dropdownItemsArmoring {
   List<DropdownMenuItem<String>> menuItemsArmoring = [
-    const DropdownMenuItem(value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
+    const DropdownMenuItem(
+        value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
     const DropdownMenuItem(value: "Canada", child: Text("Canada")),
     const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
     const DropdownMenuItem(value: "England", child: Text("England")),
@@ -281,7 +282,10 @@ class _TableCableOffLoadingState extends State<TableCableOffLoading> {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return const InputLengthCable();
+                                      return const InputLengthCable(
+                                        idLoading: "",
+                                        idCable: "",
+                                      );
                                     });
                               },
                               child: Text("Take",

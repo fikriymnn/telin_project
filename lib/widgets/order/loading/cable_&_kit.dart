@@ -7,7 +7,8 @@ import 'package:telin_project/widgets/order/loading/table/table_cable_loading.da
 import 'package:telin_project/widgets/order/loading/table/table_non_cable_loading.dart';
 
 class CableDanKitLoading extends StatefulWidget {
-  const CableDanKitLoading({super.key});
+  const CableDanKitLoading({super.key, required this.id});
+  final String id;
 
   @override
   State<CableDanKitLoading> createState() => _CableDanKitLoadingState();
@@ -153,11 +154,14 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
             ),
           ),
           selectButon
-              ? const SizedBox(
+              ? SizedBox(
                   height: 400,
                   child: Column(
                     children: [
-                      Expanded(child: TableCableLoading()),
+                      Expanded(
+                          child: TableCableLoading(
+                        loadingId: widget.id,
+                      )),
                     ],
                   ))
               : const SizedBox(

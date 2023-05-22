@@ -197,8 +197,8 @@ class _EditLoadingState extends State<EditLoading> {
                                                         BorderRadius.circular(
                                                             10),
                                                     border: Border.all(
-                                                        color:
-                                                            const Color(0xffB8B8B8),
+                                                        color: const Color(
+                                                            0xffB8B8B8),
                                                         width: 1)),
                                                 child: Row(
                                                   children: [
@@ -226,7 +226,9 @@ class _EditLoadingState extends State<EditLoading> {
                                         ),
                                       ],
                                     ),
-                                    body: const TableCableLoading(),
+                                    body: TableCableLoading(
+                                      loadingId: "",
+                                    ),
                                   );
                                 });
                           },
@@ -293,8 +295,8 @@ class _EditLoadingState extends State<EditLoading> {
                                                         BorderRadius.circular(
                                                             10),
                                                     border: Border.all(
-                                                        color:
-                                                            const Color(0xffB8B8B8),
+                                                        color: const Color(
+                                                            0xffB8B8B8),
                                                         width: 1)),
                                                 child: Row(
                                                   children: [

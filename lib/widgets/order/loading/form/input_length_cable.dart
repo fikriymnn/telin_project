@@ -1,9 +1,23 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 
-class InputLengthCable extends StatelessWidget {
-  const InputLengthCable({super.key});
+class InputLengthCable extends StatefulWidget {
+  const InputLengthCable(
+      {super.key, required this.idLoading, required this.idCable});
+  final String idLoading, idCable;
+
+  @override
+  State<InputLengthCable> createState() => _InputLengthCableState();
+}
+
+class _InputLengthCableState extends State<InputLengthCable> {
+  Response? response;
+
+  var dio = Dio();
 
   @override
   Widget build(BuildContext context) {
@@ -351,6 +365,7 @@ class InputLengthCable extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
+                      addCableLoading(widget.idCable, widget.idLoading);
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -376,5 +391,33 @@ class InputLengthCable extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void addCableLoading(cableId, loadingId) async {
+    bool status;
+    var msg;
+    try {
+      response = await dio
+          .post('$addCableToLoading/$loadingId', data: {'cables_id': cableId});
+
+      msg = response!.data['message'];
+
+      FocusScope.of(context).unfocus();
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: '$msg',
+          width: 400,
+          confirmBtnColor: Colors.green);
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 }

@@ -4,9 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 
+import '../cable_&_kit.dart';
+
 class FormLoading extends StatefulWidget {
-  final Function next;
-  const FormLoading({super.key, required this.next});
+  const FormLoading({
+    super.key,
+  });
 
   @override
   State<FormLoading> createState() => _FormLoadingState();
@@ -81,7 +84,8 @@ class _FormLoadingState extends State<FormLoading> {
                 height: 44,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                    border:
+                        Border.all(width: 5, color: const Color(0xffF0F0F0)),
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
@@ -634,8 +638,6 @@ class _FormLoadingState extends State<FormLoading> {
                       diterima.text,
                       selectedValueDiketahui,
                       selectedValuePerusahaan);
-
-                  widget.next;
                 },
                 child: Container(
                   width: 90,
@@ -666,7 +668,8 @@ class _FormLoadingState extends State<FormLoading> {
   void inputDataProject(projectName, vesselName, remark, from, to, diserahkan,
       diterima, diketahui, perusahaan) async {
     bool status;
-    var msg;
+    String id;
+
     try {
       // var formData = FormData.fromMap({
       //   'Unit': namaUnit,
@@ -684,14 +687,25 @@ class _FormLoadingState extends State<FormLoading> {
         "perusahaan": perusahaan
       });
 
-      FocusScope.of(context).unfocus();
-      _clearForm();
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.success,
-          text: 'Add New Loading succesfully',
-          width: 400,
-          confirmBtnColor: Colors.green);
+      status = response!.data['success'];
+      id = response!.data['id'];
+
+      if (status) {
+        FocusScope.of(context).unfocus();
+        _clearForm();
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CableDanKitLoading(id: id)));
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: 'failed',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
     } catch (e) {
       QuickAlert.show(
           context: context,

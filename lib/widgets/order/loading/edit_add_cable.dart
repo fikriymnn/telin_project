@@ -25,7 +25,8 @@ class EditAddCable extends StatelessWidget {
                   height: 37.3,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: const Color(0xffB8B8B8), width: 1)),
+                      border:
+                          Border.all(color: const Color(0xffB8B8B8), width: 1)),
                   child: Row(
                     children: [
                       Icon(
@@ -50,7 +51,9 @@ class EditAddCable extends StatelessWidget {
           ),
         ],
       ),
-      body: const TableCableLoading(),
+      body: TableCableLoading(
+        loadingId: "",
+      ),
     );
   }
 }
