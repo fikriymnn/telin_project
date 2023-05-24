@@ -3,12 +3,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/bats_loading.dart';
 import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
 import 'package:telin_project/widgets/order/loading/edit_loading.dart';
 
 import '../../../../api/configAPI.dart';
+import '../../../../routing/routes.dart';
 
 class TableLoading extends StatefulWidget {
   const TableLoading({super.key});
@@ -134,7 +136,19 @@ class _TableLoadingState extends State<TableLoading> {
           ),
           InkWell(
             onTap: () {
-              hapusDataLoading(data['_id']);
+              QuickAlert.show(
+                  context: context,
+                  type: QuickAlertType.confirm,
+                  text: 'Do you sure to delete this item',
+                  confirmBtnText: 'Yes',
+                  cancelBtnText: 'No',
+                  customAsset: 'assets/gift/error.gif',
+                  width: 400,
+                  confirmBtnColor: Colors.green,
+                  onConfirmBtnTap: () {
+                    hapusDataLoading(data['_id']);
+                    navigationController.navigateTo(LoadingPageRoute);
+                  });
             },
             child: Container(
               width: 50,

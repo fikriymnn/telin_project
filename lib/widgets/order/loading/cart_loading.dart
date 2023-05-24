@@ -35,7 +35,7 @@ class _CartLoadingState extends State<CartLoading> {
   void getDataLoading() async {
     var msg;
     try {
-      response = await dio.get('$getLoadingById/646da8ddeac11d2a780e33f5');
+      response = await dio.get('$getLoadingById/$id');
       msg = response!.data['message'];
       setState(() {
         LoadingById = response!.data['loading'];
@@ -132,7 +132,7 @@ class _CartLoadingState extends State<CartLoading> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("${LoadingById[index]['project_name']}",
+                          Text("${LoadingById[index]['project_name'] ?? "-"}",
                               style: GoogleFonts.montserrat(
                                 fontSize: 13.3,
                                 fontWeight: FontWeight.w900,
@@ -146,6 +146,8 @@ class _CartLoadingState extends State<CartLoading> {
                     height: 22,
                   ),
                   ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: LoadingById.length,
                     itemBuilder: (contect, index) => SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Row(
@@ -171,32 +173,41 @@ class _CartLoadingState extends State<CartLoading> {
                       ),
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                       height: 400,
                       child: Column(
                         children: [
-                          Flexible(child: TableCableCart()),
+                          Flexible(
+                              child: TableCableCart(
+                            idLoading: widget.idLoading,
+                          )),
                         ],
                       )),
                   const SizedBox(
                     height: 15,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 250,
                     child: Column(
                       children: [
-                        Expanded(child: TableNonCableCart()),
+                        Expanded(
+                            child: TableNonCableCart(
+                          idLoading: widget.idLoading,
+                        )),
                       ],
                     ),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 250,
                     child: Column(
                       children: [
-                        Expanded(child: TableCableTurnOver()),
+                        Expanded(
+                            child: TableCableTurnOver(
+                          idLoading: widget.idLoading,
+                        )),
                       ],
                     ),
                   ),

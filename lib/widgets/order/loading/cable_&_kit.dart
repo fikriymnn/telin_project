@@ -52,167 +52,170 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            setState(() {
-                              selectButon = true;
-                            });
-                          },
-                          child: Text("Cable",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15,
-                                  color: selectButon ? active : dark)),
-                        ),
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            setState(() {
-                              selectButon = false;
-                            });
-                          },
-                          child: Text("Non Cable",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15,
-                                  color: selectButon ? dark : active)),
-                        )
-                      ],
-                    ),
-                  ),
-                  // Expanded(
-                  //   child: Container(
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //       children: [
-                  //         Text("MINISUB-36",
-                  //             style: GoogleFonts.montserrat(
-                  //               fontSize: 16.6,
-                  //               fontWeight: FontWeight.bold,
-                  //               color: Colors.black,
-                  //             ))
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   width: 150,
-                  // ),
-                  Container(
-                    child: Row(
-                      children: [
-                        IconButton(
+    return SingleChildScrollView(
+      child: Container(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
                             onPressed: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return CartLoading(
-                                      idLoading: widget.id,
-                                    );
-                                  });
+                              setState(() {
+                                selectButon = true;
+                              });
                             },
-                            icon: Icon(
-                              Icons.shopping_cart,
-                              color: active,
-                            )),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          width: 221.3,
-                          height: 22.08,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  width: 1, color: const Color(0xffC1C1C1)),
-                              color: const Color(0xffF3F3F3)),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10, bottom: 7),
-                            child: TextField(
-                              style: GoogleFonts.roboto(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xFF9D9D9D),
-                              ),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: GoogleFonts.roboto(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: const Color(0xFF9D9D9D),
-                                  ),
-                                  hintText: "Search"),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            submitDataLoading(widget.id);
-                          },
-                          child: Container(
-                            width: 99.3,
-                            height: 30,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: active),
-                            child: Center(
-                              child: Text("Submit",
-                                  style: GoogleFonts.roboto(
-                                    fontSize: 11,
+                            child: Text("Cable",
+                                style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                  )),
+                                    fontSize: 15,
+                                    color: selectButon ? active : dark)),
+                          ),
+                          const SizedBox(
+                            width: 30,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                selectButon = false;
+                              });
+                            },
+                            child: Text("Non Cable",
+                                style: GoogleFonts.montserrat(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                    color: selectButon ? dark : active)),
+                          )
+                        ],
+                      ),
+                    ),
+                    // Expanded(
+                    //   child: Container(
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //       children: [
+                    //         Text("MINISUB-36",
+                    //             style: GoogleFonts.montserrat(
+                    //               fontSize: 16.6,
+                    //               fontWeight: FontWeight.bold,
+                    //               color: Colors.black,
+                    //             ))
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   width: 150,
+                    // ),
+                    Container(
+                      child: Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return CartLoading(
+                                        idLoading: widget.id,
+                                      );
+                                    });
+                              },
+                              icon: Icon(
+                                Icons.shopping_cart,
+                                color: active,
+                              )),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 221.3,
+                            height: 22.08,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                    width: 1, color: const Color(0xffC1C1C1)),
+                                color: const Color(0xffF3F3F3)),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10, bottom: 7),
+                              child: TextField(
+                                style: GoogleFonts.roboto(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xFF9D9D9D),
+                                ),
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintStyle: GoogleFonts.roboto(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400,
+                                      color: const Color(0xFF9D9D9D),
+                                    ),
+                                    hintText: "Search"),
+                              ),
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              submitDataLoading(widget.id);
+                            },
+                            child: Container(
+                              width: 99.3,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: active),
+                              child: Center(
+                                child: Text("Submit",
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          selectButon
-              ? SizedBox(
-                  height: 400,
-                  child: Column(
-                    children: [
-                      Expanded(
-                          child: TableCableLoading(
-                        loadingId: widget.id,
-                      )),
-                    ],
-                  ))
-              : SizedBox(
-                  height: 400,
-                  child: Column(
-                    children: [
-                      Expanded(
-                          child: TableNonCableLoading(
-                        loadingId: widget.id,
-                      )),
-                    ],
-                  ))
-        ],
+            selectButon
+                ? SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: Column(
+                      children: [
+                        Expanded(
+                            child: TableCableLoading(
+                          loadingId: widget.id,
+                        )),
+                      ],
+                    ))
+                : SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: Column(
+                      children: [
+                        Expanded(
+                            child: TableNonCableLoading(
+                          loadingId: widget.id,
+                        )),
+                      ],
+                    ))
+          ],
+        ),
       ),
     );
   }

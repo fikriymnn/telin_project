@@ -356,7 +356,10 @@ class _EditLoadingState extends State<EditLoading> {
                     height: 250,
                     child: Column(
                       children: [
-                        Expanded(child: TableCableTurnOver()),
+                        Expanded(
+                            child: TableCableTurnOver(
+                          idLoading: "",
+                        )),
                       ],
                     ),
                   ),
