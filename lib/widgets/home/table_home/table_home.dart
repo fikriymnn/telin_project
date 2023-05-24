@@ -2,10 +2,52 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
+import 'package:pluto_grid/pluto_grid.dart';
+import 'package:pluto_grid_export/pluto_grid_export.dart' as pluto_grid_export;
 
-class TableHome extends StatelessWidget {
+class TableHome extends StatefulWidget {
   const TableHome({super.key});
 
+  @override
+  State<TableHome> createState() => _TableHomeState();
+}
+
+class _TableHomeState extends State<TableHome> {
+  late PlutoGridStateManager stateManager;
+
+  final List<PlutoColumn> columns = [
+    PlutoColumn(
+      title: 'NO',
+      field: 'no',
+      type: PlutoColumnType.text(),
+    ),
+    PlutoColumn(
+      title: 'DEPO LOCATION',
+      field: 'depo',
+      type: PlutoColumnType.text(),
+    ),
+    PlutoColumn(
+      title: 'PROJECT NAME',
+      field: 'project',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'LOADING',
+      field: 'armoring',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'OFF-LOADING',
+      field: 'cable_type',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,14 +98,13 @@ class TableHome extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 10),
                               child: TextField(
-                                
                                 style: GoogleFonts.roboto(
                                   fontSize: 11.3,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.black,
                                 ),
                                 decoration: InputDecoration(
-                                  border: InputBorder.none,
+                                    border: InputBorder.none,
                                     hintStyle: GoogleFonts.roboto(
                                       fontSize: 11.3,
                                       fontWeight: FontWeight.w400,
@@ -91,7 +132,11 @@ class TableHome extends StatelessWidget {
                   horizontalMargin: 12,
                   dataRowHeight: 40,
                   minWidth: 3000,
-                  border: const TableBorder(top: BorderSide(),left: BorderSide(),right: BorderSide(),bottom: BorderSide()),
+                  border: const TableBorder(
+                      top: BorderSide(),
+                      left: BorderSide(),
+                      right: BorderSide(),
+                      bottom: BorderSide()),
                   columns: [
                     DataColumn2(
                       label: Center(
@@ -157,11 +202,7 @@ class TableHome extends StatelessWidget {
                   ],
                   rows: List<DataRow>.generate(
                       100,
-                      
-                      (index) => DataRow(
-
-                        cells: [
-
+                      (index) => DataRow(cells: [
                             DataCell(Center(
                               child: Text('1',
                                   style: GoogleFonts.roboto(

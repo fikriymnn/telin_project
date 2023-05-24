@@ -339,7 +339,9 @@ class _TableTank1State extends State<TableTank1> {
                   tank1.length,
                   (index) => PlutoRow(
                     cells: {
-                      'no': PlutoCell(value: '${index + 1}'),
+                      'no': PlutoCell(
+                        value: '${index + 1}',
+                      ),
                       'lable': PlutoCell(
                           value:
                               '${tank1[index]['lable'] == null ? "" : tank1[index]['lable']}'),

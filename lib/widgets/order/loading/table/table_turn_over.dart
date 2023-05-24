@@ -289,15 +289,6 @@ class _TableCableTurnOverState extends State<TableCableTurnOver> {
                         )),
                     fixedWidth: 142.6,
                   ),
-                  DataColumn2(
-                    label: Text('ROTO',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        )),
-                    fixedWidth: 40,
-                  ),
                 ],
                 rows: List.generate(
                     turnoverById.length,

@@ -47,6 +47,7 @@ dependencies:
   url_launcher: ^6.1.11
   pluto_grid_export: ^1.0.6
   file_saver: ^0.2.4
+  local_captcha: ^1.0.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0

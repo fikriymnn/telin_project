@@ -152,7 +152,10 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       height: 400,
                       child: Column(
                         children: [
-                          Flexible(child: TableCableTurnOver()),
+                          Flexible(
+                              child: TableCableTurnOver(
+                            idLoading: "",
+                          )),
                         ],
                       )),
                   const SizedBox(
