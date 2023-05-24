@@ -19,16 +19,26 @@ class CartLoading extends StatefulWidget {
 
 class _CartLoadingState extends State<CartLoading> {
   List LoadingById = [];
+  String id = "";
   Response? response;
 
   var dio = Dio();
 
-  void getDataTank1() async {
-    try {
-      response = await dio.get('$getLoadingById/${widget.idLoading}');
+  @override
+  void initState() {
+    // TODO: implement initState
+    id = widget.idLoading;
+    getDataLoading();
+    super.initState();
+  }
 
+  void getDataLoading() async {
+    var msg;
+    try {
+      response = await dio.get('$getLoadingById/646da8ddeac11d2a780e33f5');
+      msg = response!.data['message'];
       setState(() {
-        LoadingById = response!.data;
+        LoadingById = response!.data['loading'];
       });
     } catch (e) {
       QuickAlert.show(
@@ -114,45 +124,51 @@ class _CartLoadingState extends State<CartLoading> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("${LoadingById[0]['project_name']}",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 13.3,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black,
-                            ))
-                      ],
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: LoadingById.length,
+                    itemBuilder: (context, index) => SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("${LoadingById[index]['project_name']}",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 13.3,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.black,
+                              ))
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
                     height: 22,
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("${LoadingById[0]['perusahaan']}",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 13.3,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black,
-                            )),
-                        const SizedBox(
-                          width: 284,
-                        ),
-                        Text(
-                            "${LoadingById[0]['from']} - ${LoadingById[0]['to']}",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 13.3,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black,
-                            ))
-                      ],
+                  ListView.builder(
+                    itemBuilder: (contect, index) => SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("${LoadingById[index]['perusahaan']}",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 13.3,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.black,
+                              )),
+                          const SizedBox(
+                            width: 284,
+                          ),
+                          Text(
+                              "${LoadingById[index]['from']} - ${LoadingById[index]['to']}",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 13.3,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.black,
+                              ))
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(

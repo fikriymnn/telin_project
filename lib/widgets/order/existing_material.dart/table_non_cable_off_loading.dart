@@ -2,6 +2,7 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/input_qty_non_cable_existing.dart';
 import 'package:telin_project/widgets/order/loading/form/input_qty_non_cable.dart';
 
 class TableNonCableOffLoading extends StatefulWidget {
@@ -233,7 +234,7 @@ class _TableNonCableOffLoadingState extends State<TableNonCableOffLoading> {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return const InputQtyNonCable(
+                                      return const InputQtyNonCableExisting(
                                         idKit: "",
                                         idLoading: "",
                                       );

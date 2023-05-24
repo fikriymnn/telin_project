@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/layout.dart';
 
 import 'package:telin_project/widgets/depo/depo_widget.dart';
 
 import '../../routing/routes.dart';
 
-class DepoMedium extends StatelessWidget {
-  const DepoMedium({super.key});
+class DepoMedium extends StatefulWidget {
+  const DepoMedium({super.key, required this.role});
+  final String role;
 
+  @override
+  State<DepoMedium> createState() => _DepoMediumState();
+}
+
+class _DepoMediumState extends State<DepoMedium> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -93,7 +100,13 @@ class DepoMedium extends StatelessWidget {
                             site: "Makasar Site",
                             depo: "Depo 104-Pelindo IV Makassar",
                             route: () {
-                              Get.offAllNamed(RootRoute);
+                              // Get.offAllNamed(RootRoute);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SiteLayout(
+                                            role: widget.role,
+                                          )));
                             },
                             titleView: "View Dasboard",
                           ),

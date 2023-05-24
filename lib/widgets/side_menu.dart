@@ -237,6 +237,21 @@ class _SideMenuState extends State<SideMenu> {
                               }
                             },
                           ),
+                          SideMenuItem(
+                            itemName: "Kurs",
+                            dropp: false,
+                            size1: 13,
+                            size2: 15,
+                            onTap: () {
+                              if (!menuController.isActive("Kurs")) {
+                                menuController.changeActiveitemTo("Kurs");
+                                if (ResponsiveWidget.isSmallScreen(context)) {
+                                  Get.back();
+                                }
+                                navigationController.navigateTo(KursPageRoute);
+                              }
+                            },
+                          ),
                         ],
                       ),
                     ),

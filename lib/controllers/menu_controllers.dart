@@ -31,6 +31,8 @@ class MenuControllers extends GetxController {
         return _customIcon(FontAwesomeIcons.coins, itemName);
       case SystemDisplayName:
         return _customIcon(FontAwesomeIcons.box, itemName);
+      case KursDisplayName:
+        return _customIcon(FontAwesomeIcons.dollarSign, itemName);
       case ArmoringDisplayName:
         return _customIcon(Icons.settings_input_component, itemName);
       case CableTypeDisplayName:

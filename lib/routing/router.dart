@@ -18,6 +18,7 @@ import 'package:telin_project/widgets/report/report_table_cable.dart';
 import 'package:telin_project/widgets/report/report_table_noncable.dart';
 
 import '../pages/inventory/inventory.dart';
+import '../pages/master_data/kurs.dart';
 import '../pages/master_data/master_data.dart';
 import '../pages/order/order.dart';
 import '../pages/report/report.dart';
@@ -25,8 +26,6 @@ import '../pages/settings/settings.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case DepoPageRoute:
-      return _getPageRoute(const Depo());
     case HomePageRoute:
       return _getPageRoute(const HomeViewPage());
     case InventoryPageRoute:
@@ -35,6 +34,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(const MasterDataViewPage());
     case SystemPageRoute:
       return _getPageRoute(const SystemScreens());
+    case KursPageRoute:
+      return _getPageRoute(const KursScreens());
     case ArmoringPageRoute:
       return _getPageRoute(const ArmoringTypeScreens());
     case CableTypePageRoute:

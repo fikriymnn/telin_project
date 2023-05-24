@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:common_data_table/common_data_table.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:file_saver/file_saver.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pluto_grid/pluto_grid.dart';
+import 'package:pluto_grid_export/pluto_grid_export.dart' as pluto_grid_export;
 
 class NonCableReport extends StatefulWidget {
   const NonCableReport({super.key});
@@ -15,7 +22,7 @@ class NonCableReport extends StatefulWidget {
 
 class _NonCableReportState extends State<NonCableReport> {
   String _date = "Select Date";
-  List reportSparekits = [];
+  List reportSparekits = [1];
 
   Response? response;
 
@@ -28,96 +35,109 @@ class _NonCableReportState extends State<NonCableReport> {
     super.initState();
   }
 
-  // DataRow _resultsAPI(index, data) {
-  //   return DataRow(
-  //     cells: [
-  //       DataCell(Text('${index + 1}',
-  //           style: GoogleFonts.montserrat(
-  //             fontSize: 10,
-  //             fontWeight: FontWeight.w400,
-  //             color: Colors.black,
-  //           ))),
-  //       DataCell(Text('${data['location'] ?? "-"}',
-  //           style: GoogleFonts.montserrat(
-  //             fontSize: 10,
-  //             fontWeight: FontWeight.w400,
-  //             color: Colors.black,
-  //           ))),
-  //       DataCell(Text('${data['item_name'] ?? "-"}',
-  //           style: GoogleFonts.montserrat(
-  //             fontSize: 10,
-  //             fontWeight: FontWeight.w400,
-  //             color: Colors.black,
-  //           ))),
-  //       DataCell(Text('${data['part_number'] ?? "-"}',
-  //           style: GoogleFonts.montserrat(
-  //             fontSize: 10,
-  //             fontWeight: FontWeight.w400,
-  //             color: Colors.black,
-  //           ))),
-  //       DataCell(Text('${data['serial_number'] ?? "-"}',
-  //           style: GoogleFonts.montserrat(
-  //             fontSize: 10,
-  //             fontWeight: FontWeight.w400,
-  //             color: Colors.black,
-  //           ))),
-  //       DataCell(Text('${data['system'] ?? "-"}',
-  //           style: GoogleFonts.montserrat(
-  //             fontSize: 10,
-  //             fontWeight: FontWeight.w400,
-  //             color: Colors.black,
-  //           ))),
-  //       DataCell(Text('${data['weight'] ?? "-"}',
-  //           style: GoogleFonts.montserrat(
-  //             fontSize: 10,
-  //             fontWeight: FontWeight.w400,
-  //             color: Colors.black,
-  //           ))),
-  //       DataCell(Text('${data['qty'] ?? "-"}',
-  //           style: GoogleFonts.montserrat(
-  //             fontSize: 10,
-  //             fontWeight: FontWeight.w400,
-  //             color: Colors.black,
-  //           ))),
-  //       DataCell(Text('${data['unit'] ?? "-"}',
-  //           style: GoogleFonts.montserrat(
-  //             fontSize: 10,
-  //             fontWeight: FontWeight.w400,
-  //             color: Colors.black,
-  //           ))),
-  //       DataCell(Text('${data['remark'] ?? "-"}',
-  //           style: GoogleFonts.montserrat(
-  //             fontSize: 10,
-  //             fontWeight: FontWeight.w400,
-  //             color: Colors.black,
-  //           ))),
-  //       DataCell(
-  //         Center(
-  //           child: InkWell(
-  //             onTap: () {},
-  //             child: Container(
-  //               width: 66.6,
-  //               height: 28.6,
-  //               decoration: BoxDecoration(
-  //                   borderRadius: BorderRadius.circular(6.6),
-  //                   color: const Color(0xFFDDDDDD)),
-  //               child: Center(
-  //                 child: Text(
-  //                   "Print",
-  //                   style: GoogleFonts.roboto(
-  //                     fontSize: 13.3,
-  //                     fontWeight: FontWeight.w600,
-  //                     color: Colors.black,
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //       )
-  //     ],
-  //   );
-  // }
+  late PlutoGridStateManager stateManager;
+
+  final List<PlutoColumn> columns = [
+    PlutoColumn(
+      title: 'No',
+      field: 'no',
+      type: PlutoColumnType.text(),
+    ),
+    PlutoColumn(
+      title: 'Location',
+      field: 'location',
+      type: PlutoColumnType.text(),
+    ),
+    PlutoColumn(
+      title: 'Item Name',
+      field: 'item_name',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Part Number',
+      field: 'part_number',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Serial Number',
+      field: 'serial_number',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'System',
+      field: 'system',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Weight',
+      field: 'weight',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Qty',
+      field: 'qty',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Unit',
+      field: 'unit',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Remark',
+      field: 'remark',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+  ];
+  void exportToPdf() async {
+    final themeData = pluto_grid_export.ThemeData.withFont(
+      base: pluto_grid_export.Font.ttf(
+        await rootBundle.load('fonts/open_sans/OpenSans-Regular.ttf'),
+      ),
+      bold: pluto_grid_export.Font.ttf(
+        await rootBundle.load('fonts/open_sans/OpenSans-Bold.ttf'),
+      ),
+    );
+
+    var plutoGridPdfExport = pluto_grid_export.PlutoGridDefaultPdfExport(
+      title: "Pluto Grid Sample pdf print",
+      creator: "Pluto Grid Rocks!",
+      format: pluto_grid_export.PdfPageFormat.a4.landscape,
+      themeData: themeData,
+    );
+
+    await pluto_grid_export.Printing.sharePdf(
+      bytes: await plutoGridPdfExport.export(stateManager),
+      filename: plutoGridPdfExport.getFilename(),
+    );
+  }
+
+  void exportToCsv() async {
+    String title = "report_sparekit";
+
+    var exported = const Utf8Encoder()
+        .convert(pluto_grid_export.PlutoGridExport.exportCSV(stateManager));
+
+    // // use file_saver from pub.dev
+    await FileSaver.instance
+        .saveFile(name: "$title", mimeType: MimeType.csv, bytes: exported);
+  }
 
   void getDataReportSpareKits() async {
     try {
@@ -139,170 +159,77 @@ class _NonCableReportState extends State<NonCableReport> {
 
   @override
   Widget build(BuildContext context) {
-    final titleStyle = <int, TextStyle>{
-      0: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      1: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      2: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      3: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      4: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      5: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      6: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      7: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      8: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      9: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-    };
     return Scaffold(
-      body: CommonDataTable(
-        isSearchAble: true,
-        sortColumn: [1],
-        title: "Cable Report",
-        titleBgColor: Colors.black,
-        headingTextStyle: Map.of(titleStyle),
-        titleStyle: TextStyle(
-          fontSize: 16,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 50,
+              child: Row(
+                children: [
+                  TextButton(
+                    onPressed: exportToPdf,
+                    child: const Text('Export to PDF'),
+                  ),
+                  TextButton(
+                    onPressed: exportToCsv,
+                    child: const Text('Export to CSV'),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: PlutoGrid(
+                columns: columns,
+                rows: List.generate(
+                  reportSparekits.length,
+                  (index) => PlutoRow(
+                    cells: {
+                      'no': PlutoCell(value: '${index + 1}'),
+                      'location': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['location'] == null ? "" : reportSparekits[index]['location']}'),
+                      'item_name': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['item_name'] == null ? "" : reportSparekits[index]['item_name']}'),
+                      'part_number': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['part_number'] == null ? "" : reportSparekits[index]['part_number']}'),
+                      'serial_number': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['serial_number'] == null ? "" : reportSparekits[index]['serial_number']}'),
+                      'system': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['system'] == null ? "" : reportSparekits[index]['system']}'),
+                      'weight': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['weight'] == null ? "" : reportSparekits[index]['weight']}'),
+                      'qty': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['qty'] == null ? "" : reportSparekits[index]['qty']}'),
+                      'unit': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['unit'] == null ? "" : reportSparekits[index]['unit']}'),
+                      'remark': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['remark'] == null ? "" : reportSparekits[index]['remark']}'),
+                    },
+                  ),
+                ),
+                onLoaded: (e) {
+                  stateManager = e.stateManager;
+                },
+                configuration: const PlutoGridConfiguration(
+                  enableMoveDownAfterSelecting: true,
+                  enterKeyAction: PlutoGridEnterKeyAction.editingAndMoveDown,
+                ),
+              ),
+            ),
+          ],
         ),
-        heading: [
-          'NO',
-          'Location',
-          'Item Name',
-          'Part Number',
-          'Serial Number',
-          'System',
-          'Weight',
-          'Qty',
-          "Unit",
-          'Remark',
-        ],
-        data: List.generate(
-            reportSparekits.length,
-            (index) => [
-                  '${index + 1}',
-                  '${reportSparekits[index]['location']}',
-                  '${reportSparekits[index]['item_name']}',
-                  '${reportSparekits[index]['part_number']}',
-                  '${reportSparekits[index]['serial_number']}',
-                  '${reportSparekits[index]['system']}',
-                  '${reportSparekits[index]['weight']}',
-                  '${reportSparekits[index]['qty']}',
-                  '${reportSparekits[index]['unit']}',
-                  '${reportSparekits[index]['remark']}',
-                ]),
-        headingAlign: {
-          0: TblAlign.center,
-          1: TblAlign.center,
-        },
-        dataAlign: {
-          0: TblAlign.center,
-        },
-        disabledDeleteButtons: [1, 3, 5],
-        disabledEditButtons: [0, 2, 4],
-        dataTextStyle: (row) {
-          if (row[0] != '0.') {
-            return {
-              0: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              1: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              2: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              3: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              4: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              5: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              6: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              7: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              8: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              9: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-            };
-          }
-        },
-        onExportExcel: (file) async {
-          await launchUrl(Uri.file(file.path));
-        },
-        onExportPDF: (file) async {
-          await launchUrl(Uri.file(file.path));
-        },
       ),
     );
-
 //     SizedBox(
 //       width: MediaQuery.of(context).size.width,
 //       child: Column(

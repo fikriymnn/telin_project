@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:common_data_table/common_data_table.dart';
@@ -11,6 +12,11 @@ import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/report/print_report.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:file_saver/file_saver.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pluto_grid/pluto_grid.dart';
+import 'package:pluto_grid_export/pluto_grid_export.dart' as pluto_grid_export;
 
 class CableReport extends StatefulWidget {
   const CableReport({super.key});
@@ -20,7 +26,7 @@ class CableReport extends StatefulWidget {
 }
 
 class _CableReportState extends State<CableReport> {
-  List reportCable = [];
+  List reportCable = [1];
 
   Response? response;
 
@@ -51,206 +57,235 @@ class _CableReportState extends State<CableReport> {
     }
   }
 
+  late PlutoGridStateManager stateManager;
+
+  final List<PlutoColumn> columns = [
+    PlutoColumn(
+      title: 'No',
+      field: 'no',
+      type: PlutoColumnType.text(),
+    ),
+    PlutoColumn(
+      title: 'Lable Id',
+      field: 'lable_id',
+      type: PlutoColumnType.text(),
+    ),
+    PlutoColumn(
+      title: 'System',
+      field: 'system',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Cable Type',
+      field: 'cable_type',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Manufacturer',
+      field: 'manufacturer',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Armoring_Type',
+      field: 'armoring_type',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Core Type',
+      field: 'core_type',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: '\u03A3 Core',
+      field: 'core',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Length(Meter)',
+      field: 'length',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Tank',
+      field: 'tank',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Count',
+      field: 'count',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Remark',
+      field: 'remark',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Evidence',
+      field: 'evidence',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+  ];
+//  final List<PlutoRow> rows = [
+//     PlutoRow(
+//       cells: {
+//         'column_1': PlutoCell(value: 'cell 1-1'),
+//         'column_2': PlutoCell(value: 'cell 1-2'),
+//         'column_3': PlutoCell(value: 'cell 1-3'),
+//       },
+//     ),
+//     PlutoRow(
+//       cells: {
+//         'column_1': PlutoCell(value: 'cell 2-1'),
+//         'column_2': PlutoCell(value: 'cell 2-2'),
+//         'column_3': PlutoCell(value: 'cell 2-3'),
+//       },
+//     ),
+//     PlutoRow(
+//       cells: {
+//         'column_1': PlutoCell(value: 'cell 3-1'),
+//         'column_2': PlutoCell(value: 'cell 3-2'),
+//         'column_3': PlutoCell(value: 'cell 3-3'),
+//       },
+//     ),
+//   ];
+
+  void exportToPdf() async {
+    final themeData = pluto_grid_export.ThemeData.withFont(
+      base: pluto_grid_export.Font.ttf(
+        await rootBundle.load('fonts/open_sans/OpenSans-Regular.ttf'),
+      ),
+      bold: pluto_grid_export.Font.ttf(
+        await rootBundle.load('fonts/open_sans/OpenSans-Bold.ttf'),
+      ),
+    );
+
+    var plutoGridPdfExport = pluto_grid_export.PlutoGridDefaultPdfExport(
+      title: "Pluto Grid Sample pdf print",
+      creator: "Pluto Grid Rocks!",
+      format: pluto_grid_export.PdfPageFormat.a4.landscape,
+      themeData: themeData,
+    );
+
+    await pluto_grid_export.Printing.sharePdf(
+      bytes: await plutoGridPdfExport.export(stateManager),
+      filename: plutoGridPdfExport.getFilename(),
+    );
+  }
+
+  void exportToCsv() async {
+    String title = "pluto_grid_export";
+
+    var exported = const Utf8Encoder()
+        .convert(pluto_grid_export.PlutoGridExport.exportCSV(stateManager));
+
+    // // use file_saver from pub.dev
+    await FileSaver.instance
+        .saveFile(name: "$title", mimeType: MimeType.csv, bytes: exported);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final titleStyle = <int, TextStyle>{
-      0: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      1: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      2: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      3: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      4: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      5: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      6: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      7: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      8: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      9: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      10: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      11: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-      12: GoogleFonts.montserrat(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
-    };
     return Scaffold(
-      body: CommonDataTable(
-        isSearchAble: true,
-        sortColumn: [1],
-        title: "Cable Report",
-        titleBgColor: Colors.black,
-        headingTextStyle: Map.of(titleStyle),
-        titleStyle: TextStyle(
-          fontSize: 16,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 50,
+              child: Row(
+                children: [
+                  TextButton(
+                    onPressed: exportToPdf,
+                    child: const Text('Export to PDF'),
+                  ),
+                  TextButton(
+                    onPressed: exportToCsv,
+                    child: const Text('Export to CSV'),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: PlutoGrid(
+                columns: columns,
+                rows: List.generate(
+                  reportCable.length,
+                  (index) => PlutoRow(
+                    cells: {
+                      'no': PlutoCell(value: '${index + 1}'),
+                      'lable_id': PlutoCell(
+                          value:
+                              '${reportCable[index]['lable_id'] == null ? "" : reportCable[index]['lable_id']}'),
+                      'system': PlutoCell(
+                          value:
+                              '${reportCable[index]['system'] == null ? "" : reportCable[index]['system']}'),
+                      'cable_type': PlutoCell(
+                          value:
+                              '${reportCable[index]['cable_type'] == null ? "" : reportCable[index]['cable_type']}'),
+                      'manufacturer': PlutoCell(
+                          value:
+                              '${reportCable[index]['manufacturer'] == null ? "" : reportCable[index]['manufacturer']}'),
+                      'armoring_type': PlutoCell(
+                          value:
+                              '${reportCable[index]['armoring_type'] == null ? "" : reportCable[index]['armoring_type']}'),
+                      'core_type': PlutoCell(
+                          value:
+                              '${reportCable[index]['core_type'] == null ? "" : reportCable[index]['core_type']}'),
+                      'core': PlutoCell(
+                          value:
+                              '${reportCable[index]['sigma_core'] == null ? "" : reportCable[index]['sigma_core']}'),
+                      'length': PlutoCell(
+                          value:
+                              '${reportCable[index]['length_report'] == null ? "" : reportCable[index]['length_report']}'),
+                      'tank': PlutoCell(
+                          value:
+                              '${reportCable[index]['tank'] == null ? "" : reportCable[index]['tank']}'),
+                      'count': PlutoCell(
+                          value:
+                              '${reportCable[index]['count'] == null ? "" : reportCable[index]['count']}'),
+                      'remark': PlutoCell(
+                          value:
+                              '${reportCable[index]['remark'] == null ? "" : reportCable[index]['remark']}'),
+                      'evidence': PlutoCell(
+                          value:
+                              '${reportCable[index]['evidence'] == null ? "" : reportCable[index]['evidence']}'),
+                    },
+                  ),
+                ),
+                onLoaded: (e) {
+                  stateManager = e.stateManager;
+                },
+                configuration: const PlutoGridConfiguration(
+                  enableMoveDownAfterSelecting: true,
+                  enterKeyAction: PlutoGridEnterKeyAction.editingAndMoveDown,
+                ),
+              ),
+            ),
+          ],
         ),
-        heading: [
-          'NO',
-          'Label ID',
-          'System',
-          'Cable Type',
-          'Manuacturer',
-          'Armoring Type',
-          'Core Type',
-          '\u03A3 Core',
-          """Length
-(Meter)""",
-          'Tank',
-          'Count',
-          'Remark',
-          'Evidence'
-        ],
-        data: List.generate(
-            reportCable.length,
-            (index) => [
-                  '${index + 1}',
-                  'Lable ${index + 1} ',
-                  '${reportCable[index]['system']}',
-                  '${reportCable[index]['cable_type']}',
-                  '${reportCable[index]['manufacturer']}',
-                  '${reportCable[index]['armoring_type']}',
-                  '${reportCable[index]['core_type']}',
-                  '${reportCable[index]['sigma_core']}',
-                  '${reportCable[index]['length_report']}',
-                  '${reportCable[index]['tank']}',
-                  '${reportCable[index]['count']}',
-                  'Remark ${index + 1}',
-                  'Evidence ${index + 1}'
-                ]),
-        headingAlign: {
-          0: TblAlign.center,
-          1: TblAlign.center,
-        },
-        dataAlign: {
-          0: TblAlign.center,
-        },
-        disabledDeleteButtons: [1, 3, 5],
-        disabledEditButtons: [0, 2, 4],
-        dataTextStyle: (row) {
-          if (row[0] != '0.') {
-            return {
-              0: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              1: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              2: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              3: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              4: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              5: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              6: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              7: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              8: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              9: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              10: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              11: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              12: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-            };
-          }
-        },
-        onExportExcel: (file) async {
-          await launchUrl(Uri.file(file.path));
-        },
-        onExportPDF: (file) async {
-          await launchUrl(Uri.file(file.path));
-        },
       ),
     );
   }

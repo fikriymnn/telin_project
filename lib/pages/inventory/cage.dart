@@ -48,7 +48,7 @@ class CageInventory extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
-                      'CAGE 1',
+                      'CAGE',
                       style: GoogleFonts.montserrat(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -57,135 +57,137 @@ class CageInventory extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                      height: 550, width: screnSize.width, child: const TableCage1()),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      'CAGE 2',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: 550, width: screnSize.width, child: const TableCage2()),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      'CAGE 3',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: 550, width: screnSize.width, child: const TableCage3()),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      'CAGE 4',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: 550, width: screnSize.width, child: const TableCage4()),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      'CAGE 5',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: 550, width: screnSize.width, child: const TableCage5()),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      'CAGE 6',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: 550, width: screnSize.width, child: const TableCage6()),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      'CAGE 7',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: 550, width: screnSize.width, child: const TableCage7()),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      'CAGE 8',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: 550, width: screnSize.width, child: const TableCage8()),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      'CAGE 9',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: 550, width: screnSize.width, child: const TableCage9()),
+                      height: screnSize.height,
+                      width: screnSize.width,
+                      child: const TableCage1()),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(15.0),
+                  //   child: Text(
+                  //     'CAGE 2',
+                  //     style: GoogleFonts.montserrat(
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.w600,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //     height: 550, width: screnSize.width, child: const TableCage2()),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(15.0),
+                  //   child: Text(
+                  //     'CAGE 3',
+                  //     style: GoogleFonts.montserrat(
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.w600,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //     height: 550, width: screnSize.width, child: const TableCage3()),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(15.0),
+                  //   child: Text(
+                  //     'CAGE 4',
+                  //     style: GoogleFonts.montserrat(
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.w600,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //     height: 550, width: screnSize.width, child: const TableCage4()),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(15.0),
+                  //   child: Text(
+                  //     'CAGE 5',
+                  //     style: GoogleFonts.montserrat(
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.w600,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //     height: 550, width: screnSize.width, child: const TableCage5()),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(15.0),
+                  //   child: Text(
+                  //     'CAGE 6',
+                  //     style: GoogleFonts.montserrat(
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.w600,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //     height: 550, width: screnSize.width, child: const TableCage6()),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(15.0),
+                  //   child: Text(
+                  //     'CAGE 7',
+                  //     style: GoogleFonts.montserrat(
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.w600,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //     height: 550, width: screnSize.width, child: const TableCage7()),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(15.0),
+                  //   child: Text(
+                  //     'CAGE 8',
+                  //     style: GoogleFonts.montserrat(
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.w600,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //     height: 550, width: screnSize.width, child: const TableCage8()),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(15.0),
+                  //   child: Text(
+                  //     'CAGE 9',
+                  //     style: GoogleFonts.montserrat(
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.w600,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //     height: 550, width: screnSize.width, child: const TableCage9()),
                 ],
               ),
             ),

@@ -12,6 +12,9 @@ const MasterDataPageRoute = "/master-data";
 const SystemDisplayName = "System";
 const SystemPageRoute = "/system";
 
+const KursDisplayName = "Kurs";
+const KursPageRoute = "/kurs";
+
 const ArmoringDisplayName = "Armoring Type";
 const ArmoringPageRoute = "/Armoring Type";
 
@@ -78,6 +81,7 @@ List<MenuItem> sideMenuItems = [
   MenuItem(InventoryDisplayName, InventoryPageRoute),
   MenuItem(MasterDataDisplayName, MasterDataPageRoute),
   MenuItem(SystemDisplayName, SystemPageRoute),
+  MenuItem(KursDisplayName, KursPageRoute),
   MenuItem(ArmoringDisplayName, ArmoringPageRoute),
   MenuItem(CableTypeDisplayName, CableTypePageRoute),
   MenuItem(ManufacturerDisplayName, ManufacturerPageRoute),

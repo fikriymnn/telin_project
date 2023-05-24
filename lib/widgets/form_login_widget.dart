@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
@@ -37,6 +36,7 @@ class _LoginFormState extends State<LoginForm> {
 
   Future<Response?> loginUser() async {
     var dio = Dio();
+    String role;
     try {
       var response = await dio.post(userLogin,
           data: {"username": userInput.text, "password": passInput.text},
@@ -47,7 +47,14 @@ class _LoginFormState extends State<LoginForm> {
             },
           ));
 
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const Depo()));
+      role = response!.data['role'];
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Depo(
+                    role: role,
+                  )));
       return response;
     } catch (e) {
       QuickAlert.show(

@@ -6,7 +6,8 @@ import 'package:telin_project/widgets/depo/depo_widget_large.dart';
 import '../widgets/depo/depo_widget_small.dart';
 
 class Depo extends StatefulWidget {
-  const Depo({super.key});
+  const Depo({super.key, required this.role});
+  final String role;
 
   @override
   State<Depo> createState() => _DepoState();
@@ -15,10 +16,10 @@ class Depo extends StatefulWidget {
 class _DepoState extends State<Depo> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: ResponsiveWidget(
-        largeScreen: DepoLarge(),
-        smallScreen: DepoSmall(),
+        largeScreen: DepoLarge(role: widget.role),
+        smallScreen: DepoSmall(role: widget.role),
       ),
     );
   }

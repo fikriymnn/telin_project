@@ -29,7 +29,11 @@ class MyApp extends StatelessWidget {
           page: () => const PageNotFound(),
           transition: Transition.fadeIn),
       getPages: [
-        GetPage(name: RootRoute, page: () => const SiteLayout()),
+        GetPage(
+            name: RootRoute,
+            page: () => const SiteLayout(
+                  role: "",
+                )),
         GetPage(name: AuthenticationPageRoute, page: () => const LoginScreen()),
       ],
       debugShowCheckedModeBanner: false,

@@ -1,10 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/cart_loading.dart';
 import 'package:telin_project/widgets/order/loading/table/table_cable_loading.dart';
 import 'package:telin_project/widgets/order/loading/table/table_non_cable_loading.dart';
+
+import '../../../api/configAPI.dart';
 
 class CableDanKitLoading extends StatefulWidget {
   const CableDanKitLoading({super.key, required this.id});
@@ -16,6 +20,36 @@ class CableDanKitLoading extends StatefulWidget {
 
 class _CableDanKitLoadingState extends State<CableDanKitLoading> {
   bool selectButon = true;
+  Response? response;
+
+  var dio = Dio();
+
+  void submitDataLoading(id) async {
+    var msg;
+    try {
+      response = await dio.post('$submitLoading/$id');
+
+      msg = response!.data['message'];
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: '$msg',
+          title: 'Peringatan',
+          width: 400,
+          barrierDismissible: true,
+          confirmBtnColor: Colors.red);
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -131,7 +165,9 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
                           width: 10,
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            submitDataLoading(widget.id);
+                          },
                           child: Container(
                             width: 99.3,
                             height: 30,
@@ -139,7 +175,7 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
                                 borderRadius: BorderRadius.circular(15),
                                 color: active),
                             child: Center(
-                              child: Text("NEXT",
+                              child: Text("Submit",
                                   style: GoogleFonts.roboto(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w600,

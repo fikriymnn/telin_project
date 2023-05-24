@@ -15,9 +15,50 @@ class InputLengthCable extends StatefulWidget {
 }
 
 class _InputLengthCableState extends State<InputLengthCable> {
+  TextEditingController _priceIdr = TextEditingController();
   Response? response;
 
   var dio = Dio();
+  double kurs = 0.0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getDataKurs();
+    super.initState();
+  }
+
+  void getDataKurs() async {
+    bool status;
+    var msg;
+
+    try {
+      response = await dio.get(getAllKurs);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          kurs = response!.data['usd'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,192 +75,6 @@ class _InputLengthCableState extends State<InputLengthCable> {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 )),
-            const SizedBox(
-              height: 30,
-            ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Input Length",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 203.3,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: const Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: const Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 18,
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 8),
-                                    child: TextField(
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 13.3,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black,
-                                      ),
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintStyle: GoogleFonts.montserrat(
-                                            fontSize: 13.3,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.black,
-                                          ),
-                                          hintText: "Type Length"),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 68.6,
-                                  height: 44,
-                                  decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(6),
-                                          bottomRight: Radius.circular(6)),
-                                      color: Color(0xffEC1D26)),
-                                  child: Center(
-                                    child: Text(
-                                      "Meter",
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 13.3,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 100,
-                  ),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Initial Length ",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 203.3,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: const Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: const Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 18,
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 8),
-                                    child: TextField(
-                                      enabled: false,
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 13.3,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black,
-                                      ),
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintStyle: GoogleFonts.montserrat(
-                                            fontSize: 13.3,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.black,
-                                          ),
-                                          hintText: "1232"),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 68.6,
-                                  height: 44,
-                                  decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(6),
-                                          bottomRight: Radius.circular(6)),
-                                      color: Color(0xffEC1D26)),
-                                  child: Center(
-                                    child: Text(
-                                      "Meter",
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 13.3,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
             const SizedBox(
               height: 30,
             ),
@@ -268,6 +123,7 @@ class _InputLengthCableState extends State<InputLengthCable> {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: TextField(
+                                controller: _priceIdr,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -288,71 +144,6 @@ class _InputLengthCableState extends State<InputLengthCable> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    width: 100,
-                  ),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Unit Price USD",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 203.3,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: const Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: const Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 18,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: TextField(
-                                enabled: false,
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 13.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    hintText: "Input Price"),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
                 ],
               ),
             ),
@@ -365,7 +156,8 @@ class _InputLengthCableState extends State<InputLengthCable> {
                 children: [
                   InkWell(
                     onTap: () {
-                      addCableLoading(widget.idCable, widget.idLoading);
+                      addCableLoading(widget.idCable, widget.idLoading,
+                          _priceIdr.text, double.parse(_priceIdr.text) * kurs);
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -393,12 +185,12 @@ class _InputLengthCableState extends State<InputLengthCable> {
     );
   }
 
-  void addCableLoading(cableId, loadingId) async {
+  void addCableLoading(cableId, loadingId, idr, usd) async {
     bool status;
     var msg;
     try {
-      response = await dio
-          .post('$addCableToLoading/$loadingId', data: {'cables_id': cableId});
+      response = await dio.post('$addCableToLoading/$loadingId',
+          data: {'cables_id': cableId, 'priceIdr': idr, 'priceUsd': usd});
 
       msg = response!.data['message'];
 
