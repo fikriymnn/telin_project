@@ -169,10 +169,6 @@ class _NonCableReportState extends State<NonCableReport> {
               child: Row(
                 children: [
                   TextButton(
-                    onPressed: exportToPdf,
-                    child: const Text('Export to PDF'),
-                  ),
-                  TextButton(
                     onPressed: exportToCsv,
                     child: const Text('Export to CSV'),
                   ),

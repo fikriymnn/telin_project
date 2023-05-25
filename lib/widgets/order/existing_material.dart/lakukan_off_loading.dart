@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/bast_existing.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/table_cable_off_loading.dart';
@@ -7,13 +10,47 @@ import 'package:telin_project/widgets/order/existing_material.dart/table_non_cab
 import 'package:telin_project/widgets/order/loading/cart_loading.dart';
 
 class LakukanOffLoading extends StatefulWidget {
-  const LakukanOffLoading({super.key});
+  const LakukanOffLoading({super.key, required this.idOffLoading});
+  final String idOffLoading;
 
   @override
   State<LakukanOffLoading> createState() => _LakukanOffLoadingState();
 }
 
 class _LakukanOffLoadingState extends State<LakukanOffLoading> {
+  List LoadingById = [];
+  String id = "";
+  Response? response;
+
+  var dio = Dio();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    id = widget.idOffLoading;
+    getDataOffLoading();
+    super.initState();
+  }
+
+  void getDataOffLoading() async {
+    var msg;
+    try {
+      response = await dio.get('$getOffLoadingById/$id');
+      msg = response!.data['message'];
+      setState(() {
+        LoadingById = response!.data['loading'];
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,64 +163,79 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                 ),
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 13.3,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.black,
-                      ))
-                ],
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: LoadingById.length,
+              itemBuilder: (context, index) => SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("${LoadingById[index]['project_name'] ?? "-"}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 13.3,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.black,
+                        ))
+                  ],
+                ),
               ),
             ),
             const SizedBox(
               height: 22,
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("LCT NAPOLEON",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 13.3,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.black,
-                      )),
-                  const SizedBox(
-                    width: 284,
-                  ),
-                  Text("BANDUNG - JAKARTA",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 13.3,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.black,
-                      ))
-                ],
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: LoadingById.length,
+              itemBuilder: (contect, index) => SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("${LoadingById[index]['perusahaan']['company_name']}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 13.3,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.black,
+                        )),
+                    const SizedBox(
+                      width: 284,
+                    ),
+                    Text(
+                        "${LoadingById[index]['from']} - ${LoadingById[index]['to']}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 13.3,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.black,
+                        ))
+                  ],
+                ),
               ),
             ),
             const SizedBox(
               height: 20,
             ),
-            const SizedBox(
+            SizedBox(
                 height: 400,
                 child: Column(
                   children: [
-                    Flexible(child: TableCableOffLoading()),
+                    Flexible(
+                        child: TableCableOffLoading(
+                      idOffLoading: widget.idOffLoading,
+                    )),
                   ],
                 )),
             const SizedBox(
               height: 15,
             ),
-            const SizedBox(
+            SizedBox(
               height: 250,
               child: Column(
                 children: [
-                  Expanded(child: TableNonCableOffLoading()),
+                  Expanded(
+                      child: TableNonCableOffLoading(
+                    idOffLoading: widget.idOffLoading,
+                  )),
                 ],
               ),
             ),

@@ -5,8 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 
-
-
 class TableRakA2 extends StatefulWidget {
   const TableRakA2({super.key});
 
@@ -50,20 +48,18 @@ class _TableRakA2State extends State<TableRakA2> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(
-          Text("${data['part_number'] ?? "-"}",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
-      DataCell(
-          Text("${data['serial_number'] ?? "-"}",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
+      DataCell(Text("${data['part_number'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['serial_number'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
       DataCell(Text("${data['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
@@ -88,19 +84,18 @@ class _TableRakA2State extends State<TableRakA2> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(
-          Text("${data['description'] ?? "-"}",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
+      DataCell(Text("${data['description'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
     ]);
   }
 
   void getDataRakA2() async {
     try {
-      response = await dio.get(getRakA2);
+      response = await dio.get(getRak);
 
       setState(() {
         rakA2 = response!.data;
@@ -128,7 +123,8 @@ class _TableRakA2State extends State<TableRakA2> {
 
   List<DropdownMenuItem<String>> get dropdownItemsArmoring {
     List<DropdownMenuItem<String>> menuItemsArmoring = [
-      const DropdownMenuItem(value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
+      const DropdownMenuItem(
+          value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
       const DropdownMenuItem(value: "Canada", child: Text("Canada")),
       const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
       const DropdownMenuItem(value: "England", child: Text("England")),

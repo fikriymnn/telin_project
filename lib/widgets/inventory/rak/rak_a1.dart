@@ -203,32 +203,22 @@ class _TableRakA1State extends State<TableRakA1> {
                     cells: {
                       'no': PlutoCell(value: '${index + 1}'),
                       'location': PlutoCell(
-                          value:
-                              '${rakA1[index]['rak_number'] == null ? "" : rakA1[index]['rak_number']}'),
+                          value: '${rakA1[index]['rak_number'] ?? "-"}'),
                       'item_name': PlutoCell(
-                          value:
-                              '${rakA1[index]['item_name'] == null ? "" : rakA1[index]['item_name']}'),
+                          value: '${rakA1[index]['item_name'] ?? "-"}'),
                       'part_number': PlutoCell(
-                          value:
-                              '${rakA1[index]['part_number'] == null ? "" : rakA1[index]['part_number']}'),
+                          value: '${rakA1[index]['part_number'] ?? "-"}'),
                       'serial_number': PlutoCell(
-                          value:
-                              '${rakA1[index]['serial_number'] == null ? "" : rakA1[index]['serial_number']}'),
-                      'system': PlutoCell(
-                          value:
-                              '${rakA1[index]['system'] == null ? "" : rakA1[index]['system']}'),
+                          value: '${rakA1[index]['serial_number'] ?? "-"}'),
+                      'system':
+                          PlutoCell(value: '${rakA1[index]['system'] ?? "-"}'),
                       'weight': PlutoCell(
-                          value:
-                              '${rakA1[index]['weight_kg'] == null ? "" : rakA1[index]['weight_kg']}'),
-                      'qty': PlutoCell(
-                          value:
-                              '${rakA1[index]['qty'] == null ? "" : rakA1[index]['qty']}'),
-                      'unit': PlutoCell(
-                          value:
-                              '${rakA1[index]['unit'] == null ? "" : rakA1[index]['unit']}'),
-                      'remark': PlutoCell(
-                          value:
-                              '${rakA1[index]['description'] == null ? "" : rakA1[index]['description']}'),
+                          value: '${rakA1[index]['weight_kg'] ?? "-"}'),
+                      'qty': PlutoCell(value: '${rakA1[index]['qty'] ?? "-"}'),
+                      'unit':
+                          PlutoCell(value: '${rakA1[index]['unit'] ?? "-"}'),
+                      'description': PlutoCell(
+                          value: '${rakA1[index]['description'] ?? "-"}'),
                     },
                   ),
                 ),

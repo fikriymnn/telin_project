@@ -1,4 +1,4 @@
-String baseUrl = 'http://192.168.93.11:1000';
+String baseUrl = 'http://192.168.220.11:1000';
 
 //loading
 String newloading = '$baseUrl/api/loading/';
@@ -11,6 +11,11 @@ String submitLoading = '$baseUrl/api/loading/submit';
 String deleteCableFromLoading = '$baseUrl/api/loading/cable';
 String deleteSparekitFromLoading = '$baseUrl//api/loading/kit';
 String getAllTurnOverById = '$baseUrl/api/loading/turnover';
+
+//off-loading
+String getAllOffLoading = '$baseUrl/api/offloading';
+String getOffLoadingById = '$baseUrl/api/offloading';
+String offLoadingExisting = '$baseUrl/api/offloading';
 
 //allCable
 String getAllCable = '$baseUrl/api/spareCable/';

@@ -3,14 +3,20 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/bast/invoice_print.dart';
 
-class Invoice extends StatefulWidget {
-  const Invoice({super.key});
+class InvoiceLoading extends StatefulWidget {
+  const InvoiceLoading({
+    super.key,
+    required this.dataLoading,
+    required this.dataLoadingCable,
+    required this.dataLoadingKit,
+  });
+  final List dataLoading, dataLoadingCable, dataLoadingKit;
 
   @override
-  State<Invoice> createState() => _InvoiceState();
+  State<InvoiceLoading> createState() => _InvoiceLoadingState();
 }
 
-class _InvoiceState extends State<Invoice> {
+class _InvoiceLoadingState extends State<InvoiceLoading> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -63,7 +69,7 @@ class _InvoiceState extends State<Invoice> {
                     const SizedBox(
                       height: 15,
                     ),
-                    Text("REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
+                    Text("${widget.dataLoading[0]['project_name'] ?? "-"}",
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
                           fontSize: 13.3,
@@ -90,7 +96,10 @@ class _InvoiceState extends State<Invoice> {
                 children: [
                   InkWell(
                     onTap: () {
-                      // printInvoiceLoading().InvoiceLoadingPrinttt();
+                      printInvoiceLoading().InvoiceLoadingPrinttt(
+                          widget.dataLoading,
+                          widget.dataLoadingCable,
+                          widget.dataLoadingKit);
                       // showDialog(
                       //               context: context,
                       //               builder: (BuildContext context) {

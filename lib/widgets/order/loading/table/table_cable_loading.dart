@@ -33,7 +33,7 @@ class _TableCableLoadingState extends State<TableCableLoading> {
   @override
   void initState() {
     // TODO: implement initState
-    getDataTank1();
+    getDataCable();
     getDataSystem();
     getDataArmoringType();
 
@@ -128,7 +128,7 @@ class _TableCableLoadingState extends State<TableCableLoading> {
     ]);
   }
 
-  void getDataTank1() async {
+  void getDataCable() async {
     try {
       response = await dio.get(getAllCable);
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/widgets/inventory/rak/rak_a1.dart';
-
+import 'package:telin_project/widgets/inventory/rak/rak_a2.dart';
 
 class RacksInventory extends StatelessWidget {
   const RacksInventory({super.key});

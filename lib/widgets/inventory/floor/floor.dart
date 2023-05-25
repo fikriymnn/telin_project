@@ -245,7 +245,7 @@ class _TableFloorState extends State<TableFloor> {
                       'unit': PlutoCell(
                           value:
                               '${floor[index]['unit'] == null ? "" : floor[index]['unit']}'),
-                      'remark': PlutoCell(
+                      'description': PlutoCell(
                           value:
                               '${floor[index]['description'] == null ? "" : floor[index]['description']}'),
                     },

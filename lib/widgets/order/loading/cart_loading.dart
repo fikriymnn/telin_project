@@ -153,7 +153,8 @@ class _CartLoadingState extends State<CartLoading> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("${LoadingById[index]['perusahaan']}",
+                          Text(
+                              "${LoadingById[index]['perusahaan']['company_name']}",
                               style: GoogleFonts.montserrat(
                                 fontSize: 13.3,
                                 fontWeight: FontWeight.w900,
@@ -205,7 +206,7 @@ class _CartLoadingState extends State<CartLoading> {
                     child: Column(
                       children: [
                         Expanded(
-                            child: TableCableTurnOver(
+                            child: TableCableTurnOverCart(
                           idLoading: widget.idLoading,
                         )),
                       ],

@@ -85,55 +85,55 @@ class _TableCableCartState extends State<TableCableCart> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text('',
+      DataCell(Text('${data['label_id'] ?? "-"}',
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['_id']['system'] ?? "-"}",
+      DataCell(Text("${data['system']['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['_id']['armoring_type'] ?? "-"}",
+      DataCell(Text("${data['armoring_type']['armoring_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['_id']['length_report'] ?? "-"}",
+      DataCell(Text("${data['length_report'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['_id']['core_type'] ?? "-"}",
+      DataCell(Text("${data['core_type']['core_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['_id']['sigma_core'] ?? "-"}",
+      DataCell(Text("${data['sigma_core'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['_id']['tank'] ?? "-"}",
+      DataCell(Text("${data['tank'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['_id']['tank_location'] ?? "-"}",
+      DataCell(Text("${data['tank_location'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['_id']['tank_level'] ?? "-"}",
+      DataCell(Text("${data['tank_level'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -151,7 +151,7 @@ class _TableCableCartState extends State<TableCableCart> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['_id']['remark'] ?? "-"}",
+      DataCell(Text("${data['remark'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -169,7 +169,7 @@ class _TableCableCartState extends State<TableCableCart> {
                 width: 400,
                 confirmBtnColor: Colors.green,
                 onConfirmBtnTap: () {
-                  hapusDataCableLoading('${data['_id']['id']}');
+                  hapusDataCableLoading('${data['id']}');
                 });
           },
           child: Text("Delete",

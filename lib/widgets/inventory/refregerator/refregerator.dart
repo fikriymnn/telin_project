@@ -221,7 +221,7 @@ class _TableRefregeratorState extends State<TableRefregerator> {
                       'unit': PlutoCell(
                           value:
                               '${refregerator[index]['unit'] == null ? "" : refregerator[index]['unit']}'),
-                      'remark': PlutoCell(
+                      'description': PlutoCell(
                           value:
                               '${refregerator[index]['description'] == null ? "" : refregerator[index]['description']}'),
                     },

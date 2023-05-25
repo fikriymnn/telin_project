@@ -74,8 +74,8 @@ class _NewOrderLoadingState extends State<NewOrderLoading> {
       case 1:
         return const CableDanKitLoading(id: "xckik");
 
-      case 2:
-        return const BastLoading();
+      // case 2:
+      //   return const BastLoading();
 
       default:
         return FormLoading();

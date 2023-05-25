@@ -237,7 +237,7 @@ class _TableCage1State extends State<TableCage1> {
                       'qty': PlutoCell(value: '${cage1[index]['qty'] ?? "-"}'),
                       'unit':
                           PlutoCell(value: '${cage1[index]['unit'] ?? "-"}'),
-                      'remark': PlutoCell(
+                      'description': PlutoCell(
                           value: '${cage1[index]['description'] ?? "-"}'),
                     },
                   ),

@@ -5,6 +5,8 @@ import 'package:telin_project/widgets/home/table_cable/table_cable.dart';
 import 'package:telin_project/widgets/home/table_non_cable.dart';
 import 'package:telin_project/widgets/order/loading/table/table_turn_over.dart';
 
+import '../order/loading/table/table_turn_over_detail.dart';
+
 class DetailTableHome extends StatefulWidget {
   const DetailTableHome({super.key});
 
@@ -153,7 +155,7 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       child: Column(
                         children: [
                           Flexible(
-                              child: TableCableTurnOver(
+                              child: TableCableTurnOverDetail(
                             idLoading: "",
                           )),
                         ],

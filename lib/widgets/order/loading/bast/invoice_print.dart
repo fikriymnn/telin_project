@@ -6,11 +6,11 @@ import 'package:printing/printing.dart';
 import 'package:telin_project/widgets/order/loading/bast/table_invoice.dart';
 
 class printInvoiceLoading {
-  Future<void> InvoiceLoadingPrinttt() async {
+  Future<void> InvoiceLoadingPrinttt(
+      List dataLoading, List dataLoadingCable, List dataLoadingKit) async {
     final doc = pw.Document();
     final TelinLogo =
         await imageFromAssetBundle('assets/images/logo_telin_login.png');
-    final font = GoogleFonts.montserrat();
 
     doc.addPage(pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
@@ -282,7 +282,7 @@ class printInvoiceLoading {
                                                 )),
                                           ),
                                           pw.Text(
-                                              ": PT. Dagang Samudera Hutama",
+                                              ": ${dataLoading[0]['perusahaan']['company_name'] ?? "-"}",
                                               style: pw.TextStyle(
                                                 fontSize: 8,
                                                 fontWeight:
@@ -338,7 +338,7 @@ class printInvoiceLoading {
                                           ),
                                           pw.Flexible(
                                             child: pw.Text(
-                                                ": The East, Lantai 35, Unit 03 Jl. Dr. Ide Anak Agung Gede Agung, Kav. E 3.2, No. 1 DKI Jakarta  12950",
+                                                ": ${dataLoading[0]['perusahaan']['address'] ?? "-"}",
                                                 style: pw.TextStyle(
                                                   fontSize: 8,
                                                   fontWeight:
@@ -368,7 +368,8 @@ class printInvoiceLoading {
                                                         color: PdfColors.black,
                                                       )),
                                                 ),
-                                                pw.Text(": Jakarta",
+                                                pw.Text(
+                                                    ": ${dataLoading[0]['perusahaan']['city'] ?? "-"}",
                                                     style: pw.TextStyle(
                                                       fontSize: 8,
                                                       fontWeight:
@@ -388,7 +389,8 @@ class printInvoiceLoading {
                                                     pw.FontWeight.normal,
                                                 color: PdfColors.black,
                                               )),
-                                          pw.Text(": Indonesia",
+                                          pw.Text(
+                                              ": ${dataLoading[0]['perusahaan']['state'] ?? "-"}",
                                               style: pw.TextStyle(
                                                 fontSize: 8,
                                                 fontWeight:
@@ -414,7 +416,8 @@ class printInvoiceLoading {
                                                   color: PdfColors.black,
                                                 )),
                                           ),
-                                          pw.Text(": +62 851-6102-1791 (Ryan)",
+                                          pw.Text(
+                                              ": ${dataLoading[0]['perusahaan']['phone'] ?? "-"}",
                                               style: pw.TextStyle(
                                                 fontSize: 8,
                                                 fontWeight:
@@ -603,7 +606,7 @@ class printInvoiceLoading {
                               ))))
                 ])),
                 pw.ListView.builder(
-                  itemCount: 12,
+                  itemCount: dataLoadingKit.length,
                   itemBuilder: (context, index) {
                     return pw.Container(
                       child: pw.Row(
@@ -626,7 +629,8 @@ class printInvoiceLoading {
                               decoration:
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
-                                  child: pw.Text("UJ Common Component KIT",
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['item_name'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -638,7 +642,8 @@ class printInvoiceLoading {
                               decoration:
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
-                                  child: pw.Text("KIT9003",
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['part_number'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -662,7 +667,8 @@ class printInvoiceLoading {
                               decoration:
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
-                                  child: pw.Text("5",
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['qty'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -674,7 +680,7 @@ class printInvoiceLoading {
                               decoration:
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
-                                  child: pw.Text("3 BOX",
+                                  child: pw.Text("-",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -686,7 +692,8 @@ class printInvoiceLoading {
                               decoration:
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
-                                  child: pw.Text("56.00",
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['priceUsd'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -698,7 +705,7 @@ class printInvoiceLoading {
                               decoration:
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
-                                  child: pw.Text("143.00",
+                                  child: pw.Text("-",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -710,7 +717,8 @@ class printInvoiceLoading {
                               decoration:
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
-                                  child: pw.Text("31.568.678",
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['priceUsd'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -722,7 +730,7 @@ class printInvoiceLoading {
                               decoration:
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
-                                  child: pw.Text("123.658.568",
+                                  child: pw.Text("-",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -763,7 +771,7 @@ class printInvoiceLoading {
                       width: 60,
                       decoration: pw.BoxDecoration(border: pw.Border.all()),
                       child: pw.Center(
-                          child: pw.Text("42.654.57",
+                          child: pw.Text("-",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,
@@ -785,7 +793,7 @@ class printInvoiceLoading {
                       width: 60,
                       decoration: pw.BoxDecoration(border: pw.Border.all()),
                       child: pw.Center(
-                          child: pw.Text("132.345.65",
+                          child: pw.Text("-",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,
@@ -807,7 +815,7 @@ class printInvoiceLoading {
                       width: 60,
                       decoration: pw.BoxDecoration(border: pw.Border.all()),
                       child: pw.Center(
-                          child: pw.Text("2.453.000.576",
+                          child: pw.Text("-",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,

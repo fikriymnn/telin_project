@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/widgets/order/loading/bats_loading.dart';
 import 'package:telin_project/widgets/order/loading/cart_loading.dart';
 import 'package:telin_project/widgets/order/loading/table/table_cable_loading.dart';
 import 'package:telin_project/widgets/order/loading/table/table_non_cable_loading.dart';
@@ -39,6 +40,13 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
           width: 400,
           barrierDismissible: true,
           confirmBtnColor: Colors.red);
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => BastLoading(
+                    idLoading: id,
+                  )));
     } catch (e) {
       QuickAlert.show(
           context: context,

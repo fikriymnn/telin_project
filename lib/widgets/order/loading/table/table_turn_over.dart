@@ -5,12 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 
-class TableCableTurnOver extends StatefulWidget {
-  const TableCableTurnOver({super.key, required this.idLoading});
+class TableCableTurnOverCart extends StatefulWidget {
+  const TableCableTurnOverCart({super.key, required this.idLoading});
   final String idLoading;
 
   @override
-  State<TableCableTurnOver> createState() => _TableCableTurnOverState();
+  State<TableCableTurnOverCart> createState() => _TableCableTurnOverCartState();
 }
 
 List<DropdownMenuItem<String>> get dropdownItemsSystem {
@@ -34,7 +34,7 @@ List<DropdownMenuItem<String>> get dropdownItemsArmoring {
   return menuItemsArmoring;
 }
 
-class _TableCableTurnOverState extends State<TableCableTurnOver> {
+class _TableCableTurnOverCartState extends State<TableCableTurnOverCart> {
   List turnoverById = [];
 
   String id = "";
@@ -80,31 +80,31 @@ class _TableCableTurnOverState extends State<TableCableTurnOver> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text('',
+      DataCell(Text('${data['lable_id'] ?? "-"}',
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['system'] ?? "-"}",
+      DataCell(Text("${data['system']['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['cable_type'] ?? "-"}",
+      DataCell(Text("${data['cable_type']['cable_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['manufacturer'] ?? "-"}",
+      DataCell(Text("${data['manufacturer']['manufacturer'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['armoring_type'] ?? "-"}",
+      DataCell(Text("${data['armoring_type']['armoring_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,

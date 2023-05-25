@@ -1,11 +1,15 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 
+import '../../../../constants/style.dart';
 
 class TableCableEdit extends StatefulWidget {
-  const TableCableEdit({super.key});
+  const TableCableEdit({super.key, required this.idLoading});
+  final String idLoading;
 
   @override
   State<TableCableEdit> createState() => _TableCableEditState();
@@ -23,7 +27,8 @@ List<DropdownMenuItem<String>> get dropdownItemsSystem {
 
 List<DropdownMenuItem<String>> get dropdownItemsArmoring {
   List<DropdownMenuItem<String>> menuItemsArmoring = [
-    const DropdownMenuItem(value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
+    const DropdownMenuItem(
+        value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
     const DropdownMenuItem(value: "Canada", child: Text("Canada")),
     const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
     const DropdownMenuItem(value: "England", child: Text("England")),
@@ -35,6 +40,126 @@ String selectedValueSystem = "SYSTEM";
 String selectedValueArmoring = "ARMORING TYPE";
 
 class _TableCableEditState extends State<TableCableEdit> {
+  List LoadingByIdCable = [];
+
+  String id = "";
+  Response? response;
+
+  var dio = Dio();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    id = widget.idLoading;
+    getDataLoading();
+    super.initState();
+  }
+
+  void getDataLoading() async {
+    var msg;
+    try {
+      response = await dio.get('$getLoadingById/$id');
+      msg = response!.data['message'];
+      setState(() {
+        LoadingByIdCable = response!.data['loading'][0]['submitted_cables'];
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  DataRow _resultsAPI(
+    index,
+    data,
+  ) {
+    return DataRow(cells: [
+      DataCell(Text("${index + 1}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text('${data['label_id'] ?? "-"}',
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['system']['system'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['armoring_type']['armoring_type'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['length_report'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['core_type']['core_type'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['sigma_core'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['tank'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['tank_location'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['tank_level'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['priceIdr'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['priceUsd'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['remark'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -64,248 +189,158 @@ class _TableCableEditState extends State<TableCableEdit> {
                 minWidth: 3000,
                 columns: [
                   DataColumn2(
-                    label: Text('NO',
+                      label: Text(
+                        'NO',
                         style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        )),
-                    fixedWidth: 50,
-                  ),
+                        ),
+                      ),
+                      fixedWidth: 50),
                   DataColumn2(
-                    label: Text('LABEL',
+                      label: Text(
+                        'LABLE',
                         style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        )),
-                    fixedWidth: 64.6,
-                  ),
+                        ),
+                      ),
+                      fixedWidth: 100),
                   DataColumn2(
-                    label: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                          style: GoogleFonts.montserrat(
-                            fontSize: 8.6,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedValueSystem = newValue!;
-                            });
-                          },
-                          value: selectedValueSystem,
-                          items: dropdownItemsSystem),
-                    ),
-                    fixedWidth: 78.6,
-                  ),
-                  DataColumn2(
-                    label: Text('CABLE TYPE',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        )),
-                    fixedWidth: 101.3,
-                  ),
-                  DataColumn2(
-                    label: Text('MANUFACTURER',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        )),
-                    fixedWidth: 112,
-                  ),
-                  DataColumn2(
-                    label: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                          style: GoogleFonts.montserrat(
-                            fontSize: 8.6,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedValueArmoring = newValue!;
-                            });
-                          },
-                          value: selectedValueArmoring,
-                          items: dropdownItemsArmoring),
-                    ),
-                    fixedWidth: 110,
-                  ),
-                  DataColumn2(
-                    label: Text('LENGTH (METER)',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        )),
-                    fixedWidth: 116.6,
-                  ),
-                  DataColumn2(
-                    label: Text('INNER',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        )),
-                    fixedWidth: 72.6,
-                  ),
-                  DataColumn2(
-                    label: Text('OUTER',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        )),
-                    fixedWidth: 64.6,
-                  ),
-                  DataColumn2(
-                    label: Text('TANK LEVER (FR BOTTOM)',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        )),
-                    fixedWidth: 135.3,
-                  ),
-                  DataColumn2(
-                    label: Text('REMARK',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        )),
-                    fixedWidth: 142.6,
-                  ),
-                  DataColumn2(
-                    label: Text('ROTO',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        )),
-                    fixedWidth: 40,
-                  ),
-                  DataColumn2(
-                    label: Text('ACTION',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 8.6,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        )),
-                    fixedWidth: 40,
-                  ),
-                ],
-                rows: List<DataRow>.generate(
-                    10,
-                    (index) => DataRow(cells: [
-                          DataCell(Text('1',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(Text('18303',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(Text('SEA-US',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(Text('OCC-SC500',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(Text('ALCATEL',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(Text('LWP',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(Text('7,730',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(Text('TANK 2',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(Text('TANK 2',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(Text('10',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(Text('SABANG - LHOK EXSESS DA',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(Text('7,204',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 8.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ))),
-                          DataCell(
-                            InkWell(
-                              onTap: () {
-                                QuickAlert.show(
-                                  context: context,
-                                  type: QuickAlertType.confirm,
-                                  text: 'Do you sure to delete this item',
-                                  confirmBtnText: 'Yes',
-                                  cancelBtnText: 'No',
-                                  customAsset: 'assets/gift/error.gif',
-                                  width: 400,
-                                  confirmBtnColor: Colors.green,
-                                );
-                              },
-                              child: Container(
-                                width: 21.41,
-                                height: 19.46,
-                                decoration: BoxDecoration(
-                                    color: const Color(0xffEC1D26),
-                                    borderRadius: BorderRadius.circular(6)),
-                                child: Center(
-                                  child: Text("X",
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 13.3,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                      )),
-                                ),
-                              ),
+                      label: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                            style: GoogleFonts.montserrat(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
                             ),
-                          ),
-                        ]))),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedValueSystem = newValue!;
+                              });
+                            },
+                            value: selectedValueSystem,
+                            items: dropdownItemsSystem),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                            style: GoogleFonts.montserrat(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedValueArmoring = newValue!;
+                              });
+                            },
+                            value: selectedValueArmoring,
+                            items: dropdownItemsArmoring),
+                      ),
+                      fixedWidth: 120),
+                  DataColumn2(
+                      label: Text(
+                        """LENGTH
+(METER)
+              """,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "CORE TYPE",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "\u03A3 CORE",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "TANK",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 50),
+                  DataColumn2(
+                      label: Text(
+                        "TANK LOCATION",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "TANK LEVEL",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "UNIT PRICE(IDR)",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "UNIT PRICE(USD)",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "REMARK",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 150),
+                ],
+                rows: List.generate(
+                    LoadingByIdCable.length,
+                    (index) => _resultsAPI(
+                          index,
+                          LoadingByIdCable[index],
+                        ))),
           ),
         ),
       ],

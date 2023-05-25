@@ -7,8 +7,8 @@ import 'package:telin_project/constants/style.dart';
 
 class InputLengthCableExisting extends StatefulWidget {
   const InputLengthCableExisting(
-      {super.key, required this.idLoading, required this.idCable});
-  final String idLoading, idCable;
+      {super.key, required this.idOffLoading, required this.idCable});
+  final String idOffLoading, idCable;
 
   @override
   State<InputLengthCableExisting> createState() =>
@@ -17,49 +17,10 @@ class InputLengthCableExisting extends StatefulWidget {
 
 class _InputLengthCableExistingState extends State<InputLengthCableExisting> {
   TextEditingController _priceIdr = TextEditingController();
+  TextEditingController _length = TextEditingController();
   Response? response;
 
   var dio = Dio();
-  double kurs = 0.0;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    getDataKurs();
-    super.initState();
-  }
-
-  void getDataKurs() async {
-    bool status;
-    var msg;
-
-    try {
-      response = await dio.get(getAllKurs);
-      status = response!.data['sukses'];
-      msg = response!.data['msg'];
-      if (status) {
-        setState(() {
-          kurs = response!.data['usd'];
-        });
-      } else {
-        QuickAlert.show(
-            context: context,
-            type: QuickAlertType.error,
-            text: '$msg',
-            title: 'Peringatan',
-            width: 400,
-            confirmBtnColor: Colors.red);
-      }
-    } catch (e) {
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +88,7 @@ class _InputLengthCableExistingState extends State<InputLengthCableExisting> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(bottom: 8),
                                     child: TextField(
+                                      controller: _length,
                                       style: GoogleFonts.montserrat(
                                         fontSize: 13.3,
                                         fontWeight: FontWeight.w400,
@@ -343,9 +305,8 @@ class _InputLengthCableExistingState extends State<InputLengthCableExisting> {
                 children: [
                   InkWell(
                     onTap: () {
-                      addCableLoading(widget.idCable, widget.idLoading,
-                          _priceIdr.text, double.parse(_priceIdr.text) * kurs);
-                      Navigator.pop(context);
+                      doOffLoadingExisting(widget.idCable, widget.idOffLoading,
+                          "idr", "usd", _length.text);
                     },
                     child: Container(
                       width: 90,
@@ -372,12 +333,14 @@ class _InputLengthCableExistingState extends State<InputLengthCableExisting> {
     );
   }
 
-  void addCableLoading(cableId, loadingId, idr, usd) async {
+  void doOffLoadingExisting(cableId, loadingId, idr, usd, length) async {
     bool status;
     var msg;
     try {
-      response = await dio.post('$addCableToLoading/$loadingId',
-          data: {'cables_id': cableId, 'priceIdr': idr, 'priceUsd': usd});
+      response = await dio
+          .post('$offLoadingExisting/$cableId/loading/$loadingId', data: {
+        'length': length,
+      });
 
       msg = response!.data['message'];
 

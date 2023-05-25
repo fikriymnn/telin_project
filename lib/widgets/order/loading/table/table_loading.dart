@@ -29,7 +29,7 @@ class _TableLoadingState extends State<TableLoading> {
   @override
   void initState() {
     // TODO: implement initState
-    getDataArmoringType();
+    getDataLoading();
     super.initState();
   }
 
@@ -82,20 +82,6 @@ class _TableLoadingState extends State<TableLoading> {
               color: Colors.black,
             )),
       )),
-      DataCell(
-        InkWell(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const BastLoading()));
-          },
-          child: Text('Detail...',
-              style: GoogleFonts.montserrat(
-                fontSize: 13.3,
-                fontWeight: FontWeight.w600,
-                color: Colors.black.withOpacity(0.5),
-              )),
-        ),
-      ),
       DataCell(Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -105,8 +91,9 @@ class _TableLoadingState extends State<TableLoading> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          CableDanKitLoading(id: data['_id'])));
+                      builder: (context) => EditLoading(
+                            idLoading: data['_id'],
+                          )));
               // showDialog(
               //     context: context,
               //     builder: (BuildContext context) {
@@ -123,7 +110,7 @@ class _TableLoadingState extends State<TableLoading> {
               decoration: BoxDecoration(
                   color: green, borderRadius: BorderRadius.circular(6)),
               child: Center(
-                  child: Text("Edit",
+                  child: Text("Detail",
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
@@ -199,7 +186,7 @@ class _TableLoadingState extends State<TableLoading> {
     ]);
   }
 
-  void getDataArmoringType() async {
+  void getDataLoading() async {
     bool status;
     var msg;
     try {
@@ -306,7 +293,6 @@ class _TableLoadingState extends State<TableLoading> {
                     color: Colors.black,
                   )),
               fixedWidth: 100),
-          const DataColumn2(label: Text(''), fixedWidth: 70),
 
           const DataColumn2(label: Text(''), fixedWidth: 200),
           // const DataColumn2(
@@ -362,10 +348,10 @@ class _TableLoadingState extends State<TableLoading> {
               DataCell(
                 InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BastLoading()));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => const BastLoading()));
                   },
                   child: Text('Detail...',
                       style: GoogleFonts.montserrat(
@@ -382,11 +368,11 @@ class _TableLoadingState extends State<TableLoading> {
                 children: [
                   InkWell(
                     onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return const EditLoading();
-                          });
+                      // showDialog(
+                      //     context: context,
+                      //     builder: (BuildContext context) {
+                      //       return  EditLoading(idLoading: data['_id'],);
+                      //     });
                       // Navigator.push(
                       //     context,
                       //     MaterialPageRoute(
