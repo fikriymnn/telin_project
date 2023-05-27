@@ -606,6 +606,343 @@ class printInvoiceLoading {
                               ))))
                 ])),
                 pw.ListView.builder(
+                  itemCount: dataLoadingCable.length,
+                  itemBuilder: (context, index) {
+                    return pw.Container(
+                      child: pw.Row(
+                        children: [
+                          pw.Container(
+                              height: 20,
+                              width: 15,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text("${index + 1}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 80,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingCable[index]['description'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingCable[index]['system']['system'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingCable[index]['length_report']}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text("-",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text("-",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingCable[index]['priceUsd'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingCable[index]['priceUsd'] * dataLoadingCable[index]['length_report'] ?? ""}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingCable[index]['priceIdr'] ?? ""}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingCable[index]['priceIdr'] * dataLoadingCable[index]['length_report'] ?? ""}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      ))))
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                pw.Container(
+                    child: pw.Row(children: [
+                  pw.Container(
+                    height: 20,
+                    width: 15,
+                  ),
+                  pw.Container(
+                    height: 20,
+                    width: 80,
+                  ),
+                  pw.Container(
+                    height: 20,
+                    width: 60,
+                  ),
+                  pw.Container(
+                      height: 20,
+                      width: 120,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Total Weight (Kg)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("-",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Total Price (USD)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("-",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Total Price (IDR)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("-",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              ))))
+                ])),
+
+                pw.SizedBox(
+                  height: 20,
+                ),
+
+                pw.Container(
+                    child: pw.Row(children: [
+                  pw.Container(
+                      height: 20,
+                      width: 15,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("No",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 80,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Deskription",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Model/Part No",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Length (Km)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Qty (Box)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Weight (Kg)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Unit Price (USD)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Total Price (USD)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Unit Price (IDR)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Total Price (IDR)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              ))))
+                ])),
+                pw.ListView.builder(
                   itemCount: dataLoadingKit.length,
                   itemBuilder: (context, index) {
                     return pw.Container(
@@ -680,7 +1017,8 @@ class printInvoiceLoading {
                               decoration:
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
-                                  child: pw.Text("-",
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['weight_kg']}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -693,19 +1031,7 @@ class printInvoiceLoading {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataLoadingKit[index]['priceUsd'] ?? "-"}",
-                                      style: pw.TextStyle(
-                                        fontSize: 6,
-                                        fontWeight: pw.FontWeight.normal,
-                                        color: PdfColors.black,
-                                      )))),
-                          pw.Container(
-                              height: 20,
-                              width: 60,
-                              decoration:
-                                  pw.BoxDecoration(border: pw.Border.all()),
-                              child: pw.Center(
-                                  child: pw.Text("-",
+                                      "${dataLoadingKit[index]['unitPriceUsd'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -718,7 +1044,7 @@ class printInvoiceLoading {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataLoadingKit[index]['priceUsd'] ?? "-"}",
+                                      "${dataLoadingKit[index]['unitPriceUsd'] * dataLoadingKit[index]['qty'] ?? ""}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -730,7 +1056,21 @@ class printInvoiceLoading {
                               decoration:
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
-                                  child: pw.Text("-",
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['unitPriceIdr'] ?? ""}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['unitPriceIdr'] * dataLoadingKit[index]['qty'] ?? ""}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,

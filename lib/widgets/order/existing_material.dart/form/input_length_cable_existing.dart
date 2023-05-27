@@ -7,8 +7,12 @@ import 'package:telin_project/constants/style.dart';
 
 class InputLengthCableExisting extends StatefulWidget {
   const InputLengthCableExisting(
-      {super.key, required this.idOffLoading, required this.idCable});
+      {super.key,
+      required this.idOffLoading,
+      required this.idCable,
+      required this.initialLength});
   final String idOffLoading, idCable;
+  final double initialLength;
 
   @override
   State<InputLengthCableExisting> createState() =>
@@ -18,6 +22,17 @@ class InputLengthCableExisting extends StatefulWidget {
 class _InputLengthCableExistingState extends State<InputLengthCableExisting> {
   TextEditingController _priceIdr = TextEditingController();
   TextEditingController _length = TextEditingController();
+
+  TextEditingController _initialLength = TextEditingController();
+
+  @override
+  void initState() {
+    _initialLength =
+        TextEditingController(text: widget.initialLength.toString());
+    // TODO: implement initState
+    super.initState();
+  }
+
   Response? response;
 
   var dio = Dio();
@@ -179,6 +194,7 @@ class _InputLengthCableExistingState extends State<InputLengthCableExisting> {
                                     padding: const EdgeInsets.only(bottom: 8),
                                     child: TextField(
                                       enabled: false,
+                                      controller: _initialLength,
                                       style: GoogleFonts.montserrat(
                                         fontSize: 13.3,
                                         fontWeight: FontWeight.w400,
@@ -224,78 +240,78 @@ class _InputLengthCableExistingState extends State<InputLengthCableExisting> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Unit Price IDR",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 203.3,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: const Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: const Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 18,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: TextField(
-                                controller: _priceIdr,
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 13.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    hintText: "Input Price"),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // const SizedBox(
+            //   height: 30,
+            // ),
+            // Container(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Container(
+            //         child: Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             SizedBox(
+            //               width: 230,
+            //               child: Row(
+            //                 mainAxisAlignment: MainAxisAlignment.start,
+            //                 children: [
+            //                   Text(
+            //                     "Unit Price IDR",
+            //                     style: GoogleFonts.montserrat(
+            //                       fontSize: 20,
+            //                       fontWeight: FontWeight.w600,
+            //                       color: Colors.black,
+            //                     ),
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //             Container(
+            //               width: 203.3,
+            //               height: 44,
+            //               decoration: BoxDecoration(
+            //                   borderRadius: BorderRadius.circular(6),
+            //                   border: Border.all(
+            //                       width: 5, color: const Color(0xffF0F0F0)),
+            //                   color: Colors.white,
+            //                   boxShadow: [
+            //                     BoxShadow(
+            //                         color: Colors.black.withOpacity(0.25),
+            //                         blurRadius: 5,
+            //                         offset: const Offset(0, 4))
+            //                   ]),
+            //               child: Padding(
+            //                 padding: const EdgeInsets.only(
+            //                   left: 18,
+            //                 ),
+            //                 child: Padding(
+            //                   padding: const EdgeInsets.only(bottom: 8),
+            //                   child: TextField(
+            //                     controller: _priceIdr,
+            //                     style: GoogleFonts.montserrat(
+            //                       fontSize: 13.3,
+            //                       fontWeight: FontWeight.w400,
+            //                       color: Colors.black,
+            //                     ),
+            //                     decoration: InputDecoration(
+            //                         border: InputBorder.none,
+            //                         hintStyle: GoogleFonts.montserrat(
+            //                           fontSize: 13.3,
+            //                           fontWeight: FontWeight.w400,
+            //                           color: Colors.black,
+            //                         ),
+            //                         hintText: "Input Price"),
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             const SizedBox(
               height: 50,
             ),
@@ -337,9 +353,9 @@ class _InputLengthCableExistingState extends State<InputLengthCableExisting> {
     bool status;
     var msg;
     try {
-      response = await dio
-          .post('$offLoadingExisting/$cableId/loading/$loadingId', data: {
-        'length': length,
+      response = await dio.post('$offLoadingExisting/$loadingId', data: {
+        'cables_id': cableId,
+        'length_returned': length,
       });
 
       msg = response!.data['message'];

@@ -15,9 +15,51 @@ class InputQtyNonCable extends StatefulWidget {
 }
 
 class _InputQtyNonCableState extends State<InputQtyNonCable> {
+  TextEditingController _priceIdr = TextEditingController();
   Response? response;
 
   var dio = Dio();
+  double kurs = 0.0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getDataKurs();
+    super.initState();
+  }
+
+  void getDataKurs() async {
+    bool status;
+    var msg;
+
+    try {
+      response = await dio.get(getAllKurs);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          kurs = response!.data['usd'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -81,6 +123,7 @@ class _InputQtyNonCableState extends State<InputQtyNonCable> {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: TextField(
+                                controller: _priceIdr,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -113,7 +156,8 @@ class _InputQtyNonCableState extends State<InputQtyNonCable> {
                 children: [
                   InkWell(
                     onTap: () {
-                      addKitLoading(widget.idKit, widget.idLoading);
+                      addKitLoading(widget.idKit, widget.idLoading,
+                          _priceIdr.text, double.parse(_priceIdr.text) * kurs);
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -141,12 +185,15 @@ class _InputQtyNonCableState extends State<InputQtyNonCable> {
     );
   }
 
-  void addKitLoading(sparekitId, loadingId) async {
+  void addKitLoading(sparekitId, loadingId, priceIdr, priceUsd) async {
     bool status;
     var msg;
     try {
-      response = await dio.post('$addSparekitToLoading/$loadingId',
-          data: {'kits_id': sparekitId});
+      response = await dio.post('$addSparekitToLoading/$loadingId', data: {
+        'kits_id': sparekitId,
+        'unitPriceIdr': priceIdr,
+        'unitPriceUsd': priceUsd
+      });
 
       msg = response!.data['message'];
 

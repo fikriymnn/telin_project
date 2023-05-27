@@ -1,19 +1,66 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
+
 import 'package:telin_project/helpers/responsive.dart';
-import 'package:telin_project/pages/order/off_loading_existing_material.dart';
 import 'package:telin_project/widgets/bast_widget.dart';
-import 'package:telin_project/widgets/invoice_new.dart';
+
+import 'package:telin_project/widgets/order/existing_material.dart/print_bast/print_bast_existing.dart';
+
+import 'package:telin_project/widgets/order/loading/bast/invoice.dart';
 
 class BastOffLoading extends StatefulWidget {
-  const BastOffLoading({super.key});
+  const BastOffLoading({super.key, required this.idLoading});
+
+  final String idLoading;
 
   @override
   State<BastOffLoading> createState() => _BastOffLoadingState();
 }
 
 class _BastOffLoadingState extends State<BastOffLoading> {
+  List LoadingById = [];
+  List LoadingByIdCable = [];
+  List LoadingByIdKits = [];
+  String id = "";
+  Response? response;
+
+  var dio = Dio();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    id = widget.idLoading;
+    getDataLoading();
+    super.initState();
+  }
+
+  void getDataLoading() async {
+    var msg;
+    try {
+      response = await dio.get('$getLoadingById/$id');
+      msg = response!.data['message'];
+      setState(() {
+        LoadingById = response!.data['loading'];
+        LoadingByIdCable =
+            response!.data['loading'][0]['submitted_existing_cables_id'];
+        LoadingByIdKits = response!.data['loading'][0]['submitted_kits'];
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,7 +84,7 @@ class _BastOffLoadingState extends State<BastOffLoading> {
                       padding: const EdgeInsets.only(right: 59.3, top: 32),
                       child: InkWell(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const OffLoadingExistingScreens()));
+                            Navigator.pop(context);
                           },
                           child: Container(
                             width: 107.3,
@@ -74,21 +121,32 @@ class _BastOffLoadingState extends State<BastOffLoading> {
             ),
             ResponsiveWidget(
               largeScreen: Padding(
-                padding: const EdgeInsets.only(top: 150),
+                padding: const EdgeInsets.only(top: 100),
                 child: Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Invoice(),
+                      InvoiceLoading(
+                          dataLoading: LoadingById,
+                          dataLoadingCable: LoadingById,
+                          dataLoadingKit: LoadingByIdKits),
                       const SizedBox(
                         width: 205,
                       ),
                       BastWidget(
-                        title: "BAST- Off Loading ( Existing Material)",
-                        noBast: "004/BAST-OFF-LOADING/WEB/XII/2022",
-                        projectName: "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-                        onClick: (){},
+                        title: "BAST-Loading",
+                        noBast: "004/BAST-LOADING/WEB/XII/2022",
+                        projectName: "${LoadingById[0]['project_name'] ?? "-"}",
+                        onClick: () {
+                          printBastOffLoading().BastLoadingPrinttt(
+                              LoadingByIdCable, LoadingByIdKits, LoadingById);
+                          // showDialog(
+                          //         context: context,
+                          //         builder: (BuildContext context) {
+                          //           return BastLoadingPrint();
+                          //         });
+                        },
                       )
                     ],
                   ),
@@ -101,15 +159,26 @@ class _BastOffLoadingState extends State<BastOffLoading> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Invoice(),
+                      InvoiceLoading(
+                          dataLoading: LoadingById,
+                          dataLoadingCable: LoadingById,
+                          dataLoadingKit: LoadingByIdKits),
                       const SizedBox(
                         height: 100,
                       ),
                       BastWidget(
-                        title: "BAST- Off Loading ( Existing Material)",
-                        noBast: "004/BAST-OFF-LOADING/WEB/XII/2022",
-                        projectName: "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-                        onClick: (){},
+                        title: "BAST-Loading",
+                        noBast: "004/BAST-LOADING/WEB/XII/2022",
+                        projectName: "${LoadingById[0]['project_name'] ?? "-"}",
+                        onClick: () {
+                          printBastOffLoading().BastLoadingPrinttt(
+                              LoadingById, LoadingByIdKits, LoadingById);
+                          // showDialog(
+                          //         context: context,
+                          //         builder: (BuildContext context) {
+                          //           return BastLoadingPrint();
+                          //         });
+                        },
                       )
                     ],
                   ),

@@ -3,12 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/order/existing_material.dart/input_qty_non_cable_existing.dart';
-import 'package:telin_project/widgets/order/loading/form/input_qty_non_cable.dart';
-
-import '../../../api/configAPI.dart';
 
 class TableNonCableOffLoading extends StatefulWidget {
   const TableNonCableOffLoading({super.key, required this.idOffLoading});

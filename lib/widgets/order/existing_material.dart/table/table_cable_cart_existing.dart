@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
-import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/order/existing_material.dart/input_length_cable_existing.dart';
-import 'package:telin_project/widgets/order/loading/form/input_length_cable.dart';
 
-class TableCableOffLoading extends StatefulWidget {
-  const TableCableOffLoading({super.key, required this.idOffLoading});
-  final String idOffLoading;
+import '../../../../constants/style.dart';
+
+class TableCableCartExisting extends StatefulWidget {
+  const TableCableCartExisting({super.key, required this.idLoading});
+  final String idLoading;
 
   @override
-  State<TableCableOffLoading> createState() => _TableCableOffLoadingState();
+  State<TableCableCartExisting> createState() => _TableCableCartExistingState();
 }
 
 List<DropdownMenuItem<String>> get dropdownItemsSystem {
@@ -40,8 +39,8 @@ List<DropdownMenuItem<String>> get dropdownItemsArmoring {
 String selectedValueSystem = "SYSTEM";
 String selectedValueArmoring = "ARMORING TYPE";
 
-class _TableCableOffLoadingState extends State<TableCableOffLoading> {
-  List OffLoadingByIdCable = [];
+class _TableCableCartExistingState extends State<TableCableCartExisting> {
+  List LoadingByIdCable = [];
 
   String id = "";
   Response? response;
@@ -51,7 +50,7 @@ class _TableCableOffLoadingState extends State<TableCableOffLoading> {
   @override
   void initState() {
     // TODO: implement initState
-    id = widget.idOffLoading;
+    id = widget.idLoading;
     getDataLoading();
     super.initState();
   }
@@ -62,7 +61,7 @@ class _TableCableOffLoadingState extends State<TableCableOffLoading> {
       response = await dio.get('$getOffLoadingById/$id');
       msg = response!.data['message'];
       setState(() {
-        OffLoadingByIdCable = response!.data['loading'][0]['submitted_cables'];
+        LoadingByIdCable = response!.data['loading'][0]['existing_cables_id'];
       });
     } catch (e) {
       QuickAlert.show(
@@ -92,25 +91,25 @@ class _TableCableOffLoadingState extends State<TableCableOffLoading> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['system']['system'] ?? "-"}",
+      DataCell(Text("${data['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['armoring_type']['armoring_type'] ?? "-"}",
+      DataCell(Text("${data['armoring_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['length_report'] ?? "-"}",
+      DataCell(Text("${data['length_returned'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['core_type']['core_type'] ?? "-"}",
+      DataCell(Text("${data['core_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -140,41 +139,24 @@ class _TableCableOffLoadingState extends State<TableCableOffLoading> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      // DataCell(Text("${data['priceIdr'] ?? "-"}",
-      //     style: GoogleFonts.montserrat(
-      //       fontSize: 10,
-      //       fontWeight: FontWeight.w400,
-      //       color: Colors.black,
-      //     ))),
-      // DataCell(Text("${data['priceUsd'] ?? "-"}",
-      //     style: GoogleFonts.montserrat(
-      //       fontSize: 10,
-      //       fontWeight: FontWeight.w400,
-      //       color: Colors.black,
-      //     ))),
+      DataCell(Text("${data['priceIdr'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['priceUsd'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
       DataCell(Text("${data['remark'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(TextButton(
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return InputLengthCableExisting(
-                    idCable: data['_id'],
-                    idOffLoading: widget.idOffLoading,
-                  );
-                });
-          },
-          child: Text("Take",
-              style: GoogleFonts.montserrat(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: active,
-              ))))
     ]);
   }
 
@@ -262,7 +244,7 @@ class _TableCableOffLoadingState extends State<TableCableOffLoading> {
                       fixedWidth: 120),
                   DataColumn2(
                       label: Text(
-                        """LENGTH
+                        """LENGTH EXISTING
 (METER)
               """,
                         style: GoogleFonts.montserrat(
@@ -322,26 +304,26 @@ class _TableCableOffLoadingState extends State<TableCableOffLoading> {
                         ),
                       ),
                       fixedWidth: 100),
-                  // DataColumn2(
-                  //     label: Text(
-                  //       "UNIT PRICE(IDR)",
-                  //       style: GoogleFonts.montserrat(
-                  //         fontSize: 10,
-                  //         fontWeight: FontWeight.w600,
-                  //         color: Colors.black,
-                  //       ),
-                  //     ),
-                  //     fixedWidth: 100),
-                  // DataColumn2(
-                  //     label: Text(
-                  //       "UNIT PRICE(USD)",
-                  //       style: GoogleFonts.montserrat(
-                  //         fontSize: 10,
-                  //         fontWeight: FontWeight.w600,
-                  //         color: Colors.black,
-                  //       ),
-                  //     ),
-                  //     fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "UNIT PRICE(IDR)",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "UNIT PRICE(USD)",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
                   DataColumn2(
                       label: Text(
                         "REMARK",
@@ -352,22 +334,12 @@ class _TableCableOffLoadingState extends State<TableCableOffLoading> {
                         ),
                       ),
                       fixedWidth: 150),
-                  DataColumn2(
-                      label: Text(
-                        "ACTION",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
                 ],
                 rows: List.generate(
-                    OffLoadingByIdCable.length,
+                    LoadingByIdCable.length,
                     (index) => _resultsAPI(
                           index,
-                          OffLoadingByIdCable[index],
+                          LoadingByIdCable[index],
                         ))),
           ),
         ),

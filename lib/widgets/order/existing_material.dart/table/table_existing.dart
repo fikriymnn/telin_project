@@ -5,10 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/order/existing_material.dart/bast_existing.dart';
-import 'package:telin_project/widgets/order/existing_material.dart/lakukan_off_loading.dart';
 
-import '../loading/edit_loading.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/detail_turnover.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/lakukan_off_loading.dart';
+import 'package:telin_project/widgets/order/loading/edit_loading.dart';
 
 class TableExistingMaterial extends StatefulWidget {
   const TableExistingMaterial({super.key});
@@ -52,13 +52,13 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
               ))),
-      DataCell(Text("-",
+      DataCell(Text("${data['submitted_date_loading'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("-",
+      DataCell(Text("${data['submitted_date_offloading'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -88,7 +88,8 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const BastOffLoading()));
+                    builder: (context) =>
+                        DetailOffLoading(idLoading: data['_id'])));
           },
           child: Text('Detail Off-Loading',
               style: GoogleFonts.montserrat(

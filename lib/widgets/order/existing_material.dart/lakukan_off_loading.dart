@@ -4,10 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/order/existing_material.dart/bast_existing.dart';
-import 'package:telin_project/widgets/order/existing_material.dart/table_cable_off_loading.dart';
-import 'package:telin_project/widgets/order/existing_material.dart/table_non_cable_off_loading.dart';
-import 'package:telin_project/widgets/order/loading/cart_loading.dart';
+
+import 'package:telin_project/widgets/order/existing_material.dart/cart_existing.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/print_bast/bast_existing.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/table/table_cable_off_loading.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/table/table_non_cable_off_loading.dart';
 
 class LakukanOffLoading extends StatefulWidget {
   const LakukanOffLoading({super.key, required this.idOffLoading});
@@ -40,6 +41,39 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
       setState(() {
         LoadingById = response!.data['loading'];
       });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void submitDataOffLoading(id) async {
+    var msg;
+    try {
+      response = await dio.post('$submiOffLoadingExisting/$id');
+
+      msg = response!.data['message'];
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: '$msg',
+          title: 'Peringatan',
+          width: 400,
+          barrierDismissible: true,
+          confirmBtnColor: Colors.red);
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => BastOffLoading(
+                    idLoading: id,
+                  )));
     } catch (e) {
       QuickAlert.show(
           context: context,
@@ -89,8 +123,8 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return CartLoading(
-                                        idLoading: "",
+                                      return CartExisting(
+                                        idLoading: widget.idOffLoading,
                                       );
                                     });
                               },
@@ -134,11 +168,7 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                           ),
                           InkWell(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BastOffLoading()));
+                              submitDataOffLoading(widget.idOffLoading);
                             },
                             child: Container(
                               width: 90,

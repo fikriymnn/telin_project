@@ -9,6 +9,8 @@ import 'package:pluto_grid/pluto_grid.dart';
 import 'package:pluto_grid_export/pluto_grid_export.dart' as pluto_grid_export;
 import 'package:telin_project/widgets/order/loading/edit_loading.dart';
 
+import '../../order/existing_material.dart/detail_turnover.dart';
+
 class TableHome extends StatefulWidget {
   const TableHome({super.key});
 
@@ -51,13 +53,13 @@ class _TableHomeState extends State<TableHome> {
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
               ))),
-      DataCell(Text("-",
+      DataCell(Text("${data['submitted_date_loading'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 13.3,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("-",
+      DataCell(Text("${data['submitted_date_offloading'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 13.3,
             fontWeight: FontWeight.w400,
@@ -97,6 +99,14 @@ class _TableHomeState extends State<TableHome> {
         Center(
           child: InkWell(
             onTap: () {
+              if (data['submitted_date_offloading'] != null) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            DetailOffLoading(idLoading: data['_id'])));
+              }
+
               // showDialog(
               //     context: context,
               //     builder: (BuildContext context) {
