@@ -65,7 +65,8 @@ class _AddArmoringTypeState extends State<AddArmoringType> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                      border:
+                          Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -119,7 +120,8 @@ class _AddArmoringTypeState extends State<AddArmoringType> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                      border:
+                          Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -131,6 +133,7 @@ class _AddArmoringTypeState extends State<AddArmoringType> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtLabelIdArmoringType,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -162,7 +165,8 @@ class _AddArmoringTypeState extends State<AddArmoringType> {
                           width: 400,
                           confirmBtnColor: Colors.red);
                     } else {
-                      inputDataArmoringType(txtNamaArmoringType.text);
+                      inputDataArmoringType(txtNamaArmoringType.text,
+                          txtLabelIdArmoringType.text);
                       navigationController.navigateTo(ArmoringPageRoute);
                     }
                   },
@@ -192,12 +196,12 @@ class _AddArmoringTypeState extends State<AddArmoringType> {
     txtNamaArmoringType.clear();
   }
 
-  void inputDataArmoringType(namaArmoringType) async {
+  void inputDataArmoringType(namaArmoringType, labelId) async {
     bool status;
     var msg;
     try {
-      response = await dio
-          .post(inputArmoring, data: {'armoring_type': namaArmoringType});
+      response = await dio.post(inputArmoring,
+          data: {'armoring_type': namaArmoringType, 'label_id': labelId});
       status = response!.data['sukses'];
       msg = response!.data['msg'];
       if (status) {

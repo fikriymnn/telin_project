@@ -173,11 +173,9 @@ class _ChartDataState extends State<ChartData> {
   List<DropdownMenuItem<String>> get dropdownItemsGrafik {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(
-          value: "Cable By Jumlah",
-          child: Text("Cable By Jumlah")),
+          value: "Cable By Jumlah", child: Text("Cable By Jumlah")),
       const DropdownMenuItem(
-          value: "Cable By Lenghth",
-          child: Text("Cable By Length")),
+          value: "Cable By Lenghth", child: Text("Cable By Length")),
     ];
     return menuItems;
   }
@@ -717,7 +715,9 @@ class _ChartDataState extends State<ChartData> {
       'MINISUB - 36',
       'MINISUB-R',
       'OS-SS',
-      ''
+      '',
+      'URC-2',
+      'OCC-SC531'
     ];
 
     final Widget text = SizedBox(

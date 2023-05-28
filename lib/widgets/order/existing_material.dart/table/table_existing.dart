@@ -85,11 +85,13 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
       DataCell(
         InkWell(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        DetailOffLoading(idLoading: data['_id'])));
+            if (data['submitted_date_offloading'] != null) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DetailOffLoading(idLoading: data['_id'])));
+            }
           },
           child: Text('Detail Off-Loading',
               style: GoogleFonts.montserrat(
@@ -102,12 +104,14 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
       DataCell(
         InkWell(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => LakukanOffLoading(
-                          idOffLoading: data['_id'],
-                        )));
+            if (data['submitted_date_offloading'] == null) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => LakukanOffLoading(
+                            idOffLoading: data['_id'],
+                          )));
+            }
           },
           child: Container(
             width: 150,

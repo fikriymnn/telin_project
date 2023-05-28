@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/routing/routes.dart';
 
-
 import '../../../api/configAPI.dart';
 import '../../../constants/controllers.dart';
 
@@ -18,6 +17,7 @@ class AddSystem extends StatefulWidget {
 
 class _AddSystemState extends State<AddSystem> {
   TextEditingController txtNamaSystem = TextEditingController();
+  TextEditingController txtLabelId = TextEditingController();
 
   FocusNode focusNode = FocusNode();
 
@@ -66,7 +66,8 @@ class _AddSystemState extends State<AddSystem> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                      border:
+                          Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -120,7 +121,8 @@ class _AddSystemState extends State<AddSystem> {
                   height: 44,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                      border:
+                          Border.all(width: 5, color: const Color(0xffF0F0F0)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -132,6 +134,7 @@ class _AddSystemState extends State<AddSystem> {
                     padding: const EdgeInsets.only(left: 18, bottom: 8),
                     child: Center(
                       child: TextField(
+                        controller: txtLabelId,
                         style: GoogleFonts.montserrat(
                           fontSize: 13.3,
                           fontWeight: FontWeight.w400,
@@ -163,7 +166,7 @@ class _AddSystemState extends State<AddSystem> {
                           width: 400,
                           confirmBtnColor: Colors.red);
                     } else {
-                      inputDataSystem(txtNamaSystem.text);
+                      inputDataSystem(txtNamaSystem.text, txtLabelId.text);
                       navigationController.navigateTo(SystemPageRoute);
                     }
                   },
@@ -195,7 +198,7 @@ class _AddSystemState extends State<AddSystem> {
   }
 
   // Fungsi Add Data
-  void inputDataSystem(namaSystem) async {
+  void inputDataSystem(namaSystem, labelId) async {
     bool status;
     var msg;
     try {
@@ -203,7 +206,8 @@ class _AddSystemState extends State<AddSystem> {
       //   'system': namaSystem,
       // });
 
-      response = await dio.post(inputSystem, data: {'system': namaSystem});
+      response = await dio
+          .post(inputSystem, data: {'system': namaSystem, 'label_id': labelId});
       status = response!.data['sukses'];
       msg = response!.data['msg'];
       if (status) {

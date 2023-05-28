@@ -1,4 +1,4 @@
-String baseUrl = 'http://192.168.27.11:1000';
+String baseUrl = 'http://192.168.6.11:1000';
 
 //loading
 String newloading = '$baseUrl/api/loading/';

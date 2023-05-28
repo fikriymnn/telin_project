@@ -5,16 +5,19 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/routing/routes.dart';
 
-
 import '../../../constants/controllers.dart';
 import '../../../constants/style.dart';
 
 class EditArmoringType extends StatefulWidget {
   final String id;
   final String armoringName;
+  final String label;
 
   const EditArmoringType(
-      {super.key, required this.id, required this.armoringName});
+      {super.key,
+      required this.id,
+      required this.armoringName,
+      required this.label});
 
   @override
   State<EditArmoringType> createState() => _EditArmoringTypeState();
@@ -25,11 +28,13 @@ class _EditArmoringTypeState extends State<EditArmoringType> {
 
   var dio = Dio();
   late final TextEditingController _txtNamaArmoring;
+  late final TextEditingController _txtLabelId;
 
   @override
   void initState() {
     super.initState();
     _txtNamaArmoring = TextEditingController(text: widget.armoringName);
+    _txtLabelId = TextEditingController(text: widget.label);
   }
 
   @override
@@ -38,12 +43,12 @@ class _EditArmoringTypeState extends State<EditArmoringType> {
     _txtNamaArmoring.dispose();
   }
 
-  void editDataArmoring(id, namaArmoring) async {
+  void editDataArmoring(id, namaArmoring, labelId) async {
     bool status;
     var msg;
     try {
-      response = await dio
-          .put('$editArmoring/$id', data: {'armoring_type': namaArmoring});
+      response = await dio.put('$editArmoring/$id',
+          data: {'armoring_type': namaArmoring, 'label_id': labelId});
 
       status = response!.data['sukses'];
       msg = response!.data['msg'];
@@ -96,7 +101,8 @@ class _EditArmoringTypeState extends State<EditArmoringType> {
                     height: 37.3,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: const Color(0xffB8B8B8), width: 1)),
+                        border: Border.all(
+                            color: const Color(0xffB8B8B8), width: 1)),
                     child: Row(
                       children: [
                         Icon(
@@ -151,7 +157,8 @@ class _EditArmoringTypeState extends State<EditArmoringType> {
                 height: 44,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                    border:
+                        Border.all(width: 5, color: const Color(0xffF0F0F0)),
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
@@ -205,7 +212,8 @@ class _EditArmoringTypeState extends State<EditArmoringType> {
                 height: 44,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                    border:
+                        Border.all(width: 5, color: const Color(0xffF0F0F0)),
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
@@ -217,6 +225,7 @@ class _EditArmoringTypeState extends State<EditArmoringType> {
                   padding: const EdgeInsets.only(left: 18, bottom: 8),
                   child: Center(
                     child: TextField(
+                      controller: _txtLabelId,
                       style: GoogleFonts.montserrat(
                         fontSize: 13.3,
                         fontWeight: FontWeight.w400,
@@ -239,7 +248,8 @@ class _EditArmoringTypeState extends State<EditArmoringType> {
               ),
               InkWell(
                 onTap: () {
-                  editDataArmoring(widget.id, _txtNamaArmoring.text);
+                  editDataArmoring(
+                      widget.id, _txtNamaArmoring.text, _txtLabelId.text);
                 },
                 child: Container(
                   width: 90,

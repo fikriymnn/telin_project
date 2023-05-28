@@ -45,7 +45,7 @@ class _TableSystemState extends State<TableSystem> {
             )),
       )),
       DataCell(Center(
-        child: Text('System ID',
+        child: Text('${data['label_id'] ?? ""}',
             style: GoogleFonts.montserrat(
               fontSize: 14.6,
               fontWeight: FontWeight.w400,
@@ -63,6 +63,7 @@ class _TableSystemState extends State<TableSystem> {
                     builder: (context) => EditSystem(
                           id: data['_id'],
                           systemName: data['system'],
+                          label: data['label_id'] ?? "-",
                         )));
               },
               child: Container(

@@ -53,6 +53,49 @@ class _FormLoadingState extends State<FormLoading> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 59.3, top: 32),
+                      child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            width: 107.3,
+                            height: 37.3,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                    color: const Color(0xffB8B8B8), width: 1)),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.subdirectory_arrow_left,
+                                  color: Color(0xffED1D25),
+                                  size: 28.6,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "Back",
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 17.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: const Color(0xffED1D25),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
                 width: 500,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,

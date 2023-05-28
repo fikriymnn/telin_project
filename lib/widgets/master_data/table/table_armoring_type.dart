@@ -49,7 +49,7 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
             )),
       )),
       DataCell(Center(
-        child: Text('Armoring ID',
+        child: Text('${data['label_id']}',
             style: GoogleFonts.montserrat(
               fontSize: 14.6,
               fontWeight: FontWeight.w400,
@@ -67,6 +67,7 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
                     builder: (context) => EditArmoringType(
                           id: data['_id'],
                           armoringName: data['armoring_type'],
+                          label: data['label_id'] ?? "-",
                         )));
               },
               child: Container(
