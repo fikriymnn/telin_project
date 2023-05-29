@@ -8,6 +8,7 @@ import 'package:telin_project/constants/style.dart';
 
 import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/widgets/bast_widget.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/print_bast/invoice_existing.dart';
 
 import 'package:telin_project/widgets/order/existing_material.dart/print_bast/print_bast_existing.dart';
 
@@ -127,10 +128,11 @@ class _BastOffLoadingState extends State<BastOffLoading> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      InvoiceLoading(
-                          dataLoading: LoadingById,
-                          dataLoadingCable: LoadingById,
-                          dataLoadingKit: LoadingByIdKits),
+                      InvoiceExisting(
+                        dataExisting: LoadingById,
+                        dataExistingCable: LoadingByIdCable,
+                        dataExistingKit: LoadingByIdKits,
+                      ),
                       const SizedBox(
                         width: 205,
                       ),
@@ -159,10 +161,11 @@ class _BastOffLoadingState extends State<BastOffLoading> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      InvoiceLoading(
-                          dataLoading: LoadingById,
-                          dataLoadingCable: LoadingById,
-                          dataLoadingKit: LoadingByIdKits),
+                      InvoiceExisting(
+                        dataExisting: LoadingById,
+                        dataExistingCable: LoadingByIdCable,
+                        dataExistingKit: LoadingByIdKits,
+                      ),
                       const SizedBox(
                         height: 100,
                       ),
