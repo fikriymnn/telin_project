@@ -366,6 +366,9 @@ class printBastOffLoading {
   }
 
   static TableCableBast(List dataLoadingCable) {
+    var totalLength = List.generate(dataLoadingCable.length,
+            (index) => dataLoadingCable[index]['length_report'])
+        .reduce((a, b) => a + b);
     return pw.Column(children: [
       pw.Container(
           child: pw.Row(children: [
@@ -636,8 +639,7 @@ class printBastOffLoading {
                     border: pw.Border.all(),
                     color: const PdfColor.fromInt(0xffFFB800)),
                 child: pw.Center(
-                    child: pw.Text(
-                        "${dataLoadingCable[index]['length_report'] ?? "-"}",
+                    child: pw.Text("$totalLength",
                         style: pw.TextStyle(
                           fontSize: 6,
                           fontWeight: pw.FontWeight.normal,
@@ -659,6 +661,11 @@ class printBastOffLoading {
   ];
 
   static TableNonCableBast(List DataLoadingSparekit) {
+    var totalQty = List.generate(DataLoadingSparekit.length,
+        (index) => DataLoadingSparekit[index]['qty']).reduce((a, b) => a + b);
+    var totalWeight = List.generate(DataLoadingSparekit.length,
+            (index) => DataLoadingSparekit[index]['weight_kg'])
+        .reduce((a, b) => a + b);
     return pw.Column(children: [
       pw.Container(
           child: pw.Row(children: [
@@ -976,7 +983,7 @@ NUMBER""",
                 border: pw.Border.all(),
                 color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
-                child: pw.Text("44",
+                child: pw.Text("$totalQty",
                     style: pw.TextStyle(
                       fontSize: 8,
                       fontWeight: pw.FontWeight.bold,
@@ -1004,7 +1011,7 @@ NUMBER""",
                 border: pw.Border.all(),
                 color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
-                child: pw.Text("1.451.89",
+                child: pw.Text("$totalWeight",
                     style: pw.TextStyle(
                       fontSize: 8,
                       fontWeight: pw.FontWeight.bold,

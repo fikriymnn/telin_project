@@ -6,7 +6,6 @@ import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_m
 
 import '../../../../api/configAPI.dart';
 
-
 class AddNewNonCableLarge extends StatefulWidget {
   const AddNewNonCableLarge({super.key});
 
@@ -49,8 +48,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
   List<DropdownMenuItem<String>> get dropdownItemsLocation {
     List<DropdownMenuItem<String>> menuItemsLocation = [
       const DropdownMenuItem(
-          value: "Select Location",
-          child: Text("Select Location")),
+          value: "Select Location", child: Text("Select Location")),
       const DropdownMenuItem(value: "Canada", child: Text("Canada")),
       const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
       const DropdownMenuItem(value: "England", child: Text("England")),
@@ -60,7 +58,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItemsSystem = [
-      const DropdownMenuItem(value: "Select System", child: Text("Select System")),
+      const DropdownMenuItem(
+          value: "Select System", child: Text("Select System")),
       const DropdownMenuItem(value: "Canada", child: Text("Canada")),
       const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
       const DropdownMenuItem(value: "England", child: Text("England")),
@@ -118,8 +117,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
@@ -176,8 +175,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
@@ -191,6 +190,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
+                                hint: Text(
+                                  "Select Location",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                ),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -205,7 +212,12 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                 items: location.map((location) {
                                   return DropdownMenuItem(
                                     value: location['_id'].toString(),
-                                    child: Text(location['location']),
+                                    child: Text(location['location'],
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 13.3,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                        )),
                                   );
                                 }).toList(),
                               ),
@@ -237,8 +249,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
@@ -295,8 +307,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
@@ -360,8 +372,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
@@ -443,8 +455,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
@@ -501,8 +513,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
@@ -516,6 +528,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
+                                hint: Text(
+                                  "Select System",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                ),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -530,7 +550,12 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                 items: system.map((system) {
                                   return DropdownMenuItem(
                                     value: system['_id'].toString(),
-                                    child: Text(system['system']),
+                                    child: Text(system['system'],
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 13.3,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                        )),
                                   );
                                 }).toList(),
                               ),
@@ -562,8 +587,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
@@ -577,6 +602,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
+                                hint: Text(
+                                  "Select Unit",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                ),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -591,7 +624,12 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                 items: unit.map((unit) {
                                   return DropdownMenuItem(
                                     value: unit['_id'].toString(),
-                                    child: Text(unit['unit']),
+                                    child: Text(unit['unit'],
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 13.3,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                        )),
                                   );
                                 }).toList(),
                               ),
@@ -629,8 +667,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
@@ -684,8 +722,8 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
@@ -827,7 +865,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                   borderRadius: BorderRadius.circular(6),
                   color: const Color(0xffEC1D26)),
               child: Center(
-                child: Text("Done",
+                child: Text("Add",
                     style: GoogleFonts.roboto(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,

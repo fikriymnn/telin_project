@@ -29,48 +29,13 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
             SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text("New Material",
                       style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w500,
                           fontSize: 23.3,
                           color: Colors.black)),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 59.3, top: 32),
-                    child: InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          width: 107.3,
-                          height: 37.3,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  color: const Color(0xffB8B8B8), width: 1)),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.subdirectory_arrow_left,
-                                color: active,
-                                size: 28.6,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Back",
-                                style: GoogleFonts.roboto(
-                                  fontSize: 17.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: active,
-                                ),
-                              )
-                            ],
-                          ),
-                        )),
-                  ),
                 ],
               ),
             ),
@@ -132,6 +97,27 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                         Icons.shopping_cart,
                         color: active,
                       )),
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: 99.3,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: active),
+                      child: Center(
+                        child: Text("SUBMIT",
+                            style: GoogleFonts.roboto(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            )),
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     width: 40,
                   ),

@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
+import 'package:telin_project/constants/style.dart';
 
-import '../../../../constants/style.dart';
-
-class TableCartNewCable extends StatefulWidget {
-  const TableCartNewCable({super.key, required this.idLoading});
+class TableNonCableCartExisting extends StatefulWidget {
+  const TableNonCableCartExisting({super.key, required this.idLoading});
   final String idLoading;
 
   @override
-  State<TableCartNewCable> createState() => _TableCartNewCableState();
+  State<TableNonCableCartExisting> createState() =>
+      _TableNonCableCartExistingState();
 }
 
 List<DropdownMenuItem<String>> get dropdownItemsSystem {
@@ -39,8 +39,8 @@ List<DropdownMenuItem<String>> get dropdownItemsArmoring {
 String selectedValueSystem = "SYSTEM";
 String selectedValueArmoring = "ARMORING TYPE";
 
-class _TableCartNewCableState extends State<TableCartNewCable> {
-  List LoadingByIdCable = [];
+class _TableNonCableCartExistingState extends State<TableNonCableCartExisting> {
+  List LoadingByIdSparekit = [];
 
   String id = "";
   Response? response;
@@ -61,7 +61,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
       response = await dio.get('$getLoadingById/$id');
       msg = response!.data['message'];
       setState(() {
-        LoadingByIdCable = response!.data['loading'][0]['cables_id'];
+        LoadingByIdSparekit = response!.data['loading'][0]['kits_id'];
       });
     } catch (e) {
       QuickAlert.show(
@@ -74,10 +74,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
     }
   }
 
-  DataRow _resultsAPI(
-    index,
-    data,
-  ) {
+  DataRow _resultsAPI(index, data) {
     return DataRow(cells: [
       DataCell(Text("${index + 1}",
           style: GoogleFonts.montserrat(
@@ -85,102 +82,76 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text('${data['label_id'] ?? "-"}',
+      DataCell(Text("${data['rak_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['system']['system'] ?? "-"}",
+      DataCell(Text("${data['item_name'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['armoring_type']['armoring_type'] ?? "-"}",
+      DataCell(Text("${data['part_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['length_report'] ?? "-"}",
+      DataCell(Text("${data['serial_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['core_type']['core_type'] ?? "-"}",
+      DataCell(Text("${data['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['sigma_core'] ?? "-"}",
+      DataCell(Text("${data['weight_kg'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['tank'] ?? "-"}",
+      DataCell(Text("${data['qty'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['tank_location'] ?? "-"}",
+      DataCell(Text("${data['unit'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['tank_level'] ?? "-"}",
+      DataCell(Text("${data['unitpriceIdr'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['priceIdr'] ?? "-"}",
+      DataCell(Text("${data['unitpriceUsd'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['remark'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(TextButton(
-          onPressed: () {
-            QuickAlert.show(
-                context: context,
-                type: QuickAlertType.confirm,
-                text: 'Do you sure to delete this item',
-                confirmBtnText: 'Yes',
-                cancelBtnText: 'No',
-                customAsset: 'assets/gift/error.gif',
-                width: 400,
-                confirmBtnColor: Colors.green,
-                onConfirmBtnTap: () {
-                  hapusDataCableLoading('${data['id']}');
-                });
-          },
-          child: Text("Delete",
-              style: GoogleFonts.montserrat(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: active,
-              ))))
     ]);
   }
 
-  void hapusDataCableLoading(id) async {
+  void hapusDataSparekitLoading(id) async {
     bool status;
     var msg;
     try {
-      response = await dio.delete('$deleteCableFromLoading/${widget.idLoading}',
-          data: {'cables_id': id});
+      response = await dio.delete(
+          '$deleteSparekitFromLoading/${widget.idLoading}',
+          data: {'kits_id': id});
 
       msg = response!.data['message'];
 
@@ -211,7 +182,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
           padding: const EdgeInsets.only(left: 19.3),
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: Text("CABLE",
+            child: Text("NON-CABLE",
                 style: GoogleFonts.montserrat(
                   fontSize: 8.6,
                   fontWeight: FontWeight.bold,
@@ -224,12 +195,11 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(left: 19.3, right: 150),
+            padding: const EdgeInsets.only(left: 19.3, right: 126),
             child: DataTable2(
                 columnSpacing: 6,
-                horizontalMargin: 6,
-                dataRowHeight: 30,
                 minWidth: 3000,
+                dataRowHeight: 30,
                 columns: [
                   DataColumn2(
                       label: Text(
@@ -243,53 +213,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
                       fixedWidth: 50),
                   DataColumn2(
                       label: Text(
-                        'LABLE',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedValueSystem = newValue!;
-                              });
-                            },
-                            value: selectedValueSystem,
-                            items: dropdownItemsSystem),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedValueArmoring = newValue!;
-                              });
-                            },
-                            value: selectedValueArmoring,
-                            items: dropdownItemsArmoring),
-                      ),
-                      fixedWidth: 120),
-                  DataColumn2(
-                      label: Text(
-                        """LENGTH
-(METER)
-              """,
+                        "LOCATION",
                         style: GoogleFonts.montserrat(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
@@ -299,7 +223,27 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
                       fixedWidth: 100),
                   DataColumn2(
                       label: Text(
-                        "CORE TYPE",
+                        "ITEM NAME",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 220),
+                  DataColumn2(
+                      label: Text(
+                        "PART NUMBER",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 200),
+                  DataColumn2(
+                      label: Text(
+                        "SERIAL NUMBER",
                         style: GoogleFonts.montserrat(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
@@ -309,7 +253,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
                       fixedWidth: 100),
                   DataColumn2(
                       label: Text(
-                        "\u03A3 CORE",
+                        "SYSTEM",
                         style: GoogleFonts.montserrat(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
@@ -319,7 +263,18 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
                       fixedWidth: 100),
                   DataColumn2(
                       label: Text(
-                        "TANK",
+                        '''WIGHT 
+(KG)''',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "QTY",
                         style: GoogleFonts.montserrat(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
@@ -329,7 +284,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
                       fixedWidth: 50),
                   DataColumn2(
                       label: Text(
-                        "TANK LOCATION",
+                        "UNIT",
                         style: GoogleFonts.montserrat(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
@@ -339,7 +294,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
                       fixedWidth: 100),
                   DataColumn2(
                       label: Text(
-                        "TANK LEVEL",
+                        "UNIT PRICE(IDR)",
                         style: GoogleFonts.montserrat(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
@@ -349,27 +304,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
                       fixedWidth: 100),
                   DataColumn2(
                       label: Text(
-                        "Evidence",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "REMARK",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 150),
-                  DataColumn2(
-                      label: Text(
-                        "ACTION",
+                        "UNIT PRICE(USD)",
                         style: GoogleFonts.montserrat(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
@@ -378,12 +313,74 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
                       ),
                       fixedWidth: 100),
                 ],
-                rows: List.generate(
-                    LoadingByIdCable.length,
-                    (index) => _resultsAPI(
-                          index,
-                          LoadingByIdCable[index],
-                        ))),
+                rows: List.generate(LoadingByIdSparekit.length,
+                    (index) => _resultsAPI(index, LoadingByIdSparekit[index]))
+
+                //  List<DataRow>.generate(
+                //     4,
+                //     (index) => DataRow(cells: [
+                //           DataCell(Text('1',
+                //               style: GoogleFonts.montserrat(
+                //                 fontSize: 8.6,
+                //                 fontWeight: FontWeight.w400,
+                //                 color: Colors.black,
+                //               ))),
+                //           DataCell(Text('',
+                //               style: GoogleFonts.montserrat(
+                //                 fontSize: 8.6,
+                //                 fontWeight: FontWeight.w400,
+                //                 color: Colors.black,
+                //               ))),
+                //           DataCell(Text('UJ COMMON ADHESV KIT',
+                //               style: GoogleFonts.montserrat(
+                //                 fontSize: 8.6,
+                //                 fontWeight: FontWeight.w400,
+                //                 color: Colors.black,
+                //               ))),
+                //           DataCell(Text('KIT 15010',
+                //               style: GoogleFonts.montserrat(
+                //                 fontSize: 8.6,
+                //                 fontWeight: FontWeight.w400,
+                //                 color: Colors.black,
+                //               ))),
+                //           DataCell(Text('4700051391',
+                //               style: GoogleFonts.montserrat(
+                //                 fontSize: 8.6,
+                //                 fontWeight: FontWeight.w400,
+                //                 color: Colors.black,
+                //               ))),
+                //           DataCell(Text('LEMARI PENDINGIN',
+                //               style: GoogleFonts.montserrat(
+                //                 fontSize: 8.6,
+                //                 fontWeight: FontWeight.w400,
+                //                 color: Colors.black,
+                //               ))),
+                //           DataCell(Text('1,00',
+                //               style: GoogleFonts.montserrat(
+                //                 fontSize: 8.6,
+                //                 fontWeight: FontWeight.w400,
+                //                 color: Colors.black,
+                //               ))),
+                //           DataCell(Text('1',
+                //               style: GoogleFonts.montserrat(
+                //                 fontSize: 8.6,
+                //                 fontWeight: FontWeight.w400,
+                //                 color: Colors.black,
+                //               ))),
+                //           DataCell(Text('1 unit',
+                //               style: GoogleFonts.montserrat(
+                //                 fontSize: 8.6,
+                //                 fontWeight: FontWeight.w400,
+                //                 color: Colors.black,
+                //               ))),
+                //           DataCell(Text('SABANG - LHOK EXSESS DA',
+                //               style: GoogleFonts.montserrat(
+                //                 fontSize: 8.6,
+                //                 fontWeight: FontWeight.w400,
+                //                 color: Colors.black,
+                //               ))),
+                //         ]))
+                ),
           ),
         ),
       ],

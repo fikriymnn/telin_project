@@ -11,6 +11,33 @@ class printInvoiceLoading {
     final doc = pw.Document();
     final TelinLogo =
         await imageFromAssetBundle('assets/images/logo_telin_login.png');
+    var totCableUsd = List.generate(
+        dataLoadingCable.length,
+        (index) =>
+            dataLoadingCable[index]['priceUsd'] *
+            dataLoadingCable[index]['length_report']);
+    var totSparekitUsd = List.generate(
+        dataLoadingKit.length,
+        (index) =>
+            dataLoadingKit[index]['unitPriceUsd'] *
+            dataLoadingKit[index]['qty']);
+    var totCableIdr = List.generate(
+        dataLoadingCable.length,
+        (index) =>
+            dataLoadingCable[index]['priceIdr'] *
+            dataLoadingCable[index]['length_report']);
+    var totSparekitIdr = List.generate(
+        dataLoadingKit.length,
+        (index) =>
+            dataLoadingKit[index]['unitPriceIdr'] *
+            dataLoadingKit[index]['qty']);
+    var totalCableUsd = totCableUsd.reduce((a, b) => a + b);
+    var totalSparekitUsd = totSparekitUsd.reduce((a, b) => a + b);
+    var totalSparekitIdr = totSparekitIdr.reduce((a, b) => a + b);
+    var totalCableIdr = totCableIdr.reduce((a, b) => a + b);
+
+    var totalQtySparekit = List.generate(dataLoadingKit.length,
+        (index) => dataLoadingKit[index]['weight_kg']).reduce((a, b) => a + b);
 
     doc.addPage(pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
@@ -491,6 +518,25 @@ class printInvoiceLoading {
                 pw.SizedBox(
                   height: 15,
                 ),
+                pw.Container(
+                  child: pw.Row(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Container(
+                        width: 100,
+                        child: pw.Text("Cable",
+                            style: pw.TextStyle(
+                              fontSize: 10,
+                              fontWeight: pw.FontWeight.normal,
+                              color: PdfColors.black,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+                pw.SizedBox(
+                  height: 5,
+                ),
 
                 pw.Container(
                     child: pw.Row(children: [
@@ -795,7 +841,7 @@ class printInvoiceLoading {
                       width: 60,
                       decoration: pw.BoxDecoration(border: pw.Border.all()),
                       child: pw.Center(
-                          child: pw.Text("-",
+                          child: pw.Text("$totalCableUsd",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,
@@ -817,7 +863,7 @@ class printInvoiceLoading {
                       width: 60,
                       decoration: pw.BoxDecoration(border: pw.Border.all()),
                       child: pw.Center(
-                          child: pw.Text("-",
+                          child: pw.Text("$totalCableIdr",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,
@@ -827,6 +873,25 @@ class printInvoiceLoading {
 
                 pw.SizedBox(
                   height: 20,
+                ),
+                pw.Container(
+                  child: pw.Row(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Container(
+                        width: 100,
+                        child: pw.Text("Non Cable",
+                            style: pw.TextStyle(
+                              fontSize: 10,
+                              fontWeight: pw.FontWeight.normal,
+                              color: PdfColors.black,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+                pw.SizedBox(
+                  height: 5,
                 ),
 
                 pw.Container(
@@ -1111,7 +1176,7 @@ class printInvoiceLoading {
                       width: 60,
                       decoration: pw.BoxDecoration(border: pw.Border.all()),
                       child: pw.Center(
-                          child: pw.Text("-",
+                          child: pw.Text("$totalQtySparekit",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,
@@ -1133,7 +1198,7 @@ class printInvoiceLoading {
                       width: 60,
                       decoration: pw.BoxDecoration(border: pw.Border.all()),
                       child: pw.Center(
-                          child: pw.Text("-",
+                          child: pw.Text("$totalSparekitUsd",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,
@@ -1155,7 +1220,7 @@ class printInvoiceLoading {
                       width: 60,
                       decoration: pw.BoxDecoration(border: pw.Border.all()),
                       child: pw.Center(
-                          child: pw.Text("-",
+                          child: pw.Text("$totalSparekitIdr",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,

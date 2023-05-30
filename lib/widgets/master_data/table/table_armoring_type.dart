@@ -49,7 +49,7 @@ class _TableArmoringTypeState extends State<TableArmoringType> {
             )),
       )),
       DataCell(Center(
-        child: Text('${data['label_id']}',
+        child: Text('${data['label_id'] ?? ""}',
             style: GoogleFonts.montserrat(
               fontSize: 14.6,
               fontWeight: FontWeight.w400,

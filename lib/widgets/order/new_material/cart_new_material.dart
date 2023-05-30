@@ -35,24 +35,6 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 99.3,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: active),
-                              child: Center(
-                                child: Text("SUBMIT",
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white,
-                                    )),
-                              ),
-                            ),
-                          ),
                           const SizedBox(
                             width: 30,
                           ),
@@ -84,7 +66,10 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                       height: 400,
                       child: Column(
                         children: [
-                          Flexible(child: TableCartNewCable()),
+                          Flexible(
+                              child: TableCartNewCable(
+                            idLoading: "",
+                          )),
                         ],
                       )),
                   const SizedBox(
@@ -94,7 +79,10 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                     height: 250,
                     child: Column(
                       children: [
-                        Expanded(child: TableNonCableNewCart()),
+                        Expanded(
+                            child: TableNonCableNewCart(
+                          idLoading: "",
+                        )),
                       ],
                     ),
                   ),

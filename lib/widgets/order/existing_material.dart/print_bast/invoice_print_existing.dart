@@ -7,10 +7,37 @@ import 'package:telin_project/widgets/order/loading/bast/table_invoice.dart';
 
 class printInvoiceExisting {
   Future<void> InvoiceExistingPrinttt(
-      List dataExisting, List dataExistingCable, List dataExistingKit) async {
+      List dataLoading, List dataLoadingCable, List dataLoadingKit) async {
     final doc = pw.Document();
     final TelinLogo =
         await imageFromAssetBundle('assets/images/logo_telin_login.png');
+    var totCableUsd = List.generate(
+        dataLoadingCable.length,
+        (index) =>
+            dataLoadingCable[index]['priceUsd'] *
+            dataLoadingCable[index]['length_report']);
+    var totSparekitUsd = List.generate(
+        dataLoadingKit.length,
+        (index) =>
+            dataLoadingKit[index]['unitPriceUsd'] *
+            dataLoadingKit[index]['qty']);
+    var totCableIdr = List.generate(
+        dataLoadingCable.length,
+        (index) =>
+            dataLoadingCable[index]['priceIdr'] *
+            dataLoadingCable[index]['length_report']);
+    var totSparekitIdr = List.generate(
+        dataLoadingKit.length,
+        (index) =>
+            dataLoadingKit[index]['unitPriceIdr'] *
+            dataLoadingKit[index]['qty']);
+    var totalCableUsd = totCableUsd.reduce((a, b) => a + b);
+    var totalSparekitUsd = totSparekitUsd.reduce((a, b) => a + b);
+    var totalSparekitIdr = totSparekitIdr.reduce((a, b) => a + b);
+    var totalCableIdr = totCableIdr.reduce((a, b) => a + b);
+
+    var totalQtySparekit = List.generate(dataLoadingKit.length,
+        (index) => dataLoadingKit[index]['weight_kg']).reduce((a, b) => a + b);
 
     doc.addPage(pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
@@ -282,7 +309,7 @@ class printInvoiceExisting {
                                                 )),
                                           ),
                                           pw.Text(
-                                              ": ${dataExisting[0]['perusahaan']['company_name'] ?? "-"}",
+                                              ": ${dataLoading[0]['perusahaan']['company_name'] ?? "-"}",
                                               style: pw.TextStyle(
                                                 fontSize: 8,
                                                 fontWeight:
@@ -338,7 +365,7 @@ class printInvoiceExisting {
                                           ),
                                           pw.Flexible(
                                             child: pw.Text(
-                                                ": ${dataExisting[0]['perusahaan']['address'] ?? "-"}",
+                                                ": ${dataLoading[0]['perusahaan']['address'] ?? "-"}",
                                                 style: pw.TextStyle(
                                                   fontSize: 8,
                                                   fontWeight:
@@ -369,7 +396,7 @@ class printInvoiceExisting {
                                                       )),
                                                 ),
                                                 pw.Text(
-                                                    ": ${dataExisting[0]['perusahaan']['city'] ?? "-"}",
+                                                    ": ${dataLoading[0]['perusahaan']['city'] ?? "-"}",
                                                     style: pw.TextStyle(
                                                       fontSize: 8,
                                                       fontWeight:
@@ -390,7 +417,7 @@ class printInvoiceExisting {
                                                 color: PdfColors.black,
                                               )),
                                           pw.Text(
-                                              ": ${dataExisting[0]['perusahaan']['state'] ?? "-"}",
+                                              ": ${dataLoading[0]['perusahaan']['state'] ?? "-"}",
                                               style: pw.TextStyle(
                                                 fontSize: 8,
                                                 fontWeight:
@@ -417,7 +444,7 @@ class printInvoiceExisting {
                                                 )),
                                           ),
                                           pw.Text(
-                                              ": ${dataExisting[0]['perusahaan']['phone'] ?? "-"}",
+                                              ": ${dataLoading[0]['perusahaan']['phone'] ?? "-"}",
                                               style: pw.TextStyle(
                                                 fontSize: 8,
                                                 fontWeight:
@@ -490,6 +517,25 @@ class printInvoiceExisting {
                 ),
                 pw.SizedBox(
                   height: 15,
+                ),
+                pw.Container(
+                  child: pw.Row(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Container(
+                        width: 100,
+                        child: pw.Text("Cable",
+                            style: pw.TextStyle(
+                              fontSize: 10,
+                              fontWeight: pw.FontWeight.normal,
+                              color: PdfColors.black,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+                pw.SizedBox(
+                  height: 5,
                 ),
 
                 pw.Container(
@@ -606,7 +652,7 @@ class printInvoiceExisting {
                               ))))
                 ])),
                 pw.ListView.builder(
-                  itemCount: dataExistingCable.length,
+                  itemCount: dataLoadingCable.length,
                   itemBuilder: (context, index) {
                     return pw.Container(
                       child: pw.Row(
@@ -630,7 +676,7 @@ class printInvoiceExisting {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataExistingCable[index]['description'] ?? "-"}",
+                                      "${dataLoadingCable[index]['description'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -643,7 +689,7 @@ class printInvoiceExisting {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataExistingCable[index]['system']['system'] ?? "-"}",
+                                      "${dataLoadingCable[index]['system'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -656,7 +702,7 @@ class printInvoiceExisting {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataExistingCable[index]['length_report']}",
+                                      "${dataLoadingCable[index]['length_report']}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -693,7 +739,7 @@ class printInvoiceExisting {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataExistingCable[index]['priceUsd'] ?? "-"}",
+                                      "${dataLoadingCable[index]['priceUsd'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -706,7 +752,7 @@ class printInvoiceExisting {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataExistingCable[index]['priceUsd'] * dataExistingCable[index]['length_report'] ?? ""}",
+                                      "${dataLoadingCable[index]['priceUsd'] * dataLoadingCable[index]['length_report'] ?? ""}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -719,7 +765,7 @@ class printInvoiceExisting {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataExistingCable[index]['priceIdr'] ?? ""}",
+                                      "${dataLoadingCable[index]['priceIdr'] ?? ""}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -732,7 +778,7 @@ class printInvoiceExisting {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataExistingCable[index]['priceIdr'] * dataExistingCable[index]['length_report'] ?? ""}",
+                                      "${dataLoadingCable[index]['priceIdr'] * dataLoadingCable[index]['length_report'] ?? ""}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -795,7 +841,7 @@ class printInvoiceExisting {
                       width: 60,
                       decoration: pw.BoxDecoration(border: pw.Border.all()),
                       child: pw.Center(
-                          child: pw.Text("-",
+                          child: pw.Text("$totalCableUsd",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,
@@ -817,7 +863,7 @@ class printInvoiceExisting {
                       width: 60,
                       decoration: pw.BoxDecoration(border: pw.Border.all()),
                       child: pw.Center(
-                          child: pw.Text("-",
+                          child: pw.Text("$totalCableIdr",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,
@@ -828,340 +874,359 @@ class printInvoiceExisting {
                 pw.SizedBox(
                   height: 20,
                 ),
+                pw.Container(
+                  child: pw.Row(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Container(
+                        width: 100,
+                        child: pw.Text("Non Cable",
+                            style: pw.TextStyle(
+                              fontSize: 10,
+                              fontWeight: pw.FontWeight.normal,
+                              color: PdfColors.black,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+                pw.SizedBox(
+                  height: 5,
+                ),
 
-                // pw.Container(
-                //     child: pw.Row(children: [
-                //   pw.Container(
-                //       height: 20,
-                //       width: 15,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("No",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 80,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Deskription",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Model/Part No",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Length (Km)",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Qty (Box)",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Weight (Kg)",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Unit Price (USD)",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Total Price (USD)",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Unit Price (IDR)",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Total Price (IDR)",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               ))))
-                // ])),
-                // pw.ListView.builder(
-                //   itemCount: dataExistingKit.length,
-                //   itemBuilder: (context, index) {
-                //     return pw.Container(
-                //       child: pw.Row(
-                //         children: [
-                //           pw.Container(
-                //               height: 20,
-                //               width: 15,
-                //               decoration:
-                //                   pw.BoxDecoration(border: pw.Border.all()),
-                //               child: pw.Center(
-                //                   child: pw.Text("${index + 1}",
-                //                       style: pw.TextStyle(
-                //                         fontSize: 6,
-                //                         fontWeight: pw.FontWeight.normal,
-                //                         color: PdfColors.black,
-                //                       )))),
-                //           pw.Container(
-                //               height: 20,
-                //               width: 80,
-                //               decoration:
-                //                   pw.BoxDecoration(border: pw.Border.all()),
-                //               child: pw.Center(
-                //                   child: pw.Text(
-                //                       "${dataExistingKit[index]['item_name'] ?? "-"}",
-                //                       style: pw.TextStyle(
-                //                         fontSize: 6,
-                //                         fontWeight: pw.FontWeight.normal,
-                //                         color: PdfColors.black,
-                //                       )))),
-                //           pw.Container(
-                //               height: 20,
-                //               width: 60,
-                //               decoration:
-                //                   pw.BoxDecoration(border: pw.Border.all()),
-                //               child: pw.Center(
-                //                   child: pw.Text(
-                //                       "${dataExistingKit[index]['part_number'] ?? "-"}",
-                //                       style: pw.TextStyle(
-                //                         fontSize: 6,
-                //                         fontWeight: pw.FontWeight.normal,
-                //                         color: PdfColors.black,
-                //                       )))),
-                //           pw.Container(
-                //               height: 20,
-                //               width: 60,
-                //               decoration:
-                //                   pw.BoxDecoration(border: pw.Border.all()),
-                //               child: pw.Center(
-                //                   child: pw.Text("-",
-                //                       style: pw.TextStyle(
-                //                         fontSize: 6,
-                //                         fontWeight: pw.FontWeight.normal,
-                //                         color: PdfColors.black,
-                //                       )))),
-                //           pw.Container(
-                //               height: 20,
-                //               width: 60,
-                //               decoration:
-                //                   pw.BoxDecoration(border: pw.Border.all()),
-                //               child: pw.Center(
-                //                   child: pw.Text(
-                //                       "${dataExistingKit[index]['qty'] ?? "-"}",
-                //                       style: pw.TextStyle(
-                //                         fontSize: 6,
-                //                         fontWeight: pw.FontWeight.normal,
-                //                         color: PdfColors.black,
-                //                       )))),
-                //           pw.Container(
-                //               height: 20,
-                //               width: 60,
-                //               decoration:
-                //                   pw.BoxDecoration(border: pw.Border.all()),
-                //               child: pw.Center(
-                //                   child: pw.Text(
-                //                       "${dataExistingKit[index]['weight_kg']}",
-                //                       style: pw.TextStyle(
-                //                         fontSize: 6,
-                //                         fontWeight: pw.FontWeight.normal,
-                //                         color: PdfColors.black,
-                //                       )))),
-                //           pw.Container(
-                //               height: 20,
-                //               width: 60,
-                //               decoration:
-                //                   pw.BoxDecoration(border: pw.Border.all()),
-                //               child: pw.Center(
-                //                   child: pw.Text(
-                //                       "${dataExistingKit[index]['unitPriceUsd'] ?? "-"}",
-                //                       style: pw.TextStyle(
-                //                         fontSize: 6,
-                //                         fontWeight: pw.FontWeight.normal,
-                //                         color: PdfColors.black,
-                //                       )))),
-                //           pw.Container(
-                //               height: 20,
-                //               width: 60,
-                //               decoration:
-                //                   pw.BoxDecoration(border: pw.Border.all()),
-                //               child: pw.Center(
-                //                   child: pw.Text(
-                //                       "${dataExistingKit[index]['unitPriceUsd'] * dataExistingKit[index]['qty'] ?? ""}",
-                //                       style: pw.TextStyle(
-                //                         fontSize: 6,
-                //                         fontWeight: pw.FontWeight.normal,
-                //                         color: PdfColors.black,
-                //                       )))),
-                //           pw.Container(
-                //               height: 20,
-                //               width: 60,
-                //               decoration:
-                //                   pw.BoxDecoration(border: pw.Border.all()),
-                //               child: pw.Center(
-                //                   child: pw.Text(
-                //                       "${dataExistingKit[index]['unitPriceIdr'] ?? ""}",
-                //                       style: pw.TextStyle(
-                //                         fontSize: 6,
-                //                         fontWeight: pw.FontWeight.normal,
-                //                         color: PdfColors.black,
-                //                       )))),
-                //           pw.Container(
-                //               height: 20,
-                //               width: 60,
-                //               decoration:
-                //                   pw.BoxDecoration(border: pw.Border.all()),
-                //               child: pw.Center(
-                //                   child: pw.Text(
-                //                       "${dataExistingKit[index]['unitPriceIdr'] * dataExistingKit[index]['qty'] ?? ""}",
-                //                       style: pw.TextStyle(
-                //                         fontSize: 6,
-                //                         fontWeight: pw.FontWeight.normal,
-                //                         color: PdfColors.black,
-                //                       ))))
-                //         ],
-                //       ),
-                //     );
-                //   },
-                // ),
-                // pw.Container(
-                //     child: pw.Row(children: [
-                //   pw.Container(
-                //     height: 20,
-                //     width: 15,
-                //   ),
-                //   pw.Container(
-                //     height: 20,
-                //     width: 80,
-                //   ),
-                //   pw.Container(
-                //     height: 20,
-                //     width: 60,
-                //   ),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 120,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Total Weight (Kg)",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("-",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Total Price (USD)",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("-",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("Total Price (IDR)",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               )))),
-                //   pw.Container(
-                //       height: 20,
-                //       width: 60,
-                //       decoration: pw.BoxDecoration(border: pw.Border.all()),
-                //       child: pw.Center(
-                //           child: pw.Text("-",
-                //               style: pw.TextStyle(
-                //                 fontSize: 6,
-                //                 fontWeight: pw.FontWeight.normal,
-                //                 color: PdfColors.black,
-                //               ))))
-                // ])),
+                pw.Container(
+                    child: pw.Row(children: [
+                  pw.Container(
+                      height: 20,
+                      width: 15,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("No",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 80,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Deskription",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Model/Part No",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Length (Km)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Qty (Box)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Weight (Kg)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Unit Price (USD)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Total Price (USD)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Unit Price (IDR)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Total Price (IDR)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              ))))
+                ])),
+                pw.ListView.builder(
+                  itemCount: dataLoadingKit.length,
+                  itemBuilder: (context, index) {
+                    return pw.Container(
+                      child: pw.Row(
+                        children: [
+                          pw.Container(
+                              height: 20,
+                              width: 15,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text("${index + 1}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 80,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['item_name'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['part_number'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text("-",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['qty'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['weight_kg']}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['unitPriceUsd'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['unitPriceUsd'] * dataLoadingKit[index]['qty'] ?? ""}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['unitPriceIdr'] ?? ""}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      )))),
+                          pw.Container(
+                              height: 20,
+                              width: 60,
+                              decoration:
+                                  pw.BoxDecoration(border: pw.Border.all()),
+                              child: pw.Center(
+                                  child: pw.Text(
+                                      "${dataLoadingKit[index]['unitPriceIdr'] * dataLoadingKit[index]['qty'] ?? ""}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.normal,
+                                        color: PdfColors.black,
+                                      ))))
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                pw.Container(
+                    child: pw.Row(children: [
+                  pw.Container(
+                    height: 20,
+                    width: 15,
+                  ),
+                  pw.Container(
+                    height: 20,
+                    width: 80,
+                  ),
+                  pw.Container(
+                    height: 20,
+                    width: 60,
+                  ),
+                  pw.Container(
+                      height: 20,
+                      width: 120,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Total Weight (Kg)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("$totalQtySparekit",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Total Price (USD)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("$totalSparekitUsd",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("Total Price (IDR)",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
+                  pw.Container(
+                      height: 20,
+                      width: 60,
+                      decoration: pw.BoxDecoration(border: pw.Border.all()),
+                      child: pw.Center(
+                          child: pw.Text("$totalSparekitIdr",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              ))))
+                ])),
                 // pw.Container(
                 //   height: 320,
                 //   child: pw.Column(
@@ -1259,7 +1324,7 @@ class printInvoiceExisting {
                 //                       fontStyle: pw.FontStyle.italic,
                 //                       color: PdfColors.black,
                 //                     )),
-                //       S        ),
+                //               ),
                 //             ),
                 //             pw.Container(
                 //               width: 97,

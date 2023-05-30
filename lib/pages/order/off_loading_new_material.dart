@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
+import 'package:telin_project/widgets/order/new_material/form_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/table/table_new_cable.dart';
+import 'package:telin_project/widgets/order/new_material/table/table_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/table/table_new_non_cable.dart';
-
-
 
 class OffLoadingNewMatrial extends StatefulWidget {
   const OffLoadingNewMatrial({super.key});
@@ -35,14 +35,14 @@ class _OffLoadingNewMatrialState extends State<OffLoadingNewMatrial> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const AddnewMaterialScreens()));
+                                builder: (context) => const FormNewMaterial()));
                       },
                       child: Container(
                         width: 200,
                         height: 50.6,
                         decoration: BoxDecoration(
-                            border:
-                                Border.all(color: const Color(0xffA5C176), width: 3.3),
+                            border: Border.all(
+                                color: const Color(0xffA5C176), width: 3.3),
                             borderRadius: BorderRadius.circular(4),
                             color: const Color(0xffB1CC85)),
                         child: Padding(
@@ -97,40 +97,11 @@ class _OffLoadingNewMatrialState extends State<OffLoadingNewMatrial> {
               const SizedBox(
                 height: 10,
               ),
-              const SizedBox(
-                height: 300,
+              SizedBox(
+                height: MediaQuery.of(context).size.height,
                 child: Column(
                   children: [
-                    Expanded(child: TableNewCable()),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "New Non Cable",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const SizedBox(
-                height: 300,
-                child: Column(
-                  children: [
-                    Expanded(child: TableNewNonCable()),
+                    Expanded(child: TableNewMaterial()),
                   ],
                 ),
               ),
