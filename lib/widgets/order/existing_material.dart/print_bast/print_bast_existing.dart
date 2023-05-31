@@ -63,7 +63,7 @@ class printBastOffLoading {
                             height: 15,
                           ),
                           pw.Text(
-                            "On the day of THURSHDAY, 08 DECEMBER 2022 has been handover the goods of material:",
+                            "On the day of ${dataLoading[0]['submitted_date_offloading']} has been handover the goods of material:",
                             style: pw.TextStyle(
                               fontSize: 10,
                               fontWeight: pw.FontWeight.bold,
@@ -74,7 +74,7 @@ class printBastOffLoading {
                             height: 5,
                           ),
                           pw.Text(
-                            "Pada hari ini KAMIS, 08 DESEMBER 2022 telah diserah terimakan barang atau material:",
+                            "Pada hari ini ${dataLoading[0]['submitted_date_offloading']} telah diserah terimakan barang atau material:",
                             style: const pw.TextStyle(
                               fontSize: 10,
                             ),
@@ -153,7 +153,7 @@ class printBastOffLoading {
                                       pw.CrossAxisAlignment.start,
                                   children: [
                                     pw.Text(
-                                      ": 004/BAST Loading/WEB/XII/2022",
+                                      ": ${dataLoading[0]['no_bast_offloading'] ?? "-"}",
                                       style: pw.TextStyle(
                                           fontSize: 6,
                                           fontWeight: pw.FontWeight.bold,
@@ -497,20 +497,20 @@ class printBastOffLoading {
                   width: 60,
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
-                      child:
-                          pw.Text("${dataLoadingCable[index]['system'] ?? "-"}",
-                              style: pw.TextStyle(
-                                fontSize: 6,
-                                fontWeight: pw.FontWeight.normal,
-                                color: PdfColors.black,
-                              )))),
+                      child: pw.Text(
+                          "${dataLoadingCable[index]['system']['system'] ?? "-"}",
+                          style: pw.TextStyle(
+                            fontSize: 6,
+                            fontWeight: pw.FontWeight.normal,
+                            color: PdfColors.black,
+                          )))),
               pw.Container(
                   height: 20,
                   width: 60,
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
                       child: pw.Text(
-                          "${dataLoadingCable[index]['cable_type'] ?? "-"}",
+                          "${dataLoadingCable[index]['cable_type']['cable_type'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -522,7 +522,7 @@ class printBastOffLoading {
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
                       child: pw.Text(
-                          "${dataLoadingCable[index]['manufacturer'] ?? "-"}",
+                          "${dataLoadingCable[index]['manufacturer']['manufacturer'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -534,7 +534,7 @@ class printBastOffLoading {
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
                       child: pw.Text(
-                          "${dataLoadingCable[index]['armoring_type'] ?? "-"}",
+                          "${dataLoadingCable[index]['armoring_type']['armoring_type'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,

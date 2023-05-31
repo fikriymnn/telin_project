@@ -138,7 +138,7 @@ class _BastLoadingState extends State<BastLoading> {
                         ),
                         BastWidget(
                           title: "BAST-Loading",
-                          noBast: "004/BAST-LOADING/WEB/XII/2022",
+                          noBast: "${LoadingById[0]['no_bast'] ?? "-"}",
                           projectName:
                               "${LoadingById[0]['project_name'] ?? "-"}",
                           onClick: () {
@@ -171,7 +171,7 @@ class _BastLoadingState extends State<BastLoading> {
                         ),
                         BastWidget(
                           title: "BAST-Loading",
-                          noBast: "004/BAST-LOADING/WEB/XII/2022",
+                          noBast: "${LoadingById[0]['no_bast'] ?? "-"}",
                           projectName:
                               "${LoadingById[0]['project_name'] ?? "-"}",
                           onClick: () {

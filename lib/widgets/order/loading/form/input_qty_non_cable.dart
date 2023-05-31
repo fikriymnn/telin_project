@@ -16,6 +16,7 @@ class InputQtyNonCable extends StatefulWidget {
 
 class _InputQtyNonCableState extends State<InputQtyNonCable> {
   TextEditingController _priceIdr = TextEditingController();
+  TextEditingController _qty = TextEditingController();
   Response? response;
 
   var dio = Dio();
@@ -144,6 +145,71 @@ class _InputQtyNonCableState extends State<InputQtyNonCable> {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 230,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Qty",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 203.3,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  width: 5, color: const Color(0xffF0F0F0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 4))
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              left: 18,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: TextField(
+                                controller: _qty,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintStyle: GoogleFonts.montserrat(
+                                      fontSize: 13.3,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                    hintText: "Input Price"),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -156,8 +222,12 @@ class _InputQtyNonCableState extends State<InputQtyNonCable> {
                 children: [
                   InkWell(
                     onTap: () {
-                      addKitLoading(widget.idKit, widget.idLoading,
-                          _priceIdr.text, double.parse(_priceIdr.text) * kurs);
+                      addKitLoading(
+                          widget.idKit,
+                          widget.idLoading,
+                          _priceIdr.text,
+                          double.parse(_priceIdr.text) * kurs,
+                          _qty.text);
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -185,14 +255,15 @@ class _InputQtyNonCableState extends State<InputQtyNonCable> {
     );
   }
 
-  void addKitLoading(sparekitId, loadingId, priceIdr, priceUsd) async {
+  void addKitLoading(sparekitId, loadingId, priceIdr, priceUsd, qty) async {
     bool status;
     var msg;
     try {
       response = await dio.post('$addSparekitToLoading/$loadingId', data: {
         'kits_id': sparekitId,
         'unitPriceIdr': priceIdr,
-        'unitPriceUsd': priceUsd
+        'unitPriceUsd': priceUsd,
+        'qty': qty
       });
 
       msg = response!.data['message'];

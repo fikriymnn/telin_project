@@ -59,7 +59,7 @@ class _InvoiceLoadingState extends State<InvoiceLoading> {
                     const SizedBox(
                       height: 15,
                     ),
-                    Text("001/TI/12/22",
+                    Text("${widget.dataLoading[0]['no_invoice'] ?? "-"}",
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
                           fontSize: 13.3,

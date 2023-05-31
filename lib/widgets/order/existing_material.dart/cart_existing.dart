@@ -72,7 +72,7 @@ class _CartExistingState extends State<CartExisting> {
                       child: Row(
                         children: [
                           Text(
-                            "WORK ORDER",
+                            "EXISTING",
                             style: GoogleFonts.montserrat(
                               fontSize: 10.6,
                               fontWeight: FontWeight.w900,
@@ -80,27 +80,6 @@ class _CartExistingState extends State<CartExisting> {
                             ),
                           ),
                           const Spacer(),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 99.3,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: active),
-                              child: Center(
-                                child: Text("SUBMIT",
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white,
-                                    )),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 50,
-                          ),
                           InkWell(
                             onTap: () {
                               Navigator.pop(context);

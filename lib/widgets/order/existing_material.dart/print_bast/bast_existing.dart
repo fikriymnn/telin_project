@@ -7,12 +7,15 @@ import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 
 import 'package:telin_project/helpers/responsive.dart';
+import 'package:telin_project/routing/routes.dart';
 import 'package:telin_project/widgets/bast_widget.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/print_bast/invoice_existing.dart';
 
 import 'package:telin_project/widgets/order/existing_material.dart/print_bast/print_bast_existing.dart';
 
 import 'package:telin_project/widgets/order/loading/bast/invoice.dart';
+
+import '../../../../constants/controllers.dart';
 
 class BastOffLoading extends StatefulWidget {
   const BastOffLoading({super.key, required this.idLoading});
@@ -85,7 +88,8 @@ class _BastOffLoadingState extends State<BastOffLoading> {
                       padding: const EdgeInsets.only(right: 59.3, top: 32),
                       child: InkWell(
                           onTap: () {
-                            Navigator.pop(context);
+                            navigationController
+                                .navigateTo(ExistingMaterialPageRoute);
                           },
                           child: Container(
                             width: 107.3,
@@ -137,8 +141,9 @@ class _BastOffLoadingState extends State<BastOffLoading> {
                         width: 205,
                       ),
                       BastWidget(
-                        title: "BAST-Loading",
-                        noBast: "004/BAST-LOADING/WEB/XII/2022",
+                        title: "BAST-Off-Loading-Existing",
+                        noBast:
+                            "${LoadingById[0]['no_bast_offloading'] ?? "-"}",
                         projectName: "${LoadingById[0]['project_name'] ?? "-"}",
                         onClick: () {
                           printBastOffLoading().BastLoadingPrinttt(
@@ -170,8 +175,9 @@ class _BastOffLoadingState extends State<BastOffLoading> {
                         height: 100,
                       ),
                       BastWidget(
-                        title: "BAST-Loading",
-                        noBast: "004/BAST-LOADING/WEB/XII/2022",
+                        title: "BAST-Off-Loading-Existing",
+                        noBast:
+                            "${LoadingById[0]['no_bast_offloading'] ?? "-"}",
                         projectName: "${LoadingById[0]['project_name'] ?? "-"}",
                         onClick: () {
                           printBastOffLoading().BastLoadingPrinttt(

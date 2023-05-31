@@ -92,13 +92,13 @@ class _TableCableExistingState extends State<TableCableExisting> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['system'] ?? "-"}",
+      DataCell(Text("${data['system']['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['armoring_type'] ?? "-"}",
+      DataCell(Text("${data['armoring_type']['armoring_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -110,7 +110,7 @@ class _TableCableExistingState extends State<TableCableExisting> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['core_type'] ?? "-"}",
+      DataCell(Text("${data['core_type']['core_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,

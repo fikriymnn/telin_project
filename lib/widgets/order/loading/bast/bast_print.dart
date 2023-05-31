@@ -54,7 +54,7 @@ class printBastLoading {
                             height: 5,
                           ),
                           pw.Text(
-                            "Berita Acata Serah Terima Barang (Masuk)",
+                            "Berita Acata Serah Terima Barang (Keluar)",
                             style: const pw.TextStyle(
                               fontSize: 10,
                             ),
@@ -63,7 +63,7 @@ class printBastLoading {
                             height: 15,
                           ),
                           pw.Text(
-                            "On the day of THURSHDAY, 08 DECEMBER 2022 has been handover the goods of material:",
+                            "On the day of ${dataLoading[0]['submitted_date_loading']} has been handover the goods of material:",
                             style: pw.TextStyle(
                               fontSize: 10,
                               fontWeight: pw.FontWeight.bold,
@@ -74,7 +74,7 @@ class printBastLoading {
                             height: 5,
                           ),
                           pw.Text(
-                            "Pada hari ini KAMIS, 08 DESEMBER 2022 telah diserah terimakan barang atau material:",
+                            "Pada hari ini ${dataLoading[0]['submitted_date_loading']} telah diserah terimakan barang atau material:",
                             style: const pw.TextStyle(
                               fontSize: 10,
                             ),
@@ -153,7 +153,7 @@ class printBastLoading {
                                       pw.CrossAxisAlignment.start,
                                   children: [
                                     pw.Text(
-                                      ": 004/BAST Loading/WEB/XII/2022",
+                                      ": ${dataLoading[0]['no_bast'] ?? "-"}",
                                       style: pw.TextStyle(
                                           fontSize: 6,
                                           fontWeight: pw.FontWeight.bold,

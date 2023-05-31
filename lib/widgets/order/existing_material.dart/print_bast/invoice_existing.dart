@@ -60,7 +60,8 @@ class _InvoiceExistingState extends State<InvoiceExisting> {
                     const SizedBox(
                       height: 15,
                     ),
-                    Text("001/TI/12/22",
+                    Text(
+                        "${widget.dataExisting[0]['no_invoice_offloading'] ?? "-"}",
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
                           fontSize: 13.3,
