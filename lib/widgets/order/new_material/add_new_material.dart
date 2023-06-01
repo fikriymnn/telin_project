@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_cable_large.dart';
@@ -8,10 +11,12 @@ import 'package:telin_project/widgets/order/new_material/add_item/add_new_cable_
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_noncable_large.dart';
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_noncable_mobile.dart';
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_noncable_small.dart';
+import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/cart_new_material.dart';
 
 class AddnewMaterialScreens extends StatefulWidget {
-  const AddnewMaterialScreens({super.key});
+  const AddnewMaterialScreens({super.key, required this.idNewMaterial});
+  final String idNewMaterial;
 
   @override
   State<AddnewMaterialScreens> createState() => _AddnewMaterialScreensState();
@@ -20,6 +25,43 @@ class AddnewMaterialScreens extends StatefulWidget {
 class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
   bool selectButon = true;
   bool selectNonCable = false;
+  Response? response;
+
+  var dio = Dio();
+
+  void submitDataNewMaterial(id) async {
+    var msg;
+    try {
+      response = await dio.post('$submitNewMaterial/$id');
+
+      msg = response!.data['message'];
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: '$msg',
+          title: 'Peringatan',
+          width: 400,
+          barrierDismissible: true,
+          confirmBtnColor: Colors.red);
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => BastNewMaterial(
+                    idNewMaterial: widget.idNewMaterial,
+                  )));
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +132,9 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return const CartNewMaterial();
+                              return CartNewMaterial(
+                                idNewMaterial: widget.idNewMaterial,
+                              );
                             });
                       },
                       icon: Icon(
@@ -101,7 +145,9 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                     width: 30,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      submitDataNewMaterial(widget.idNewMaterial);
+                    },
                     child: Container(
                       width: 99.3,
                       height: 50,
@@ -128,13 +174,15 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
               height: 70,
             ),
             selectButon
-                ? const ResponsiveWidget(
-                    largeScreen: AddNewCableLarge(),
+                ? ResponsiveWidget(
+                    largeScreen:
+                        AddNewCableLarge(idNewMaterial: widget.idNewMaterial),
                     smallScreen: AddNewCableSmall(),
                     mobileScreen: AddNewCableMobile(),
                   )
-                : const ResponsiveWidget(
-                    largeScreen: AddNewNonCableLarge(),
+                : ResponsiveWidget(
+                    largeScreen: AddNewNonCableLarge(
+                        idNewMaterial: widget.idNewMaterial),
                     smallScreen: AddNewNonCableSmall(),
                     mobileScreen: AddNewNonCableMobile(),
                   )

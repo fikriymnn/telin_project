@@ -6,12 +6,13 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 
-class TableNonCableNewCart extends StatefulWidget {
-  const TableNonCableNewCart({super.key, required this.idLoading});
-  final String idLoading;
+class DetailTableKitNewMaterial extends StatefulWidget {
+  const DetailTableKitNewMaterial({super.key, required this.idNewMaterial});
+  final String idNewMaterial;
 
   @override
-  State<TableNonCableNewCart> createState() => _TableNonCableNewCartState();
+  State<DetailTableKitNewMaterial> createState() =>
+      _DetailTableKitNewMaterialState();
 }
 
 List<DropdownMenuItem<String>> get dropdownItemsSystem {
@@ -38,8 +39,8 @@ List<DropdownMenuItem<String>> get dropdownItemsArmoring {
 String selectedValueSystem = "SYSTEM";
 String selectedValueArmoring = "ARMORING TYPE";
 
-class _TableNonCableNewCartState extends State<TableNonCableNewCart> {
-  List LoadingByIdSparekit = [];
+class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
+  List NewMaterialByIdkit = [];
 
   String id = "";
   Response? response;
@@ -49,28 +50,20 @@ class _TableNonCableNewCartState extends State<TableNonCableNewCart> {
   @override
   void initState() {
     // TODO: implement initState
-    id = widget.idLoading;
-    getDataLoading();
+    id = widget.idNewMaterial;
+    getDataNewMaterial();
     super.initState();
   }
 
-  void getDataLoading() async {
+  void getDataNewMaterial() async {
     var msg;
     try {
-      response = await dio.get('$getLoadingById/$id');
-      msg = response!.data['message'];
+      response = await dio.get('$getNewMaterialById/$id');
+
       setState(() {
-        LoadingByIdSparekit = response!.data['loading'][0]['kits_id'];
+        NewMaterialByIdkit = response!.data['new_material_kits'];
       });
-    } catch (e) {
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
-    }
+    } catch (e) {}
   }
 
   DataRow _resultsAPI(index, data) {
@@ -105,7 +98,7 @@ class _TableNonCableNewCartState extends State<TableNonCableNewCart> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['system'] ?? "-"}",
+      DataCell(Text("${data['system']['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -129,49 +122,28 @@ class _TableNonCableNewCartState extends State<TableNonCableNewCart> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['unit'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['unit'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(TextButton(
-          onPressed: () {
-            QuickAlert.show(
-                context: context,
-                type: QuickAlertType.confirm,
-                text: 'Do you sure to delete this item',
-                confirmBtnText: 'Yes',
-                cancelBtnText: 'No',
-                customAsset: 'assets/gift/error.gif',
-                width: 400,
-                confirmBtnColor: Colors.green,
-                onConfirmBtnTap: () {
-                  hapusDataSparekitLoading('${data['id']}');
-                });
-          },
-          child: Text("Delete",
-              style: GoogleFonts.montserrat(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: active,
-              ))))
+      // DataCell(Text("${data['evidence'] ?? "-"}",
+      //     style: GoogleFonts.montserrat(
+      //       fontSize: 10,
+      //       fontWeight: FontWeight.w400,
+      //       color: Colors.black,
+      //     ))),
+      // DataCell(Text("${data['remark'] ?? "-"}",
+      //     style: GoogleFonts.montserrat(
+      //       fontSize: 10,
+      //       fontWeight: FontWeight.w400,
+      //       color: Colors.black,
+      //     ))),
     ]);
   }
 
-  void hapusDataSparekitLoading(id) async {
+  void hapuskitNewMaterial(id) async {
     bool status;
     var msg;
     try {
       response = await dio.delete(
-          '$deleteSparekitFromLoading/${widget.idLoading}',
-          data: {'kits_id': id});
+        '$deleteSparekitFromLoading/${widget.idNewMaterial}/$id',
+      );
 
       msg = response!.data['message'];
 
@@ -312,39 +284,29 @@ class _TableNonCableNewCartState extends State<TableNonCableNewCart> {
                         ),
                       ),
                       fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "EVIDENCE",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "REMARK",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "ACTION",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                  // DataColumn2(
+                  //     label: Text(
+                  //       "EVIDENCE",
+                  //       style: GoogleFonts.montserrat(
+                  //         fontSize: 10,
+                  //         fontWeight: FontWeight.w600,
+                  //         color: Colors.black,
+                  //       ),
+                  //     ),
+                  //     fixedWidth: 100),
+                  // DataColumn2(
+                  //     label: Text(
+                  //       "REMARK",
+                  //       style: GoogleFonts.montserrat(
+                  //         fontSize: 10,
+                  //         fontWeight: FontWeight.w600,
+                  //         color: Colors.black,
+                  //       ),
+                  //     ),
+                  //     fixedWidth: 100),
                 ],
-                rows: List.generate(LoadingByIdSparekit.length,
-                    (index) => _resultsAPI(index, LoadingByIdSparekit[index]))
+                rows: List.generate(NewMaterialByIdkit.length,
+                    (index) => _resultsAPI(index, NewMaterialByIdkit[index]))
 
                 //  List<DataRow>.generate(
                 //     4,

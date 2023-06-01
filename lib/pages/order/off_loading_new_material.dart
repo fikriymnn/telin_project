@@ -3,9 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/form_new_material.dart';
-import 'package:telin_project/widgets/order/new_material/table/table_new_cable.dart';
+
 import 'package:telin_project/widgets/order/new_material/table/table_new_material.dart';
-import 'package:telin_project/widgets/order/new_material/table/table_new_non_cable.dart';
 
 class OffLoadingNewMatrial extends StatefulWidget {
   const OffLoadingNewMatrial({super.key});

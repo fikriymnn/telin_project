@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/new_material/table/table_cart_new_cable.dart';
-import 'package:telin_project/widgets/order/new_material/table/table_cart_new_material.dart';
+import 'package:telin_project/widgets/order/new_material/table/table_cart_new_kit.dart';
 
 class CartNewMaterial extends StatefulWidget {
-  const CartNewMaterial({super.key});
+  const CartNewMaterial({super.key, required this.idNewMaterial});
+  final String idNewMaterial;
 
   @override
   State<CartNewMaterial> createState() => _CartNewMaterialState();
@@ -62,26 +63,26 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                   const SizedBox(
                     height: 22,
                   ),
-                  const SizedBox(
+                  SizedBox(
                       height: 400,
                       child: Column(
                         children: [
                           Flexible(
                               child: TableCartNewCable(
-                            idLoading: "",
+                            idNewMaterial: widget.idNewMaterial,
                           )),
                         ],
                       )),
                   const SizedBox(
                     height: 15,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 250,
                     child: Column(
                       children: [
                         Expanded(
                             child: TableNonCableNewCart(
-                          idLoading: "",
+                          idNewMaterial: widget.idNewMaterial,
                         )),
                       ],
                     ),

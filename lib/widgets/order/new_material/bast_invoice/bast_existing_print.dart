@@ -3,9 +3,12 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:pluto_grid_export/pluto_grid_export.dart';
 import 'package:printing/printing.dart';
 
-class printBastLoading {
-  Future<void> BastLoadingPrinttt(
-      List dataLoadingCable, List dataLoadingSparekit, List dataLoading) async {
+class printBastNewMaterial {
+  Future<void> BastNewMaterialPrinttt(
+    List dataNewMaterialCable,
+    List dataNewMaterialKit,
+    //List dataNewMaterial
+  ) async {
     final doc = pw.Document();
     final TelinLogo =
         await imageFromAssetBundle('assets/images/logo_telin_login.png');
@@ -54,7 +57,7 @@ class printBastLoading {
                             height: 5,
                           ),
                           pw.Text(
-                            "Berita Acata Serah Terima Barang (Masuk)",
+                            "Berita Acata Serah Terima Barang (Keluar)",
                             style: const pw.TextStyle(
                               fontSize: 10,
                             ),
@@ -62,23 +65,23 @@ class printBastLoading {
                           pw.SizedBox(
                             height: 15,
                           ),
-                          pw.Text(
-                            "On the day of THURSHDAY, 08 DECEMBER 2022 has been handover the goods of material:",
-                            style: pw.TextStyle(
-                              fontSize: 10,
-                              fontWeight: pw.FontWeight.bold,
-                              fontStyle: pw.FontStyle.italic,
-                            ),
-                          ),
-                          pw.SizedBox(
-                            height: 5,
-                          ),
-                          pw.Text(
-                            "Pada hari ini KAMIS, 08 DESEMBER 2022 telah diserah terimakan barang atau material:",
-                            style: const pw.TextStyle(
-                              fontSize: 10,
-                            ),
-                          ),
+                          // pw.Text(
+                          //   "On the day of ${dataNewMaterial[0]['submitted_date_loading'] ?? "-"} has been handover the goods of material:",
+                          //   style: pw.TextStyle(
+                          //     fontSize: 10,
+                          //     fontWeight: pw.FontWeight.bold,
+                          //     fontStyle: pw.FontStyle.italic,
+                          //   ),
+                          // ),
+                          // pw.SizedBox(
+                          //   height: 5,
+                          // ),
+                          // pw.Text(
+                          //   "Pada hari ini ${dataNewMaterial[0]['submitted_date_loading'] ?? "-"} telah diserah terimakan barang atau material:",
+                          //   style: const pw.TextStyle(
+                          //     fontSize: 10,
+                          //   ),
+                          // ),
                           pw.SizedBox(
                             height: 15,
                           ),
@@ -152,53 +155,53 @@ class printBastLoading {
                                   crossAxisAlignment:
                                       pw.CrossAxisAlignment.start,
                                   children: [
-                                    pw.Text(
-                                      ": 004/BAST Loading/WEB/XII/2022",
-                                      style: pw.TextStyle(
-                                          fontSize: 6,
-                                          fontWeight: pw.FontWeight.bold,
-                                          color: PdfColors.red),
-                                    ),
-                                    pw.SizedBox(
-                                      height: 5,
-                                    ),
-                                    pw.Text(
-                                      ": ${dataLoading[0]['from'] ?? "-"}",
-                                      style: pw.TextStyle(
-                                        fontSize: 6,
-                                        fontWeight: pw.FontWeight.bold,
-                                      ),
-                                    ),
-                                    pw.SizedBox(
-                                      height: 5,
-                                    ),
-                                    pw.Text(
-                                      ": ${dataLoading[0]['to'] ?? "-"}",
-                                      style: pw.TextStyle(
-                                        fontSize: 6,
-                                        fontWeight: pw.FontWeight.bold,
-                                      ),
-                                    ),
-                                    pw.SizedBox(
-                                      height: 5,
-                                    ),
-                                    pw.Text(
-                                      ": ${dataLoading[0]['perusahaan']['company_name'] ?? "-"}",
-                                      style: pw.TextStyle(
-                                        fontSize: 6,
-                                        fontWeight: pw.FontWeight.bold,
-                                      ),
-                                    ),
-                                    pw.SizedBox(
-                                      height: 5,
-                                    ),
-                                    pw.Text(
-                                      ": ${dataLoading[0]['project_name'] ?? "-"}",
-                                      style: pw.TextStyle(
-                                        fontSize: 6,
-                                        fontWeight: pw.FontWeight.bold,
-                                      ),
-                                    ),
+                                    // pw.Text(
+                                    //   ": ${dataNewMaterial[0]['no_bast'] ?? "-"}",
+                                    //   style: pw.TextStyle(
+                                    //       fontSize: 6,
+                                    //       fontWeight: pw.FontWeight.bold,
+                                    //       color: PdfColors.red),
+                                    // ),
+                                    // pw.SizedBox(
+                                    //   height: 5,
+                                    // ),
+                                    // pw.Text(
+                                    //   ": ${dataNewMaterial[0]['from'] ?? "-"}",
+                                    //   style: pw.TextStyle(
+                                    //     fontSize: 6,
+                                    //     fontWeight: pw.FontWeight.bold,
+                                    //   ),
+                                    // ),
+                                    // pw.SizedBox(
+                                    //   height: 5,
+                                    // ),
+                                    // pw.Text(
+                                    //   ": ${dataNewMaterial[0]['to'] ?? "-"}",
+                                    //   style: pw.TextStyle(
+                                    //     fontSize: 6,
+                                    //     fontWeight: pw.FontWeight.bold,
+                                    //   ),
+                                    // ),
+                                    // pw.SizedBox(
+                                    //   height: 5,
+                                    // ),
+                                    // pw.Text(
+                                    //   ": ${dataNewMaterial[0]['perusahaan']['company_name'] ?? "-"}",
+                                    //   style: pw.TextStyle(
+                                    //     fontSize: 6,
+                                    //     fontWeight: pw.FontWeight.bold,
+                                    //   ),
+                                    // ),
+                                    // pw.SizedBox(
+                                    //   height: 5,
+                                    // ),
+                                    // pw.Text(
+                                    //   ": ${dataNewMaterial[0]['project_name'] ?? "-"}",
+                                    //   style: pw.TextStyle(
+                                    //     fontSize: 6,
+                                    //     fontWeight: pw.FontWeight.bold,
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ),
@@ -232,7 +235,7 @@ class printBastLoading {
                   ),
                 ],
               ),
-              TableCableBast(dataLoadingCable),
+              TableCableBast(dataNewMaterialCable),
               pw.Row(
                 mainAxisAlignment: pw.MainAxisAlignment.start,
                 children: [
@@ -252,7 +255,7 @@ class printBastLoading {
                   ),
                 ],
               ),
-              TableNonCableBast(dataLoadingSparekit),
+              TableNonCableBast(dataNewMaterialKit),
               pw.SizedBox(height: 50),
               pw.Container(
                   child: pw.Row(
@@ -295,12 +298,12 @@ class printBastLoading {
                             color: PdfColors.black,
                           )),
                       pw.Container(height: 60, child: pw.Column()),
-                      pw.Text("${dataLoading[0]['diserahkan']['name']}",
-                          style: pw.TextStyle(
-                            fontSize: 10,
-                            fontWeight: pw.FontWeight.bold,
-                            color: PdfColors.black,
-                          )),
+                      // pw.Text("${dataNewMaterial[0]['diserahkan']['name']}",
+                      //     style: pw.TextStyle(
+                      //       fontSize: 10,
+                      //       fontWeight: pw.FontWeight.bold,
+                      //       color: PdfColors.black,
+                      //     )),
                       pw.Text("( Depo 104 MKS, PT. W.E.B )",
                           style: pw.TextStyle(
                             fontSize: 10,
@@ -319,19 +322,19 @@ class printBastLoading {
                       pw.Container(
                         height: 60,
                       ),
-                      pw.Text("${dataLoading[0]['diterima']}",
-                          style: pw.TextStyle(
-                            fontSize: 10,
-                            fontWeight: pw.FontWeight.bold,
-                            color: PdfColors.black,
-                          )),
-                      pw.Text(
-                          "( ${dataLoading[0]['perusahaan']['company_name']} )",
-                          style: pw.TextStyle(
-                            fontSize: 10,
-                            fontWeight: pw.FontWeight.bold,
-                            color: PdfColors.black,
-                          )),
+                      // pw.Text("${dataNewMaterial[0]['diterima']}",
+                      //     style: pw.TextStyle(
+                      //       fontSize: 10,
+                      //       fontWeight: pw.FontWeight.bold,
+                      //       color: PdfColors.black,
+                      //     )),
+                      // pw.Text(
+                      //     "( ${dataNewMaterial[0]['perusahaan']['company_name']} )",
+                      //     style: pw.TextStyle(
+                      //       fontSize: 10,
+                      //       fontWeight: pw.FontWeight.bold,
+                      //       color: PdfColors.black,
+                      //     )),
                     ])),
                     pw.Container(
                         child: pw.Column(children: [
@@ -344,12 +347,12 @@ class printBastLoading {
                       pw.Container(
                         height: 60,
                       ),
-                      pw.Text("${dataLoading[0]['diketahui']['name']}",
-                          style: pw.TextStyle(
-                            fontSize: 10,
-                            fontWeight: pw.FontWeight.bold,
-                            color: PdfColors.black,
-                          )),
+                      // pw.Text("${dataNewMaterial[0]['diketahui']['name']}",
+                      //     style: pw.TextStyle(
+                      //       fontSize: 10,
+                      //       fontWeight: pw.FontWeight.bold,
+                      //       color: PdfColors.black,
+                      //     )),
                       pw.Text("( PT. TELKOMINFRA )",
                           style: pw.TextStyle(
                             fontSize: 10,
@@ -365,9 +368,9 @@ class printBastLoading {
         onLayout: (PdfPageFormat format) async => doc.save());
   }
 
-  static TableCableBast(List dataLoadingCable) {
-    var totalLength = List.generate(dataLoadingCable.length,
-            (index) => dataLoadingCable[index]['length_report'])
+  static TableCableBast(List dataNewMaterialCable) {
+    var totalLength = List.generate(dataNewMaterialCable.length,
+            (index) => dataNewMaterialCable[index]['length_report'])
         .reduce((a, b) => a + b);
     return pw.Column(children: [
       pw.Container(
@@ -476,7 +479,7 @@ class printBastLoading {
                     )))),
       ])),
       pw.ListView.builder(
-          itemCount: dataLoadingCable.length,
+          itemCount: dataNewMaterialCable.length,
           itemBuilder: (context, index) {
             return pw.Container(
                 child: pw.Row(children: [
@@ -486,7 +489,7 @@ class printBastLoading {
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
                       child: pw.Text(
-                          "${dataLoadingCable[index]['label_id'] ?? "-"}",
+                          "${dataNewMaterialCable[index]['label_id'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -498,7 +501,7 @@ class printBastLoading {
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
                       child: pw.Text(
-                          "${dataLoadingCable[index]['system']['system'] ?? "-"}",
+                          "${dataNewMaterialCable[index]['system']['system'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -510,7 +513,7 @@ class printBastLoading {
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
                       child: pw.Text(
-                          "${dataLoadingCable[index]['cable_type']['cable_type'] ?? "-"}",
+                          "${dataNewMaterialCable[index]['cable_type']['cable_type'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -522,7 +525,7 @@ class printBastLoading {
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
                       child: pw.Text(
-                          "${dataLoadingCable[index]['manufacturer']['manufacturer'] ?? "-"}",
+                          "${dataNewMaterialCable[index]['manufacturer']['manufacturer'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -534,7 +537,7 @@ class printBastLoading {
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
                       child: pw.Text(
-                          "${dataLoadingCable[index]['armoring_type']['armoring_type'] ?? "-"}",
+                          "${dataNewMaterialCable[index]['armoring_type']['armoring_type'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -546,7 +549,7 @@ class printBastLoading {
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
                       child: pw.Text(
-                          "${dataLoadingCable[index]['sigma_core'] ?? "-"}",
+                          "${dataNewMaterialCable[index]['sigma_core'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -569,7 +572,7 @@ class printBastLoading {
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
                       child: pw.Text(
-                          "${dataLoadingCable[index]['length_report'] ?? "-"}",
+                          "${dataNewMaterialCable[index]['length_report'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -580,13 +583,13 @@ class printBastLoading {
                   width: 60,
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
-                      child:
-                          pw.Text("${dataLoadingCable[index]['remark'] ?? "-"}",
-                              style: pw.TextStyle(
-                                fontSize: 6,
-                                fontWeight: pw.FontWeight.normal,
-                                color: PdfColors.black,
-                              )))),
+                      child: pw.Text(
+                          "${dataNewMaterialCable[index]['remark'] ?? "-"}",
+                          style: pw.TextStyle(
+                            fontSize: 6,
+                            fontWeight: pw.FontWeight.normal,
+                            color: PdfColors.black,
+                          )))),
             ]));
           }),
       pw.Container(
@@ -655,11 +658,11 @@ class printBastLoading {
     {"7458932", "4567450"}
   ];
 
-  static TableNonCableBast(List DataLoadingSparekit) {
-    var totalQty = List.generate(DataLoadingSparekit.length,
-        (index) => DataLoadingSparekit[index]['qty']).reduce((a, b) => a + b);
-    var totalWeight = List.generate(DataLoadingSparekit.length,
-            (index) => DataLoadingSparekit[index]['weight_kg'])
+  static TableNonCableBast(List DataNewMaterialKit) {
+    var totalQty = List.generate(DataNewMaterialKit.length,
+        (index) => DataNewMaterialKit[index]['qty']).reduce((a, b) => a + b);
+    var totalWeight = List.generate(DataNewMaterialKit.length,
+            (index) => DataNewMaterialKit[index]['weight_kg'])
         .reduce((a, b) => a + b);
     return pw.Column(children: [
       pw.Container(
@@ -755,7 +758,7 @@ NUMBER""",
                     )))),
       ])),
       pw.ListView.builder(
-          itemCount: DataLoadingSparekit.length,
+          itemCount: DataNewMaterialKit.length,
           itemBuilder: (context, index) {
             return pw.Container(
                 decoration: pw.BoxDecoration(border: pw.Border.all()),
@@ -782,7 +785,7 @@ NUMBER""",
                             padding: EdgeInsets.symmetric(horizontal: 5),
                             child: pw.Center(
                               child: pw.Text(
-                                  "${DataLoadingSparekit[index]['item_name'] ?? "-"}",
+                                  "${DataNewMaterialKit[index]['item_name'] ?? "-"}",
                                   style: pw.TextStyle(
                                     fontSize: 6,
                                     fontWeight: pw.FontWeight.normal,
@@ -807,7 +810,7 @@ NUMBER""",
                         decoration: pw.BoxDecoration(border: pw.Border.all()),
                         child: pw.Center(
                             child: pw.Text(
-                                "${DataLoadingSparekit[index]['serial_number'] ?? "-"}",
+                                "${DataNewMaterialKit[index]['serial_number'] ?? "-"}",
                                 style: pw.TextStyle(
                                   fontSize: 6,
                                   fontWeight: pw.FontWeight.normal,
@@ -819,7 +822,7 @@ NUMBER""",
                         decoration: pw.BoxDecoration(border: pw.Border.all()),
                         child: pw.Center(
                           child: pw.Text(
-                              "${DataLoadingSparekit[index]['qty'] ?? "-"}",
+                              "${DataNewMaterialKit[index]['qty'] ?? "-"}",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,
@@ -832,7 +835,7 @@ NUMBER""",
                         decoration: pw.BoxDecoration(border: pw.Border.all()),
                         child: pw.Center(
                           child: pw.Text(
-                              "${DataLoadingSparekit[index]['unit'] ?? "-"}",
+                              "${DataNewMaterialKit[index]['unit'] ?? "-"}",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,
@@ -845,7 +848,7 @@ NUMBER""",
                         decoration: pw.BoxDecoration(border: pw.Border.all()),
                         child: pw.Center(
                           child: pw.Text(
-                              "${DataLoadingSparekit[index]['weight_kg'] ?? "-"}",
+                              "${DataNewMaterialKit[index]['weight_kg'] ?? "-"}",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,
@@ -858,7 +861,7 @@ NUMBER""",
                         decoration: pw.BoxDecoration(border: pw.Border.all()),
                         child: pw.Center(
                           child: pw.Text(
-                              "${DataLoadingSparekit[index]['remark'] ?? "-"}",
+                              "${DataNewMaterialKit[index]['remark'] ?? "-"}",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,

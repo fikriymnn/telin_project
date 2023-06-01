@@ -9,7 +9,8 @@ import '../../../../api/configAPI.dart';
 import '../bast_invoice/bast_new_material.dart';
 
 class AddNewCableLarge extends StatefulWidget {
-  const AddNewCableLarge({super.key});
+  const AddNewCableLarge({super.key, required this.idNewMaterial});
+  final String idNewMaterial;
 
   @override
   State<AddNewCableLarge> createState() => _AddNewCableLargeState();
@@ -1134,18 +1135,18 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     confirmBtnColor: Colors.red);
               } else {
                 inputDataNewMaterialCable(
-                  selectionSystem,
-                  selectionCableType,
-                  selectionManufacturer,
-                  selectionArmoringType,
-                  txtLenght.text,
-                  txtLable.text,
-                  selectedValueInner,
-                  txtTankLocation.text,
-                  txtRemark.text,
-                  selectionCoreType,
-                  txtE_Core.text,
-                );
+                    selectionSystem,
+                    selectionCableType,
+                    selectionManufacturer,
+                    selectionArmoringType,
+                    txtLenght.text,
+                    txtLable.text,
+                    selectedValueInner,
+                    pickedFile!.name,
+                    txtRemark.text,
+                    selectionCoreType,
+                    txtE_Core.text,
+                    txtTankLocation.text);
               }
             },
             child: Container(
@@ -1361,8 +1362,19 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   }
 
   // Fungsi Add Data
-  void inputDataNewMaterialCable(system, cableType, manufacturer, armoringType,
-      length, label, inner, evidence, remark, coreType, eCore) async {
+  void inputDataNewMaterialCable(
+      system,
+      cableType,
+      manufacturer,
+      armoringType,
+      length,
+      label,
+      inner,
+      evidence,
+      remark,
+      coreType,
+      eCore,
+      tankLocation) async {
     bool status;
     var msg;
     try {
@@ -1370,37 +1382,42 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       //   'Unit': namaUnit,
       // });
 
-      response = await dio.post(inputSpareCable, data: {
+      response = await dio
+          .post("$addCableToNewMaterial/${widget.idNewMaterial}", data: {
+        'label_id': label,
+        "depo_location": "makassars",
         'system': system,
         'cable_type': cableType,
         'manufacturer': manufacturer,
         'armoring_type': armoringType,
         'length_report': length,
-        'label': label,
+        'length_meas': length,
+        'keterangan': "keterangan",
+        "doc_reff": "SCRAP",
         'tank': inner,
+        'tank_location': tankLocation,
         'evidence': evidence,
         'remark': remark,
         'core_type': coreType,
+        'sigma_core': eCore,
         'E_core': eCore,
       });
-      status = response!.data['sukses'];
-      msg = response!.data['msg'];
+      status = response!.data['success'];
+
       if (status) {
         FocusScope.of(context).unfocus();
         _clearForm();
         QuickAlert.show(
             context: context,
             type: QuickAlertType.success,
-            text: '$msg',
+            text: 'Add Cable Success',
             width: 400,
             confirmBtnColor: Colors.green);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BastNewMaterial()));
       } else {
         QuickAlert.show(
             context: context,
             type: QuickAlertType.error,
-            text: '$msg',
+            text: 'Add Cable Failed',
             title: 'Peringatan',
             width: 400,
             confirmBtnColor: Colors.red);

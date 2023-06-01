@@ -5,14 +5,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 
-import '../../../../constants/style.dart';
-
-class TableCartNewCable extends StatefulWidget {
-  const TableCartNewCable({super.key, required this.idNewMaterial});
+class DetailTableCableNewMaterial extends StatefulWidget {
+  const DetailTableCableNewMaterial({super.key, required this.idNewMaterial});
   final String idNewMaterial;
 
   @override
-  State<TableCartNewCable> createState() => _TableCartNewCableState();
+  State<DetailTableCableNewMaterial> createState() =>
+      _DetailTableCableNewMaterialState();
 }
 
 List<DropdownMenuItem<String>> get dropdownItemsSystem {
@@ -39,7 +38,8 @@ List<DropdownMenuItem<String>> get dropdownItemsArmoring {
 String selectedValueSystem = "SYSTEM";
 String selectedValueArmoring = "ARMORING TYPE";
 
-class _TableCartNewCableState extends State<TableCartNewCable> {
+class _DetailTableCableNewMaterialState
+    extends State<DetailTableCableNewMaterial> {
   List NewMaterialByIdCable = [];
 
   String id = "";
@@ -63,15 +63,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
       setState(() {
         NewMaterialByIdCable = response!.data['new_material_cables'];
       });
-    } catch (e) {
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
-    }
+    } catch (e) {}
   }
 
   DataRow _resultsAPI(
@@ -145,27 +137,6 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(TextButton(
-          onPressed: () {
-            QuickAlert.show(
-                context: context,
-                type: QuickAlertType.confirm,
-                text: 'Do you sure to delete this item',
-                confirmBtnText: 'Yes',
-                cancelBtnText: 'No',
-                customAsset: 'assets/gift/error.gif',
-                width: 400,
-                confirmBtnColor: Colors.green,
-                onConfirmBtnTap: () {
-                  hapusDataCableNewMaterial('${data['id']}');
-                });
-          },
-          child: Text("Delete",
-              style: GoogleFonts.montserrat(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: active,
-              ))))
     ]);
   }
 
@@ -174,7 +145,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
     var msg;
     try {
       response = await dio
-          .delete('$deleteCableFromNewMaterial/${widget.idNewMaterial}/$id');
+          .delete('$deleteCableFromLoading/${widget.idNewMaterial}/$id');
 
       msg = response!.data['message'];
 
@@ -351,16 +322,6 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
                         ),
                       ),
                       fixedWidth: 150),
-                  DataColumn2(
-                      label: Text(
-                        "ACTION",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
                 ],
                 rows: List.generate(
                     NewMaterialByIdCable.length,

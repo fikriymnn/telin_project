@@ -1,4 +1,4 @@
-String baseUrl = 'http://192.168.100.25:1000';
+String baseUrl = 'http://192.168.153.11:1000';
 
 //loading
 String newloading = '$baseUrl/api/loading/';
@@ -17,6 +17,18 @@ String getAllOffLoading = '$baseUrl/api/offloading';
 String getOffLoadingById = '$baseUrl/api/offloading';
 String offLoadingExisting = '$baseUrl/api/offloading/addCableExisting';
 String submiOffLoadingExisting = '$baseUrl/api/offloading/submitExisting';
+
+//new material
+String newMaterial = '$baseUrl/api/offloadingNewMaterial/create';
+String addCableToNewMaterial = '$baseUrl/api/offloadingNewMaterial/addCable';
+String addKitToNewMaterial = '$baseUrl/api/offloadingNewMaterial/addKit';
+String getAllNewMaterial = '$baseUrl/api/offloadingNewMaterial/all';
+String getNewMaterialById = '$baseUrl/api/offloadingNewMaterial';
+String deleteCableFromNewMaterial =
+    '$baseUrl/api/offloadingNewMaterial/deleteCable';
+String deleteKitFromNewMaterial =
+    '$baseUrl/api/offloadingNewMaterial/deleteKit';
+String submitNewMaterial = '$baseUrl/api/offloadingNewMaterial/submit';
 
 //allCable
 String getAllCable = '$baseUrl/api/spareCable/';

@@ -7,7 +7,8 @@ import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_m
 import '../../../../api/configAPI.dart';
 
 class AddNewNonCableLarge extends StatefulWidget {
-  const AddNewNonCableLarge({super.key});
+  const AddNewNonCableLarge({super.key, required this.idNewMaterial});
+  final String idNewMaterial;
 
   @override
   State<AddNewNonCableLarge> createState() => _AddNewNonCableLargeState();
@@ -894,36 +895,36 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
       //   'Unit': namaUnit,
       // });
 
-      response = await dio.post(inputSpareKit, data: {
+      response =
+          await dio.post("$addKitToNewMaterial/${widget.idNewMaterial}", data: {
+        "location:": "Makassar",
         'item_name': itemName,
-        'location': location,
+        'rak_number': location,
         'part_number': partNumber,
         'serial_number': serialNumber,
-        'weight': weight,
+        'weight_kg': weight,
         'qty': qty,
         'system': system,
         'unit': unit,
-        'evidence': evidence,
-        'remark': remark,
+        // 'evidence': evidence,
+        // 'remark': remark,
       });
-      status = response!.data['sukses'];
-      msg = response!.data['msg'];
+      status = response!.data['success'];
+
       if (status) {
         FocusScope.of(context).unfocus();
         _clearForm();
         QuickAlert.show(
             context: context,
             type: QuickAlertType.success,
-            text: '$msg',
+            text: 'Add Kit Success',
             width: 400,
             confirmBtnColor: Colors.green);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BastNewMaterial()));
       } else {
         QuickAlert.show(
             context: context,
             type: QuickAlertType.error,
-            text: '$msg',
+            text: 'Add Kit Faileed',
             title: 'Peringatan',
             width: 400,
             confirmBtnColor: Colors.red);

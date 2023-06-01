@@ -8,6 +8,7 @@ import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/bats_loading.dart';
 import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
 import 'package:telin_project/widgets/order/loading/edit_loading.dart';
+import 'package:telin_project/widgets/order/new_material/detail_new_material.dart';
 
 import '../../../../api/configAPI.dart';
 import '../../../../routing/routes.dart';
@@ -29,7 +30,7 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
   @override
   void initState() {
     // TODO: implement initState
-    getDataLoading();
+    getDataNewMaterial();
     super.initState();
   }
 
@@ -59,7 +60,15 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
                 )),
       )),
       DataCell(Center(
-        child: Text('${data['vessel_name'] == null ? "" : data['vessel_name']}',
+        child: Text('${data['from'] == null ? "" : data['from']}',
+            style: GoogleFonts.montserrat(
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            )),
+      )),
+      DataCell(Center(
+        child: Text('${data['to'] == null ? "" : data['to']}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w400,
@@ -75,8 +84,8 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => EditLoading(
-                            idLoading: data['_id'],
+                      builder: (context) => DetailNewMaterial(
+                            idNewMaterial: data['_id'],
                           )));
               // showDialog(
               //     context: context,
@@ -140,11 +149,11 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
     ]);
   }
 
-  void getDataLoading() async {
+  void getDataNewMaterial() async {
     bool status;
     var msg;
     try {
-      response = await dio.get(getAllLoading);
+      response = await dio.get(getAllNewMaterial);
 
       setState(() {
         loading = response!.data;
@@ -207,30 +216,39 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
               fixedWidth: 28),
           DataColumn2(
               label: Center(
-                child: Text('Judul',
+                child: Text('Date',
                     style: GoogleFonts.montserrat(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
                     )),
               ),
+              fixedWidth: 100),
+          DataColumn2(
+              label: Text('Judul',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  )),
               fixedWidth: 200),
+
           DataColumn2(
-              label: Text('Remark',
+              label: Text('From',
                   style: GoogleFonts.montserrat(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   )),
-              fixedWidth: 400),
+              fixedWidth: 100),
           DataColumn2(
-              label: Text('Date',
+              label: Text('To',
                   style: GoogleFonts.montserrat(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   )),
-              fixedWidth: 150),
+              fixedWidth: 100),
 
           const DataColumn2(label: Text(''), fixedWidth: 200),
           // const DataColumn2(
