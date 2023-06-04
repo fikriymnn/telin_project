@@ -63,13 +63,17 @@ class _TableNonCableCartState extends State<TableNonCableCart> {
         LoadingByIdSparekit = response!.data['loading'][0]['kits_id'];
       });
     } catch (e) {
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+      // QuickAlert.show(
+      //     context: context,
+      //     type: QuickAlertType.error,
+      //     text: 'Terjadi Kesalahan Pada Server Kami',
+      //     title: 'Peringatan',
+      //     width: 400,
+      //     confirmBtnColor: Colors.red);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text("Silahkan Pergi ke halaman lain untuk me-refresh halaman ini"),
+      ));
     }
   }
 

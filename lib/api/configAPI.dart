@@ -1,4 +1,5 @@
-String baseUrl = 'http://192.168.153.11:1000';
+String baseUrl =
+    'https://asia-southeast2-telkominfra-f7a85.cloudfunctions.net/api';
 
 //loading
 String newloading = '$baseUrl/api/loading/';
