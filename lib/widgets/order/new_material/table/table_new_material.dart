@@ -82,11 +82,13 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
           InkWell(
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => DetailNewMaterial(
-                            idNewMaterial: data['_id'],
-                          )));
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailNewMaterial(
+                          idNewMaterial: data['_id'],
+                        )),
+              );
+
               // showDialog(
               //     context: context,
               //     builder: (BuildContext context) {
@@ -126,8 +128,8 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
                   width: 400,
                   confirmBtnColor: Colors.green,
                   onConfirmBtnTap: () {
-                    hapusDataLoading(data['_id']);
-                    navigationController.navigateTo(LoadingPageRoute);
+                    hapusDataNewMaterial(data['_id']);
+                    navigationController.navigateTo(NewMaterialPageRoute);
                   });
             },
             child: Container(
@@ -169,10 +171,11 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
     }
   }
 
-  void hapusDataLoading(id) async {
+  void hapusDataNewMaterial(id) async {
+    bool check;
     var msg;
     try {
-      response = await dio.delete('$deleteLoading/$id');
+      response = await dio.delete('$deleteNewMaterial/$id');
 
       msg = response!.data['message'];
 
@@ -180,15 +183,14 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
           context: context,
           type: QuickAlertType.success,
           text: '$msg',
-          title: 'Peringatan',
           width: 400,
           barrierDismissible: true,
-          confirmBtnColor: Colors.red);
+          confirmBtnColor: Colors.green);
     } catch (e) {
       QuickAlert.show(
           context: context,
           type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
+          text: 'This offloading has been submitted! Cannot be deleted!',
           title: 'Peringatan',
           width: 400,
           confirmBtnColor: Colors.red);
@@ -372,36 +374,6 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
                           borderRadius: BorderRadius.circular(6)),
                       child: Center(
                           child: Text("Delete",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
-                              ))),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      QuickAlert.show(
-                        context: context,
-                        type: QuickAlertType.confirm,
-                        text: 'Do you sure to finish this project?',
-                        confirmBtnText: 'Yes',
-                        cancelBtnText: 'No',
-                        customAsset: 'assets/gift/error.gif',
-                        width: 400,
-                        confirmBtnColor: Colors.green,
-                      );
-                    },
-                    child: Container(
-                      width: 50,
-                      height: 19.46,
-                      decoration: BoxDecoration(
-                          color: dark, borderRadius: BorderRadius.circular(6)),
-                      child: Center(
-                          child: Text("Finish",
                               style: GoogleFonts.montserrat(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,

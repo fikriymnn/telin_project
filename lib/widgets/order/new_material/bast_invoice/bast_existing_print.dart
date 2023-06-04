@@ -4,11 +4,8 @@ import 'package:pluto_grid_export/pluto_grid_export.dart';
 import 'package:printing/printing.dart';
 
 class printBastNewMaterial {
-  Future<void> BastNewMaterialPrinttt(
-    List dataNewMaterialCable,
-    List dataNewMaterialKit,
-    //List dataNewMaterial
-  ) async {
+  Future<void> BastNewMaterialPrinttt(List dataNewMaterialCable,
+      List dataNewMaterialKit, List dataNewMaterial) async {
     final doc = pw.Document();
     final TelinLogo =
         await imageFromAssetBundle('assets/images/logo_telin_login.png');
@@ -65,23 +62,23 @@ class printBastNewMaterial {
                           pw.SizedBox(
                             height: 15,
                           ),
-                          // pw.Text(
-                          //   "On the day of ${dataNewMaterial[0]['submitted_date_loading'] ?? "-"} has been handover the goods of material:",
-                          //   style: pw.TextStyle(
-                          //     fontSize: 10,
-                          //     fontWeight: pw.FontWeight.bold,
-                          //     fontStyle: pw.FontStyle.italic,
-                          //   ),
-                          // ),
-                          // pw.SizedBox(
-                          //   height: 5,
-                          // ),
-                          // pw.Text(
-                          //   "Pada hari ini ${dataNewMaterial[0]['submitted_date_loading'] ?? "-"} telah diserah terimakan barang atau material:",
-                          //   style: const pw.TextStyle(
-                          //     fontSize: 10,
-                          //   ),
-                          // ),
+                          pw.Text(
+                            "On the day of ${dataNewMaterial[0]['submitted_date_loading'] ?? "-"} has been handover the goods of material:",
+                            style: pw.TextStyle(
+                              fontSize: 10,
+                              fontWeight: pw.FontWeight.bold,
+                              fontStyle: pw.FontStyle.italic,
+                            ),
+                          ),
+                          pw.SizedBox(
+                            height: 5,
+                          ),
+                          pw.Text(
+                            "Pada hari ini ${dataNewMaterial[0]['submitted_date_loading'] ?? "-"} telah diserah terimakan barang atau material:",
+                            style: const pw.TextStyle(
+                              fontSize: 10,
+                            ),
+                          ),
                           pw.SizedBox(
                             height: 15,
                           ),
@@ -155,53 +152,53 @@ class printBastNewMaterial {
                                   crossAxisAlignment:
                                       pw.CrossAxisAlignment.start,
                                   children: [
-                                    // pw.Text(
-                                    //   ": ${dataNewMaterial[0]['no_bast'] ?? "-"}",
-                                    //   style: pw.TextStyle(
-                                    //       fontSize: 6,
-                                    //       fontWeight: pw.FontWeight.bold,
-                                    //       color: PdfColors.red),
-                                    // ),
-                                    // pw.SizedBox(
-                                    //   height: 5,
-                                    // ),
-                                    // pw.Text(
-                                    //   ": ${dataNewMaterial[0]['from'] ?? "-"}",
-                                    //   style: pw.TextStyle(
-                                    //     fontSize: 6,
-                                    //     fontWeight: pw.FontWeight.bold,
-                                    //   ),
-                                    // ),
-                                    // pw.SizedBox(
-                                    //   height: 5,
-                                    // ),
-                                    // pw.Text(
-                                    //   ": ${dataNewMaterial[0]['to'] ?? "-"}",
-                                    //   style: pw.TextStyle(
-                                    //     fontSize: 6,
-                                    //     fontWeight: pw.FontWeight.bold,
-                                    //   ),
-                                    // ),
-                                    // pw.SizedBox(
-                                    //   height: 5,
-                                    // ),
-                                    // pw.Text(
-                                    //   ": ${dataNewMaterial[0]['perusahaan']['company_name'] ?? "-"}",
-                                    //   style: pw.TextStyle(
-                                    //     fontSize: 6,
-                                    //     fontWeight: pw.FontWeight.bold,
-                                    //   ),
-                                    // ),
-                                    // pw.SizedBox(
-                                    //   height: 5,
-                                    // ),
-                                    // pw.Text(
-                                    //   ": ${dataNewMaterial[0]['project_name'] ?? "-"}",
-                                    //   style: pw.TextStyle(
-                                    //     fontSize: 6,
-                                    //     fontWeight: pw.FontWeight.bold,
-                                    //   ),
-                                    // ),
+                                    pw.Text(
+                                      ": ${dataNewMaterial[0]['no_bast'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                          fontSize: 6,
+                                          fontWeight: pw.FontWeight.bold,
+                                          color: PdfColors.red),
+                                    ),
+                                    pw.SizedBox(
+                                      height: 5,
+                                    ),
+                                    pw.Text(
+                                      ": ${dataNewMaterial[0]['from'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.bold,
+                                      ),
+                                    ),
+                                    pw.SizedBox(
+                                      height: 5,
+                                    ),
+                                    pw.Text(
+                                      ": ${dataNewMaterial[0]['to'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.bold,
+                                      ),
+                                    ),
+                                    pw.SizedBox(
+                                      height: 5,
+                                    ),
+                                    pw.Text(
+                                      ": ${dataNewMaterial[0]['perusahaan']['company_name'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.bold,
+                                      ),
+                                    ),
+                                    pw.SizedBox(
+                                      height: 5,
+                                    ),
+                                    pw.Text(
+                                      ": ${dataNewMaterial[0]['project_name'] ?? "-"}",
+                                      style: pw.TextStyle(
+                                        fontSize: 6,
+                                        fontWeight: pw.FontWeight.bold,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -298,12 +295,12 @@ class printBastNewMaterial {
                             color: PdfColors.black,
                           )),
                       pw.Container(height: 60, child: pw.Column()),
-                      // pw.Text("${dataNewMaterial[0]['diserahkan']['name']}",
-                      //     style: pw.TextStyle(
-                      //       fontSize: 10,
-                      //       fontWeight: pw.FontWeight.bold,
-                      //       color: PdfColors.black,
-                      //     )),
+                      pw.Text("${dataNewMaterial[0]['diserahkan']['name']}",
+                          style: pw.TextStyle(
+                            fontSize: 10,
+                            fontWeight: pw.FontWeight.bold,
+                            color: PdfColors.black,
+                          )),
                       pw.Text("( Depo 104 MKS, PT. W.E.B )",
                           style: pw.TextStyle(
                             fontSize: 10,
@@ -322,19 +319,19 @@ class printBastNewMaterial {
                       pw.Container(
                         height: 60,
                       ),
-                      // pw.Text("${dataNewMaterial[0]['diterima']}",
-                      //     style: pw.TextStyle(
-                      //       fontSize: 10,
-                      //       fontWeight: pw.FontWeight.bold,
-                      //       color: PdfColors.black,
-                      //     )),
-                      // pw.Text(
-                      //     "( ${dataNewMaterial[0]['perusahaan']['company_name']} )",
-                      //     style: pw.TextStyle(
-                      //       fontSize: 10,
-                      //       fontWeight: pw.FontWeight.bold,
-                      //       color: PdfColors.black,
-                      //     )),
+                      pw.Text("${dataNewMaterial[0]['diterima']}",
+                          style: pw.TextStyle(
+                            fontSize: 10,
+                            fontWeight: pw.FontWeight.bold,
+                            color: PdfColors.black,
+                          )),
+                      pw.Text(
+                          "( ${dataNewMaterial[0]['perusahaan']['company_name']} )",
+                          style: pw.TextStyle(
+                            fontSize: 10,
+                            fontWeight: pw.FontWeight.bold,
+                            color: PdfColors.black,
+                          )),
                     ])),
                     pw.Container(
                         child: pw.Column(children: [
@@ -347,12 +344,12 @@ class printBastNewMaterial {
                       pw.Container(
                         height: 60,
                       ),
-                      // pw.Text("${dataNewMaterial[0]['diketahui']['name']}",
-                      //     style: pw.TextStyle(
-                      //       fontSize: 10,
-                      //       fontWeight: pw.FontWeight.bold,
-                      //       color: PdfColors.black,
-                      //     )),
+                      pw.Text("${dataNewMaterial[0]['diketahui']['name']}",
+                          style: pw.TextStyle(
+                            fontSize: 10,
+                            fontWeight: pw.FontWeight.bold,
+                            color: PdfColors.black,
+                          )),
                       pw.Text("( PT. TELKOMINFRA )",
                           style: pw.TextStyle(
                             fontSize: 10,

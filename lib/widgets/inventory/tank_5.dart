@@ -343,7 +343,7 @@ class _TableTank5State extends State<TableTank5> {
                       'no': PlutoCell(value: '${index + 1}'),
                       'lable': PlutoCell(
                           value:
-                              '${tank5[index]['lable'] == null ? "" : tank5[index]['lable']}'),
+                              '${tank5[index]['label_id'] == null ? "" : tank5[index]['label_id']}'),
                       'system': PlutoCell(
                           value:
                               '${tank5[index]['system'] == null ? "" : tank5[index]['system']}'),

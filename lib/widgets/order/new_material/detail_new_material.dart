@@ -4,14 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/order/loading/bats_loading.dart';
-import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
-import 'package:telin_project/widgets/order/loading/form/edit_form_loading.dart';
-import 'package:telin_project/widgets/order/loading/table/table_cable_edit.dart';
-import 'package:telin_project/widgets/order/loading/table/table_cable_loading.dart';
-import 'package:telin_project/widgets/order/loading/table/table_non_cable_loading.dart';
-import 'package:telin_project/widgets/order/loading/table/table_turn_over.dart';
-import 'package:telin_project/widgets/order/loading/table/table_turn_over_detail.dart';
+
 import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/table/detail_cable_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/table/detail_kit_new_material.dart';
@@ -26,7 +19,7 @@ class DetailNewMaterial extends StatefulWidget {
 
 class _DetailNewMaterialState extends State<DetailNewMaterial> {
   List NewMaterialById = [];
-  String projectName = "";
+
   List NewMaterialByIdCable = [];
   List NewMaterialByIdKit = [];
 
@@ -46,13 +39,15 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
   void getDataNewMaterial() async {
     var msg;
     try {
-      response = await dio.get('$getNewMaterialById/$id');
-      msg = response!.data['message'];
+      response = await dio.get('$getNewMaterialById/${widget.idNewMaterial}');
+
       setState(() {
         NewMaterialById = response!.data;
 
-        NewMaterialByIdCable = response!.data['new_material_cables'];
-        NewMaterialByIdKit = response!.data['new_material_kits'];
+        NewMaterialByIdCable =
+            response!.data['submitted_new_material_cables_id_in_spare_cable'];
+        NewMaterialByIdKit =
+            response!.data['submitted_new_material_kits_id_in_spare_kits'];
       });
     } catch (e) {
       QuickAlert.show(
@@ -104,6 +99,7 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                                       builder: (context) => BastNewMaterial(
                                             idNewMaterial: widget.idNewMaterial,
                                           )));
+
                               // showDialog(
                               //     context: context,
                               //     builder: (BuildContext context) {
@@ -171,52 +167,57 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("${projectName ?? "-"}",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 13.3,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black,
-                            ))
-                      ],
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: NewMaterialById.length,
+                    itemBuilder: (context, index) => SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                              "${NewMaterialById[index]['project_name'] ?? "-"}",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 13.3,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.black,
+                              ))
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
                     height: 22,
                   ),
-                  // ListView.builder(
-                  //   shrinkWrap: true,
-                  //   itemCount: LoadingById.length,
-                  //   itemBuilder: (contect, index) => SizedBox(
-                  //     width: MediaQuery.of(context).size.width,
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         Text(
-                  //             "${LoadingById[index]['perusahaan']['company_name']}",
-                  //             style: GoogleFonts.montserrat(
-                  //               fontSize: 13.3,
-                  //               fontWeight: FontWeight.w900,
-                  //               color: Colors.black,
-                  //             )),
-                  //         const SizedBox(
-                  //           width: 284,
-                  //         ),
-                  //         Text(
-                  //             "${LoadingById[index]['from']} - ${LoadingById[index]['to']}",
-                  //             style: GoogleFonts.montserrat(
-                  //               fontSize: 13.3,
-                  //               fontWeight: FontWeight.w900,
-                  //               color: Colors.black,
-                  //             ))
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: NewMaterialById.length,
+                    itemBuilder: (contect, index) => SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                              "${NewMaterialById[index]['perusahaan']['company_name']}",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 13.3,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.black,
+                              )),
+                          const SizedBox(
+                            width: 284,
+                          ),
+                          Text(
+                              "${NewMaterialById[index]['from']} - ${NewMaterialById[index]['to']}",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 13.3,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.black,
+                              ))
+                        ],
+                      ),
+                    ),
+                  ),
                   SizedBox(
                       height: 400,
                       child: Column(

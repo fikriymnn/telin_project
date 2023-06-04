@@ -61,7 +61,8 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
       response = await dio.get('$getNewMaterialById/$id');
 
       setState(() {
-        NewMaterialByIdkit = response!.data['new_material_kits'];
+        NewMaterialByIdkit = response!.data[
+            'new_masubmitted_new_material_kits_id_in_spare_kitsterial_kits'];
       });
     } catch (e) {}
   }

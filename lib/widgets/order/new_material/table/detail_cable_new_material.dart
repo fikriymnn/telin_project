@@ -61,7 +61,8 @@ class _DetailTableCableNewMaterialState
       response = await dio.get('$getNewMaterialById/$id');
 
       setState(() {
-        NewMaterialByIdCable = response!.data['new_material_cables'];
+        NewMaterialByIdCable =
+            response!.data['submitted_new_material_cables_id_in_spare_cable'];
       });
     } catch (e) {}
   }

@@ -143,7 +143,7 @@ class _TableTank3State extends State<TableTank3> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text('',
+      DataCell(Text('${data['label_id'] ?? "-"}',
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -343,7 +343,7 @@ class _TableTank3State extends State<TableTank3> {
                       'no': PlutoCell(value: '${index + 1}'),
                       'lable': PlutoCell(
                           value:
-                              '${tank3[index]['lable'] == null ? "" : tank3[index]['lable']}'),
+                              '${tank3[index]['label_id'] == null ? "" : tank3[index]['label_id']}'),
                       'system': PlutoCell(
                           value:
                               '${tank3[index]['system'] == null ? "" : tank3[index]['system']}'),

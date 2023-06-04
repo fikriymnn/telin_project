@@ -212,7 +212,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                 value: selectionLocation,
                                 items: location.map((location) {
                                   return DropdownMenuItem(
-                                    value: location['_id'].toString(),
+                                    value: location['location'].toString(),
                                     child: Text(location['location'],
                                         style: GoogleFonts.montserrat(
                                           fontSize: 13.3,
@@ -624,7 +624,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                 value: selectionUnit,
                                 items: unit.map((unit) {
                                   return DropdownMenuItem(
-                                    value: unit['_id'].toString(),
+                                    value: unit['unit'].toString(),
                                     child: Text(unit['unit'],
                                         style: GoogleFonts.montserrat(
                                           fontSize: 13.3,

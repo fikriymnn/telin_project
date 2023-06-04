@@ -21,7 +21,7 @@ class BastNewMaterial extends StatefulWidget {
 }
 
 class _BastNewMaterialState extends State<BastNewMaterial> {
-  // List NewMaterialById = [];
+  List NewMaterialById = [];
   List NewMaterialByIdCable = [];
   List NewMaterialByIdKits = [];
   String id = "";
@@ -43,9 +43,11 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
       response = await dio.get('$getNewMaterialById/$id');
 
       setState(() {
-        // NewMaterialById = response!.data;
-        NewMaterialByIdCable = response!.data['new_material_cables'];
-        NewMaterialByIdKits = response!.data['new_material_kits'];
+        NewMaterialById = response!.data;
+        NewMaterialByIdCable =
+            response!.data['submitted_new_material_cables_id_in_spare_cable'];
+        NewMaterialByIdKits =
+            response!.data['submitted_new_material_kits_id_in_spare_kits'];
       });
     } catch (e) {
       QuickAlert.show(
@@ -129,14 +131,13 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
                       children: [
                         BastWidget(
                           title: "BAST-Off Loading (New Material)",
-                          noBast: "004/BAST-OFF-Loading/WEB/XII/2022",
-                          projectName: "ghfgh",
+                          noBast: NewMaterialById[0]['no_bast'],
+                          projectName: NewMaterialById[0]['project_name'],
                           onClick: () {
                             printBastNewMaterial().BastNewMaterialPrinttt(
-                              NewMaterialByIdCable,
-                              NewMaterialByIdKits,
-                              //NewMaterialById
-                            );
+                                NewMaterialByIdCable,
+                                NewMaterialByIdKits,
+                                NewMaterialById);
                           },
                         )
                       ],
