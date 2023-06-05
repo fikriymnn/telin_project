@@ -42,12 +42,12 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
       response = await dio.get('$getNewMaterialById/${widget.idNewMaterial}');
 
       setState(() {
-        NewMaterialById = response!.data;
+        NewMaterialById = response!.data['newMaterial'];
 
-        NewMaterialByIdCable =
-            response!.data['submitted_new_material_cables_id_in_spare_cable'];
-        NewMaterialByIdKit =
-            response!.data['submitted_new_material_kits_id_in_spare_kits'];
+        // NewMaterialByIdCable =
+        //     response!.data['newMaterial']['submitted_new_material_cables_id_in_spare_cable'];
+        // NewMaterialByIdKit =
+        //     response!.data['newMaterial']['submitted_new_material_kits_id_in_spare_kits'];
       });
     } catch (e) {
       QuickAlert.show(
@@ -176,7 +176,7 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                              "${NewMaterialById[index]['project_name'] ?? "-"}",
+                              "${NewMaterialById[0]['project_name'] ?? "-"}",
                               style: GoogleFonts.montserrat(
                                 fontSize: 13.3,
                                 fontWeight: FontWeight.w900,
@@ -198,7 +198,7 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                              "${NewMaterialById[index]['perusahaan']['company_name']}",
+                              "${NewMaterialById[0]['perusahaan']['company_name']}",
                               style: GoogleFonts.montserrat(
                                 fontSize: 13.3,
                                 fontWeight: FontWeight.w900,
@@ -208,7 +208,7 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                             width: 284,
                           ),
                           Text(
-                              "${NewMaterialById[index]['from']} - ${NewMaterialById[index]['to']}",
+                              "${NewMaterialById[0]['from']} - ${NewMaterialById[0]['to']}",
                               style: GoogleFonts.montserrat(
                                 fontSize: 13.3,
                                 fontWeight: FontWeight.w900,

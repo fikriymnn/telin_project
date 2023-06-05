@@ -62,7 +62,7 @@ class _DetailTableCableNewMaterialState
 
       setState(() {
         NewMaterialByIdCable =
-            response!.data['submitted_new_material_cables_id_in_spare_cable'];
+            response!.data['newMaterial'][0]['submitted_new_material_cables_id_in_spare_cable'];
       });
     } catch (e) {}
   }
