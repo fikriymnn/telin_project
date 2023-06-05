@@ -129,12 +129,12 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
       //       fontWeight: FontWeight.w400,
       //       color: Colors.black,
       //     ))),
-      // DataCell(Text("${data['remark'] ?? "-"}",
-      //     style: GoogleFonts.montserrat(
-      //       fontSize: 10,
-      //       fontWeight: FontWeight.w400,
-      //       color: Colors.black,
-      //     ))),
+      DataCell(Text("${data['keterangan'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
     ]);
   }
 
@@ -295,16 +295,16 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
                   //       ),
                   //     ),
                   //     fixedWidth: 100),
-                  // DataColumn2(
-                  //     label: Text(
-                  //       "REMARK",
-                  //       style: GoogleFonts.montserrat(
-                  //         fontSize: 10,
-                  //         fontWeight: FontWeight.w600,
-                  //         color: Colors.black,
-                  //       ),
-                  //     ),
-                  //     fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "REMARK",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
                 ],
                 rows: List.generate(NewMaterialByIdkit.length,
                     (index) => _resultsAPI(index, NewMaterialByIdkit[index]))

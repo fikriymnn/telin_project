@@ -60,7 +60,7 @@ class _TableNonCableNewCartState extends State<TableNonCableNewCart> {
       response = await dio.get('$getNewMaterialById/$id');
       msg = response!.data['message'];
       setState(() {
-        NewMaterialByIdkit = response!.data['new_material_kits'];
+        NewMaterialByIdkit = response!.data['newMaterial'][0]['new_material_kits'];
       });
     } catch (e) {
       QuickAlert.show(

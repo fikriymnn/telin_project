@@ -1,3 +1,4 @@
+
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:telin_project/widgets/order/loading/bats_loading.dart';
 import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
 import 'package:telin_project/widgets/order/loading/edit_loading.dart';
 import 'package:telin_project/widgets/order/new_material/detail_new_material.dart';
+
 
 import '../../../../api/configAPI.dart';
 import '../../../../routing/routes.dart';
@@ -117,7 +119,10 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
             width: 10,
           ),
           InkWell(
-            onTap: () {
+            onTap: () async {
+
+
+
               QuickAlert.show(
                   context: context,
                   type: QuickAlertType.confirm,
@@ -129,8 +134,11 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
                   confirmBtnColor: Colors.green,
                   onConfirmBtnTap: () {
                     hapusDataNewMaterial(data['_id']);
+
                     navigationController.navigateTo(NewMaterialPageRoute);
-                  });
+                  }
+                 
+                  );
             },
             child: Container(
               width: 50,

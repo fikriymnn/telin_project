@@ -671,16 +671,34 @@ class _FormLoadingState extends State<FormLoading> {
               ),
               InkWell(
                 onTap: () {
-                  inputDataProject(
-                      projectName.text,
-                      visselName.text,
-                      remark.text,
-                      from.text,
-                      to.text,
-                      selectedValueDiserahkan,
-                      diterima.text,
-                      selectedValueDiketahui,
-                      selectedValuePerusahaan);
+                  if (projectName == null ||
+                      remark == null ||
+                      from == null ||
+                      to == null ||
+                      selectedValueDiserahkan == null ||
+                      selectedValuePerusahaan == null ||
+                      selectedValueDiketahui == null ||
+                      diterima == null ||
+                      visselName == null) {
+                    QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.error,
+                        title: 'Peringatan',
+                        text: 'All must be filled in',
+                        width: 400,
+                        confirmBtnColor: Colors.red);
+                  } else {
+                    inputDataProject(
+                        projectName.text,
+                        visselName.text,
+                        remark.text,
+                        from.text,
+                        to.text,
+                        selectedValueDiserahkan,
+                        diterima.text,
+                        selectedValueDiketahui,
+                        selectedValuePerusahaan);
+                  }
                 },
                 child: Container(
                   width: 90,

@@ -43,11 +43,11 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
       response = await dio.get('$getNewMaterialById/$id');
 
       setState(() {
-        NewMaterialById = response!.data;
+        NewMaterialById = response!.data['newMaterial'];
         NewMaterialByIdCable =
-            response!.data['submitted_new_material_cables_id_in_spare_cable'];
+            response!.data['newMaterial'][0]['submitted_new_material_cables_id_in_spare_cable'];
         NewMaterialByIdKits =
-            response!.data['submitted_new_material_kits_id_in_spare_kits'];
+            response!.data['newMaterial'][0]['submitted_new_material_kits_id_in_spare_kits'];
       });
     } catch (e) {
       QuickAlert.show(

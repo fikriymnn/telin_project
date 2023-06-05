@@ -600,7 +600,18 @@ class _FormNewMaterialExistingState extends State<FormNewMaterialExisting> {
               ),
               InkWell(
                 onTap: () {
-                  inputDataProject(
+                  if(projectName == null||remark==null||
+                  from==null||to ==null||selectedValueDiserahkan==null||
+                  selectedValuePerusahaan==null||selectedValueDiketahui==null||diterima==null){
+                    QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    title: 'Peringatan',
+                    text: 'All must be filled in',
+                    width: 400,
+                    confirmBtnColor: Colors.red);
+                  }else{
+                     inputDataProject(
                       projectName.text,
                       remark.text,
                       from.text,
@@ -609,6 +620,8 @@ class _FormNewMaterialExistingState extends State<FormNewMaterialExisting> {
                       diterima.text,
                       selectedValueDiketahui,
                       selectedValuePerusahaan);
+                  }
+                  
                 },
                 child: Container(
                   width: 90,

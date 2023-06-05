@@ -61,7 +61,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
       response = await dio.get('$getNewMaterialById/$id');
 
       setState(() {
-        NewMaterialByIdCable = response!.data['new_material_cables'];
+        NewMaterialByIdCable = response!.data['newMaterial'][0]['new_material_cables'];
       });
     } catch (e) {
       QuickAlert.show(
