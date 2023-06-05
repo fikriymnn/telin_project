@@ -232,13 +232,10 @@ class _TableTank2State extends State<TableTank2> {
         tank2 = response!.data;
       });
     } catch (e) {
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text("Silahkan Pergi ke halaman lain untuk me-refresh halaman ini"),
+      ));
     }
   }
 
@@ -263,13 +260,10 @@ class _TableTank2State extends State<TableTank2> {
             confirmBtnColor: Colors.red);
       }
     } catch (e) {
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text("Silahkan Pergi ke halaman lain untuk me-refresh halaman ini"),
+      ));
     }
   }
 
@@ -294,13 +288,10 @@ class _TableTank2State extends State<TableTank2> {
             confirmBtnColor: Colors.red);
       }
     } catch (e) {
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text("Silahkan Pergi ke halaman lain untuk me-refresh halaman ini"),
+      ));
     }
   }
 

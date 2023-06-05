@@ -74,7 +74,8 @@ class _LoginFormState extends State<LoginForm> {
       QuickAlert.show(
           context: context,
           type: QuickAlertType.error,
-          text: 'Username atau Password salah',
+          text:
+              'Sedang menghubungkan ke server. Silahkan tunggu beberapa saat lagi',
           title: 'Peringatan',
           width: 400,
           confirmBtnColor: Colors.red);
