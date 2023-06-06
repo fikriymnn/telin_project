@@ -103,7 +103,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Item Name",
+                              "Item Name *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -161,7 +161,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Location",
+                              "Location *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -235,7 +235,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Part Number",
+                              "Part Number *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -293,7 +293,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Serial Number",
+                              "Serial Number *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -358,7 +358,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Weigth",
+                              "Weigth *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -441,7 +441,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "QTY",
+                              "QTY *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -499,7 +499,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "System",
+                              "System *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -573,7 +573,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Unit",
+                              "Unit *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -765,84 +765,19 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
           ),
           InkWell(
             onTap: () {
-              if (txtItemName.text == '') {
+              if (txtItemName.text == null ||
+                  selectedValueLocation == null ||
+                  txtPartNumber == null ||
+                  txtSerialNumber == null ||
+                  txtWeight == null ||
+                  txtQty == null ||
+                  selectionSystem == null ||
+                  selectionUnit == null) {
                 QuickAlert.show(
                     context: context,
                     type: QuickAlertType.error,
                     title: 'Peringatan',
-                    text: 'Item Name Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionLocation == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Location Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtPartNumber.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Part Number Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtSerialNumber.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Serial Number Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtWeight.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Weight Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtQty.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Qty Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionSystem == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'System Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionUnit == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Unit Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtNamaEvidence.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Evidence Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtRemark.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Remark Tidak Boleh Kosong',
+                    text: 'Field with * is cant be empty',
                     width: 400,
                     confirmBtnColor: Colors.red);
               } else {
