@@ -1,4 +1,4 @@
-
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,6 @@ import 'package:telin_project/widgets/order/loading/bats_loading.dart';
 import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
 import 'package:telin_project/widgets/order/loading/edit_loading.dart';
 import 'package:telin_project/widgets/order/new_material/detail_new_material.dart';
-
 
 import '../../../../api/configAPI.dart';
 import '../../../../routing/routes.dart';
@@ -120,25 +119,31 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
           ),
           InkWell(
             onTap: () async {
-
-
-
-              QuickAlert.show(
+              CoolAlert.show(
                   context: context,
-                  type: QuickAlertType.confirm,
-                  text: 'Do you sure to delete this item',
-                  confirmBtnText: 'Yes',
-                  cancelBtnText: 'No',
-                  customAsset: 'assets/gift/error.gif',
+                  type: CoolAlertType.confirm,
+                  text: "Do you sure to delete this item",
                   width: 400,
-                  confirmBtnColor: Colors.green,
+                  confirmBtnText: "Delete",
+                  cancelBtnText: "Cancle",
                   onConfirmBtnTap: () {
                     hapusDataNewMaterial(data['_id']);
-
                     navigationController.navigateTo(NewMaterialPageRoute);
-                  }
-                 
-                  );
+                  });
+              // QuickAlert.show(
+              //     context: context,
+              //     type: QuickAlertType.confirm,
+              //     text: 'Do you sure to delete this item',
+              //     confirmBtnText: 'Yes',
+              //     cancelBtnText: 'No',
+              //     customAsset: 'assets/gift/error.gif',
+              //     width: 400,
+              //     confirmBtnColor: Colors.green,
+              //     onConfirmBtnTap: () {
+              //       hapusDataNewMaterial(data['_id']);
+
+              //       navigationController.navigateTo(NewMaterialPageRoute);
+              //     });
             },
             child: Container(
               width: 50,
@@ -187,21 +192,17 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
 
       msg = response!.data['message'];
 
-      QuickAlert.show(
+      CoolAlert.show(
           context: context,
-          type: QuickAlertType.success,
-          text: '$msg',
-          width: 400,
-          barrierDismissible: true,
-          confirmBtnColor: Colors.green);
+          type: CoolAlertType.success,
+          text: "$msg",
+          width: 400);
     } catch (e) {
-      QuickAlert.show(
+      CoolAlert.show(
           context: context,
-          type: QuickAlertType.error,
-          text: 'This offloading has been submitted! Cannot be deleted!',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+          type: CoolAlertType.error,
+          text: "This offloading has been submitted! Cannot be deleted!",
+          width: 400);
     }
   }
 
@@ -363,16 +364,21 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
                   ),
                   InkWell(
                     onTap: () {
-                      QuickAlert.show(
+                      CoolAlert.show(
                         context: context,
-                        type: QuickAlertType.confirm,
-                        text: 'Do you sure to delete this item',
-                        confirmBtnText: 'Yes',
-                        cancelBtnText: 'No',
-                        customAsset: 'assets/gift/error.gif',
-                        width: 400,
-                        confirmBtnColor: Colors.green,
+                        type: CoolAlertType.success,
+                        text: "Your transaction was successful!",
                       );
+                      // QuickAlert.show(
+                      //   context: context,
+                      //   type: QuickAlertType.confirm,
+                      //   text: 'Do you sure to delete this item',
+                      //   confirmBtnText: 'Yes',
+                      //   cancelBtnText: 'No',
+                      //   customAsset: 'assets/gift/error.gif',
+                      //   width: 400,
+                      //   confirmBtnColor: Colors.green,
+                      // );
                     },
                     child: Container(
                       width: 50,

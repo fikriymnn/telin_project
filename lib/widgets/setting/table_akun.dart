@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -78,11 +79,9 @@ class _TableAkunState extends State<TableAkun> {
                       email: "${data['email'] ?? "-"}",
                       id: "${data['_id'] ?? "-"}",
                       name: "${data['name'] ?? "-"}",
-                      password:
-                          "${data['password'] ?? "-"}",
+                      password: "${data['password'] ?? "-"}",
                       role: "${data['role'] ?? "-"}",
-                      username:
-                          "${data['username'] ?? "-"}",
+                      username: "${data['username'] ?? "-"}",
                     );
                   });
             },
@@ -102,15 +101,12 @@ class _TableAkunState extends State<TableAkun> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => EditAkun(
-                          email:
-                              "${data['email'] ?? "-"}",
+                          email: "${data['email'] ?? "-"}",
                           id: "${data['_id'] ?? "-"}",
                           name: "${data['name'] ?? "-"}",
-                          password:
-                              "${data['password'] ?? "-"}",
+                          password: "${data['password'] ?? "-"}",
                           role: "${data['role'] ?? "-"}",
-                          username:
-                              "${data['username'] ?? "-"}",
+                          username: "${data['username'] ?? "-"}",
                         )));
           },
           child: Container(
@@ -132,7 +128,16 @@ class _TableAkunState extends State<TableAkun> {
       DataCell(Center(
         child: InkWell(
           onTap: () {
-            hapusDataUser(data['_id']);
+            CoolAlert.show(
+                context: context,
+                type: CoolAlertType.confirm,
+                text: "Do you sure to delete this item",
+                width: 400,
+                confirmBtnText: "Delete",
+                cancelBtnText: "Cancle",
+                onConfirmBtnTap: () {
+                  hapusDataUser(data['_id']);
+                });
           },
           child: Container(
             width: 21.41,
@@ -180,22 +185,17 @@ class _TableAkunState extends State<TableAkun> {
 
       msg = response!.data['message'];
 
-      QuickAlert.show(
+      CoolAlert.show(
           context: context,
-          type: QuickAlertType.success,
-          text: '$msg',
-          title: 'Peringatan',
-          width: 400,
-          barrierDismissible: true,
-          confirmBtnColor: Colors.red);
+          type: CoolAlertType.success,
+          text: "Delete Successfully",
+          width: 400);
     } catch (e) {
-      QuickAlert.show(
+      CoolAlert.show(
           context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+          type: CoolAlertType.error,
+          text: "Kesalahan server",
+          width: 400);
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,8 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
       response = await dio.get('$getNewMaterialById/$id');
 
       setState(() {
-        NewMaterialByIdCable = response!.data['newMaterial'][0]['new_material_cables'];
+        NewMaterialByIdCable =
+            response!.data['newMaterial'][0]['new_material_cables'];
       });
     } catch (e) {
       QuickAlert.show(
@@ -147,15 +149,13 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
           ))),
       DataCell(TextButton(
           onPressed: () {
-            QuickAlert.show(
+            CoolAlert.show(
                 context: context,
-                type: QuickAlertType.confirm,
-                text: 'Do you sure to delete this item',
-                confirmBtnText: 'Yes',
-                cancelBtnText: 'No',
-                customAsset: 'assets/gift/error.gif',
+                type: CoolAlertType.confirm,
+                text: "Do you sure to delete this item",
                 width: 400,
-                confirmBtnColor: Colors.green,
+                confirmBtnText: "Delete",
+                cancelBtnText: "Cancle",
                 onConfirmBtnTap: () {
                   hapusDataCableNewMaterial('${data['id']}');
                 });
@@ -178,22 +178,17 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
 
       msg = response!.data['message'];
 
-      QuickAlert.show(
+      CoolAlert.show(
           context: context,
-          type: QuickAlertType.success,
-          text: '$msg',
-          title: 'Peringatan',
-          width: 400,
-          barrierDismissible: true,
-          confirmBtnColor: Colors.red);
+          type: CoolAlertType.success,
+          text: "$msg",
+          width: 400);
     } catch (e) {
-      QuickAlert.show(
+      CoolAlert.show(
           context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+          type: CoolAlertType.error,
+          text: "Kesalahan Server",
+          width: 400);
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -78,15 +79,13 @@ class _TableManufactureState extends State<TableManufacture> {
             ),
             InkWell(
               onTap: () {
-                QuickAlert.show(
+                CoolAlert.show(
                     context: context,
-                    type: QuickAlertType.confirm,
-                    text: 'Do you sure to delete this item',
-                    confirmBtnText: 'Yes',
-                    cancelBtnText: 'No',
-                    customAsset: 'assets/gift/error.gif',
+                    type: CoolAlertType.confirm,
+                    text: "Do you sure to delete this item",
                     width: 400,
-                    confirmBtnColor: Colors.green,
+                    confirmBtnText: "Delete",
+                    cancelBtnText: "Cancle",
                     onConfirmBtnTap: () {
                       hapusDataManufactur('${data['_id']}');
                       navigationController.navigateTo(ManufacturerPageRoute);
@@ -153,31 +152,24 @@ class _TableManufactureState extends State<TableManufacture> {
       status = response!.data['sukses'];
       msg = response!.data['msg'];
       if (status) {
-        QuickAlert.show(
+        CoolAlert.show(
             context: context,
-            type: QuickAlertType.success,
-            text: '$msg',
-            title: 'Peringatan',
-            width: 400,
-            barrierDismissible: true,
-            confirmBtnColor: Colors.red);
+            type: CoolAlertType.success,
+            text: "$msg",
+            width: 400);
       } else {
-        QuickAlert.show(
+        CoolAlert.show(
             context: context,
-            type: QuickAlertType.error,
-            text: '$msg',
-            title: 'Peringatan',
-            width: 400,
-            confirmBtnColor: Colors.red);
+            type: CoolAlertType.error,
+            text: "$msg",
+            width: 400);
       }
     } catch (e) {
-      QuickAlert.show(
+      CoolAlert.show(
           context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+          type: CoolAlertType.success,
+          text: "Kesalahan Server",
+          width: 400);
     }
   }
 

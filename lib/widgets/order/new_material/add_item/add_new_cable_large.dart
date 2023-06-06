@@ -214,7 +214,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "System",
+                              "System *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -290,7 +290,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Cable Type",
+                              "Cable Type *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -366,7 +366,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Manufacture",
+                              "Manufacture *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -442,7 +442,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Armoring Type",
+                              "Armoring Type *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -525,7 +525,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Length",
+                              "Length *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -608,7 +608,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Lable",
+                              "Lable *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -663,7 +663,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Tank",
+                              "Tank *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -726,7 +726,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Tank-Location",
+                              "Tank-Location *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -912,7 +912,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Core Type",
+                              "Core Type *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -988,7 +988,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "\u03A3 Core",
+                              "\u03A3 Core *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -1045,92 +1045,21 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
           ),
           InkWell(
             onTap: () {
-              if (selectionSystem == '') {
+              if (selectionSystem == null ||
+                  selectionSystem == null ||
+                  selectionManufacturer == null ||
+                  selectionArmoringType == null ||
+                  txtLable == null ||
+                  txtLenght == null ||
+                  selectionLocation == null ||
+                  txtTankLocation == null ||
+                  selectionCoreType == null ||
+                  txtE_Core == null) {
                 QuickAlert.show(
                     context: context,
                     type: QuickAlertType.error,
                     title: 'Peringatan',
-                    text: 'Nama System Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionCableType == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Cable Type Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionManufacturer == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Manufacturer Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionArmoringType == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Armoring Type Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtLenght.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'State Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtLable.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'State Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionLocation == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Location Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtTankLocation.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Evidence Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtRemark.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Remark Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionCoreType == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Core Type Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtE_Core.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'E Core Tidak Boleh Kosong',
+                    text: 'Field with * is cant be empty',
                     width: 400,
                     confirmBtnColor: Colors.red);
               } else {
