@@ -787,7 +787,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Evidence",
+                              "TANK",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,

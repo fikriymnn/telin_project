@@ -1,4 +1,3 @@
-String baseUrl = 'http://192.168.100.25:1000';
 
 //loading
 String newloading = '$baseUrl/api/loading/';
@@ -39,6 +38,7 @@ String getAllKit = '$baseUrl/api/spareKit/';
 String getUser = '$baseUrl/api/setting';
 String editUser = '$baseUrl/api/setting';
 String deleteUser = '$baseUrl/api/user';
+
 
 //dashboard chart
 String getChart = '$baseUrl/api/dashboard/chart/cable_type';
