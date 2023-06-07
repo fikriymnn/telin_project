@@ -170,7 +170,7 @@ class _TableNonCableNewCartState extends State<TableNonCableNewCart> {
     var msg;
     try {
       response = await dio.delete(
-        '$deleteSparekitFromLoading/${widget.idNewMaterial}/$id',
+        '$deleteKitFromNewMaterial/${widget.idNewMaterial}/$id',
       );
 
       msg = response!.data['message'];

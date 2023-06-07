@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
@@ -51,6 +53,8 @@ class _LoginFormState extends State<LoginForm> {
   Future<Response?> loginUser() async {
     var dio = Dio();
     String role;
+    bool status;
+    String msg;
     try {
       var response = await dio.post(userLogin,
           data: {"username": userInput.text, "password": passInput.text},
@@ -62,6 +66,8 @@ class _LoginFormState extends State<LoginForm> {
           ));
 
       role = response!.data['role'];
+      status = response!.data['status'];
+      msg = response!.data['message'];
 
       Navigator.push(
           context,
@@ -69,6 +75,7 @@ class _LoginFormState extends State<LoginForm> {
               builder: (context) => Depo(
                     role: role,
                   )));
+
       return response;
     } catch (e) {
       QuickAlert.show(
@@ -141,6 +148,7 @@ class _LoginFormState extends State<LoginForm> {
               child: TextFormField(
                 controller: userInput,
                 style: GoogleFonts.roboto(),
+                textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   prefixIcon: Container(
                     margin: const EdgeInsets.only(left: 16, right: 15),
@@ -175,6 +183,7 @@ class _LoginFormState extends State<LoginForm> {
               child: TextFormField(
                 obscureText: _obscureText,
                 controller: passInput,
+                textInputAction: TextInputAction.next,
                 style: GoogleFonts.roboto(),
                 decoration: InputDecoration(
                   prefixIcon: Container(
@@ -254,6 +263,32 @@ class _LoginFormState extends State<LoginForm> {
               margin: const EdgeInsets.only(right: 100),
               child: TextFormField(
                 style: GoogleFonts.roboto(),
+                textInputAction: TextInputAction.done,
+                onFieldSubmitted: (value) {
+                  if (userInput.text == '') {
+                    QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.info,
+                        title: 'Peringatan',
+                        text: 'Username Tidak Boleh Kosong',
+                        width: 400,
+                        confirmBtnColor: Colors.red);
+                  } else if (passInput.text == '') {
+                    QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.info,
+                        title: 'Peringatan',
+                        text: 'Password Tidak Boleh Kosong',
+                        width: 400,
+                        confirmBtnColor: Colors.red);
+                  } else {
+                    if (_captchaFormKey.currentState?.validate() ?? false) {
+                      _captchaFormKey.currentState!.save();
+
+                      loginUser();
+                    }
+                  }
+                },
                 decoration: InputDecoration(
                     fillColor: const Color(0xffF1F0F5),
                     filled: true,

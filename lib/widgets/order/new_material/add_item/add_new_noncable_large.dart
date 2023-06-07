@@ -842,7 +842,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
         'system': system,
         'unit': unit,
         // 'evidence': evidence,
-        'keterangan': remark,
+        'keterangan': remark ?? "",
       });
       status = response!.data['success'];
 

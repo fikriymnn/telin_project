@@ -751,23 +751,42 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                   offset: const Offset(0, 4))
                             ]),
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 18, bottom: 8),
+                          padding: const EdgeInsets.only(left: 18, right: 18),
                           child: Center(
-                            child: TextField(
-                              controller: txtTankLocation,
-                              style: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: GoogleFonts.montserrat(
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton(
+                                isExpanded: true,
+                                hint: Text(
+                                  "Select Location",
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 13.3,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black,
                                   ),
-                                  hintText: "Type Here"),
+                                ),
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (newVal) {
+                                  setState(() {
+                                    selectionLocation = newVal!;
+                                  });
+                                },
+                                value: selectionLocation,
+                                items: location.map((location) {
+                                  return DropdownMenuItem(
+                                    value: location['location'].toString(),
+                                    child: Text(location['location'],
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 13.3,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                        )),
+                                  );
+                                }).toList(),
+                              ),
                             ),
                           ),
                         ),
@@ -1046,12 +1065,12 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
           InkWell(
             onTap: () {
               if (selectionSystem == null ||
-                  selectionSystem == null ||
+                  selectedValueCableType == null ||
                   selectionManufacturer == null ||
                   selectionArmoringType == null ||
                   txtLable == null ||
                   txtLenght == null ||
-                  selectionLocation == null ||
+                  selectedValueInner == null ||
                   txtTankLocation == null ||
                   selectionCoreType == null ||
                   txtE_Core == null) {
@@ -1325,8 +1344,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
         "doc_reff": "SCRAP",
         'tank': inner,
         'tank_location': tankLocation,
-        'evidence': evidence,
-        'remark': remark,
+        'evidence': evidence ?? "",
+        'remark': remark ?? "",
         'core_type': coreType,
         'sigma_core': eCore,
         'E_core': eCore,

@@ -165,6 +165,14 @@ class _AddSystemState extends State<AddSystem> {
                           text: 'Nama System Tidak Boleh Kosong',
                           width: 400,
                           confirmBtnColor: Colors.red);
+                    } else if (txtLabelId.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'Label System Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
                     } else {
                       inputDataSystem(txtNamaSystem.text, txtLabelId.text);
                       navigationController.navigateTo(SystemPageRoute);

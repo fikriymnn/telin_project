@@ -184,7 +184,17 @@ class _EditKursState extends State<EditKurs> {
               ),
               InkWell(
                 onTap: () {
-                  editDataKurs(_txtKurs.text);
+                  if (_txtKurs.text == '') {
+                    QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.error,
+                        title: 'Peringatan',
+                        text: 'Kurs Tidak Boleh Kosong',
+                        width: 400,
+                        confirmBtnColor: Colors.red);
+                  } else {
+                    editDataKurs(_txtKurs.text);
+                  }
                 },
                 child: Container(
                   width: 90,

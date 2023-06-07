@@ -417,36 +417,6 @@ class _TableLoadingState extends State<TableLoading> {
                               ))),
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      QuickAlert.show(
-                        context: context,
-                        type: QuickAlertType.confirm,
-                        text: 'Do you sure to finish this project?',
-                        confirmBtnText: 'Yes',
-                        cancelBtnText: 'No',
-                        customAsset: 'assets/gift/error.gif',
-                        width: 400,
-                        confirmBtnColor: Colors.green,
-                      );
-                    },
-                    child: Container(
-                      width: 50,
-                      height: 19.46,
-                      decoration: BoxDecoration(
-                          color: dark, borderRadius: BorderRadius.circular(6)),
-                      child: Center(
-                          child: Text("Finish",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
-                              ))),
-                    ),
-                  ),
                 ],
               )),
               // DataCell(

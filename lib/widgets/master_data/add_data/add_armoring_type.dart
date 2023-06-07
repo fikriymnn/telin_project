@@ -161,7 +161,15 @@ class _AddArmoringTypeState extends State<AddArmoringType> {
                           context: context,
                           type: QuickAlertType.error,
                           title: 'Peringatan',
-                          text: 'Nama Cable Type Tidak Boleh Kosong',
+                          text: 'Armoring Type Tidak Boleh Kosong',
+                          width: 400,
+                          confirmBtnColor: Colors.red);
+                    } else if (txtLabelIdArmoringType.text == '') {
+                      QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.error,
+                          title: 'Peringatan',
+                          text: 'Label Armoring Type Tidak Boleh Kosong',
                           width: 400,
                           confirmBtnColor: Colors.red);
                     } else {
