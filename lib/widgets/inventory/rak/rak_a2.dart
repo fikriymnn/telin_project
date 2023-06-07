@@ -1,19 +1,9 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
-import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
-import 'package:telin_project/widgets/master_data/edit_data/edit_armoring_type.dart';
-import 'package:telin_project/widgets/order/loading/form/input_length_cable.dart';
-
-import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
-
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 class TableRakA2 extends StatefulWidget {
   const TableRakA2({super.key});
@@ -24,6 +14,7 @@ class TableRakA2 extends StatefulWidget {
 
 class _TableRakA2State extends State<TableRakA2> {
   List rakA2 = [];
+  late List<RakCoba> rakCoba;
 
   Response? response;
 
@@ -32,81 +23,79 @@ class _TableRakA2State extends State<TableRakA2> {
   @override
   void initState() {
     // TODO: implement initState
+
     getDataRakA2();
     super.initState();
   }
 
   DataRow _resultsAPI(index, data) {
     return DataRow(cells: [
-      DataCell(Text("${data['no'] == null ? "-" : data['no']}",
+      DataCell(Text("${data['no'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['rak_number'] == null ? "-" : data['rak_number']}",
+      DataCell(Text("${data['rak_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['item_name'] == null ? "-" : data['item_name']}",
+      DataCell(Text("${data['item_name'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(
-          Text("${data['part_number'] == null ? "-" : data['part_number']}",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
-      DataCell(
-          Text("${data['serial_number'] == null ? "-" : data['serial_number']}",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
-      DataCell(Text("${data['system'] == null ? "-" : data['system']}",
+      DataCell(Text("${data['part_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['weight_kg'] == null ? "-" : data['weight_kg']}",
+      DataCell(Text("${data['serial_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['qty'] == null ? "-" : data['qty']}",
+      DataCell(Text("${data['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['unit'] == null ? "-" : data['unit']}",
+      DataCell(Text("${data['weight_kg'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(
-          Text("${data['description'] == null ? "-" : data['description']}",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
+      DataCell(Text("${data['qty'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['unit'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['description'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
     ]);
   }
 
   void getDataRakA2() async {
     try {
-      response = await dio.get(getRakA2);
+      response = await dio.get(getRak);
 
       setState(() {
         rakA2 = response!.data;
@@ -124,20 +113,21 @@ class _TableRakA2State extends State<TableRakA2> {
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text("SYSTEM"), value: "SYSTEM"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "SYSTEM", child: Text("SYSTEM")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItems;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsArmoring {
     List<DropdownMenuItem<String>> menuItemsArmoring = [
-      DropdownMenuItem(child: Text("ARMORING TYPE"), value: "ARMORING TYPE"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsArmoring;
   }
@@ -266,8 +256,124 @@ class _TableRakA2State extends State<TableRakA2> {
                 ),
                 fixedWidth: 250),
           ],
-          rows: List.generate(
-              rakA2.length, (index) => _resultsAPI(index, rakA2[index]))),
+          rows:
+              // RakCoba.fromJson(rakA2[1])
+              //     .map((RakCoba) => DataRow(cells: [
+              //           DataCell(Text("${RakCoba.no == null ? "-" : RakCoba.no}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(Text(
+              //               "${RakCoba.location == null ? "-" : RakCoba.location}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(Text(
+              //               "${RakCoba.itemName == null ? "-" : RakCoba.itemName}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(Text(
+              //               "${RakCoba.partNumber == null ? "-" : RakCoba.partNumber}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(Text(
+              //               "${RakCoba.serialNumber == null ? "-" : RakCoba.serialNumber}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(
+              //               Text("${RakCoba.system == null ? "-" : RakCoba.system}",
+              //                   style: GoogleFonts.montserrat(
+              //                     fontSize: 10,
+              //                     fontWeight: FontWeight.w400,
+              //                     color: Colors.black,
+              //                   ))),
+              //           DataCell(
+              //               Text("${RakCoba.weight == null ? "-" : RakCoba.weight}",
+              //                   style: GoogleFonts.montserrat(
+              //                     fontSize: 10,
+              //                     fontWeight: FontWeight.w400,
+              //                     color: Colors.black,
+              //                   ))),
+              //           DataCell(Text("${RakCoba.qty == null ? "-" : RakCoba.qty}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               ))),
+              //           DataCell(
+              //               Text("${RakCoba.unit == null ? "-" : RakCoba.unit}",
+              //                   style: GoogleFonts.montserrat(
+              //                     fontSize: 10,
+              //                     fontWeight: FontWeight.w400,
+              //                     color: Colors.black,
+              //                   ))),
+              //           DataCell(Text(
+              //               "${RakCoba.deskripsi == null ? "-" : RakCoba.deskripsi}",
+              //               style: GoogleFonts.montserrat(
+              //                 fontSize: 10,
+              //                 fontWeight: FontWeight.w400,
+              //                 color: Colors.black,
+              //               )))
+              //         ]))
+              //     .toList()
+              List.generate(
+                  rakA2.length, (index) => _resultsAPI(index, rakA2[index]))),
     );
+  }
+}
+
+class RakCoba {
+  final String no,
+      system,
+      location,
+      itemName,
+      partNumber,
+      serialNumber,
+      weight,
+      qty,
+      unit,
+      deskripsi;
+
+  const RakCoba({
+    required this.no,
+    required this.system,
+    required this.itemName,
+    required this.location,
+    required this.partNumber,
+    required this.serialNumber,
+    required this.weight,
+    required this.qty,
+    required this.unit,
+    required this.deskripsi,
+  });
+
+  static List<RakCoba> fromJson(json) {
+    return <RakCoba>[
+      RakCoba(
+        deskripsi: json['description'],
+        itemName: json['item_name'],
+        no: json['no'],
+        location: json['location'],
+        partNumber: json['part_number'],
+        qty: json['qty'],
+        serialNumber: json['serial_number'],
+        system: json['system'],
+        unit: json['unit'],
+        weight: json['weight_kg'],
+      )
+    ];
   }
 }

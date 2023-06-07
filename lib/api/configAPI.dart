@@ -1,4 +1,44 @@
-String baseUrl = 'http://192.168.100.19:1000';
+
+//loading
+String newloading = '$baseUrl/api/loading/';
+String addCableToLoading = '$baseUrl/api/loading/cable';
+String addSparekitToLoading = '$baseUrl/api/loading/kit';
+String getAllLoading = '$baseUrl/api/loading';
+String getLoadingById = '$baseUrl/api/loading';
+String deleteLoading = '$baseUrl/api/loading';
+String submitLoading = '$baseUrl/api/loading/submit';
+String deleteCableFromLoading = '$baseUrl/api/loading/cable';
+String deleteSparekitFromLoading = '$baseUrl//api/loading/kit';
+String getAllTurnOverById = '$baseUrl/api/loading/turnover';
+
+//off-loading
+String getAllOffLoading = '$baseUrl/api/offloading';
+String getOffLoadingById = '$baseUrl/api/offloading';
+String offLoadingExisting = '$baseUrl/api/offloading/addCableExisting';
+String submiOffLoadingExisting = '$baseUrl/api/offloading/submitExisting';
+
+//new material
+String newMaterial = '$baseUrl/api/offloadingNewMaterial/create';
+String addCableToNewMaterial = '$baseUrl/api/offloadingNewMaterial/addCable';
+String addKitToNewMaterial = '$baseUrl/api/offloadingNewMaterial/addKit';
+String getAllNewMaterial = '$baseUrl/api/offloadingNewMaterial/all';
+String getNewMaterialById = '$baseUrl/api/offloadingNewMaterial';
+String deleteCableFromNewMaterial =
+    '$baseUrl/api/offloadingNewMaterial/deleteCable';
+String deleteKitFromNewMaterial =
+    '$baseUrl/api/offloadingNewMaterial/deleteKit';
+String submitNewMaterial = '$baseUrl/api/offloadingNewMaterial/submit';
+String deleteNewMaterial = '$baseUrl/api/offloadingNewMaterial/delete';
+
+//allCable
+String getAllCable = '$baseUrl/api/spareCable/';
+String getAllKit = '$baseUrl/api/spareKit/';
+
+//Setting
+String getUser = '$baseUrl/api/setting';
+String editUser = '$baseUrl/api/setting';
+String deleteUser = '$baseUrl/api/user';
+
 
 //dashboard chart
 String getChart = '$baseUrl/api/dashboard/chart/cable_type';
@@ -9,6 +49,10 @@ String inputSpareCable = '$baseUrl/api/spareCable/create';
 // Crud Spare Cable
 String inputSpareKit = '$baseUrl/api/spareKit/create';
 String getAllSpareKit = '$baseUrl/api/spareKit/getall';
+
+//CRUD Kurs
+String getAllKurs = '$baseUrl/api/kurs/get';
+String editKurs = '$baseUrl/api/kurs/create';
 
 // CRUD System
 String inputSystem = '$baseUrl/api/system/create';
@@ -74,6 +118,7 @@ String getTank10 = '$baseUrl/api/inventory/cable/TANK-10';
 String getTank11 = '$baseUrl/api/inventory/cable/TANK-11';
 String getFloor = '$baseUrl/api/inventory/kit/FLOOR';
 String getRefrigerator = '$baseUrl/api/inventory/kit/LEMARI PENDINGIN';
+String getCage = '$baseUrl/api/inventory/kit/CAGE';
 String getCage1 = '$baseUrl/api/inventory/kit/CAGE 1';
 String getCage2 = '$baseUrl/api/inventory/kit/CAGE 2';
 String getCage3 = '$baseUrl/api/inventory/kit/CAGE 3';

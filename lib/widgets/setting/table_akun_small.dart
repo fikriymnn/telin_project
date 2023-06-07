@@ -1,12 +1,13 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
-import 'package:telin_project/widgets/setting/akun.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/widgets/setting/detail_akun.dart';
+import 'package:telin_project/widgets/setting/edit_akun.dart';
+
+import '../../constants/style.dart';
 
 class TableAkunSmall extends StatefulWidget {
   const TableAkunSmall({super.key});
@@ -16,14 +17,177 @@ class TableAkunSmall extends StatefulWidget {
 }
 
 class _TableAkunSmallState extends State<TableAkunSmall> {
-    late List<Akun> akun;
- List <Akun> selectedRow = [];
- @override
+  List users = [];
+
+  Response? response;
+
+  var dio = Dio();
+  @override
   void initState() {
     // TODO: implement initState
-    akun = Akun.getAkun();
+    getDataUser();
+
     super.initState();
   }
+
+  DataRow _resultsAPI(index, data) {
+    return DataRow(cells: [
+      DataCell(Text("${index + 1}",
+          style: GoogleFonts.montserrat(
+            fontSize: 14.6,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['name'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 14.6,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['username'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 14.6,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['password'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 14.6,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Row(
+        children: [
+          const CircleAvatar(
+            radius: 5,
+            backgroundColor: Color(0xff24EB2C),
+          ),
+          const SizedBox(
+            width: 7,
+          ),
+          Text("${data['role'] ?? "-"}",
+              style: GoogleFonts.montserrat(
+                fontSize: 14.6,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              )),
+        ],
+      )),
+      DataCell(
+        Center(
+          child: InkWell(
+            onTap: () {
+              showDialog(
+                  context: context,
+                  barrierColor: Colors.transparent,
+                  builder: (BuildContext context) {
+                    return DetailAkun(
+                      email: "${data['email'] ?? "-"}",
+                      id: "${data['_id'] ?? "-"}",
+                      name: "${data['name'] ?? "-"}",
+                      password:
+                          "${data['password'] ?? "-"}",
+                      role: "${data['role'] ?? "-"}",
+                      username:
+                          "${data['username'] ?? "-"}",
+                    );
+                  });
+            },
+            child: Text('Detail...',
+                style: GoogleFonts.montserrat(
+                  fontSize: 13.3,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black.withOpacity(0.5),
+                )),
+          ),
+        ),
+      ),
+      DataCell(Center(
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => EditAkun(
+                          email:
+                              "${data['email'] ?? "-"}",
+                          id: "${data['_id'] ?? "-"}",
+                          name: "${data['name'] ?? "-"}",
+                          password:
+                              "${data['password'] ?? "-"}",
+                          role: "${data['role'] ?? "-"}",
+                          username:
+                              "${data['username'] ?? "-"}",
+                        )));
+          },
+          child: Container(
+            width: 50,
+            height: 19.46,
+            decoration: BoxDecoration(
+                color: green, borderRadius: BorderRadius.circular(6)),
+            child: Center(
+              child: Text("Edit",
+                  style: GoogleFonts.montserrat(
+                    fontSize: 13.3,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  )),
+            ),
+          ),
+        ),
+      )),
+      DataCell(Center(
+        child: InkWell(
+          onTap: () {
+            QuickAlert.show(
+              context: context,
+              type: QuickAlertType.confirm,
+              text: 'Do you sure to delete this account',
+              confirmBtnText: 'Yes',
+              cancelBtnText: 'No',
+              customAsset: 'assets/gift/error.gif',
+              width: 400,
+              confirmBtnColor: Colors.green,
+            );
+          },
+          child: Container(
+            width: 21.41,
+            height: 19.46,
+            decoration: BoxDecoration(
+                color: const Color(0xffEC1D26),
+                borderRadius: BorderRadius.circular(6)),
+            child: Center(
+              child: Text("X",
+                  style: GoogleFonts.montserrat(
+                    fontSize: 13.3,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  )),
+            ),
+          ),
+        ),
+      )),
+    ]);
+  }
+
+  void getDataUser() async {
+    try {
+      response = await dio.get(getUser);
+
+      setState(() {
+        users = response!.data;
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return DataTable2(
@@ -31,7 +195,10 @@ class _TableAkunSmallState extends State<TableAkunSmall> {
         horizontalMargin: 6,
         dataRowHeight: 30,
         minWidth: 3000,
-        border: TableBorder(top: BorderSide(), bottom: BorderSide(),),
+        border: const TableBorder(
+          top: BorderSide(),
+          bottom: BorderSide(),
+        ),
         columns: [
           DataColumn2(
             label: Text(
@@ -80,117 +247,20 @@ class _TableAkunSmallState extends State<TableAkunSmall> {
                   color: Colors.black,
                 )),
           ),
-          DataColumn2(
+          const DataColumn2(
             fixedWidth: 60.8,
             label: Text(''),
           ),
-          DataColumn2(
+          const DataColumn2(
             fixedWidth: 35.53,
             label: Text(''),
           ),
         ],
-        rows:_createRows());
+        rows: _createRows());
   }
 
   List<DataRow> _createRows() {
-    return akun
-        .map((akun) => DataRow(
-         
-          cells: [
-            DataCell(Text(akun.no,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 14.6,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ))),
-                  DataCell(Text(akun.name,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 14.6,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ))),
-                  DataCell(Text(akun.username,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 14.6,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ))),
-                  DataCell(Text(akun.password,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 14.6,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ))),
-                  DataCell(Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 5,
-                        backgroundColor: Color(0xff24EB2C),
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Text(akun.role,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 14.6,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          )),
-                    ],
-                  )),
-                  DataCell(
-                    Center(
-                      child: InkWell(
-                        onTap: () {
-                          showDialog(
-                              context: context,
-                              barrierColor: Colors.transparent,
-                              builder: (BuildContext context) {
-                                return DetailAkun();
-                              });
-                        },
-                        child: Text('Detail...',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 13.3,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black.withOpacity(0.5),
-                            )),
-                      ),
-                    ),
-                  ),
-                  DataCell(Center(
-                    child: InkWell(
-                      onTap: () {
-                        QuickAlert.show(
-                          context: context,
-                          type: QuickAlertType.confirm,
-                          text: 'Do you sure to delete this account',
-                          confirmBtnText: 'Yes',
-                          cancelBtnText: 'No',
-                          customAsset: 'assets/gift/error.gif',
-                          width: 400,
-                          confirmBtnColor: Colors.green,
-                          
-                        );
-                      },
-                      child: Container(
-                        width: 21.41,
-                        height: 19.46,
-                        decoration: BoxDecoration(
-                            color: Color(0xffEC1D26),
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Center(
-                          child: Text("X",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                              )),
-                        ),
-                      ),
-                    ),
-                  )),
-            ]))
-        .toList();
+    return List.generate(
+        users.length, (index) => _resultsAPI(index, users[index]));
   }
 }

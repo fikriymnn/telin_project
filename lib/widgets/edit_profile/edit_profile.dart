@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/helpers/responsive.dart';
-import 'package:telin_project/widgets/bast_widget.dart';
-import 'package:telin_project/widgets/invoice_new.dart';
 
 class EditProfil extends StatefulWidget {
   const EditProfil({super.key});
@@ -23,7 +18,7 @@ class _EditProfilState extends State<EditProfil> {
         padding: const EdgeInsets.only(bottom: 32),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/images/background_depo.png'),
                   fit: BoxFit.fill)),
@@ -31,7 +26,7 @@ class _EditProfilState extends State<EditProfil> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 30),
-                child: Container(
+                child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -48,7 +43,7 @@ class _EditProfilState extends State<EditProfil> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
-                                      color: Color(0xffB8B8B8), width: 1)),
+                                      color: const Color(0xffB8B8B8), width: 1)),
                               child: Row(
                                 children: [
                                   Icon(
@@ -56,7 +51,7 @@ class _EditProfilState extends State<EditProfil> {
                                     color: active,
                                     size: 28.6,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Text(
@@ -75,12 +70,12 @@ class _EditProfilState extends State<EditProfil> {
                   ),
                 ),
               ),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
               CircleAvatar(
                 radius: 50,
                 backgroundColor: active,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               TextButton(
@@ -93,7 +88,7 @@ class _EditProfilState extends State<EditProfil> {
                       color: dark,
                     ),
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
@@ -119,7 +114,7 @@ class _EditProfilState extends State<EditProfil> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 25,
                           ),
                           Container(
@@ -140,7 +135,7 @@ class _EditProfilState extends State<EditProfil> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
                     Container(
@@ -153,13 +148,13 @@ class _EditProfilState extends State<EditProfil> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(6),
                                   border: Border.all(
-                                      width: 5, color: Color(0xffF0F0F0)),
+                                      width: 5, color: const Color(0xffF0F0F0)),
                                   color: Colors.white,
                                   boxShadow: [
                                     BoxShadow(
                                         color: Colors.black.withOpacity(0.25),
                                         blurRadius: 5,
-                                        offset: Offset(0, 4))
+                                        offset: const Offset(0, 4))
                                   ]),
                               child: Padding(
                                 padding:
@@ -183,7 +178,7 @@ class _EditProfilState extends State<EditProfil> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Container(
@@ -192,13 +187,13 @@ class _EditProfilState extends State<EditProfil> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(6),
                                   border: Border.all(
-                                      width: 5, color: Color(0xffF0F0F0)),
+                                      width: 5, color: const Color(0xffF0F0F0)),
                                   color: Colors.white,
                                   boxShadow: [
                                     BoxShadow(
                                         color: Colors.black.withOpacity(0.25),
                                         blurRadius: 5,
-                                        offset: Offset(0, 4))
+                                        offset: const Offset(0, 4))
                                   ]),
                               child: Padding(
                                 padding:
@@ -249,7 +244,7 @@ class _EditProfilState extends State<EditProfil> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 100,
               ),
               InkWell(

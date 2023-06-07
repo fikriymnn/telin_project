@@ -1,7 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_cable_large.dart';
@@ -10,10 +11,12 @@ import 'package:telin_project/widgets/order/new_material/add_item/add_new_cable_
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_noncable_large.dart';
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_noncable_mobile.dart';
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_noncable_small.dart';
+import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/cart_new_material.dart';
 
 class AddnewMaterialScreens extends StatefulWidget {
-  const AddnewMaterialScreens({super.key});
+  const AddnewMaterialScreens({super.key, required this.idNewMaterial});
+  final String idNewMaterial;
 
   @override
   State<AddnewMaterialScreens> createState() => _AddnewMaterialScreensState();
@@ -22,64 +25,66 @@ class AddnewMaterialScreens extends StatefulWidget {
 class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
   bool selectButon = true;
   bool selectNonCable = false;
+  Response? response;
+
+  var dio = Dio();
+
+  void submitDataNewMaterial(id) async {
+    var msg;
+    try {
+      response = await dio.post('$submitNewMaterial/$id');
+
+      msg = response!.data['message'];
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: '$msg',
+          title: 'Peringatan',
+          width: 400,
+          barrierDismissible: true,
+          confirmBtnColor: Colors.red);
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => BastNewMaterial(
+                    idNewMaterial: widget.idNewMaterial,
+                  )));
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text("New Material",
                       style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w500,
                           fontSize: 23.3,
                           color: Colors.black)),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 59.3, top: 32),
-                    child: InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          width: 107.3,
-                          height: 37.3,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  color: Color(0xffB8B8B8), width: 1)),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.subdirectory_arrow_left,
-                                color: active,
-                                size: 28.6,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Back",
-                                style: GoogleFonts.roboto(
-                                  fontSize: 17.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: active,
-                                ),
-                              )
-                            ],
-                          ),
-                        )),
-                  ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -96,7 +101,7 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                             fontSize: 26.6,
                             color: selectButon ? active : dark)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 100,
                   ),
                   TextButton(
@@ -114,11 +119,11 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 59.3),
+              padding: const EdgeInsets.symmetric(horizontal: 59.3),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -127,30 +132,57 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return CartNewMaterial();
+                              return CartNewMaterial(
+                                idNewMaterial: widget.idNewMaterial,
+                              );
                             });
                       },
                       icon: Icon(
                         Icons.shopping_cart,
                         color: active,
                       )),
-                  SizedBox(
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      submitDataNewMaterial(widget.idNewMaterial);
+                    },
+                    child: Container(
+                      width: 99.3,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: active),
+                      child: Center(
+                        child: Text("SUBMIT",
+                            style: GoogleFonts.roboto(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            )),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
                     width: 40,
                   ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 70,
             ),
             selectButon
                 ? ResponsiveWidget(
-                    largeScreen: AddNewCableLarge(),
+                    largeScreen:
+                        AddNewCableLarge(idNewMaterial: widget.idNewMaterial),
                     smallScreen: AddNewCableSmall(),
                     mobileScreen: AddNewCableMobile(),
                   )
                 : ResponsiveWidget(
-                    largeScreen: AddNewNonCableLarge(),
+                    largeScreen: AddNewNonCableLarge(
+                        idNewMaterial: widget.idNewMaterial),
                     smallScreen: AddNewNonCableSmall(),
                     mobileScreen: AddNewNonCableMobile(),
                   )

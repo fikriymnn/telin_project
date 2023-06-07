@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:telin_project/constants/style.dart';
@@ -102,7 +101,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                         backgroundColor: light,
                         child: IconButton(
                           onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>EditProfil()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const EditProfil()));
                           },
                           icon: Icon(
                             Icons.person_outline,
@@ -174,7 +173,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                         child: IconButton(
                           onPressed: () {
                             
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>EditProfil()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const EditProfil()));
                           },
                           icon: Icon(
                             Icons.person_outline,

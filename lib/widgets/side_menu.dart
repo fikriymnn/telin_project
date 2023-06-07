@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
@@ -22,7 +23,7 @@ bool dropDownReport = false;
 class _SideMenuState extends State<SideMenu> {
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
 
     return Container(
       decoration: BoxDecoration(
@@ -32,7 +33,7 @@ class _SideMenuState extends State<SideMenu> {
             color: Colors.black.withOpacity(0.25),
             spreadRadius: 0,
             blurRadius: 12,
-            offset: Offset(4, 12), // changes position of shadow
+            offset: const Offset(4, 12), // changes position of shadow
           ),
         ],
       ),
@@ -43,12 +44,12 @@ class _SideMenuState extends State<SideMenu> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(height: 40),
-                SizedBox(width: _width / 48),
+                SizedBox(width: width / 48),
                 Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: Image.asset("assets/images/logo_telin_top_nav.png"),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Flexible(
@@ -59,7 +60,7 @@ class _SideMenuState extends State<SideMenu> {
                     color: dark,
                   ),
                 ),
-                SizedBox(width: _width / 48),
+                SizedBox(width: width / 48),
               ],
             ),
           Divider(
@@ -91,7 +92,6 @@ class _SideMenuState extends State<SideMenu> {
             SideMenuItem(
               itemName: "Master Data",
               dropp: true,
-              
               activess: dropdownMasterData,
               onTap: () {
                 setState(() {
@@ -103,7 +103,7 @@ class _SideMenuState extends State<SideMenu> {
                 ? Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: Container(
-                      width: _width,
+                      width: width,
                       decoration:
                           BoxDecoration(color: lightGrey.withOpacity(0.10)),
                       child: Column(
@@ -116,8 +116,9 @@ class _SideMenuState extends State<SideMenu> {
                             onTap: () {
                               if (!menuController.isActive("System")) {
                                 menuController.changeActiveitemTo("System");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(SystemPageRoute);
                               }
@@ -132,8 +133,9 @@ class _SideMenuState extends State<SideMenu> {
                               if (!menuController.isActive("Armoring Type")) {
                                 menuController
                                     .changeActiveitemTo("Armoring Type");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(ArmoringPageRoute);
                               }
@@ -147,8 +149,9 @@ class _SideMenuState extends State<SideMenu> {
                             onTap: () {
                               if (!menuController.isActive("Cable Type")) {
                                 menuController.changeActiveitemTo("Cable Type");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(CableTypePageRoute);
                               }
@@ -163,8 +166,9 @@ class _SideMenuState extends State<SideMenu> {
                               if (!menuController.isActive("Manufacturer")) {
                                 menuController
                                     .changeActiveitemTo("Manufacturer");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(ManufacturerPageRoute);
                               }
@@ -178,8 +182,9 @@ class _SideMenuState extends State<SideMenu> {
                             onTap: () {
                               if (!menuController.isActive("Core Type")) {
                                 menuController.changeActiveitemTo("Core Type");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(CoreTypePageRoute);
                               }
@@ -193,8 +198,9 @@ class _SideMenuState extends State<SideMenu> {
                             onTap: () {
                               if (!menuController.isActive("Location")) {
                                 menuController.changeActiveitemTo("Location");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(LocationPageRoute);
                               }
@@ -208,8 +214,9 @@ class _SideMenuState extends State<SideMenu> {
                             onTap: () {
                               if (!menuController.isActive("Unit")) {
                                 menuController.changeActiveitemTo("Unit");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController.navigateTo(UnitPageRoute);
                               }
                             },
@@ -222,10 +229,26 @@ class _SideMenuState extends State<SideMenu> {
                             onTap: () {
                               if (!menuController.isActive("Company")) {
                                 menuController.changeActiveitemTo("Company");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(CompanyPageRoute);
+                              }
+                            },
+                          ),
+                          SideMenuItem(
+                            itemName: "Kurs",
+                            dropp: false,
+                            size1: 13,
+                            size2: 15,
+                            onTap: () {
+                              if (!menuController.isActive("Kurs")) {
+                                menuController.changeActiveitemTo("Kurs");
+                                if (ResponsiveWidget.isSmallScreen(context)) {
+                                  Get.back();
+                                }
+                                navigationController.navigateTo(KursPageRoute);
                               }
                             },
                           ),
@@ -246,9 +269,9 @@ class _SideMenuState extends State<SideMenu> {
             ),
             dropDownOrder
                 ? Padding(
-                    padding: EdgeInsets.only(left: 15),
+                    padding: const EdgeInsets.only(left: 15),
                     child: Container(
-                      width: _width,
+                      width: width,
                       decoration:
                           BoxDecoration(color: lightGrey.withOpacity(0.10)),
                       child: Column(
@@ -261,8 +284,9 @@ class _SideMenuState extends State<SideMenu> {
                             onTap: () {
                               if (!menuController.isActive("Loading")) {
                                 menuController.changeActiveitemTo("Loading");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(LoadingPageRoute);
                               }
@@ -284,7 +308,7 @@ class _SideMenuState extends State<SideMenu> {
                               ? Padding(
                                   padding: const EdgeInsets.only(left: 15),
                                   child: Container(
-                                    width: _width,
+                                    width: width,
                                     decoration: BoxDecoration(
                                         color: lightGrey.withOpacity(0.10)),
                                     child: Column(
@@ -300,8 +324,9 @@ class _SideMenuState extends State<SideMenu> {
                                               menuController.changeActiveitemTo(
                                                   "New Material");
                                               if (ResponsiveWidget
-                                                  .isSmallScreen(context))
+                                                  .isSmallScreen(context)) {
                                                 Get.back();
+                                              }
                                               navigationController.navigateTo(
                                                   NewMaterialPageRoute);
                                             }
@@ -318,8 +343,9 @@ class _SideMenuState extends State<SideMenu> {
                                               menuController.changeActiveitemTo(
                                                   "Existing Material");
                                               if (ResponsiveWidget
-                                                  .isSmallScreen(context))
+                                                  .isSmallScreen(context)) {
                                                 Get.back();
+                                              }
                                               navigationController.navigateTo(
                                                   ExistingMaterialPageRoute);
                                             }
@@ -349,7 +375,7 @@ class _SideMenuState extends State<SideMenu> {
                 ? Padding(
                     padding: const EdgeInsets.only(left: 30),
                     child: Container(
-                      width: _width,
+                      width: width,
                       decoration:
                           BoxDecoration(color: lightGrey.withOpacity(0.10)),
                       child: Column(
@@ -363,8 +389,9 @@ class _SideMenuState extends State<SideMenu> {
                               if (!menuController.isActive("Cable Report")) {
                                 menuController
                                     .changeActiveitemTo("Cable Report");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(CableReportPageRoute);
                               }
@@ -380,8 +407,9 @@ class _SideMenuState extends State<SideMenu> {
                                   .isActive("Non Cable Report")) {
                                 menuController
                                     .changeActiveitemTo("Non Cable Report");
-                                if (ResponsiveWidget.isSmallScreen(context))
+                                if (ResponsiveWidget.isSmallScreen(context)) {
                                   Get.back();
+                                }
                                 navigationController
                                     .navigateTo(NonCableReportPageRoute);
                               }
@@ -407,10 +435,20 @@ class _SideMenuState extends State<SideMenu> {
               itemName: "Log Out",
               dropp: false,
               onTap: () {
-                if (AuthenticationPageRoute == AuthenticationPageRoute) {
-                  menuController.changeActiveitemTo(HomePageDisplayName);
-                  Get.offAllNamed(AuthenticationPageRoute);
-                }
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.warning,
+                    text: 'Are You Sure?',
+                    title: 'Log Out',
+                    width: 400,
+                    confirmBtnColor: Colors.red,
+                    onCancelBtnTap: () {},
+                    onConfirmBtnTap: () {
+                      if (AuthenticationPageRoute == AuthenticationPageRoute) {
+                        menuController.changeActiveitemTo(HomePageDisplayName);
+                        Get.offAllNamed(AuthenticationPageRoute);
+                      }
+                    });
               },
             ),
           ]),

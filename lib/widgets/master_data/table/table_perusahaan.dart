@@ -1,18 +1,13 @@
-import 'dart:convert';
-
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/routing/routes.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_perusahaan.dart';
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 import '../../../constants/controllers.dart';
 
@@ -110,25 +105,22 @@ class _TablePerusahaanState extends State<TablePerusahaan> {
                         ))),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             InkWell(
               onTap: () {
-                QuickAlert.show(
-                  context: context,
-                  type: QuickAlertType.confirm,
-                  text: 'Do you sure to delete this item',
-                  confirmBtnText: 'Yes',
-                  cancelBtnText: 'No',
-                  customAsset: 'assets/gift/error.gif',
-                  width: 400,
-                  confirmBtnColor: Colors.green,
-                  onConfirmBtnTap: () {
-                    hapusDataPerusahaan('${data['_id']}');
-                    navigationController.navigateTo(CompanyPageRoute);
-                  },
-                );
+                CoolAlert.show(
+                    context: context,
+                    type: CoolAlertType.confirm,
+                    text: "Do you sure to delete this item",
+                    width: 400,
+                    confirmBtnText: "Delete",
+                    cancelBtnText: "Cancle",
+                    onConfirmBtnTap: () {
+                      hapusDataPerusahaan('${data['_id']}');
+                      navigationController.navigateTo(CompanyPageRoute);
+                    });
               },
               child: Container(
                 width: 50,
@@ -191,31 +183,24 @@ class _TablePerusahaanState extends State<TablePerusahaan> {
       status = response!.data['sukses'];
       msg = response!.data['msg'];
       if (status) {
-        QuickAlert.show(
+        CoolAlert.show(
             context: context,
-            type: QuickAlertType.success,
-            text: '$msg',
-            title: 'Peringatan',
-            width: 400,
-            barrierDismissible: true,
-            confirmBtnColor: Colors.red);
+            type: CoolAlertType.success,
+            text: "$msg",
+            width: 400);
       } else {
-        QuickAlert.show(
+        CoolAlert.show(
             context: context,
-            type: QuickAlertType.error,
-            text: '$msg',
-            title: 'Peringatan',
-            width: 400,
-            confirmBtnColor: Colors.red);
+            type: CoolAlertType.error,
+            text: "$msg",
+            width: 400);
       }
     } catch (e) {
-      QuickAlert.show(
+      CoolAlert.show(
           context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+          type: CoolAlertType.success,
+          text: "Kesalahan Server",
+          width: 400);
     }
   }
 
@@ -225,7 +210,7 @@ class _TablePerusahaanState extends State<TablePerusahaan> {
         columnSpacing: 6,
         horizontalMargin: 6,
         dataRowHeight: 40,
-        border: TableBorder(top: BorderSide(), bottom: BorderSide()),
+        border: const TableBorder(top: BorderSide(), bottom: BorderSide()),
         columns: [
           DataColumn2(
             label: Text(
@@ -287,7 +272,7 @@ class _TablePerusahaanState extends State<TablePerusahaan> {
                   )),
             ),
           ),
-          DataColumn2(
+          const DataColumn2(
             label: Text(''),
           ),
         ],

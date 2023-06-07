@@ -14,11 +14,11 @@ import 'package:telin_project/pages/order/loading.dart';
 import 'package:telin_project/pages/order/off_loading_existing_material.dart';
 import 'package:telin_project/pages/order/off_loading_new_material.dart';
 import 'package:telin_project/routing/routes.dart';
-import 'package:telin_project/widgets/master_data/edit_data/edit_unit.dart';
 import 'package:telin_project/widgets/report/report_table_cable.dart';
 import 'package:telin_project/widgets/report/report_table_noncable.dart';
 
 import '../pages/inventory/inventory.dart';
+import '../pages/master_data/kurs.dart';
 import '../pages/master_data/master_data.dart';
 import '../pages/order/order.dart';
 import '../pages/report/report.dart';
@@ -26,52 +26,52 @@ import '../pages/settings/settings.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case DepoPageRoute:
-      return _getPageRoute(Depo());
     case HomePageRoute:
-      return _getPageRoute(HomeViewPage());
+      return _getPageRoute(const HomeViewPage());
     case InventoryPageRoute:
-      return _getPageRoute(InventoryViewPage());
+      return _getPageRoute(const InventoryViewPage());
     case MasterDataPageRoute:
-      return _getPageRoute(MasterDataViewPage());
+      return _getPageRoute(const MasterDataViewPage());
     case SystemPageRoute:
-      return _getPageRoute(SystemScreens());
+      return _getPageRoute(const SystemScreens());
+    case KursPageRoute:
+      return _getPageRoute(const KursScreens());
     case ArmoringPageRoute:
-      return _getPageRoute(ArmoringTypeScreens());
+      return _getPageRoute(const ArmoringTypeScreens());
     case CableTypePageRoute:
-      return _getPageRoute(CableTypeScreens());
+      return _getPageRoute(const CableTypeScreens());
     case ManufacturerPageRoute:
-      return _getPageRoute(ManufactureScreens());
+      return _getPageRoute(const ManufactureScreens());
     case CoreTypePageRoute:
-      return _getPageRoute(CoreTypeScreens());
+      return _getPageRoute(const CoreTypeScreens());
     case LocationPageRoute:
-      return _getPageRoute(LocationScreens());
+      return _getPageRoute(const LocationScreens());
     case UnitPageRoute:
-      return _getPageRoute(UnitScreens());
+      return _getPageRoute(const UnitScreens());
     // case EditUnitPageRoute:
     //   return _getPageRoute(EditUnit());
     case CompanyPageRoute:
-      return _getPageRoute(PerusahaanScreens());
+      return _getPageRoute(const PerusahaanScreens());
     case OrderPageRoute:
-      return _getPageRoute(OrderViewPage());
+      return _getPageRoute(const OrderViewPage());
     case LoadingPageRoute:
-      return _getPageRoute(LoadingScreens());
+      return _getPageRoute(const LoadingScreens());
     case NewMaterialPageRoute:
-      return _getPageRoute(OffLoadingNewMatrial());
+      return _getPageRoute(const OffLoadingNewMatrial());
     case ExistingMaterialPageRoute:
-      return _getPageRoute(OffLoadingExistingScreens());
+      return _getPageRoute(const OffLoadingExistingScreens());
     case ReportPageRoute:
-      return _getPageRoute(ReportViewPage());
+      return _getPageRoute(const ReportViewPage());
     case CableReportPageRoute:
-      return _getPageRoute(CableReport());
+      return _getPageRoute(const CableReport());
     case NonCableReportPageRoute:
-      return _getPageRoute(NonCableReport());
+      return _getPageRoute(const NonCableReport());
     case SettingsPageRoute:
-      return _getPageRoute(SettingsViewPage());
+      return _getPageRoute(const SettingsViewPage());
     case AuthenticationPageRoute:
-      return _getPageRoute(LoginScreen());
+      return _getPageRoute(const LoginScreen());
     default:
-      return _getPageRoute(HomeViewPage());
+      return _getPageRoute(const HomeViewPage());
   }
 }
 

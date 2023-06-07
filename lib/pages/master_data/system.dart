@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/custom_text.dart';
 import 'package:telin_project/widgets/master_data/table/table_system.dart';
 
 import '../../widgets/master_data/add_data/add_system.dart';
@@ -15,10 +13,10 @@ class SystemScreens extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 21.3),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
@@ -28,7 +26,7 @@ class SystemScreens extends StatelessWidget {
                         context: context,
                         barrierColor: Colors.transparent,
                         builder: (BuildContext context) {
-                          return AddSystem();
+                          return const AddSystem();
                         });
                   },
                   child: Container(
@@ -36,15 +34,15 @@ class SystemScreens extends StatelessWidget {
                     height: 50.6,
                     decoration: BoxDecoration(
                         border:
-                            Border.all(color: Color(0xffA5C176), width: 3.3),
+                            Border.all(color: const Color(0xffA5C176), width: 3.3),
                         borderRadius: BorderRadius.circular(4),
-                        color: Color(0xffB1CC85)),
+                        color: const Color(0xffB1CC85)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 14.6),
                       child: Center(
                         child: Row(
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               radius: 15,
                               backgroundColor: Colors.white,
                               child: Icon(
@@ -53,7 +51,7 @@ class SystemScreens extends StatelessWidget {
                                 size: 20,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 15,
                             ),
                             Text("Add System",
@@ -70,10 +68,10 @@ class SystemScreens extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
-          Expanded(child: TableSystem())
+          const Expanded(child: TableSystem())
         ],
       ),
     );

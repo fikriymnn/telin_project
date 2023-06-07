@@ -1,13 +1,10 @@
-import 'dart:io';
-import 'package:path/path.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'dart:convert';
-import 'dart:html';
 
 class printReport {
   Future<void> ReportPrinttt() async {
     // Create a new Excel document.
-    final Workbook workbook = new Workbook();
+    final Workbook workbook = Workbook();
 //Accessing worksheet via index.
     final Worksheet sheet = workbook.worksheets[0];
 
@@ -29,11 +26,11 @@ class printReport {
     final List<int> bytes = workbook.saveAsStream();
 
 //Dispose the workbook.
-    workbook.dispose();
-    AnchorElement(
-        href:
-            "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
-      ..setAttribute("download", "output1.xlsx")
-      ..click();
+    // workbook.dispose();
+    // AnchorElement(
+    //     href:
+    //         "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
+    //   ..setAttribute("download", "output1.xlsx")
+    //   ..click();
   }
 }

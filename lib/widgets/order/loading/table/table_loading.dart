@@ -1,18 +1,17 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
-import 'package:telin_project/widgets/master_data/edit_data/edit_perusahaan.dart';
 import 'package:telin_project/widgets/order/loading/bats_loading.dart';
+import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
 import 'package:telin_project/widgets/order/loading/edit_loading.dart';
 
-import 'package:telin_project/widgets/order/loading/form/edit_form_loading.dart';
-import 'package:telin_project/widgets/setting/detail_akun.dart';
+import '../../../../api/configAPI.dart';
+import '../../../../routing/routes.dart';
 
 class TableLoading extends StatefulWidget {
   const TableLoading({super.key});
@@ -22,13 +21,209 @@ class TableLoading extends StatefulWidget {
 }
 
 class _TableLoadingState extends State<TableLoading> {
-  late List<Loading> loading;
-  List<Loading> selectedRow = [];
+  List loading = [];
+
+  Response? response;
+
+  var dio = Dio();
+
   @override
   void initState() {
     // TODO: implement initState
-    loading = Loading.getLoading();
+    getDataLoading();
     super.initState();
+  }
+
+  DataRow _resultsAPI(index, data) {
+    return DataRow(cells: [
+      DataCell(Text('${index + 1}',
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Center(
+        child: Text('${data['date'] == null ? "" : data['date']}',
+            style: GoogleFonts.montserrat(
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            )),
+      )),
+      DataCell(Center(
+        child:
+            Text('${data['project_name'] == null ? "" : data['project_name']}',
+                style: GoogleFonts.montserrat(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                )),
+      )),
+      DataCell(Center(
+        child: Text('${data['vessel_name'] == null ? "" : data['vessel_name']}',
+            style: GoogleFonts.montserrat(
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            )),
+      )),
+      DataCell(Center(
+        child: Text('${data['from'] == null ? "" : data['from']}',
+            style: GoogleFonts.montserrat(
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            )),
+      )),
+      DataCell(Center(
+        child: Text('${data['to'] == null ? "" : data['to']}',
+            style: GoogleFonts.montserrat(
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            )),
+      )),
+      DataCell(Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => EditLoading(
+                            idLoading: data['_id'],
+                          )));
+              // showDialog(
+              //     context: context,
+              //     builder: (BuildContext context) {
+              //       return const EditLoading();
+              //     });
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => FormEditLoading()));
+            },
+            child: Container(
+              width: 50,
+              height: 19.46,
+              decoration: BoxDecoration(
+                  color: green, borderRadius: BorderRadius.circular(6)),
+              child: Center(
+                  child: Text("Detail",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ))),
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          InkWell(
+            onTap: () {
+              CoolAlert.show(
+                  context: context,
+                  type: CoolAlertType.confirm,
+                  text: "Do you sure to delete this item",
+                  width: 400,
+                  confirmBtnText: "Delete",
+                  cancelBtnText: "Cancle",
+                  onConfirmBtnTap: () {
+                    hapusDataLoading(data['_id']);
+                    navigationController.navigateTo(LoadingPageRoute);
+                  });
+            },
+            child: Container(
+              width: 50,
+              height: 19.46,
+              decoration: BoxDecoration(
+                  color: active, borderRadius: BorderRadius.circular(6)),
+              child: Center(
+                  child: Text("Delete",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ))),
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          InkWell(
+            onTap: () {
+              QuickAlert.show(
+                context: context,
+                type: QuickAlertType.confirm,
+                text: 'Do you sure to finish this project?',
+                confirmBtnText: 'Yes',
+                cancelBtnText: 'No',
+                customAsset: 'assets/gift/error.gif',
+                width: 400,
+                confirmBtnColor: Colors.green,
+              );
+            },
+            child: Container(
+              width: 50,
+              height: 19.46,
+              decoration: BoxDecoration(
+                  color: dark, borderRadius: BorderRadius.circular(6)),
+              child: Center(
+                  child: Text("Finish",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ))),
+            ),
+          ),
+        ],
+      )),
+    ]);
+  }
+
+  void getDataLoading() async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.get(getAllLoading);
+
+      setState(() {
+        loading = response!.data;
+      });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void hapusDataLoading(id) async {
+    var msg;
+    try {
+      response = await dio.delete('$deleteLoading/$id');
+
+      msg = response!.data['message'];
+
+      CoolAlert.show(
+          context: context,
+          type: CoolAlertType.success,
+          text: "$msg",
+          width: 400);
+    } catch (e) {
+      CoolAlert.show(
+          context: context,
+          type: CoolAlertType.error,
+          text: "Terjadi Kesalahan",
+          width: 400);
+    }
   }
 
   @override
@@ -92,7 +287,6 @@ class _TableLoadingState extends State<TableLoading> {
                     color: Colors.black,
                   )),
               fixedWidth: 100),
-          const DataColumn2(label: Text(''), fixedWidth: 70),
 
           const DataColumn2(label: Text(''), fixedWidth: 200),
           // const DataColumn2(
@@ -100,7 +294,8 @@ class _TableLoadingState extends State<TableLoading> {
           //   fixedWidth: 150
           // ),
         ],
-        rows: _createRowsManufacture());
+        rows: List.generate(
+            loading.length, (index) => _resultsAPI(index, loading[index])));
   }
 
   List<DataRow> _createRowsManufacture() {
@@ -147,8 +342,10 @@ class _TableLoadingState extends State<TableLoading> {
               DataCell(
                 InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => BastLoading()));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => const BastLoading()));
                   },
                   child: Text('Detail...',
                       style: GoogleFonts.montserrat(
@@ -165,11 +362,11 @@ class _TableLoadingState extends State<TableLoading> {
                 children: [
                   InkWell(
                     onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return EditLoading();
-                          });
+                      // showDialog(
+                      //     context: context,
+                      //     builder: (BuildContext context) {
+                      //       return  EditLoading(idLoading: data['_id'],);
+                      //     });
                       // Navigator.push(
                       //     context,
                       //     MaterialPageRoute(

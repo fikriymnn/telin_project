@@ -6,7 +6,6 @@ import 'package:telin_project/widgets/order/loading/bats_loading.dart';
 import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
 import 'package:telin_project/widgets/order/loading/form/loading_form.dart';
 
-
 class NewOrderLoading extends StatefulWidget {
   const NewOrderLoading({super.key});
 
@@ -26,7 +25,7 @@ class _NewOrderLoadingState extends State<NewOrderLoading> {
         child: Column(
           children: [
             NumberStepper(
-              numbers: [
+              numbers: const [
                 1,
                 2,
                 3,
@@ -65,7 +64,7 @@ class _NewOrderLoadingState extends State<NewOrderLoading> {
           });
         }
       },
-      child: Text('Next'),
+      child: const Text('Next'),
     );
   }
 
@@ -73,10 +72,10 @@ class _NewOrderLoadingState extends State<NewOrderLoading> {
   contentLoading() {
     switch (activeStep) {
       case 1:
-        return CableDanKitLoading();
+        return const CableDanKitLoading(id: "xckik");
 
-      case 2:
-        return BastLoading();
+      // case 2:
+      //   return const BastLoading();
 
       default:
         return FormLoading();
@@ -94,7 +93,7 @@ class _NewOrderLoadingState extends State<NewOrderLoading> {
           });
         }
       },
-      child: Text('Prev'),
+      child: const Text('Prev'),
     );
   }
 }

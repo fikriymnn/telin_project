@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/order/loading/bast/bast_print.dart';
 
 class BastWidget extends StatelessWidget {
   final String title, projectName, noBast;
@@ -22,16 +19,16 @@ class BastWidget extends StatelessWidget {
       width: 329.3,
       height: 226,
       decoration: BoxDecoration(
-          color: Color(0xffF0F0F0),
+          color: const Color(0xffF0F0F0),
           borderRadius: BorderRadius.circular(30),
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withOpacity(0.25),
                 blurRadius: 25,
-                offset: Offset(0, 4))
+                offset: const Offset(0, 4))
           ]),
       child: Padding(
-        padding: EdgeInsets.all(6.6),
+        padding: const EdgeInsets.all(6.6),
         child: Column(
           children: [
             Container(
@@ -39,7 +36,7 @@ class BastWidget extends StatelessWidget {
               height: 124.6,
               decoration: BoxDecoration(
                   color: light,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30))),
               child: Padding(
@@ -54,7 +51,7 @@ class BastWidget extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(noBast,
@@ -64,7 +61,7 @@ class BastWidget extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           color: Colors.black,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(projectName,
@@ -78,7 +75,7 @@ class BastWidget extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 3.3,
             ),
             Container(
@@ -86,7 +83,7 @@ class BastWidget extends StatelessWidget {
               height: 84,
               decoration: BoxDecoration(
                   color: light,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30))),
               child: Column(
@@ -114,7 +111,7 @@ class BastWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   InkWell(
@@ -131,7 +128,7 @@ class BastWidget extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: 175,
                                       height: 150,
                                       child: IconButton(
@@ -158,7 +155,7 @@ class BastWidget extends StatelessWidget {
                       height: 30.6,
                       width: 123,
                       decoration: BoxDecoration(
-                        color: Color(0xFF69DF5F),
+                        color: const Color(0xFF69DF5F),
                         borderRadius: BorderRadius.circular(6.6),
                       ),
                       child: Center(

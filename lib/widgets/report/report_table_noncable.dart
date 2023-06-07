@@ -1,14 +1,17 @@
-import 'package:data_table_2/data_table_2.dart';
+import 'dart:convert';
+
+import 'package:common_data_table/common_data_table.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
-
-import '../../constants/style.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:file_saver/file_saver.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pluto_grid/pluto_grid.dart';
+import 'package:pluto_grid_export/pluto_grid_export.dart' as pluto_grid_export;
 
 class NonCableReport extends StatefulWidget {
   const NonCableReport({super.key});
@@ -19,7 +22,7 @@ class NonCableReport extends StatefulWidget {
 
 class _NonCableReportState extends State<NonCableReport> {
   String _date = "Select Date";
-  List reportSparekits = [];
+  List reportSparekits = [1];
 
   Response? response;
 
@@ -32,97 +35,108 @@ class _NonCableReportState extends State<NonCableReport> {
     super.initState();
   }
 
-  DataRow _resultsAPI(index, data) {
-    return DataRow(
-      cells: [
-        DataCell(Text('${index + 1}',
-            style: GoogleFonts.montserrat(
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ))),
-        DataCell(Text('${data['location'] == null ? "-" : data['location']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ))),
-        DataCell(Text('${data['item_name'] == null ? "-" : data['item_name']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ))),
-        DataCell(
-            Text('${data['part_number'] == null ? "-" : data['part_number']}',
-                style: GoogleFonts.montserrat(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ))),
-        DataCell(Text(
-            '${data['serial_number'] == null ? "-" : data['serial_number']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ))),
-        DataCell(Text('${data['system'] == null ? "-" : data['system']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ))),
-        DataCell(Text('${data['weight'] == null ? "-" : data['weight']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ))),
-        DataCell(Text('${data['qty'] == null ? "-" : data['qty']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ))),
-        DataCell(Text('${data['unit'] == null ? "-" : data['unit']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ))),
-        DataCell(Text('${data['remark'] == null ? "-" : data['remark']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ))),
-        DataCell(
-          Center(
-            child: InkWell(
-              onTap: () {},
-              child: Container(
-                width: 66.6,
-                height: 28.6,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6.6),
-                    color: Color(0xFFDDDDDD)),
-                child: Center(
-                  child: Text(
-                    "Print",
-                    style: GoogleFonts.roboto(
-                      fontSize: 13.3,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        )
-      ],
+  late PlutoGridStateManager stateManager;
+
+  final List<PlutoColumn> columns = [
+    PlutoColumn(
+      title: 'No',
+      field: 'no',
+      type: PlutoColumnType.text(),
+    ),
+    PlutoColumn(
+      title: 'Location',
+      field: 'location',
+      type: PlutoColumnType.text(),
+    ),
+    PlutoColumn(
+      title: 'Item Name',
+      field: 'item_name',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Part Number',
+      field: 'part_number',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Serial Number',
+      field: 'serial_number',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'System',
+      field: 'system',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Weight',
+      field: 'weight',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Qty',
+      field: 'qty',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Unit',
+      field: 'unit',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
+      title: 'Remark',
+      field: 'remark',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+  ];
+  void exportToPdf() async {
+    final themeData = pluto_grid_export.ThemeData.withFont(
+      base: pluto_grid_export.Font.ttf(
+        await rootBundle.load('fonts/open_sans/OpenSans-Regular.ttf'),
+      ),
+      bold: pluto_grid_export.Font.ttf(
+        await rootBundle.load('fonts/open_sans/OpenSans-Bold.ttf'),
+      ),
     );
+
+    var plutoGridPdfExport = pluto_grid_export.PlutoGridDefaultPdfExport(
+      title: "Pluto Grid Sample pdf print",
+      creator: "Pluto Grid Rocks!",
+      format: pluto_grid_export.PdfPageFormat.a4.landscape,
+      themeData: themeData,
+    );
+
+    await pluto_grid_export.Printing.sharePdf(
+      bytes: await plutoGridPdfExport.export(stateManager),
+      filename: plutoGridPdfExport.getFilename(),
+    );
+  }
+
+  void exportToCsv() async {
+    String title = "report_sparekit";
+
+    var exported = const Utf8Encoder()
+        .convert(pluto_grid_export.PlutoGridExport.exportCSV(stateManager));
+
+    // // use file_saver from pub.dev
+    await FileSaver.instance
+        .saveFile(name: "$title", mimeType: MimeType.csv, bytes: exported);
   }
 
   void getDataReportSpareKits() async {
@@ -145,189 +159,257 @@ class _NonCableReportState extends State<NonCableReport> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    DatePicker.showDatePicker(context, showTitleActions: true,
-                        onChanged: (date) {
-                      print('change $date');
-                    }, onConfirm: (date) {
-                      print('confirm $date');
-                      _date = '${date.year}/${date.month}/${date.day}';
-                      setState(() {});
-                    }, currentTime: DateTime.now(), locale: LocaleType.en);
-                  },
-                  icon: Icon(Icons.date_range),
-                  label: Text("$_date"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: dark,
-                    // Background color
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 50,
+              child: Row(
+                children: [
+                  TextButton(
+                    onPressed: exportToCsv,
+                    child: const Text('Export to CSV'),
                   ),
-                ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: Icon(Icons.print),
-                  label: Text("Print All"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: active, // Background color
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: DataTable2(
-                  columnSpacing: 6,
-                  horizontalMargin: 6,
-                  dataRowHeight: 40,
-                  minWidth: 3000,
-                  border: TableBorder(top: BorderSide(), bottom: BorderSide()),
-                  columns: [
-                    DataColumn2(
-                      label: Text(
-                        'No',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 46,
-                    ),
-                    DataColumn2(
-                      label: Text(
-                        'Location',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 95.25,
-                    ),
-                    DataColumn2(
-                      label: Text(
-                        'Item Name',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 200.25,
-                    ),
-                    DataColumn2(
-                      label: Text(
-                        'Part Number',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 155.25,
-                    ),
-                    DataColumn2(
-                      label: Text(
-                        'Serial Number',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 155.25,
-                    ),
-                    DataColumn2(
-                      label: Text(
-                        'System',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 115.25,
-                    ),
-                    DataColumn2(
-                      label: Text(
-                        """Weight
-(Kg)""",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 115.25,
-                    ),
-                    DataColumn2(
-                      label: Text(
-                        "QTY",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 95.25,
-                    ),
-                    DataColumn2(
-                      label: Text(
-                        "Unit",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 95.25,
-                    ),
-                    DataColumn2(
-                      label: Text(
-                        "Remark",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 135.25,
-                    ),
-                    DataColumn2(
-                      label: Text(
-                        "",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 115.25,
-                    ),
-                  ],
-                  rows: List.generate(reportSparekits.length,
-                      (index) => _resultsAPI(index, reportSparekits[index]))),
             ),
-          ),
-        ],
+            Expanded(
+              child: PlutoGrid(
+                columns: columns,
+                rows: List.generate(
+                  reportSparekits.length,
+                  (index) => PlutoRow(
+                    cells: {
+                      'no': PlutoCell(value: '${index + 1}'),
+                      'location': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['location'] == null ? "" : reportSparekits[index]['location']}'),
+                      'item_name': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['item_name'] == null ? "" : reportSparekits[index]['item_name']}'),
+                      'part_number': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['part_number'] == null ? "" : reportSparekits[index]['part_number']}'),
+                      'serial_number': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['serial_number'] == null ? "" : reportSparekits[index]['serial_number']}'),
+                      'system': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['system'] == null ? "" : reportSparekits[index]['system']}'),
+                      'weight': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['weight'] == null ? "" : reportSparekits[index]['weight']}'),
+                      'qty': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['qty'] == null ? "" : reportSparekits[index]['qty']}'),
+                      'unit': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['unit'] == null ? "" : reportSparekits[index]['unit']}'),
+                      'remark': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['remark'] == null ? "" : reportSparekits[index]['remark']}'),
+                    },
+                  ),
+                ),
+                onLoaded: (e) {
+                  stateManager = e.stateManager;
+                },
+                configuration: const PlutoGridConfiguration(
+                  enableMoveDownAfterSelecting: true,
+                  enterKeyAction: PlutoGridEnterKeyAction.editingAndMoveDown,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
+//     SizedBox(
+//       width: MediaQuery.of(context).size.width,
+//       child: Column(
+//         children: [
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.start,
+//             children: [
+//               // Padding(
+//               //   padding: const EdgeInsets.all(8.0),
+//               //   child: ElevatedButton.icon(
+//               //     onPressed: () {
+//               //       DatePicker.showDatePicker(context, showTitleActions: true,
+//               //           onChanged: (date) {
+//               //         print('change $date');
+//               //       }, onConfirm: (date) {
+//               //         print('confirm $date');
+//               //         _date = '${date.year}/${date.month}/${date.day}';
+//               //         setState(() {});
+//               //       }, currentTime: DateTime.now(), locale: LocaleType.en);
+//               //     },
+//               //     icon: const Icon(Icons.date_range),
+//               //     label: Text(_date),
+//               //     style: ElevatedButton.styleFrom(
+//               //       backgroundColor: dark,
+//               //       // Background color
+//               //     ),
+//               //   ),
+//               // ),
+//               Padding(
+//                 padding: const EdgeInsets.all(8.0),
+//                 child: ElevatedButton.icon(
+//                   onPressed: () {},
+//                   icon: const Icon(Icons.print),
+//                   label: const Text("Print All"),
+//                   style: ElevatedButton.styleFrom(
+//                     backgroundColor: active, // Background color
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//           const SizedBox(
+//             height: 30,
+//           ),
+//           Expanded(
+//             child: Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: DataTable2(
+//                   columnSpacing: 6,
+//                   horizontalMargin: 6,
+//                   dataRowHeight: 40,
+//                   minWidth: 3000,
+//                   border: const TableBorder(
+//                       top: BorderSide(), bottom: BorderSide()),
+//                   columns: [
+//                     DataColumn2(
+//                       label: Text(
+//                         'No',
+//                         style: GoogleFonts.montserrat(
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w600,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       fixedWidth: 46,
+//                     ),
+//                     DataColumn2(
+//                       label: Text(
+//                         'Location',
+//                         style: GoogleFonts.montserrat(
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w600,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       fixedWidth: 95.25,
+//                     ),
+//                     DataColumn2(
+//                       label: Text(
+//                         'Item Name',
+//                         style: GoogleFonts.montserrat(
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w600,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       fixedWidth: 200.25,
+//                     ),
+//                     DataColumn2(
+//                       label: Text(
+//                         'Part Number',
+//                         style: GoogleFonts.montserrat(
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w600,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       fixedWidth: 155.25,
+//                     ),
+//                     DataColumn2(
+//                       label: Text(
+//                         'Serial Number',
+//                         style: GoogleFonts.montserrat(
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w600,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       fixedWidth: 155.25,
+//                     ),
+//                     DataColumn2(
+//                       label: Text(
+//                         'System',
+//                         style: GoogleFonts.montserrat(
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w600,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       fixedWidth: 115.25,
+//                     ),
+//                     DataColumn2(
+//                       label: Text(
+//                         """Weight
+// (Kg)""",
+//                         style: GoogleFonts.montserrat(
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w600,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       fixedWidth: 115.25,
+//                     ),
+//                     DataColumn2(
+//                       label: Text(
+//                         "QTY",
+//                         style: GoogleFonts.montserrat(
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w600,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       fixedWidth: 95.25,
+//                     ),
+//                     DataColumn2(
+//                       label: Text(
+//                         "Unit",
+//                         style: GoogleFonts.montserrat(
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w600,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       fixedWidth: 95.25,
+//                     ),
+//                     DataColumn2(
+//                       label: Text(
+//                         "Remark",
+//                         style: GoogleFonts.montserrat(
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w600,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       fixedWidth: 135.25,
+//                     ),
+//                     DataColumn2(
+//                       label: Text(
+//                         "",
+//                         style: GoogleFonts.montserrat(
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w600,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       fixedWidth: 115.25,
+//                     ),
+//                   ],
+//                   rows: List.generate(reportSparekits.length,
+//                       (index) => _resultsAPI(index, reportSparekits[index]))),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
   }
 }

@@ -1,11 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/setting/akun.dart';
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 class TableAkunDeleteMobile extends StatefulWidget {
   const TableAkunDeleteMobile({super.key});
@@ -15,11 +11,9 @@ class TableAkunDeleteMobile extends StatefulWidget {
 }
 
 class _TableAkunDeleteMobileState extends State<TableAkunDeleteMobile> {
-
-
- late List<Akun> akun;
- List <Akun> selectedRow = [];
- @override
+  late List<Akun> akun;
+  List<Akun> selectedRow = [];
+  @override
   void initState() {
     // TODO: implement initState
     akun = Akun.getAkun();
@@ -33,7 +27,10 @@ class _TableAkunDeleteMobileState extends State<TableAkunDeleteMobile> {
         horizontalMargin: 6,
         dataRowHeight: 30,
         minWidth: 3000,
-        border: TableBorder(top: BorderSide(), bottom: BorderSide(),),
+        border: const TableBorder(
+          top: BorderSide(),
+          bottom: BorderSide(),
+        ),
         columns: [
           DataColumn2(
             label: Text(
@@ -82,44 +79,36 @@ class _TableAkunDeleteMobileState extends State<TableAkunDeleteMobile> {
                   color: Colors.black,
                 )),
           ),
-          DataColumn2(
+          const DataColumn2(
             fixedWidth: 50,
             label: Text(''),
           ),
-          DataColumn2(
+          const DataColumn2(
             fixedWidth: 23,
             label: Text(''),
           ),
         ],
-        rows:_createRows()
-        
-        
-        
-);
+        rows: _createRows());
   }
 
-List<DataRow> _createRows() {
+  List<DataRow> _createRows() {
     return akun
         .map((akun) => DataRow(
-          selected: selectedRow.contains(akun),
-          
-          onSelectChanged: (isSelected) {
-            setState(() {
-              final isAdding = isSelected != null && isSelected;
+                selected: selectedRow.contains(akun),
+                onSelectChanged: (isSelected) {
+                  setState(() {
+                    final isAdding = isSelected != null && isSelected;
 
-              isAdding
-              ?selectedRow.add(akun)
-              :selectedRow.remove(akun); 
-            });
-          },
-          cells: [
-             DataCell(
-                      Text(akun.no,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 9.7,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ))),
+                    isAdding ? selectedRow.add(akun) : selectedRow.remove(akun);
+                  });
+                },
+                cells: [
+                  DataCell(Text(akun.no,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 9.7,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                      ))),
                   DataCell(Text(akun.name,
                       style: GoogleFonts.montserrat(
                         fontSize: 9.7,
@@ -140,11 +129,11 @@ List<DataRow> _createRows() {
                       ))),
                   DataCell(Row(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 5,
                         backgroundColor: Color(0xff24EB2C),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 7,
                       ),
                       Text(akun.role,
@@ -159,12 +148,12 @@ List<DataRow> _createRows() {
                     Center(
                       child: InkWell(
                         onTap: () {
-                          showDialog(
-                              context: context,
-                              barrierColor: Colors.transparent,
-                              builder: (BuildContext context) {
-                                return DetailAkun();
-                              });
+                          // showDialog(
+                          //     context: context,
+                          //     barrierColor: Colors.transparent,
+                          //     builder: (BuildContext context) {
+                          //       return DetailAkun();
+                          //     });
                         },
                         child: Text('Detail...',
                             style: GoogleFonts.montserrat(
@@ -175,11 +164,8 @@ List<DataRow> _createRows() {
                       ),
                     ),
                   ),
-                  DataCell(Text(""))
-            ]))
+                  const DataCell(Text(""))
+                ]))
         .toList();
   }
 }
-
-
- 

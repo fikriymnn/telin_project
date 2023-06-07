@@ -1,16 +1,13 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/routing/routes.dart';
-import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:telin_project/widgets/master_data/edit_data/edit_system.dart';
-import 'package:telin_project/widgets/setting/detail_akun.dart';
 
 import '../../../constants/controllers.dart';
 
@@ -49,7 +46,7 @@ class _TableSystemState extends State<TableSystem> {
             )),
       )),
       DataCell(Center(
-        child: Text('System ID',
+        child: Text('${data['label_id'] ?? ""}',
             style: GoogleFonts.montserrat(
               fontSize: 14.6,
               fontWeight: FontWeight.w400,
@@ -67,6 +64,7 @@ class _TableSystemState extends State<TableSystem> {
                     builder: (context) => EditSystem(
                           id: data['_id'],
                           systemName: data['system'],
+                          label: data['label_id'] ?? "-",
                         )));
               },
               child: Container(
@@ -88,15 +86,13 @@ class _TableSystemState extends State<TableSystem> {
             ),
             InkWell(
               onTap: () {
-                QuickAlert.show(
+                CoolAlert.show(
                     context: context,
-                    type: QuickAlertType.confirm,
-                    text: 'Do you sure to delete this item',
-                    confirmBtnText: 'Yes',
-                    cancelBtnText: 'No',
-                    customAsset: 'assets/gift/error.gif',
+                    type: CoolAlertType.confirm,
+                    text: "Do you sure to delete this item",
                     width: 400,
-                    confirmBtnColor: Colors.green,
+                    confirmBtnText: "Delete",
+                    cancelBtnText: "Cancle",
                     onConfirmBtnTap: () {
                       hapusDataSystem('${data['_id']}');
                       navigationController.navigateTo(SystemPageRoute);
@@ -163,31 +159,24 @@ class _TableSystemState extends State<TableSystem> {
       status = response!.data['sukses'];
       msg = response!.data['msg'];
       if (status) {
-        QuickAlert.show(
+        CoolAlert.show(
             context: context,
-            type: QuickAlertType.success,
-            text: '$msg',
-            title: 'Peringatan',
-            width: 400,
-            barrierDismissible: true,
-            confirmBtnColor: Colors.red);
+            type: CoolAlertType.success,
+            text: "$msg",
+            width: 400);
       } else {
-        QuickAlert.show(
+        CoolAlert.show(
             context: context,
-            type: QuickAlertType.error,
-            text: '$msg',
-            title: 'Peringatan',
-            width: 400,
-            confirmBtnColor: Colors.red);
+            type: CoolAlertType.error,
+            text: "$msg",
+            width: 400);
       }
     } catch (e) {
-      QuickAlert.show(
+      CoolAlert.show(
           context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+          type: CoolAlertType.success,
+          text: "Kesalahan Server",
+          width: 400);
     }
   }
 

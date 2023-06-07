@@ -24,16 +24,16 @@ class DepoWidget extends StatelessWidget {
       width: 329.3,
       height: 184,
       decoration: BoxDecoration(
-          color: Color(0xffF0F0F0),
+          color: const Color(0xffF0F0F0),
           borderRadius: BorderRadius.circular(30),
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withOpacity(0.25),
                 blurRadius: 25,
-                offset: Offset(0, 4))
+                offset: const Offset(0, 4))
           ]),
       child: Padding(
-        padding: EdgeInsets.all(6.6),
+        padding: const EdgeInsets.all(6.6),
         child: Column(
           children: [
             Container(
@@ -41,7 +41,7 @@ class DepoWidget extends StatelessWidget {
               height: 124.6,
               decoration: BoxDecoration(
                   color: light,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30))),
               child: Padding(
@@ -56,7 +56,7 @@ class DepoWidget extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Text(depo,
@@ -70,7 +70,7 @@ class DepoWidget extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 3.3,
             ),
             Container(
@@ -78,7 +78,7 @@ class DepoWidget extends StatelessWidget {
               height: 42,
               decoration: BoxDecoration(
                   color: light,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30))),
               child: Row(
@@ -92,7 +92,7 @@ class DepoWidget extends StatelessWidget {
                       height: 30.6,
                       width: 92.6,
                       decoration: BoxDecoration(
-                        color: Color(0xFFEC1D26),
+                        color: const Color(0xFFEC1D26),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(

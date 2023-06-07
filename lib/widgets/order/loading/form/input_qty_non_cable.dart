@@ -1,12 +1,65 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 
-class InputQtyNonCable extends StatelessWidget {
-  const InputQtyNonCable({super.key});
+class InputQtyNonCable extends StatefulWidget {
+  const InputQtyNonCable(
+      {super.key, required this.idLoading, required this.idKit});
+  final String idLoading, idKit;
+
+  @override
+  State<InputQtyNonCable> createState() => _InputQtyNonCableState();
+}
+
+class _InputQtyNonCableState extends State<InputQtyNonCable> {
+  TextEditingController _priceIdr = TextEditingController();
+  TextEditingController _qty = TextEditingController();
+  Response? response;
+
+  var dio = Dio();
+  double kurs = 0.0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getDataKurs();
+    super.initState();
+  }
+
+  void getDataKurs() async {
+    bool status;
+    var msg;
+
+    try {
+      response = await dio.get(getAllKurs);
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        setState(() {
+          kurs = response!.data['usd'];
+        });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +76,7 @@ class InputQtyNonCable extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 )),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Container(
@@ -34,143 +87,7 @@ class InputQtyNonCable extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Input QTY Sapre Kit",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 203.3,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 18,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: TextField(
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 13.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    hintText: "Type Length"),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 100,
-                  ),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Stock Spare Kit",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 203.3,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 18,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: TextField(
-                                enabled: false,
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 13.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    hintText: "5"),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -192,13 +109,13 @@ class InputQtyNonCable extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(
@@ -207,6 +124,7 @@ class InputQtyNonCable extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: TextField(
+                                controller: _priceIdr,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -228,19 +146,19 @@ class InputQtyNonCable extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: 100,
+                    width: 15,
                   ),
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Unit Price USD",
+                                "Qty",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -256,13 +174,13 @@ class InputQtyNonCable extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 5, color: Color(0xffF0F0F0)),
+                                  width: 5, color: const Color(0xffF0F0F0)),
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.25),
                                     blurRadius: 5,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ]),
                           child: Padding(
                             padding: const EdgeInsets.only(
@@ -271,7 +189,7 @@ class InputQtyNonCable extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: TextField(
-                                enabled: false,
+                                controller: _qty,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -291,11 +209,11 @@ class InputQtyNonCable extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Container(
@@ -304,6 +222,12 @@ class InputQtyNonCable extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
+                      addKitLoading(
+                          widget.idKit,
+                          widget.idLoading,
+                          _priceIdr.text,
+                          double.parse(_priceIdr.text) * kurs,
+                          _qty.text);
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -311,7 +235,7 @@ class InputQtyNonCable extends StatelessWidget {
                       height: 37.3,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6),
-                          color: Color(0xffEC1D26)),
+                          color: const Color(0xffEC1D26)),
                       child: Center(
                         child: Text("Done",
                             style: GoogleFonts.roboto(
@@ -329,5 +253,37 @@ class InputQtyNonCable extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void addKitLoading(sparekitId, loadingId, priceIdr, priceUsd, qty) async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.post('$addSparekitToLoading/$loadingId', data: {
+        'kits_id': sparekitId,
+        'unitPriceIdr': priceIdr,
+        'unitPriceUsd': priceUsd,
+        'qty': qty
+      });
+
+      msg = response!.data['message'];
+
+      FocusScope.of(context).unfocus();
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: '$msg',
+          width: 400,
+          confirmBtnColor: Colors.green);
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 }

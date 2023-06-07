@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/helpers/responsive.dart';
-import 'package:telin_project/widgets/order/loading/table/table_cable_cart.dart';
-import 'package:telin_project/widgets/order/loading/table/table_non_cable_cart.dart';
 import 'package:telin_project/widgets/order/new_material/table/table_cart_new_cable.dart';
-import 'package:telin_project/widgets/order/new_material/table/table_cart_new_material.dart';
+import 'package:telin_project/widgets/order/new_material/table/table_cart_new_kit.dart';
 
 class CartNewMaterial extends StatefulWidget {
-  const CartNewMaterial({super.key});
+  const CartNewMaterial({super.key, required this.idNewMaterial});
+  final String idNewMaterial;
 
   @override
   State<CartNewMaterial> createState() => _CartNewMaterialState();
@@ -33,30 +31,12 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 19.3, vertical: 12.6),
-                    child: Container(
+                    child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 99.3,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: active),
-                              child: Center(
-                                child: Text("SUBMIT",
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white,
-                                    )),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
+                          const SizedBox(
                             width: 30,
                           ),
                           InkWell(
@@ -65,7 +45,7 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                             },
                             child: CircleAvatar(
                               radius: 15,
-                              backgroundColor: Color(0xFFED1D25),
+                              backgroundColor: const Color(0xFFED1D25),
                               child: Center(
                                 child: Text("X",
                                     style: GoogleFonts.roboto(
@@ -80,28 +60,34 @@ class _CartNewMaterialState extends State<CartNewMaterial> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
-                  Container(
+                  SizedBox(
                       height: 400,
                       child: Column(
                         children: [
-                          Flexible(child: TableCartNewCable()),
+                          Flexible(
+                              child: TableCartNewCable(
+                            idNewMaterial: widget.idNewMaterial,
+                          )),
                         ],
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Container(
+                  SizedBox(
                     height: 250,
                     child: Column(
                       children: [
-                        Expanded(child: TableNonCableNewCart()),
+                        Expanded(
+                            child: TableNonCableNewCart(
+                          idNewMaterial: widget.idNewMaterial,
+                        )),
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
                 ],

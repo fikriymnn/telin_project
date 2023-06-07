@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/helpers/responsive.dart';
 
 import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
-import 'package:telin_project/widgets/order/new_material/table/table_new_cable.dart';
-import 'package:telin_project/widgets/order/new_material/table/table_new_non_cable.dart';
+import 'package:telin_project/widgets/order/new_material/form_new_material.dart';
 
-
+import 'package:telin_project/widgets/order/new_material/table/table_new_material.dart';
 
 class OffLoadingNewMatrial extends StatefulWidget {
   const OffLoadingNewMatrial({super.key});
@@ -27,10 +22,10 @@ class _OffLoadingNewMatrialState extends State<OffLoadingNewMatrial> {
           padding: const EdgeInsets.symmetric(horizontal: 21.3),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
@@ -39,22 +34,23 @@ class _OffLoadingNewMatrialState extends State<OffLoadingNewMatrial> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => AddnewMaterialScreens()));
+                                builder: (context) =>
+                                    const FormNewMaterialExisting()));
                       },
                       child: Container(
                         width: 200,
                         height: 50.6,
                         decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Color(0xffA5C176), width: 3.3),
+                            border: Border.all(
+                                color: const Color(0xffA5C176), width: 3.3),
                             borderRadius: BorderRadius.circular(4),
-                            color: Color(0xffB1CC85)),
+                            color: const Color(0xffB1CC85)),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 14.6),
                           child: Center(
                             child: Row(
                               children: [
-                                CircleAvatar(
+                                const CircleAvatar(
                                   radius: 15,
                                   backgroundColor: Colors.white,
                                   child: Icon(
@@ -63,7 +59,7 @@ class _OffLoadingNewMatrialState extends State<OffLoadingNewMatrial> {
                                     size: 20,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
                                 Text("Add New Material",
@@ -80,7 +76,7 @@ class _OffLoadingNewMatrialState extends State<OffLoadingNewMatrial> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
@@ -98,43 +94,14 @@ class _OffLoadingNewMatrialState extends State<OffLoadingNewMatrial> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 300,
+              SizedBox(
+                height: MediaQuery.of(context).size.height,
                 child: Column(
                   children: [
-                    Expanded(child: TableNewCable()),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "New Non Cable",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 300,
-                child: Column(
-                  children: [
-                    Expanded(child: TableNewNonCable()),
+                    Expanded(child: TableNewMaterial()),
                   ],
                 ),
               ),

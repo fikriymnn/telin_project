@@ -1,8 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
@@ -12,14 +9,15 @@ import '../../../../api/configAPI.dart';
 import '../bast_invoice/bast_new_material.dart';
 
 class AddNewCableLarge extends StatefulWidget {
-  const AddNewCableLarge({super.key});
+  const AddNewCableLarge({super.key, required this.idNewMaterial});
+  final String idNewMaterial;
 
   @override
   State<AddNewCableLarge> createState() => _AddNewCableLargeState();
 }
 
 class _AddNewCableLargeState extends State<AddNewCableLarge> {
-  TextEditingController txtNamaEvidence = TextEditingController();
+  TextEditingController txtTankLocation = TextEditingController();
   TextEditingController txtRemark = TextEditingController();
   TextEditingController txtLenght = TextEditingController();
   TextEditingController txtE_Core = TextEditingController();
@@ -59,73 +57,74 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItemsSystem = [
-      DropdownMenuItem(child: Text("Select System"), value: "Select System"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select System", child: Text("Select System")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsSystem;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsCableType {
     List<DropdownMenuItem<String>> menuItemsCableType = [
-      DropdownMenuItem(
-          child: Text("Select Cable Type"), value: "Select Cable Type"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Cable Type", child: Text("Select Cable Type")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsCableType;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsManufacture {
     List<DropdownMenuItem<String>> menuItemsManufacture = [
-      DropdownMenuItem(
-          child: Text("Select Manufacture"), value: "Select Manufacture"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Manufacture", child: Text("Select Manufacture")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsManufacture;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsArmoringType {
     List<DropdownMenuItem<String>> menuItemsArmoringType = [
-      DropdownMenuItem(
-          child: Text("Select Armoring Type"), value: "Select Armoring Type"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Armoring Type", child: Text("Select Armoring Type")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsArmoringType;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsInner {
     List<DropdownMenuItem<String>> menuItemsInner = [
-      DropdownMenuItem(child: Text("Select Inner"), value: "Select Inner"),
-      DropdownMenuItem(child: Text("INNER"), value: "INNER"),
-      DropdownMenuItem(child: Text("OUTER"), value: "OUTER"),
+      const DropdownMenuItem(value: "INNER", child: Text("INNER")),
+      const DropdownMenuItem(value: "OUTER", child: Text("OUTER")),
     ];
     return menuItemsInner;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsOuter {
     List<DropdownMenuItem<String>> menuItemsOuter = [
-      DropdownMenuItem(child: Text("Select Outer"), value: "Select Outer"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Outer", child: Text("Select Outer")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsOuter;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsCoreType {
     List<DropdownMenuItem<String>> menuItemsCoreType = [
-      DropdownMenuItem(
-          child: Text("Select Core Type"), value: "Select Core Type"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Core Type", child: Text("Select Core Type")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsCoreType;
   }
@@ -135,7 +134,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   String selectedValueArmoringType = "Select Armoring Type";
   String selectedValueCoreType = "Select Core Type";
   String selectedValueCore = "Select Core";
-  String selectedValueInner = "Select Inner";
+  String? selectedValueInner;
   String selectedValueSystem = "Select System";
 
   Future selecFile() async {
@@ -200,7 +199,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       padding: const EdgeInsets.only(bottom: 20),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -209,13 +208,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                 Container(
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "System",
+                              "System *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -230,14 +229,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -245,6 +244,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
+                                hint: Text(
+                                  "Select System",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                ),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -258,8 +265,15 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                 value: selectionSystem,
                                 items: system.map((system) {
                                   return DropdownMenuItem(
-                                    child: Text(system['system']),
                                     value: system['_id'].toString(),
+                                    child: Text(
+                                      system['system'],
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   );
                                 }).toList(),
                               ),
@@ -267,16 +281,16 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Cable Type",
+                              "Cable Type *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -291,14 +305,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -306,6 +320,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
+                                hint: Text(
+                                  "Select Cable Type",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                ),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -319,8 +341,15 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                 value: selectionCableType,
                                 items: cableType.map((cableType) {
                                   return DropdownMenuItem(
-                                    child: Text(cableType['cable_type']),
                                     value: cableType['_id'].toString(),
+                                    child: Text(
+                                      cableType['cable_type'],
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   );
                                 }).toList(),
                               ),
@@ -328,16 +357,16 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Manufacture",
+                              "Manufacture *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -352,14 +381,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -367,6 +396,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
+                                hint: Text(
+                                  "Select Manufacturer",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                ),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -380,8 +417,15 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                 value: selectionManufacturer,
                                 items: manufacturer.map((manufacturer) {
                                   return DropdownMenuItem(
-                                    child: Text(manufacturer['manufacturer']),
                                     value: manufacturer['_id'].toString(),
+                                    child: Text(
+                                      manufacturer['manufacturer'],
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   );
                                 }).toList(),
                               ),
@@ -389,16 +433,16 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Armoring Type",
+                              "Armoring Type *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -413,14 +457,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -428,6 +472,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
+                                hint: Text(
+                                  "Select Armoring Type",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                ),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -441,8 +493,15 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                 value: selectionArmoringType,
                                 items: armoringType.map((armoringType) {
                                   return DropdownMenuItem(
-                                    child: Text(armoringType['armoring_type']),
                                     value: armoringType['_id'].toString(),
+                                    child: Text(
+                                      armoringType['armoring_type'],
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   );
                                 }).toList(),
                               ),
@@ -453,20 +512,20 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 40,
                 ),
                 Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Length",
+                              "Length *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -481,14 +540,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -520,7 +579,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                               Container(
                                 width: 68.6,
                                 height: 44,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(6),
                                         bottomRight: Radius.circular(6)),
@@ -540,16 +599,16 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Lable",
+                              "Lable *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -564,14 +623,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -595,16 +654,16 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Inner",
+                              "Tank *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -619,14 +678,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -634,6 +693,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                   isExpanded: true,
+                                  hint: Text(
+                                    "Select Tank",
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 13.3,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                  ),
                                   style: GoogleFonts.montserrat(
                                     fontSize: 13.3,
                                     fontWeight: FontWeight.w400,
@@ -650,25 +717,16 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 40,
-                ),
-                Container(
-                  child: Column(
-                    children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Evidence",
+                              "Tank-Location *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -683,58 +741,47 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
-                            padding: const EdgeInsets.only(left: 18, bottom: 8),
-                            child: Row(
-                              children: [
-                                TextButton.icon(
-                                    onPressed: () async {
-                                      FilePickerResult? result =
-                                          await FilePicker.platform.pickFiles();
-
-                                      if (result != null) {
-                                        setState(() {
-                                          pickedFile = result.files.first;
-                                        });
-                                      } else {
-                                        // User canceled the picker
-                                      }
-                                    },
-                                    icon: Icon(Icons.upload_file),
-                                    label: Text(
-                                      "Upload File",
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 13.3,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black,
-                                      ),
-                                    )),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                if (pickedFile != null)
-                                  Text(pickedFile!.name,
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 13.3,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black,
-                                      ))
-                              ],
-                            )),
+                          padding: const EdgeInsets.only(left: 18, bottom: 8),
+                          child: Center(
+                            child: TextField(
+                              controller: txtTankLocation,
+                              style: GoogleFonts.montserrat(
+                                fontSize: 13.3,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                              ),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintStyle: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                  hintText: "Type Here"),
+                            ),
+                          ),
+                        ),
                       ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  width: 40,
+                ),
+                Container(
+                  child: Column(
+                    children: [
                       SizedBox(
-                        height: 20.6,
-                      ),
-                      Container(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -755,41 +802,56 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 18, bottom: 8),
-                          child: Center(
-                            child: TextField(
-                              controller: txtNamaEvidence,
-                              style: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
-                                  hintText: "Type Here"),
-                            ),
-                          ),
-                        ),
+                            padding: const EdgeInsets.only(left: 18, bottom: 8),
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () async {
+                                    FilePickerResult? result =
+                                        await FilePicker.platform.pickFiles();
+
+                                    if (result != null) {
+                                      setState(() {
+                                        pickedFile = result.files.first;
+                                      });
+                                    } else {
+                                      // User canceled the picker
+                                    }
+                                  },
+                                  icon: const Icon(Icons.upload_file),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Flexible(
+                                  child: Text(
+                                      pickedFile != null
+                                          ? pickedFile!.name
+                                          : "Upload File",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      )),
+                                )
+                              ],
+                            )),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -810,14 +872,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -841,16 +903,16 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Core Type",
+                              "Core Type *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -865,14 +927,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -880,6 +942,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
+                                hint: Text(
+                                  "Select Core Type",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                ),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -893,8 +963,15 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                 value: selectionCoreType,
                                 items: coreType.map((coreType) {
                                   return DropdownMenuItem(
-                                    child: Text(coreType['core_type']),
                                     value: coreType['_id'].toString(),
+                                    child: Text(
+                                      coreType['core_type'],
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   );
                                 }).toList(),
                               ),
@@ -902,16 +979,16 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "\u03A3 Core",
+                              "\u03A3 Core *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -926,14 +1003,14 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -963,113 +1040,42 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 72,
           ),
           InkWell(
             onTap: () {
-              if (selectionSystem == '') {
+              if (selectionSystem == null ||
+                  selectionSystem == null ||
+                  selectionManufacturer == null ||
+                  selectionArmoringType == null ||
+                  txtLable == null ||
+                  txtLenght == null ||
+                  selectionLocation == null ||
+                  txtTankLocation == null ||
+                  selectionCoreType == null ||
+                  txtE_Core == null) {
                 QuickAlert.show(
                     context: context,
                     type: QuickAlertType.error,
                     title: 'Peringatan',
-                    text: 'Nama System Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionCableType == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Cable Type Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionManufacturer == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Manufacturer Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionArmoringType == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Armoring Type Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtLenght.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'State Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtLable.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'State Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionLocation == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Location Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtNamaEvidence.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Evidence Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtRemark.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Remark Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionCoreType == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Core Type Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtE_Core.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'E Core Tidak Boleh Kosong',
+                    text: 'Field with * is cant be empty',
                     width: 400,
                     confirmBtnColor: Colors.red);
               } else {
                 inputDataNewMaterialCable(
-                  selectionSystem,
-                  selectionCableType,
-                  selectionManufacturer,
-                  selectionArmoringType,
-                  txtLenght.text,
-                  txtLable.text,
-                  selectedValueInner,
-                  txtNamaEvidence.text,
-                  txtRemark.text,
-                  selectionCoreType,
-                  txtE_Core.text,
-                );
+                    selectionSystem,
+                    selectionCableType,
+                    selectionManufacturer,
+                    selectionArmoringType,
+                    txtLenght.text,
+                    txtLable.text,
+                    selectedValueInner,
+                    pickedFile!.name,
+                    txtRemark.text,
+                    selectionCoreType,
+                    txtE_Core.text,
+                    txtTankLocation.text);
               }
             },
             child: Container(
@@ -1077,9 +1083,9 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
               height: 37.3,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                  color: Color(0xffEC1D26)),
+                  color: const Color(0xffEC1D26)),
               child: Center(
-                child: Text("Done",
+                child: Text("Add",
                     style: GoogleFonts.roboto(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -1285,8 +1291,19 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   }
 
   // Fungsi Add Data
-  void inputDataNewMaterialCable(system, cableType, manufacturer, armoringType,
-      length, label, inner, evidence, remark, coreType, eCore) async {
+  void inputDataNewMaterialCable(
+      system,
+      cableType,
+      manufacturer,
+      armoringType,
+      length,
+      label,
+      inner,
+      evidence,
+      remark,
+      coreType,
+      eCore,
+      tankLocation) async {
     bool status;
     var msg;
     try {
@@ -1294,37 +1311,42 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       //   'Unit': namaUnit,
       // });
 
-      response = await dio.post(inputSpareCable, data: {
+      response = await dio
+          .post("$addCableToNewMaterial/${widget.idNewMaterial}", data: {
+        'label_id': label,
+        "depo_location": "makassars",
         'system': system,
         'cable_type': cableType,
         'manufacturer': manufacturer,
         'armoring_type': armoringType,
         'length_report': length,
-        'label': label,
+        'length_meas': length,
+        'keterangan': "keterangan",
+        "doc_reff": "SCRAP",
         'tank': inner,
+        'tank_location': tankLocation,
         'evidence': evidence,
         'remark': remark,
         'core_type': coreType,
+        'sigma_core': eCore,
         'E_core': eCore,
       });
-      status = response!.data['sukses'];
-      msg = response!.data['msg'];
+      status = response!.data['success'];
+
       if (status) {
         FocusScope.of(context).unfocus();
         _clearForm();
         QuickAlert.show(
             context: context,
             type: QuickAlertType.success,
-            text: '$msg',
+            text: 'Add Cable Success',
             width: 400,
             confirmBtnColor: Colors.green);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BastNewMaterial()));
       } else {
         QuickAlert.show(
             context: context,
             type: QuickAlertType.error,
-            text: '$msg',
+            text: 'Add Cable Failed',
             title: 'Peringatan',
             width: 400,
             confirmBtnColor: Colors.red);

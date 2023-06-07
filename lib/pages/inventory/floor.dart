@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/widgets/inventory/rak/rak_a1.dart';
 
@@ -39,7 +37,7 @@ class FloorInventory extends StatelessWidget {
                 // physics: NeverScrollableScrollPhysics(),
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: Text(
                       'FLOOR',
                       style: GoogleFonts.montserrat(
@@ -49,10 +47,10 @@ class FloorInventory extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                       height: screnSize.height,
                       width: screnSize.width,
-                      child: TableRakA1()),
+                      child: const TableRakA1()),
                 ],
               ),
             ),

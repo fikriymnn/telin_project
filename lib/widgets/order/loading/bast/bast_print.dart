@@ -1,16 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/constants/style.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:pluto_grid_export/pluto_grid_export.dart';
 import 'package:printing/printing.dart';
-import 'package:telin_project/widgets/order/loading/bast/table_bast_print.dart';
-import 'package:telin_project/widgets/order/new_material/table/table_new_cable.dart';
 
 class printBastLoading {
-  Future<void> BastLoadingPrinttt() async {
+  Future<void> BastLoadingPrinttt(
+      List dataLoadingCable, List dataLoadingSparekit, List dataLoading) async {
     final doc = pw.Document();
     final TelinLogo =
         await imageFromAssetBundle('assets/images/logo_telin_login.png');
@@ -19,7 +14,7 @@ class printBastLoading {
 
     doc.addPage(pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
-        margin: pw.EdgeInsets.all(47.5),
+        margin: const pw.EdgeInsets.all(47.5),
         build: (pw.Context context) {
           return [
             pw.Column(children: [
@@ -59,8 +54,8 @@ class printBastLoading {
                             height: 5,
                           ),
                           pw.Text(
-                            "Berita Acata Serah Terima Barang (Masuk)",
-                            style: pw.TextStyle(
+                            "Berita Acata Serah Terima Barang (Keluar)",
+                            style: const pw.TextStyle(
                               fontSize: 10,
                             ),
                           ),
@@ -68,7 +63,7 @@ class printBastLoading {
                             height: 15,
                           ),
                           pw.Text(
-                            "On the day of THURSHDAY, 08 DECEMBER 2022 has been handover the goods of material:",
+                            "On the day of ${dataLoading[0]['submitted_date_loading']} has been handover the goods of material:",
                             style: pw.TextStyle(
                               fontSize: 10,
                               fontWeight: pw.FontWeight.bold,
@@ -79,8 +74,8 @@ class printBastLoading {
                             height: 5,
                           ),
                           pw.Text(
-                            "Pada hari ini KAMIS, 08 DESEMBER 2022 telah diserah terimakan barang atau material:",
-                            style: pw.TextStyle(
+                            "Pada hari ini ${dataLoading[0]['submitted_date_loading']} telah diserah terimakan barang atau material:",
+                            style: const pw.TextStyle(
                               fontSize: 10,
                             ),
                           ),
@@ -158,7 +153,7 @@ class printBastLoading {
                                       pw.CrossAxisAlignment.start,
                                   children: [
                                     pw.Text(
-                                      ": 004/BAST Loading/WEB/XII/2022",
+                                      ": ${dataLoading[0]['no_bast'] ?? "-"}",
                                       style: pw.TextStyle(
                                           fontSize: 6,
                                           fontWeight: pw.FontWeight.bold,
@@ -168,7 +163,7 @@ class printBastLoading {
                                       height: 5,
                                     ),
                                     pw.Text(
-                                      ": DEPO 104 MAKASSAR",
+                                      ": ${dataLoading[0]['from'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.bold,
@@ -178,7 +173,7 @@ class printBastLoading {
                                       height: 5,
                                     ),
                                     pw.Text(
-                                      ": -",
+                                      ": ${dataLoading[0]['to'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.bold,
@@ -188,7 +183,7 @@ class printBastLoading {
                                       height: 5,
                                     ),
                                     pw.Text(
-                                      ": -",
+                                      ": ${dataLoading[0]['perusahaan']['company_name'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.bold,
@@ -198,7 +193,7 @@ class printBastLoading {
                                       height: 5,
                                     ),
                                     pw.Text(
-                                      ": REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
+                                      ": ${dataLoading[0]['project_name'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.bold,
@@ -224,8 +219,8 @@ class printBastLoading {
                   pw.Container(
                     width: 100,
                     height: 20,
-                    decoration:
-                        pw.BoxDecoration(color: PdfColor.fromInt(0xffFFB800)),
+                    decoration: const pw.BoxDecoration(
+                        color: PdfColor.fromInt(0xffFFB800)),
                     child: pw.Center(
                       child: pw.Text("CABLE",
                           style: pw.TextStyle(
@@ -237,15 +232,15 @@ class printBastLoading {
                   ),
                 ],
               ),
-              TableCableBast(),
+              TableCableBast(dataLoadingCable),
               pw.Row(
                 mainAxisAlignment: pw.MainAxisAlignment.start,
                 children: [
                   pw.Container(
                     width: 100,
                     height: 20,
-                    decoration:
-                        pw.BoxDecoration(color: PdfColor.fromInt(0xffFFB800)),
+                    decoration: const pw.BoxDecoration(
+                        color: PdfColor.fromInt(0xffFFB800)),
                     child: pw.Center(
                       child: pw.Text("NON CABLE",
                           style: pw.TextStyle(
@@ -257,7 +252,7 @@ class printBastLoading {
                   ),
                 ],
               ),
-              TableNonCableBast(),
+              TableNonCableBast(dataLoadingSparekit),
               pw.SizedBox(height: 50),
               pw.Container(
                   child: pw.Row(
@@ -300,7 +295,7 @@ class printBastLoading {
                             color: PdfColors.black,
                           )),
                       pw.Container(height: 60, child: pw.Column()),
-                      pw.Text("KURNIAWAN ARIFULLAH",
+                      pw.Text("${dataLoading[0]['diserahkan']['name']}",
                           style: pw.TextStyle(
                             fontSize: 10,
                             fontWeight: pw.FontWeight.bold,
@@ -324,13 +319,14 @@ class printBastLoading {
                       pw.Container(
                         height: 60,
                       ),
-                      pw.Text("RIFAL (CHIEF)",
+                      pw.Text("${dataLoading[0]['diterima']}",
                           style: pw.TextStyle(
                             fontSize: 10,
                             fontWeight: pw.FontWeight.bold,
                             color: PdfColors.black,
                           )),
-                      pw.Text("( LCT NAPOLEON )",
+                      pw.Text(
+                          "( ${dataLoading[0]['perusahaan']['company_name']} )",
                           style: pw.TextStyle(
                             fontSize: 10,
                             fontWeight: pw.FontWeight.bold,
@@ -348,7 +344,7 @@ class printBastLoading {
                       pw.Container(
                         height: 60,
                       ),
-                      pw.Text("RESVICAR ALWAN PRATAMA",
+                      pw.Text("${dataLoading[0]['diketahui']['name']}",
                           style: pw.TextStyle(
                             fontSize: 10,
                             fontWeight: pw.FontWeight.bold,
@@ -369,7 +365,10 @@ class printBastLoading {
         onLayout: (PdfPageFormat format) async => doc.save());
   }
 
-  static TableCableBast() {
+  static TableCableBast(List dataLoadingCable) {
+    var totalLength = List.generate(dataLoadingCable.length,
+            (index) => dataLoadingCable[index]['length_report'])
+        .reduce((a, b) => a + b);
     return pw.Column(children: [
       pw.Container(
           child: pw.Row(children: [
@@ -445,7 +444,7 @@ class printBastLoading {
             decoration: pw.BoxDecoration(border: pw.Border.all()),
             child: pw.Center(
                 child: pw.Text('''RESINTANCE
-(Km)''',
+(M)''',
                     style: pw.TextStyle(
                       fontSize: 8,
                       fontWeight: pw.FontWeight.normal,
@@ -457,7 +456,7 @@ class printBastLoading {
             decoration: pw.BoxDecoration(border: pw.Border.all()),
             child: pw.Center(
                 child: pw.Text('''LENGTH
-(Km)
+(M)
               ''',
                     style: pw.TextStyle(
                       fontSize: 8,
@@ -477,7 +476,7 @@ class printBastLoading {
                     )))),
       ])),
       pw.ListView.builder(
-          itemCount: 2,
+          itemCount: dataLoadingCable.length,
           itemBuilder: (context, index) {
             return pw.Container(
                 child: pw.Row(children: [
@@ -486,7 +485,8 @@ class printBastLoading {
                   width: 40,
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
-                      child: pw.Text("22109",
+                      child: pw.Text(
+                          "${dataLoadingCable[index]['label_id'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -497,7 +497,8 @@ class printBastLoading {
                   width: 60,
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
-                      child: pw.Text("SMPCS#2",
+                      child: pw.Text(
+                          "${dataLoadingCable[index]['system']['system'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -508,7 +509,8 @@ class printBastLoading {
                   width: 60,
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
-                      child: pw.Text("OCC-SC900",
+                      child: pw.Text(
+                          "${dataLoadingCable[index]['cable_type']['cable_type'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -519,7 +521,8 @@ class printBastLoading {
                   width: 40,
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
-                      child: pw.Text("NEC",
+                      child: pw.Text(
+                          "${dataLoadingCable[index]['manufacturer']['manufacturer'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -530,7 +533,20 @@ class printBastLoading {
                   width: 60,
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
-                      child: pw.Text("LWP",
+                      child: pw.Text(
+                          "${dataLoadingCable[index]['armoring_type']['armoring_type'] ?? "-"}",
+                          style: pw.TextStyle(
+                            fontSize: 6,
+                            fontWeight: pw.FontWeight.normal,
+                            color: PdfColors.black,
+                          )))),
+              pw.Container(
+                  height: 20,
+                  width: 60,
+                  decoration: pw.BoxDecoration(border: pw.Border.all()),
+                  child: pw.Center(
+                      child: pw.Text(
+                          "${dataLoadingCable[index]['sigma_core'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -552,7 +568,8 @@ class printBastLoading {
                   width: 60,
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
-                      child: pw.Text("-",
+                      child: pw.Text(
+                          "${dataLoadingCable[index]['length_report'] ?? "-"}",
                           style: pw.TextStyle(
                             fontSize: 6,
                             fontWeight: pw.FontWeight.normal,
@@ -563,23 +580,13 @@ class printBastLoading {
                   width: 60,
                   decoration: pw.BoxDecoration(border: pw.Border.all()),
                   child: pw.Center(
-                      child: pw.Text("2.400",
-                          style: pw.TextStyle(
-                            fontSize: 6,
-                            fontWeight: pw.FontWeight.normal,
-                            color: PdfColors.black,
-                          )))),
-              pw.Container(
-                  height: 20,
-                  width: 60,
-                  decoration: pw.BoxDecoration(border: pw.Border.all()),
-                  child: pw.Center(
-                      child: pw.Text("",
-                          style: pw.TextStyle(
-                            fontSize: 6,
-                            fontWeight: pw.FontWeight.normal,
-                            color: PdfColors.black,
-                          )))),
+                      child:
+                          pw.Text("${dataLoadingCable[index]['remark'] ?? "-"}",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )))),
             ]));
           }),
       pw.Container(
@@ -612,7 +619,8 @@ class printBastLoading {
             height: 20,
             width: 60,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(),
+                color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
                 child: pw.Text("TOTAL",
                     style: pw.TextStyle(
@@ -625,9 +633,10 @@ class printBastLoading {
             height: 20,
             width: 60,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(),
+                color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
-                child: pw.Text("21.783",
+                child: pw.Text("$totalLength",
                     style: pw.TextStyle(
                       fontSize: 6,
                       fontWeight: pw.FontWeight.normal,
@@ -637,7 +646,7 @@ class printBastLoading {
           height: 20,
           width: 60,
         ),
-      ])),
+      ]))
     ]);
   }
 
@@ -646,7 +655,12 @@ class printBastLoading {
     {"7458932", "4567450"}
   ];
 
-  static TableNonCableBast() {
+  static TableNonCableBast(List DataLoadingSparekit) {
+    var totalQty = List.generate(DataLoadingSparekit.length,
+        (index) => DataLoadingSparekit[index]['qty']).reduce((a, b) => a + b);
+    var totalWeight = List.generate(DataLoadingSparekit.length,
+            (index) => DataLoadingSparekit[index]['weight_kg'])
+        .reduce((a, b) => a + b);
     return pw.Column(children: [
       pw.Container(
           child: pw.Row(children: [
@@ -741,7 +755,7 @@ NUMBER""",
                     )))),
       ])),
       pw.ListView.builder(
-          itemCount: 4,
+          itemCount: DataLoadingSparekit.length,
           itemBuilder: (context, index) {
             return pw.Container(
                 decoration: pw.BoxDecoration(border: pw.Border.all()),
@@ -749,223 +763,176 @@ NUMBER""",
                   pw.Container(
                       child: pw.Row(children: [
                     pw.Container(
-                        child: pw.ListView.builder(
-                      itemCount: 1,
-                      itemBuilder: (context, index) {
-                        return pw.Padding(
-                          padding: pw.EdgeInsets.symmetric(vertical: 5),
-                          child: pw.Container(
-                              width: 20,
-                              child: pw.Center(
-                                  child: pw.Text("${index + 1}",
-                                      style: pw.TextStyle(
-                                        fontSize: 6,
-                                        fontWeight: pw.FontWeight.normal,
-                                        color: PdfColors.black,
-                                      )))),
-                        );
-                      },
-                    )),
-                    pw.Container(
-                        child: pw.ListView.builder(
-                      itemCount: 1,
-                      itemBuilder: (context, index) {
-                        return pw.Padding(
-                          padding: pw.EdgeInsets.symmetric(vertical: 5),
-                          child: pw.Container(
-                              width: 150,
-                              child: pw.Center(
-                                  child: pw.Text(
-                                      "UJ REMOULD KIT FOR COMMON COMPONENT",
-                                      style: pw.TextStyle(
-                                        fontSize: 6,
-                                        fontWeight: pw.FontWeight.normal,
-                                        color: PdfColors.black,
-                                      )))),
-                        );
-                      },
-                    )),
-                    pw.Container(
-                        child: pw.ListView.builder(
-                      itemCount: 1,
-                      itemBuilder: (context, index) {
-                        return pw.Padding(
-                          padding: pw.EdgeInsets.symmetric(vertical: 5),
-                          child: pw.Container(
-                              width: 60,
-                              child: pw.Center(
-                                  child: pw.Text("KIT 17010",
-                                      style: pw.TextStyle(
-                                        fontSize: 6,
-                                        fontWeight: pw.FontWeight.normal,
-                                        color: PdfColors.black,
-                                      )))),
-                        );
-                      },
-                    )),
-                    pw.Container(
-                        decoration: pw.BoxDecoration(border: pw.Border.all()),
-                        child: pw.ListView.builder(
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            return pw.Padding(
-                                padding: pw.EdgeInsets.symmetric(vertical: 5),
-                                child: pw.Container(
-                                    width: 60,
-                                    child: pw.Center(
-                                        child: pw.Text("0734465",
-                                            style: pw.TextStyle(
-                                              fontSize: 6,
-                                              fontWeight: pw.FontWeight.normal,
-                                              color: PdfColors.black,
-                                            )))));
-                          },
-                        )),
-                    pw.Container(
-                        decoration: pw.BoxDecoration(border: pw.Border.all()),
-                        child: pw.ListView.builder(
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            return pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(vertical: 5),
-                              child: pw.Container(
-                                  width: 30,
-                                  child: pw.Center(
-                                      child: pw.Text("4",
-                                          style: pw.TextStyle(
-                                            fontSize: 6,
-                                            fontWeight: pw.FontWeight.normal,
-                                            color: PdfColors.black,
-                                          )))),
-                            );
-                          },
-                        )),
-                    pw.Container(
-                        decoration: pw.BoxDecoration(border: pw.Border.all()),
-                        child: pw.ListView.builder(
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            return pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(vertical: 5),
-                              child: pw.Container(
-                                  width: 40,
-                                  child: pw.Center(
-                                      child: pw.Text("PCS",
-                                          style: pw.TextStyle(
-                                            fontSize: 6,
-                                            fontWeight: pw.FontWeight.normal,
-                                            color: PdfColors.black,
-                                          )))),
-                            );
-                          },
-                        )),
-                    pw.Container(
-                        decoration: pw.BoxDecoration(border: pw.Border.all()),
-                        child: pw.ListView.builder(
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            return pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(vertical: 5),
-                              child: pw.Container(
-                                  width: 60,
-                                  child: pw.Center(
-                                      child: pw.Text("2.665",
-                                          style: pw.TextStyle(
-                                            fontSize: 6,
-                                            fontWeight: pw.FontWeight.normal,
-                                            color: PdfColors.black,
-                                          )))),
-                            );
-                          },
-                        )),
-                    pw.Container(
-                        decoration: pw.BoxDecoration(border: pw.Border.all()),
-                        child: pw.ListView.builder(
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            return pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(vertical: 5),
-                              child: pw.Container(
-                                  width: 80,
-                                  child: pw.Center(
-                                      child: pw.Text(
-                                          "hjvgjhcvyfctghfhgjyghfjtyjut",
-                                          style: pw.TextStyle(
-                                            fontSize: 6,
-                                            fontWeight: pw.FontWeight.normal,
-                                            color: PdfColors.black,
-                                          )))),
-                            );
-                          },
-                        )),
-                  ])),
-                  pw.Container(
-                      child: pw.Row(children: [
-                    pw.Container(
+                        width: 20,
                         height: 20,
-                        width: 290,
-                        decoration: pw.BoxDecoration(
-                          border: pw.Border.all(),
-                        ),
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
                         child: pw.Center(
-                            child: pw.Text("Sub Total",
-                                style: pw.TextStyle(
-                                  fontSize: 8,
-                                  fontWeight: pw.FontWeight.bold,
-                                  color: PdfColors.red,
-                                )))),
+                          child: pw.Text("${index + 1}",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
                     pw.Container(
+                        width: 150,
                         height: 20,
-                        width: 30,
-                        decoration: pw.BoxDecoration(
-                          border: pw.Border.all(),
-                        ),
-                        child: pw.Center(
-                            child: pw.Text("8",
-                                style: pw.TextStyle(
-                                  fontSize: 8,
-                                  fontWeight: pw.FontWeight.bold,
-                                  color: PdfColors.red,
-                                )))),
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5),
+                            child: pw.Center(
+                              child: pw.Text(
+                                  "${DataLoadingSparekit[index]['item_name'] ?? "-"}",
+                                  style: pw.TextStyle(
+                                    fontSize: 6,
+                                    fontWeight: pw.FontWeight.normal,
+                                    color: PdfColors.black,
+                                  )),
+                            ))),
                     pw.Container(
-                        height: 20,
-                        width: 40,
-                        decoration: pw.BoxDecoration(
-                          border: pw.Border.all(),
-                        ),
-                        child: pw.Center(
-                            child: pw.Text("",
-                                style: pw.TextStyle(
-                                  fontSize: 8,
-                                  fontWeight: pw.FontWeight.bold,
-                                  fontStyle: pw.FontStyle.italic,
-                                  color: PdfColors.black,
-                                )))),
-                    pw.Container(
-                        height: 20,
                         width: 60,
-                        decoration: pw.BoxDecoration(
-                          border: pw.Border.all(),
-                        ),
-                        child: pw.Center(
-                            child: pw.Text("28,00",
-                                style: pw.TextStyle(
-                                  fontSize: 8,
-                                  fontWeight: pw.FontWeight.bold,
-                                  color: PdfColors.red,
-                                )))),
-                    pw.Container(
                         height: 20,
-                        width: 80,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
                         child: pw.Center(
-                            child: pw.Text("",
+                          child: pw.Text("-",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
+                    pw.Container(
+                        width: 60,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                            child: pw.Text(
+                                "${DataLoadingSparekit[index]['serial_number'] ?? "-"}",
                                 style: pw.TextStyle(
-                                  fontSize: 8,
-                                  fontWeight: pw.FontWeight.bold,
-                                  fontStyle: pw.FontStyle.italic,
+                                  fontSize: 6,
+                                  fontWeight: pw.FontWeight.normal,
                                   color: PdfColors.black,
                                 )))),
+                    pw.Container(
+                        width: 30,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                          child: pw.Text(
+                              "${DataLoadingSparekit[index]['qty'] ?? "-"}",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
+                    pw.Container(
+                        width: 40,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                          child: pw.Text(
+                              "${DataLoadingSparekit[index]['unit'] ?? "-"}",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
+                    pw.Container(
+                        width: 60,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                          child: pw.Text(
+                              "${DataLoadingSparekit[index]['weight_kg'] ?? "-"}",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
+                    pw.Container(
+                        width: 80,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                          child: pw.Text(
+                              "${DataLoadingSparekit[index]['remark'] ?? "-"}",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
                   ])),
+                  // pw.Container(
+                  //     child: pw.Row(children: [
+                  //   pw.Container(
+                  //       height: 20,
+                  //       width: 290,
+                  //       decoration: pw.BoxDecoration(
+                  //         border: pw.Border.all(),
+                  //       ),
+                  //       child: pw.Center(
+                  //           child: pw.Text("Sub Total",
+                  //               style: pw.TextStyle(
+                  //                 fontSize: 8,
+                  //                 fontWeight: pw.FontWeight.bold,
+                  //                 color: PdfColors.red,
+                  //               )))),
+                  //   pw.Container(
+                  //       height: 20,
+                  //       width: 30,
+                  //       decoration: pw.BoxDecoration(
+                  //         border: pw.Border.all(),
+                  //       ),
+                  //       child: pw.Center(
+                  //           child: pw.Text("8",
+                  //               style: pw.TextStyle(
+                  //                 fontSize: 8,
+                  //                 fontWeight: pw.FontWeight.bold,
+                  //                 color: PdfColors.red,
+                  //               )))),
+                  //   pw.Container(
+                  //       height: 20,
+                  //       width: 40,
+                  //       decoration: pw.BoxDecoration(
+                  //         border: pw.Border.all(),
+                  //       ),
+                  //       child: pw.Center(
+                  //           child: pw.Text("",
+                  //               style: pw.TextStyle(
+                  //                 fontSize: 8,
+                  //                 fontWeight: pw.FontWeight.bold,
+                  //                 fontStyle: pw.FontStyle.italic,
+                  //                 color: PdfColors.black,
+                  //               )))),
+                  //   pw.Container(
+                  //       height: 20,
+                  //       width: 60,
+                  //       decoration: pw.BoxDecoration(
+                  //         border: pw.Border.all(),
+                  //       ),
+                  //       child: pw.Center(
+                  //           child: pw.Text("28,00",
+                  //               style: pw.TextStyle(
+                  //                 fontSize: 8,
+                  //                 fontWeight: pw.FontWeight.bold,
+                  //                 color: PdfColors.red,
+                  //               )))),
+                  //   pw.Container(
+                  //       height: 20,
+                  //       width: 80,
+                  //       child: pw.Center(
+                  //           child: pw.Text("",
+                  //               style: pw.TextStyle(
+                  //                 fontSize: 8,
+                  //                 fontWeight: pw.FontWeight.bold,
+                  //                 fontStyle: pw.FontStyle.italic,
+                  //                 color: PdfColors.black,
+                  //               )))),
+                  // ])),
                 ]));
           }),
       pw.Container(
@@ -994,7 +961,8 @@ NUMBER""",
             height: 20,
             width: 120,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(),
+                color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
                 child: pw.Text("GRANDE TOTAL",
                     style: pw.TextStyle(
@@ -1007,9 +975,10 @@ NUMBER""",
             height: 20,
             width: 30,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(),
+                color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
-                child: pw.Text("44",
+                child: pw.Text("$totalQty",
                     style: pw.TextStyle(
                       fontSize: 8,
                       fontWeight: pw.FontWeight.bold,
@@ -1020,7 +989,8 @@ NUMBER""",
             height: 20,
             width: 40,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(),
+                color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
                 child: pw.Text("",
                     style: pw.TextStyle(
@@ -1033,9 +1003,10 @@ NUMBER""",
             height: 20,
             width: 60,
             decoration: pw.BoxDecoration(
-                border: pw.Border.all(), color: PdfColor.fromInt(0xffFFB800)),
+                border: pw.Border.all(),
+                color: const PdfColor.fromInt(0xffFFB800)),
             child: pw.Center(
-                child: pw.Text("1.451.89",
+                child: pw.Text("$totalWeight",
                     style: pw.TextStyle(
                       fontSize: 8,
                       fontWeight: pw.FontWeight.bold,
@@ -1057,3 +1028,234 @@ NUMBER""",
     ]);
   }
 }
+
+
+// pw.Container(
+//                 decoration: pw.BoxDecoration(border: pw.Border.all()),
+//                 child: pw.Column(children: [
+//                   pw.Container(
+//                       child: pw.Row(children: [
+//                     pw.Container(
+//                         child: pw.ListView.builder(
+//                       itemCount: 1,
+//                       itemBuilder: (context, index) {
+//                         return pw.Padding(
+//                           padding: const pw.EdgeInsets.symmetric(vertical: 5),
+//                           child: pw.Container(
+//                               width: 20,
+//                               child: pw.Center(
+//                                   child: pw.Text("${index + 1}",
+//                                       style: pw.TextStyle(
+//                                         fontSize: 6,
+//                                         fontWeight: pw.FontWeight.normal,
+//                                         color: PdfColors.black,
+//                                       )))),
+//                         );
+//                       },
+//                     )),
+//                     pw.Container(
+//                         child: pw.ListView.builder(
+//                       itemCount: 1,
+//                       itemBuilder: (context, index) {
+//                         return pw.Padding(
+//                           padding: const pw.EdgeInsets.symmetric(vertical: 5),
+//                           child: pw.Container(
+//                               width: 150,
+//                               child: pw.Center(
+//                                   child: pw.Text(
+//                                       "UJ REMOULD KIT FOR COMMON COMPONENT",
+//                                       style: pw.TextStyle(
+//                                         fontSize: 6,
+//                                         fontWeight: pw.FontWeight.normal,
+//                                         color: PdfColors.black,
+//                                       )))),
+//                         );
+//                       },
+//                     )),
+//                     pw.Container(
+//                         child: pw.ListView.builder(
+//                       itemCount: 1,
+//                       itemBuilder: (context, index) {
+//                         return pw.Padding(
+//                           padding: const pw.EdgeInsets.symmetric(vertical: 5),
+//                           child: pw.Container(
+//                               width: 60,
+//                               child: pw.Center(
+//                                   child: pw.Text("KIT 17010",
+//                                       style: pw.TextStyle(
+//                                         fontSize: 6,
+//                                         fontWeight: pw.FontWeight.normal,
+//                                         color: PdfColors.black,
+//                                       )))),
+//                         );
+//                       },
+//                     )),
+//                     pw.Container(
+//                         decoration: pw.BoxDecoration(border: pw.Border.all()),
+//                         child: pw.ListView.builder(
+//                           itemCount: 3,
+//                           itemBuilder: (context, index) {
+//                             return pw.Padding(
+//                                 padding:
+//                                     const pw.EdgeInsets.symmetric(vertical: 5),
+//                                 child: pw.Container(
+//                                     width: 60,
+//                                     child: pw.Center(
+//                                         child: pw.Text("0734465",
+//                                             style: pw.TextStyle(
+//                                               fontSize: 6,
+//                                               fontWeight: pw.FontWeight.normal,
+//                                               color: PdfColors.black,
+//                                             )))));
+//                           },
+//                         )),
+//                     pw.Container(
+//                         decoration: pw.BoxDecoration(border: pw.Border.all()),
+//                         child: pw.ListView.builder(
+//                           itemCount: 3,
+//                           itemBuilder: (context, index) {
+//                             return pw.Padding(
+//                               padding:
+//                                   const pw.EdgeInsets.symmetric(vertical: 5),
+//                               child: pw.Container(
+//                                   width: 30,
+//                                   child: pw.Center(
+//                                       child: pw.Text("4",
+//                                           style: pw.TextStyle(
+//                                             fontSize: 6,
+//                                             fontWeight: pw.FontWeight.normal,
+//                                             color: PdfColors.black,
+//                                           )))),
+//                             );
+//                           },
+//                         )),
+//                     pw.Container(
+//                         decoration: pw.BoxDecoration(border: pw.Border.all()),
+//                         child: pw.ListView.builder(
+//                           itemCount: 3,
+//                           itemBuilder: (context, index) {
+//                             return pw.Padding(
+//                               padding:
+//                                   const pw.EdgeInsets.symmetric(vertical: 5),
+//                               child: pw.Container(
+//                                   width: 40,
+//                                   child: pw.Center(
+//                                       child: pw.Text("PCS",
+//                                           style: pw.TextStyle(
+//                                             fontSize: 6,
+//                                             fontWeight: pw.FontWeight.normal,
+//                                             color: PdfColors.black,
+//                                           )))),
+//                             );
+//                           },
+//                         )),
+//                     pw.Container(
+//                         decoration: pw.BoxDecoration(border: pw.Border.all()),
+//                         child: pw.ListView.builder(
+//                           itemCount: 3,
+//                           itemBuilder: (context, index) {
+//                             return pw.Padding(
+//                               padding:
+//                                   const pw.EdgeInsets.symmetric(vertical: 5),
+//                               child: pw.Container(
+//                                   width: 60,
+//                                   child: pw.Center(
+//                                       child: pw.Text("2.665",
+//                                           style: pw.TextStyle(
+//                                             fontSize: 6,
+//                                             fontWeight: pw.FontWeight.normal,
+//                                             color: PdfColors.black,
+//                                           )))),
+//                             );
+//                           },
+//                         )),
+//                     pw.Container(
+//                         decoration: pw.BoxDecoration(border: pw.Border.all()),
+//                         child: pw.ListView.builder(
+//                           itemCount: 3,
+//                           itemBuilder: (context, index) {
+//                             return pw.Padding(
+//                               padding:
+//                                   const pw.EdgeInsets.symmetric(vertical: 5),
+//                               child: pw.Container(
+//                                   width: 80,
+//                                   child: pw.Center(
+//                                       child: pw.Text(
+//                                           "hjvgjhcvyfctghfhgjyghfjtyjut",
+//                                           style: pw.TextStyle(
+//                                             fontSize: 6,
+//                                             fontWeight: pw.FontWeight.normal,
+//                                             color: PdfColors.black,
+//                                           )))),
+//                             );
+//                           },
+//                         )),
+//                   ])),
+//                   pw.Container(
+//                       child: pw.Row(children: [
+//                     pw.Container(
+//                         height: 20,
+//                         width: 290,
+//                         decoration: pw.BoxDecoration(
+//                           border: pw.Border.all(),
+//                         ),
+//                         child: pw.Center(
+//                             child: pw.Text("Sub Total",
+//                                 style: pw.TextStyle(
+//                                   fontSize: 8,
+//                                   fontWeight: pw.FontWeight.bold,
+//                                   color: PdfColors.red,
+//                                 )))),
+//                     pw.Container(
+//                         height: 20,
+//                         width: 30,
+//                         decoration: pw.BoxDecoration(
+//                           border: pw.Border.all(),
+//                         ),
+//                         child: pw.Center(
+//                             child: pw.Text("8",
+//                                 style: pw.TextStyle(
+//                                   fontSize: 8,
+//                                   fontWeight: pw.FontWeight.bold,
+//                                   color: PdfColors.red,
+//                                 )))),
+//                     pw.Container(
+//                         height: 20,
+//                         width: 40,
+//                         decoration: pw.BoxDecoration(
+//                           border: pw.Border.all(),
+//                         ),
+//                         child: pw.Center(
+//                             child: pw.Text("",
+//                                 style: pw.TextStyle(
+//                                   fontSize: 8,
+//                                   fontWeight: pw.FontWeight.bold,
+//                                   fontStyle: pw.FontStyle.italic,
+//                                   color: PdfColors.black,
+//                                 )))),
+//                     pw.Container(
+//                         height: 20,
+//                         width: 60,
+//                         decoration: pw.BoxDecoration(
+//                           border: pw.Border.all(),
+//                         ),
+//                         child: pw.Center(
+//                             child: pw.Text("28,00",
+//                                 style: pw.TextStyle(
+//                                   fontSize: 8,
+//                                   fontWeight: pw.FontWeight.bold,
+//                                   color: PdfColors.red,
+//                                 )))),
+//                     pw.Container(
+//                         height: 20,
+//                         width: 80,
+//                         child: pw.Center(
+//                             child: pw.Text("",
+//                                 style: pw.TextStyle(
+//                                   fontSize: 8,
+//                                   fontWeight: pw.FontWeight.bold,
+//                                   fontStyle: pw.FontStyle.italic,
+//                                   color: PdfColors.black,
+//                                 )))),
+//                   ])),
+//                 ]));

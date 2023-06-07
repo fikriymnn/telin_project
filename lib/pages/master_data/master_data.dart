@@ -8,7 +8,6 @@ import 'package:telin_project/pages/master_data/manufacture.dart';
 import 'package:telin_project/pages/master_data/perusahan.dart';
 import 'package:telin_project/pages/master_data/system.dart';
 import 'package:telin_project/pages/master_data/unit.dart';
-import 'package:telin_project/widgets/custom_text.dart';
 
 class MasterDataViewPage extends StatelessWidget {
   const MasterDataViewPage({super.key});
@@ -22,15 +21,15 @@ class MasterDataViewPage extends StatelessWidget {
           children: [
             InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SystemScreens()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const SystemScreens()));
                   },
                   child: Container(
                     width: 170.6,
                     height: 50.6,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                        border: Border.all(color: const Color(0xffA5C176), width: 3.3),
                         borderRadius: BorderRadius.circular(4),
-                        color: Color(0xffB1CC85)),
+                        color: const Color(0xffB1CC85)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 14.6),
                       child: Center(
@@ -43,18 +42,18 @@ class MasterDataViewPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
                  InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ArmoringTypeScreens()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const ArmoringTypeScreens()));
                   },
                   child: Container(
                     width: 170.6,
                     height: 50.6,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                        border: Border.all(color: const Color(0xffA5C176), width: 3.3),
                         borderRadius: BorderRadius.circular(4),
-                        color: Color(0xffB1CC85)),
+                        color: const Color(0xffB1CC85)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 14.6),
                       child: Center(
@@ -67,18 +66,18 @@ class MasterDataViewPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
                  InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CableTypeScreens()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const CableTypeScreens()));
                   },
                   child: Container(
                     width: 170.6,
                     height: 50.6,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                        border: Border.all(color: const Color(0xffA5C176), width: 3.3),
                         borderRadius: BorderRadius.circular(4),
-                        color: Color(0xffB1CC85)),
+                        color: const Color(0xffB1CC85)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 14.6),
                       child: Center(
@@ -91,18 +90,18 @@ class MasterDataViewPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
                  InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ManufactureScreens()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const ManufactureScreens()));
                   },
                   child: Container(
                     width: 170.6,
                     height: 50.6,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                        border: Border.all(color: const Color(0xffA5C176), width: 3.3),
                         borderRadius: BorderRadius.circular(4),
-                        color: Color(0xffB1CC85)),
+                        color: const Color(0xffB1CC85)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 14.6),
                       child: Center(
@@ -115,18 +114,18 @@ class MasterDataViewPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
                  InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CoreTypeScreens()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const CoreTypeScreens()));
                   },
                   child: Container(
                     width: 170.6,
                     height: 50.6,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                        border: Border.all(color: const Color(0xffA5C176), width: 3.3),
                         borderRadius: BorderRadius.circular(4),
-                        color: Color(0xffB1CC85)),
+                        color: const Color(0xffB1CC85)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 14.6),
                       child: Center(
@@ -139,18 +138,18 @@ class MasterDataViewPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
                  InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>LocationScreens()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const LocationScreens()));
                   },
                   child: Container(
                     width: 170.6,
                     height: 50.6,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                        border: Border.all(color: const Color(0xffA5C176), width: 3.3),
                         borderRadius: BorderRadius.circular(4),
-                        color: Color(0xffB1CC85)),
+                        color: const Color(0xffB1CC85)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 14.6),
                       child: Center(
@@ -163,18 +162,18 @@ class MasterDataViewPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
                  InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>UnitScreens()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const UnitScreens()));
                   },
                   child: Container(
                     width: 170.6,
                     height: 50.6,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                        border: Border.all(color: const Color(0xffA5C176), width: 3.3),
                         borderRadius: BorderRadius.circular(4),
-                        color: Color(0xffB1CC85)),
+                        color: const Color(0xffB1CC85)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 14.6),
                       child: Center(
@@ -187,18 +186,18 @@ class MasterDataViewPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
                  InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>PerusahaanScreens()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const PerusahaanScreens()));
                   },
                   child: Container(
                     width: 170.6,
                     height: 50.6,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffA5C176), width: 3.3),
+                        border: Border.all(color: const Color(0xffA5C176), width: 3.3),
                         borderRadius: BorderRadius.circular(4),
-                        color: Color(0xffB1CC85)),
+                        color: const Color(0xffB1CC85)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 14.6),
                       child: Center(
@@ -211,7 +210,7 @@ class MasterDataViewPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
               
           ],
         ),

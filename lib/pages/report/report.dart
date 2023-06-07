@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:telin_project/widgets/custom_text.dart';
 import 'package:telin_project/widgets/report/report_table_cable.dart';
 import 'package:telin_project/widgets/report/report_table_noncable.dart';
 
@@ -15,19 +14,19 @@ class ReportViewPage extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CableReport()));
+                  MaterialPageRoute(builder: (context) => const CableReport()));
             },
-            child: Text("Cable Report"),
+            child: const Text("Cable Report"),
           ),
-          SizedBox(
+          const SizedBox(
             width: 50,
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NonCableReport()));
+                  MaterialPageRoute(builder: (context) => const NonCableReport()));
             },
-            child: Text("Non Cable Report"),
+            child: const Text("Non Cable Report"),
           ),
         ],
       ),

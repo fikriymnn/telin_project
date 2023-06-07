@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/widgets/setting/edit_akun.dart';
 
 class DetailAkun extends StatefulWidget {
-  const DetailAkun({super.key});
+  final String id;
+  final String name;
+  final String username;
+  final String email;
+  final String password;
+  final String role;
+  const DetailAkun(
+      {super.key,
+      required this.id,
+      required this.name,
+      required this.username,
+      required this.email,
+      required this.password,
+      required this.role});
 
   @override
   State<DetailAkun> createState() => _DetailAkunState();
 }
 
 class _DetailAkunState extends State<DetailAkun> {
-   var _obscureText = false;
+  final _obscureText = false;
   @override
   Widget build(BuildContext context) {
-   
-   
     return AlertDialog(
       content: Container(
         width: 942,
@@ -56,32 +64,22 @@ class _DetailAkunState extends State<DetailAkun> {
                     height: 44,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                        border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
                               color: Colors.black.withOpacity(0.25),
                               blurRadius: 5,
-                              offset: Offset(0, 4))
+                              offset: const Offset(0, 4))
                         ]),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
-                      child: Center(
-                        child: TextField(
-                          enabled: false,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 10.6,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black.withOpacity(0.6),
-                          ),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintStyle: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black.withOpacity(0.6),
-                              ),
-                              hintText: "Gudang"),
+                      child: Text(
+                        widget.name,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10.6,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black.withOpacity(0.6),
                         ),
                       ),
                     ),
@@ -89,7 +87,7 @@ class _DetailAkunState extends State<DetailAkun> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -117,32 +115,22 @@ class _DetailAkunState extends State<DetailAkun> {
                     height: 44,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                        border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
                               color: Colors.black.withOpacity(0.25),
                               blurRadius: 5,
-                              offset: Offset(0, 4))
+                              offset: const Offset(0, 4))
                         ]),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
-                      child: Center(
-                        child: TextField(
-                          enabled: false,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 10.6,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black.withOpacity(0.6),
-                          ),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintStyle: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black.withOpacity(0.6),
-                              ),
-                              hintText: "Gudang1"),
+                      child: Text(
+                        widget.username,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10.6,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black.withOpacity(0.6),
                         ),
                       ),
                     ),
@@ -150,7 +138,7 @@ class _DetailAkunState extends State<DetailAkun> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -178,175 +166,123 @@ class _DetailAkunState extends State<DetailAkun> {
                     height: 44,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(width: 5, color: Color(0xffF0F0F0)),
+                        border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
                               color: Colors.black.withOpacity(0.25),
                               blurRadius: 5,
-                              offset: Offset(0, 4))
+                              offset: const Offset(0, 4))
                         ]),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 18, bottom: 8),
-                      child: Center(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: TextField(
-                                
-                                obscureText: _obscureText,
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 10.6,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black.withOpacity(0.6),
-                                ),
-                                decoration: InputDecoration(
-                                  enabled: false,
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black.withOpacity(0.6),
-                                    ),
-                                    hintText: "gudangtelkom1"),
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  _obscureText = !_obscureText;
-                                });
-                              },
-                              icon: Icon(
-                                _obscureText
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Colors.black.withOpacity(0.6),
-                              ),
-                            )
-                          ],
+                      child: Text(
+                        widget.password,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10.6,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black.withOpacity(0.6),
                         ),
                       ),
                     ),
                   ),
-                   SizedBox(
-              height: 10,
-            ),
-                Container(
-                  child: Column(
-                    children: [
-                      Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    child: Column(
                       children: [
-                        Text(
-                          "Select Role",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Select Role",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 154.6,
+                                height: 46.6,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xffEC1D26),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 148,
+                                    height: 40,
+                                    color: Colors.white,
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 13.3),
+                                      child: Row(
+                                        children: [
+                                          const CircleAvatar(
+                                            radius: 8,
+                                            backgroundColor: Color(0xffEC1D26),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            widget.role,
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 13.3,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
                   ),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 154.6,
-                              height: 46.6,
-                              decoration: BoxDecoration(
-                                color: Color(0xffEC1D26),
+                  const SizedBox(
+                    height: 101.3,
+                  ),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: 90,
+                            height: 37.3,
+                            decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: Center(
-                                child: Container(
-                                  width: 148,
-                                  height: 40,
-                                  color: Colors.white,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 13.3),
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(radius: 8,backgroundColor: Color(0xffEC1D26),),
-                                        SizedBox(width: 10,),
-                                        Text("Super Admin", style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                                            ),)
-                                      ],
-                                    ),
-                                  ),
-                                              
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 101.3,),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: (){},
-                        child: Container(
-                          width: 90,
-                          height: 37.3,
-                          
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(6),color: Color(0xffEC1D26)),
-                          child: Center(
-                            child: Text("Done",style: GoogleFonts.roboto(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.white,
-                                                                    )),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 100,),
-                      InkWell(
-                        onTap: (){
-                          showDialog(
-                              context: context,
-                              barrierColor: Colors.transparent,
-                              builder: (BuildContext context) {
-                                return EditAkun();
-                              });
-                        },
-                        child: Container(
-                          width: 90,
-                          height: 37.3,
-                          
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(6),color: Color(0xff94C8BE)),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.edit,color: Colors.white,size: 24,),
-                                  SizedBox(width: 5,),
-                                  Text("Edit",style: GoogleFonts.roboto(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.white,
-                                                                          )),
-                                ],
-                              ),
+                                color: const Color(0xffEC1D26)),
+                            child: Center(
+                              child: Text("Done",
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  )),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                )
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
@@ -354,6 +290,5 @@ class _DetailAkunState extends State<DetailAkun> {
         ),
       ),
     );
-    ;
   }
 }

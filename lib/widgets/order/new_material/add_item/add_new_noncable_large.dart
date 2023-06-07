@@ -6,11 +6,9 @@ import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_m
 
 import '../../../../api/configAPI.dart';
 
-import '../../../../api/configAPI.dart';
-import '../bast_invoice/bast_new_material.dart';
-
 class AddNewNonCableLarge extends StatefulWidget {
-  const AddNewNonCableLarge({super.key});
+  const AddNewNonCableLarge({super.key, required this.idNewMaterial});
+  final String idNewMaterial;
 
   @override
   State<AddNewNonCableLarge> createState() => _AddNewNonCableLargeState();
@@ -50,31 +48,32 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
 
   List<DropdownMenuItem<String>> get dropdownItemsLocation {
     List<DropdownMenuItem<String>> menuItemsLocation = [
-      DropdownMenuItem(
-          child: Text("Select Location"), value: "Select Location"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select Location", child: Text("Select Location")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsLocation;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsSystem {
     List<DropdownMenuItem<String>> menuItemsSystem = [
-      DropdownMenuItem(child: Text("Select System"), value: "Select System"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(
+          value: "Select System", child: Text("Select System")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsSystem;
   }
 
   List<DropdownMenuItem<String>> get dropdownItemsUnit {
     List<DropdownMenuItem<String>> menuItemsUnit = [
-      DropdownMenuItem(child: Text("Select Unit"), value: "Select Unit"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "Select Unit", child: Text("Select Unit")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItemsUnit;
   }
@@ -98,13 +97,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                 Container(
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Item Name",
+                              "Item Name *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -119,14 +118,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -153,16 +152,16 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Location",
+                              "Location *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -177,14 +176,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -192,6 +191,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
+                                hint: Text(
+                                  "Select Location",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                ),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -205,8 +212,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                 value: selectionLocation,
                                 items: location.map((location) {
                                   return DropdownMenuItem(
-                                    child: Text(location['location']),
-                                    value: location['_id'].toString(),
+                                    value: location['location'].toString(),
+                                    child: Text(location['location'],
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 13.3,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                        )),
                                   );
                                 }).toList(),
                               ),
@@ -214,16 +226,16 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Part Number",
+                              "Part Number *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -238,14 +250,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -272,16 +284,16 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Serial Number",
+                              "Serial Number *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -296,14 +308,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -333,20 +345,20 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 40,
                 ),
                 Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Weigth",
+                              "Weigth *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -361,14 +373,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -400,7 +412,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                               Container(
                                 width: 68.6,
                                 height: 44,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(6),
                                         bottomRight: Radius.circular(6)),
@@ -420,16 +432,16 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "QTY",
+                              "QTY *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -444,14 +456,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -478,16 +490,16 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "System",
+                              "System *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -502,14 +514,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -517,6 +529,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
+                                hint: Text(
+                                  "Select System",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                ),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -530,8 +550,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                 value: selectionSystem,
                                 items: system.map((system) {
                                   return DropdownMenuItem(
-                                    child: Text(system['system']),
                                     value: system['_id'].toString(),
+                                    child: Text(system['system'],
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 13.3,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                        )),
                                   );
                                 }).toList(),
                               ),
@@ -539,16 +564,16 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Unit",
+                              "Unit *",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -563,14 +588,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, right: 18),
@@ -578,6 +603,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
+                                hint: Text(
+                                  "Select Unit",
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                  ),
+                                ),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
@@ -591,8 +624,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                 value: selectionUnit,
                                 items: unit.map((unit) {
                                   return DropdownMenuItem(
-                                    child: Text(unit['unit']),
-                                    value: unit['_id'].toString(),
+                                    value: unit['unit'].toString(),
+                                    child: Text(unit['unit'],
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 13.3,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                        )),
                                   );
                                 }).toList(),
                               ),
@@ -603,13 +641,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 40,
                 ),
                 Container(
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -630,14 +668,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -661,10 +699,10 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.6,
                       ),
-                      Container(
+                      SizedBox(
                         width: 230,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -685,14 +723,14 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                         height: 44,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border:
-                                Border.all(width: 5, color: Color(0xffF0F0F0)),
+                            border: Border.all(
+                                width: 5, color: const Color(0xffF0F0F0)),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.25),
                                   blurRadius: 5,
-                                  offset: Offset(0, 4))
+                                  offset: const Offset(0, 4))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18, bottom: 8),
@@ -722,89 +760,24 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 72,
           ),
           InkWell(
             onTap: () {
-              if (txtItemName.text == '') {
+              if (txtItemName.text == null ||
+                  selectedValueLocation == null ||
+                  txtPartNumber == null ||
+                  txtSerialNumber == null ||
+                  txtWeight == null ||
+                  txtQty == null ||
+                  selectionSystem == null ||
+                  selectionUnit == null) {
                 QuickAlert.show(
                     context: context,
                     type: QuickAlertType.error,
                     title: 'Peringatan',
-                    text: 'Item Name Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionLocation == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Location Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtPartNumber.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Part Number Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtSerialNumber.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Serial Number Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtWeight.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Weight Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtQty.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Qty Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionSystem == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'System Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (selectionUnit == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Unit Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtNamaEvidence.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Evidence Tidak Boleh Kosong',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-              } else if (txtRemark.text == '') {
-                QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'Remark Tidak Boleh Kosong',
+                    text: 'Field with * is cant be empty',
                     width: 400,
                     confirmBtnColor: Colors.red);
               } else {
@@ -826,9 +799,9 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
               height: 37.3,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                  color: Color(0xffEC1D26)),
+                  color: const Color(0xffEC1D26)),
               child: Center(
-                child: Text("Done",
+                child: Text("Add",
                     style: GoogleFonts.roboto(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -857,36 +830,36 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
       //   'Unit': namaUnit,
       // });
 
-      response = await dio.post(inputSpareKit, data: {
+      response =
+          await dio.post("$addKitToNewMaterial/${widget.idNewMaterial}", data: {
+        "location:": "Makassar",
         'item_name': itemName,
-        'location': location,
+        'rak_number': location,
         'part_number': partNumber,
         'serial_number': serialNumber,
-        'weight': weight,
+        'weight_kg': weight,
         'qty': qty,
         'system': system,
         'unit': unit,
-        'evidence': evidence,
-        'remark': remark,
+        // 'evidence': evidence,
+        'keterangan': remark,
       });
-      status = response!.data['sukses'];
-      msg = response!.data['msg'];
+      status = response!.data['success'];
+
       if (status) {
         FocusScope.of(context).unfocus();
         _clearForm();
         QuickAlert.show(
             context: context,
             type: QuickAlertType.success,
-            text: '$msg',
+            text: 'Add Kit Success',
             width: 400,
             confirmBtnColor: Colors.green);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BastNewMaterial()));
       } else {
         QuickAlert.show(
             context: context,
             type: QuickAlertType.error,
-            text: '$msg',
+            text: 'Add Kit Faileed',
             title: 'Peringatan',
             width: 400,
             confirmBtnColor: Colors.red);
