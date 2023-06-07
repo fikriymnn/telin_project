@@ -1,4 +1,5 @@
-
+const baseUrl =
+    'https://asia-southeast2-telkominfra-f7a85.cloudfunctions.net/api';
 //loading
 String newloading = '$baseUrl/api/loading/';
 String addCableToLoading = '$baseUrl/api/loading/cable';
@@ -38,7 +39,6 @@ String getAllKit = '$baseUrl/api/spareKit/';
 String getUser = '$baseUrl/api/setting';
 String editUser = '$baseUrl/api/setting';
 String deleteUser = '$baseUrl/api/user';
-
 
 //dashboard chart
 String getChart = '$baseUrl/api/dashboard/chart/cable_type';
