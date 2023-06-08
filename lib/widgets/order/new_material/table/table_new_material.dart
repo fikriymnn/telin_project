@@ -9,6 +9,7 @@ import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/bats_loading.dart';
 import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
 import 'package:telin_project/widgets/order/loading/edit_loading.dart';
+import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/detail_new_material.dart';
 
 import '../../../../api/configAPI.dart';
@@ -85,9 +86,14 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => DetailNewMaterial(
-                          idNewMaterial: data['_id'],
-                        )),
+                    builder: (context) =>
+                        AddnewMaterialScreens(idNewMaterial: data['_id'])
+
+                    // DetailNewMaterial(
+                    //       idNewMaterial: data['_id'],
+                    //     )
+
+                    ),
               );
 
               // showDialog(

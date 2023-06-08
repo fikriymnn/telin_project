@@ -40,8 +40,9 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   List location = [];
 
   Response? response;
-
+  Response? response1;
   var dio = Dio();
+  var dio1 = Dio();
   @override
   void initState() {
     // TODO: implement initState
@@ -1063,7 +1064,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
             height: 72,
           ),
           InkWell(
-            onTap: () {
+            onTap: () async {
               if (selectionSystem == null ||
                   selectedValueCableType == null ||
                   selectionManufacturer == null ||
@@ -1090,6 +1091,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     txtLenght.text,
                     txtLable.text,
                     selectedValueInner,
+                    pickedFile,
                     pickedFile!.name,
                     txtRemark.text,
                     selectionCoreType,
@@ -1308,6 +1310,11 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   void _clearForm() {
     // txtNamaUnit.clear();
   }
+  void addInvoiceCable(evidence) async {
+    try {} catch (e) {
+      print("mmmm");
+    }
+  }
 
   // Fungsi Add Data
   void inputDataNewMaterialCable(
@@ -1319,16 +1326,24 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       label,
       inner,
       evidence,
+      evidenceName,
       remark,
       coreType,
       eCore,
       tankLocation) async {
     bool status;
     var msg;
+    var msg1;
+    String idCable;
+
     try {
       // var formData = FormData.fromMap({
       //   'Unit': namaUnit,
       // });
+      FormData formdata = FormData.fromMap({
+        'evidence':
+            await MultipartFile.fromFile(evidence, filename: "tftfty.txt"),
+      });
 
       response = await dio
           .post("$addCableToNewMaterial/${widget.idNewMaterial}", data: {
@@ -1344,7 +1359,6 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
         "doc_reff": "SCRAP",
         'tank': inner,
         'tank_location': tankLocation,
-        'evidence': evidence ?? "",
         'remark': remark ?? "",
         'core_type': coreType,
         'sigma_core': eCore,
@@ -1353,14 +1367,22 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       status = response!.data['success'];
 
       if (status) {
-        FocusScope.of(context).unfocus();
-        _clearForm();
-        QuickAlert.show(
-            context: context,
-            type: QuickAlertType.success,
-            text: 'Add Cable Success',
-            width: 400,
-            confirmBtnColor: Colors.green);
+        idCable = response!.data['newCableId'];
+        try {
+          response1 = await dio1.post(
+              "$addEvidenceCable/${widget.idNewMaterial}/$idCable",
+              data: formdata);
+        } catch (e) {
+          print(e.toString());
+        }
+        // FocusScope.of(context).unfocus();
+
+        // QuickAlert.show(
+        //     context: context,
+        //     type: QuickAlertType.success,
+        //     text: 'Add Cable Success',
+        //     width: 400,
+        //     confirmBtnColor: Colors.green);
       } else {
         QuickAlert.show(
             context: context,
@@ -1374,7 +1396,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       QuickAlert.show(
           context: context,
           type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
+          text: e.toString(),
           title: 'Peringatan',
           width: 400,
           confirmBtnColor: Colors.red);

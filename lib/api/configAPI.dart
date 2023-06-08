@@ -1,4 +1,4 @@
-String baseUrl = 'http://192.168.1.11:1000';
+String baseUrl = 'http://192.168.100.25:1000';
 
 //loading
 String newloading = '$baseUrl/api/loading/';
@@ -30,6 +30,7 @@ String deleteKitFromNewMaterial =
     '$baseUrl/api/offloadingNewMaterial/deleteKit';
 String submitNewMaterial = '$baseUrl/api/offloadingNewMaterial/submit';
 String deleteNewMaterial = '$baseUrl/api/offloadingNewMaterial/delete';
+String addEvidenceCable = '$baseUrl/api/offloadingNewMaterial/evidence/cable';
 
 //allCable
 String getAllCable = '$baseUrl/api/spareCable/';
