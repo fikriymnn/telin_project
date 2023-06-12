@@ -1340,10 +1340,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       // var formData = FormData.fromMap({
       //   'Unit': namaUnit,
       // });
-      FormData formdata = FormData.fromMap({
-        'evidence':
-            await MultipartFile.fromFile(evidence, filename: "tftfty.txt"),
-      });
+      // FormData formdata = FormData.fromMap({
+      //   'evidence':
+      //       await MultipartFile.fromFile(evidence, filename: "tftfty.txt"),
+      // });
 
       response = await dio
           .post("$addCableToNewMaterial/${widget.idNewMaterial}", data: {
@@ -1367,22 +1367,22 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       status = response!.data['success'];
 
       if (status) {
-        idCable = response!.data['newCableId'];
-        try {
-          response1 = await dio1.post(
-              "$addEvidenceCable/${widget.idNewMaterial}/$idCable",
-              data: formdata);
-        } catch (e) {
-          print(e.toString());
-        }
+        // idCable = response!.data['newCableId'];
+        // try {
+        //   response1 = await dio1.post(
+        //       "$addEvidenceCable/${widget.idNewMaterial}/$idCable",
+        //       data: formdata);
+        // } catch (e) {
+        //   print(e.toString());
+        // }
         // FocusScope.of(context).unfocus();
 
-        // QuickAlert.show(
-        //     context: context,
-        //     type: QuickAlertType.success,
-        //     text: 'Add Cable Success',
-        //     width: 400,
-        //     confirmBtnColor: Colors.green);
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: 'Add Cable Success',
+            width: 400,
+            confirmBtnColor: Colors.green);
       } else {
         QuickAlert.show(
             context: context,
