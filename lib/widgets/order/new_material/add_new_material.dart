@@ -39,7 +39,7 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
       QuickAlert.show(
           context: context,
           type: QuickAlertType.success,
-          text: '$msg',
+          text: 'Data New Material Success Added',
           title: 'Peringatan',
           width: 400,
           barrierDismissible: true,
