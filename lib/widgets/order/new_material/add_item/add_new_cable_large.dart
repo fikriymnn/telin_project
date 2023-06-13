@@ -518,282 +518,302 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                 ),
                 Container(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 230,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Length *",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 203.3,
-                        height: 44,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                                width: 5, color: const Color(0xffF0F0F0)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.25),
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 4))
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 18,
-                          ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 230,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 8),
-                                  child: TextField(
-                                    controller: txtLenght,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintStyle: GoogleFonts.montserrat(
-                                          fontSize: 13.3,
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.black,
-                                        ),
-                                        hintText: "Type Length"),
-                                  ),
+                              Text(
+                                "Length *",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
                                 ),
                               ),
-                              Container(
-                                width: 68.6,
-                                height: 44,
-                                decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(6),
-                                        bottomRight: Radius.circular(6)),
-                                    color: Color(0xffEC1D26)),
-                                child: Center(
-                                  child: Text(
-                                    "Meter",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              )
                             ],
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20.6,
-                      ),
-                      SizedBox(
-                        width: 230,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Lable *",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                              ),
+                        Container(
+                          width: 203.3,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  width: 5, color: const Color(0xffF0F0F0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 4))
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              left: 18,
                             ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 230,
-                        height: 44,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                                width: 5, color: const Color(0xffF0F0F0)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.25),
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 4))
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 18, bottom: 8),
-                          child: Center(
-                            child: TextField(
-                              controller: txtLable,
-                              style: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
-                                  hintText: "Type Here"),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20.6,
-                      ),
-                      SizedBox(
-                        width: 230,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Tank *",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 230,
-                        height: 44,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                                width: 5, color: const Color(0xffF0F0F0)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.25),
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 4))
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 18, right: 18),
-                          child: Center(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                  isExpanded: true,
-                                  hint: Text(
-                                    "Select Tank",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: TextField(
+                                      controller: txtLenght,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintStyle: GoogleFonts.montserrat(
+                                            fontSize: 13.3,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.black,
+                                          ),
+                                          hintText: "Type Length"),
                                     ),
                                   ),
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
+                                ),
+                                Container(
+                                  width: 68.6,
+                                  height: 44,
+                                  decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(6),
+                                          bottomRight: Radius.circular(6)),
+                                      color: Color(0xffEC1D26)),
+                                  child: Center(
+                                    child: Text(
+                                      "Meter",
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      selectedValueInner = newValue!;
-                                    });
-                                  },
-                                  value: selectedValueInner,
-                                  items: dropdownItemsInner),
+                                )
+                              ],
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20.6,
-                      ),
-                      SizedBox(
-                        width: 230,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Tank-Location *",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
+                        const SizedBox(
+                          height: 20.6,
                         ),
-                      ),
-                      Container(
-                        width: 230,
-                        height: 44,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                                width: 5, color: const Color(0xffF0F0F0)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.25),
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 4))
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 18, right: 18),
-                          child: Center(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                isExpanded: true,
-                                hint: Text(
-                                  "Select Location",
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
+                        SizedBox(
+                          width: 230,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Lable *",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
                                 ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 230,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  width: 5, color: const Color(0xffF0F0F0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 4))
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 18, bottom: 8),
+                            child: Center(
+                              child: TextField(
+                                controller: txtLable,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 13.3,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.black,
                                 ),
-                                onChanged: (newVal) {
-                                  setState(() {
-                                    selectionLocation = newVal!;
-                                  });
-                                },
-                                value: selectionLocation,
-                                items: location.map((location) {
-                                  return DropdownMenuItem(
-                                    value: location['location'].toString(),
-                                    child: Text(location['location'],
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 13.3,
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.black,
-                                        )),
-                                  );
-                                }).toList(),
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintStyle: GoogleFonts.montserrat(
+                                      fontSize: 13.3,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                    hintText: "Type Here"),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
+                        const SizedBox(
+                          height: 20.6,
+                        ),
+                        SizedBox(
+                          width: 230,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Tank *",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 230,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  width: 5, color: const Color(0xffF0F0F0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 4))
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 18, right: 18),
+                            child: Center(
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                    isExpanded: true,
+                                    hint: Text(
+                                      "Select Tank",
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 13.3,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        selectedValueInner = newValue!;
+                                      });
+                                    },
+                                    value: selectedValueInner,
+                                    items: dropdownItemsInner),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20.6,
+                        ),
+                        SizedBox(
+                          width: 230,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Tank-Location *",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 230,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  width: 5, color: const Color(0xffF0F0F0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 4))
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 18, bottom: 8),
+                            child: Center(
+                              child: TextField(
+                                controller: txtTankLocation,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.3,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintStyle: GoogleFonts.montserrat(
+                                      fontSize: 13.3,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                    hintText: "Type Here"),
+                              ),
+                            ),
+                          ),
+                          //   Padding(
+                          //     padding: const EdgeInsets.only(left: 18, right: 18),
+                          //     child: Center(
+                          //       child: DropdownButtonHideUnderline(
+                          //         child: DropdownButton(
+                          //           isExpanded: true,
+                          //           hint: Text(
+                          //             "Select Location",
+                          //             style: GoogleFonts.montserrat(
+                          //               fontSize: 13.3,
+                          //               fontWeight: FontWeight.w400,
+                          //               color: Colors.black,
+                          //             ),
+                          //           ),
+                          //           style: GoogleFonts.montserrat(
+                          //             fontSize: 13.3,
+                          //             fontWeight: FontWeight.w400,
+                          //             color: Colors.black,
+                          //           ),
+                          //           onChanged: (newVal) {
+                          //             setState(() {
+                          //               selectionLocation = newVal!;
+                          //             });
+                          //           },
+                          //           value: selectionLocation,
+                          //           items: location.map((location) {
+                          //             return DropdownMenuItem(
+                          //               value: location['location'].toString(),
+                          //               child: Text(location['location'],
+                          //                   style: GoogleFonts.montserrat(
+                          //                     fontSize: 13.3,
+                          //                     fontWeight: FontWeight.w400,
+                          //                     color: Colors.black,
+                          //                   )),
+                          //             );
+                          //           }).toList(),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                        ),
+                      ]),
                 ),
                 const SizedBox(
                   width: 40,
@@ -807,7 +827,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "TANK",
+                              "EVIDENCE",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -1091,7 +1111,6 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     txtLenght.text,
                     txtLable.text,
                     selectedValueInner,
-                    pickedFile,
                     pickedFile!.name,
                     txtRemark.text,
                     selectionCoreType,
@@ -1310,11 +1329,11 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   void _clearForm() {
     // txtNamaUnit.clear();
   }
-  void addInvoiceCable(evidence) async {
-    try {} catch (e) {
-      print("mmmm");
-    }
-  }
+  // void addInvoiceCable(evidence) async {
+  //   try {} catch (e) {
+  //     print("mmmm");
+  //   }
+  // }
 
   // Fungsi Add Data
   void inputDataNewMaterialCable(
@@ -1325,16 +1344,12 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       length,
       label,
       inner,
-      evidence,
       evidenceName,
       remark,
       coreType,
       eCore,
       tankLocation) async {
     bool status;
-    var msg;
-    var msg1;
-    String idCable;
 
     try {
       // var formData = FormData.fromMap({

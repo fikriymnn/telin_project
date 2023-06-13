@@ -87,13 +87,11 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        AddnewMaterialScreens(idNewMaterial: data['_id'])
+                        // AddnewMaterialScreens(idNewMaterial: data['_id'])
 
-                    // DetailNewMaterial(
-                    //       idNewMaterial: data['_id'],
-                    //     )
-
-                    ),
+                        DetailNewMaterial(
+                          idNewMaterial: data['_id'],
+                        )),
               );
 
               // showDialog(
