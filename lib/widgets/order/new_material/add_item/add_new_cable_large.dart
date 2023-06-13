@@ -56,50 +56,6 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
     super.initState();
   }
 
-  List<DropdownMenuItem<String>> get dropdownItemsSystem {
-    List<DropdownMenuItem<String>> menuItemsSystem = [
-      const DropdownMenuItem(
-          value: "Select System", child: Text("Select System")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItemsSystem;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItemsCableType {
-    List<DropdownMenuItem<String>> menuItemsCableType = [
-      const DropdownMenuItem(
-          value: "Select Cable Type", child: Text("Select Cable Type")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItemsCableType;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItemsManufacture {
-    List<DropdownMenuItem<String>> menuItemsManufacture = [
-      const DropdownMenuItem(
-          value: "Select Manufacture", child: Text("Select Manufacture")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItemsManufacture;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItemsArmoringType {
-    List<DropdownMenuItem<String>> menuItemsArmoringType = [
-      const DropdownMenuItem(
-          value: "Select Armoring Type", child: Text("Select Armoring Type")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItemsArmoringType;
-  }
-
   List<DropdownMenuItem<String>> get dropdownItemsInner {
     List<DropdownMenuItem<String>> menuItemsInner = [
       const DropdownMenuItem(value: "INNER", child: Text("INNER")),
@@ -108,26 +64,19 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
     return menuItemsInner;
   }
 
-  List<DropdownMenuItem<String>> get dropdownItemsOuter {
-    List<DropdownMenuItem<String>> menuItemsOuter = [
-      const DropdownMenuItem(
-          value: "Select Outer", child: Text("Select Outer")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
+  List<DropdownMenuItem<String>> get dropdownItemsTankLocation {
+    List<DropdownMenuItem<String>> menuItemsInner = [
+      const DropdownMenuItem(value: "TANK-2", child: Text("TANK-2")),
+      const DropdownMenuItem(value: "TANK-3", child: Text("TANK-3")),
+      const DropdownMenuItem(value: "TANK-4", child: Text("TANK-4")),
+      const DropdownMenuItem(value: "TANK-5", child: Text("TANK-5")),
+      const DropdownMenuItem(value: "TANK-7", child: Text("TANK-7")),
+      const DropdownMenuItem(value: "TANK-8", child: Text("TANK-8")),
+      const DropdownMenuItem(value: "TANK-9", child: Text("TANK-9")),
+      const DropdownMenuItem(value: "TANK-10", child: Text("TANK-10")),
+      const DropdownMenuItem(value: "TANK-11", child: Text("TANK-11")),
     ];
-    return menuItemsOuter;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItemsCoreType {
-    List<DropdownMenuItem<String>> menuItemsCoreType = [
-      const DropdownMenuItem(
-          value: "Select Core Type", child: Text("Select Core Type")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItemsCoreType;
+    return menuItemsInner;
   }
 
   String selectedValueCableType = "Select Cable Type";
@@ -751,67 +700,57 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                                     blurRadius: 5,
                                     offset: const Offset(0, 4))
                               ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, bottom: 8),
+                          child:
+                              // Padding(
+                              //   padding: const EdgeInsets.only(left: 18, bottom: 8),
+                              //   child: Center(
+                              //     child: TextField(
+                              //       controller: txtTankLocation,
+                              //       style: GoogleFonts.montserrat(
+                              //         fontSize: 13.3,
+                              //         fontWeight: FontWeight.w400,
+                              //         color: Colors.black,
+                              //       ),
+                              //       decoration: InputDecoration(
+                              //           border: InputBorder.none,
+                              //           hintStyle: GoogleFonts.montserrat(
+                              //             fontSize: 13.3,
+                              //             fontWeight: FontWeight.w400,
+                              //             color: Colors.black,
+                              //           ),
+                              //           hintText: "Type Here"),
+                              //     ),
+                              //   ),
+                              // ),
+                              Padding(
+                            padding: const EdgeInsets.only(left: 18, right: 18),
                             child: Center(
-                              child: TextField(
-                                controller: txtTankLocation,
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 13.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                    isExpanded: true,
+                                    hint: Text(
+                                      "Select Location",
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    style: GoogleFonts.montserrat(
                                       fontSize: 13.3,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ),
-                                    hintText: "Type Here"),
+                                    onChanged: (newVal) {
+                                      setState(() {
+                                        selectionLocation = newVal!;
+                                      });
+                                    },
+                                    value: selectionLocation,
+                                    items: dropdownItemsTankLocation),
                               ),
                             ),
                           ),
-                          //   Padding(
-                          //     padding: const EdgeInsets.only(left: 18, right: 18),
-                          //     child: Center(
-                          //       child: DropdownButtonHideUnderline(
-                          //         child: DropdownButton(
-                          //           isExpanded: true,
-                          //           hint: Text(
-                          //             "Select Location",
-                          //             style: GoogleFonts.montserrat(
-                          //               fontSize: 13.3,
-                          //               fontWeight: FontWeight.w400,
-                          //               color: Colors.black,
-                          //             ),
-                          //           ),
-                          //           style: GoogleFonts.montserrat(
-                          //             fontSize: 13.3,
-                          //             fontWeight: FontWeight.w400,
-                          //             color: Colors.black,
-                          //           ),
-                          //           onChanged: (newVal) {
-                          //             setState(() {
-                          //               selectionLocation = newVal!;
-                          //             });
-                          //           },
-                          //           value: selectionLocation,
-                          //           items: location.map((location) {
-                          //             return DropdownMenuItem(
-                          //               value: location['location'].toString(),
-                          //               child: Text(location['location'],
-                          //                   style: GoogleFonts.montserrat(
-                          //                     fontSize: 13.3,
-                          //                     fontWeight: FontWeight.w400,
-                          //                     color: Colors.black,
-                          //                   )),
-                          //             );
-                          //           }).toList(),
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ),
                         ),
                       ]),
                 ),
@@ -1084,7 +1023,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
             height: 72,
           ),
           InkWell(
-            onTap: () async {
+            onTap: () {
               if (selectionSystem == null ||
                   selectedValueCableType == null ||
                   selectionManufacturer == null ||
@@ -1092,7 +1031,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                   txtLable == null ||
                   txtLenght == null ||
                   selectedValueInner == null ||
-                  txtTankLocation == null ||
+                  selectionLocation == null ||
                   selectionCoreType == null ||
                   txtE_Core == null) {
                 QuickAlert.show(
@@ -1111,11 +1050,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     txtLenght.text,
                     txtLable.text,
                     selectedValueInner,
-                    pickedFile!.name,
                     txtRemark.text,
                     selectionCoreType,
                     txtE_Core.text,
-                    txtTankLocation.text);
+                    selectionLocation);
               }
             },
             child: Container(
@@ -1336,19 +1274,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   // }
 
   // Fungsi Add Data
-  void inputDataNewMaterialCable(
-      system,
-      cableType,
-      manufacturer,
-      armoringType,
-      length,
-      label,
-      inner,
-      evidenceName,
-      remark,
-      coreType,
-      eCore,
-      tankLocation) async {
+  void inputDataNewMaterialCable(system, cableType, manufacturer, armoringType,
+      length, label, inner, remark, coreType, eCore, tankLocation) async {
     bool status;
 
     try {
@@ -1382,16 +1309,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       status = response!.data['success'];
 
       if (status) {
-        // idCable = response!.data['newCableId'];
-        // try {
-        //   response1 = await dio1.post(
-        //       "$addEvidenceCable/${widget.idNewMaterial}/$idCable",
-        //       data: formdata);
-        // } catch (e) {
-        //   print(e.toString());
-        // }
         // FocusScope.of(context).unfocus();
-
+        // _clearForm();
         QuickAlert.show(
             context: context,
             type: QuickAlertType.success,
