@@ -101,7 +101,7 @@ class _FormNewMaterialExistingState extends State<FormNewMaterialExisting> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Judul",
+                      "Title",
                       style: GoogleFonts.montserrat(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -280,7 +280,7 @@ class _FormNewMaterialExistingState extends State<FormNewMaterialExisting> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Diserahkan",
+                                  "submitted",
                                   style: GoogleFonts.montserrat(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -345,7 +345,7 @@ class _FormNewMaterialExistingState extends State<FormNewMaterialExisting> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Diketahui",
+                                  "Is known",
                                   style: GoogleFonts.montserrat(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -474,7 +474,7 @@ class _FormNewMaterialExistingState extends State<FormNewMaterialExisting> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Diterima",
+                                  "received",
                                   style: GoogleFonts.montserrat(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -533,7 +533,7 @@ class _FormNewMaterialExistingState extends State<FormNewMaterialExisting> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Perusahaan",
+                                  "Company",
                                   style: GoogleFonts.montserrat(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -600,28 +600,32 @@ class _FormNewMaterialExistingState extends State<FormNewMaterialExisting> {
               ),
               InkWell(
                 onTap: () {
-                  if(projectName == null||remark==null||
-                  from==null||to ==null||selectedValueDiserahkan==null||
-                  selectedValuePerusahaan==null||selectedValueDiketahui==null||diterima==null){
+                  if (projectName == null ||
+                      remark == null ||
+                      from == null ||
+                      to == null ||
+                      selectedValueDiserahkan == null ||
+                      selectedValuePerusahaan == null ||
+                      selectedValueDiketahui == null ||
+                      diterima == null) {
                     QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    title: 'Peringatan',
-                    text: 'All must be filled in',
-                    width: 400,
-                    confirmBtnColor: Colors.red);
-                  }else{
-                     inputDataProject(
-                      projectName.text,
-                      remark.text,
-                      from.text,
-                      to.text,
-                      selectedValueDiserahkan,
-                      diterima.text,
-                      selectedValueDiketahui,
-                      selectedValuePerusahaan);
+                        context: context,
+                        type: QuickAlertType.error,
+                        title: 'Peringatan',
+                        text: 'All must be filled in',
+                        width: 400,
+                        confirmBtnColor: Colors.red);
+                  } else {
+                    inputDataProject(
+                        projectName.text,
+                        remark.text,
+                        from.text,
+                        to.text,
+                        selectedValueDiserahkan,
+                        diterima.text,
+                        selectedValueDiketahui,
+                        selectedValuePerusahaan);
                   }
-                  
                 },
                 child: Container(
                   width: 90,

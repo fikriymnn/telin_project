@@ -598,40 +598,6 @@ class _ChartDataState extends State<ChartData> {
                       ],
                     ),
                   ),
-                  Container(
-                    width: 102.6,
-                    height: 28,
-                    decoration: BoxDecoration(
-                        color: const Color(0xffF0F0F0),
-                        border: Border.all(color: const Color(0xffDADADA)),
-                        borderRadius: BorderRadius.circular(4),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xff000000).withOpacity(0.25),
-                            spreadRadius: 0,
-                            blurRadius: 4,
-                            offset: const Offset(0, 1),
-                          )
-                        ]),
-                    child: Center(
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                            style: GoogleFonts.montserrat(
-                              fontSize: 8,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedValueGrafik = newValue!;
-                              });
-                            },
-                            dropdownColor: const Color(0xffF0F0F0),
-                            value: selectedValueGrafik,
-                            items: dropdownItemsGrafik),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),

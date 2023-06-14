@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/helpers/responsive.dart';
@@ -44,7 +43,6 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      
                     ],
                   ),
                   Expanded(
@@ -85,31 +83,6 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                         ),
                       )
                     ],
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.all(2),
-                      margin: const EdgeInsets.all(2),
-                      child: CircleAvatar(
-                        backgroundColor: light,
-                        child: IconButton(
-                          onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const EditProfil()));
-                          },
-                          icon: Icon(
-                            Icons.person_outline,
-                            color: dark,
-                          ),
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),
@@ -156,32 +129,6 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                         ),
                       )
                     ],
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.all(2),
-                      margin: const EdgeInsets.all(2),
-                      child: CircleAvatar(
-                        backgroundColor: light,
-                        child: IconButton(
-                          onPressed: () {
-                            
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const EditProfil()));
-                          },
-                          icon: Icon(
-                            Icons.person_outline,
-                            color: dark,
-                          ),
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),
