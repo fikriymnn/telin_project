@@ -194,7 +194,7 @@ class _InputLengthCableState extends State<InputLengthCable> {
 
       msg = response!.data['message'];
 
-      FocusScope.of(context).unfocus();
+      // FocusScope.of(context).unfocus();
 
       QuickAlert.show(
           context: context,

@@ -202,7 +202,7 @@ class _InputQtyNonCableState extends State<InputQtyNonCable> {
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ),
-                                    hintText: "Input Price"),
+                                    hintText: "Input Qty"),
                               ),
                             ),
                           ),

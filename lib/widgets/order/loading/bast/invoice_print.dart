@@ -1355,53 +1355,53 @@ class printInvoiceLoading {
                 pw.SizedBox(
                   height: 20,
                 ),
-                pw.Container(
-                  child: pw.Row(
-                    mainAxisAlignment: pw.MainAxisAlignment.start,
-                    children: [
-                      pw.Container(
-                        child: pw.Column(
-                          crossAxisAlignment: pw.CrossAxisAlignment.start,
-                          children: [
-                            pw.Container(
-                              width: 100,
-                              child: pw.Text("Terbilang",
-                                  style: pw.TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: pw.FontWeight.normal,
-                                    color: PdfColors.black,
-                                  )),
-                            ),
-                            pw.SizedBox(height: 5),
-                            pw.Container(
-                              width: 367.3,
-                              height: 26.6,
-                              decoration: pw.BoxDecoration(
-                                  color: const PdfColor.fromInt(0xffD9D9D9),
-                                  border: pw.Border.all(width: 2),
-                                  borderRadius: pw.BorderRadius.circular(5)),
-                              child: pw.Padding(
-                                padding: const pw.EdgeInsets.only(left: 5),
-                                child: pw.Column(
-                                  children: [
-                                    pw.Flexible(
-                                        child: pw.Text(
-                                            "Dua Milyar Enam Ratus Tiga Puluh Juta Delapan Ratus Enam Puluh Enam Ribu Tiga Ratus Tujuh Puluh",
-                                            style: pw.TextStyle(
-                                              fontSize: 8,
-                                              fontWeight: pw.FontWeight.bold,
-                                              color: PdfColors.black,
-                                            ))),
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // pw.Container(
+                //   child: pw.Row(
+                //     mainAxisAlignment: pw.MainAxisAlignment.start,
+                //     children: [
+                //       pw.Container(
+                //         child: pw.Column(
+                //           crossAxisAlignment: pw.CrossAxisAlignment.start,
+                //           children: [
+                //             pw.Container(
+                //               width: 100,
+                //               child: pw.Text("Terbilang",
+                //                   style: pw.TextStyle(
+                //                     fontSize: 10,
+                //                     fontWeight: pw.FontWeight.normal,
+                //                     color: PdfColors.black,
+                //                   )),
+                //             ),
+                //             pw.SizedBox(height: 5),
+                //             pw.Container(
+                //               width: 367.3,
+                //               height: 26.6,
+                //               decoration: pw.BoxDecoration(
+                //                   color: const PdfColor.fromInt(0xffD9D9D9),
+                //                   border: pw.Border.all(width: 2),
+                //                   borderRadius: pw.BorderRadius.circular(5)),
+                //               child: pw.Padding(
+                //                 padding: const pw.EdgeInsets.only(left: 5),
+                //                 child: pw.Column(
+                //                   children: [
+                //                     pw.Flexible(
+                //                         child: pw.Text(
+                //                             "Dua Milyar Enam Ratus Tiga Puluh Juta Delapan Ratus Enam Puluh Enam Ribu Tiga Ratus Tujuh Puluh",
+                //                             style: pw.TextStyle(
+                //                               fontSize: 8,
+                //                               fontWeight: pw.FontWeight.bold,
+                //                               color: PdfColors.black,
+                //                             ))),
+                //                   ],
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 pw.SizedBox(
                   height: 20,
                 ),

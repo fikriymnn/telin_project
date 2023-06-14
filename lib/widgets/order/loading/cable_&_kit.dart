@@ -143,37 +143,37 @@ class _CableDanKitLoadingState extends State<CableDanKitLoading> {
                           const SizedBox(
                             width: 10,
                           ),
-                          Container(
-                            width: 221.3,
-                            height: 22.08,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    width: 1, color: const Color(0xffC1C1C1)),
-                                color: const Color(0xffF3F3F3)),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 10, bottom: 7),
-                              child: TextField(
-                                style: GoogleFonts.roboto(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w400,
-                                  color: const Color(0xFF9D9D9D),
-                                ),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.roboto(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w400,
-                                      color: const Color(0xFF9D9D9D),
-                                    ),
-                                    hintText: "Search"),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          // Container(
+                          //   width: 221.3,
+                          //   height: 22.08,
+                          //   decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(10),
+                          //       border: Border.all(
+                          //           width: 1, color: const Color(0xffC1C1C1)),
+                          //       color: const Color(0xffF3F3F3)),
+                          //   child: Padding(
+                          //     padding:
+                          //         const EdgeInsets.only(left: 10, bottom: 7),
+                          //     child: TextField(
+                          //       style: GoogleFonts.roboto(
+                          //         fontSize: 10,
+                          //         fontWeight: FontWeight.w400,
+                          //         color: const Color(0xFF9D9D9D),
+                          //       ),
+                          //       decoration: InputDecoration(
+                          //           border: InputBorder.none,
+                          //           hintStyle: GoogleFonts.roboto(
+                          //             fontSize: 10,
+                          //             fontWeight: FontWeight.w400,
+                          //             color: const Color(0xFF9D9D9D),
+                          //           ),
+                          //           hintText: "Search"),
+                          //     ),
+                          //   ),
+                          // ),
+                          // const SizedBox(
+                          //   width: 10,
+                          // ),
                           InkWell(
                             onTap: () {
                               submitDataLoading(widget.id);
