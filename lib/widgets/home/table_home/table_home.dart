@@ -22,6 +22,7 @@ class _TableHomeState extends State<TableHome> {
   List offLoading = [];
   bool sort = true;
   List<ProjectOverview>? filterData;
+  List<ProjectOverview>? myData;
   TextEditingController controller = TextEditingController();
 
   Response? response;
@@ -147,7 +148,7 @@ class _TableHomeState extends State<TableHome> {
 
       setState(() {
         offLoading = response!.data;
-        filterData = List.generate(offLoading.length, (index) {
+        myData = List.generate(offLoading.length, (index) {
           var data = offLoading[index];
           return ProjectOverview(
               no: "${index + 1}",
@@ -157,6 +158,7 @@ class _TableHomeState extends State<TableHome> {
               loading: "${data['submitted_date_loading'] ?? "-"}",
               offLoading: "${data['submitted_date_offloading'] ?? "-"}");
         });
+        filterData = myData;
       });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -266,9 +268,9 @@ class _TableHomeState extends State<TableHome> {
                                     hintText: "Search"),
                                 onChanged: (value) {
                                   setState(() {
-                                    filterData = filterData!
-                                        .where((element) => element.projectName!
-                                            .contains(value))
+                                    myData = filterData!
+                                        .where((element) =>
+                                            element.projectName.contains(value))
                                         .toList();
                                   });
                                 },
@@ -291,8 +293,8 @@ class _TableHomeState extends State<TableHome> {
               sortColumnIndex: 0,
               sortAscending: sort,
               source: RowSource(
-                myData: filterData,
-                count: filterData!.length,
+                myData: myData,
+                count: myData!.length,
                 context: context,
               ),
               rowsPerPage: 8,

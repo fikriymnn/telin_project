@@ -23,6 +23,7 @@ class _TableNonCableLoadingState extends State<TableNonCableLoading> {
   String? selectionSystem;
   String? selectionLocation;
   List<KitLoading>? filterData;
+  List<KitLoading>? myData;
   bool sort = true;
 
   Response? response;
@@ -44,7 +45,7 @@ class _TableNonCableLoadingState extends State<TableNonCableLoading> {
 
       setState(() {
         sparekit = response!.data;
-        filterData = List.generate(sparekit.length, (index) {
+        myData = List.generate(sparekit.length, (index) {
           return KitLoading(
               no: "${index + 1}",
               id: "${sparekit[index]['_id'] ?? "-"}",
@@ -57,6 +58,7 @@ class _TableNonCableLoadingState extends State<TableNonCableLoading> {
               qty: "${sparekit[index]['qty'] ?? "-"}",
               unit: "${sparekit[index]['unit'] ?? "-"}");
         });
+        filterData = myData;
       });
     } catch (e) {
       QuickAlert.show(
@@ -102,10 +104,10 @@ class _TableNonCableLoadingState extends State<TableNonCableLoading> {
                     sortColumnIndex: 0,
                     sortAscending: sort,
                     source: RowSource(
-                      myData: filterData,
+                      myData: myData,
                       context: context,
                       idLoading: widget.loadingId,
-                      count: filterData!.length,
+                      count: myData!.length,
                     ),
                     rowsPerPage: 30,
                     columnSpacing: 8,
@@ -139,7 +141,7 @@ class _TableNonCableLoadingState extends State<TableNonCableLoading> {
                               onChanged: (String? newValue) {
                                 setState(() {
                                   selectedValueLocation = newValue!;
-                                  filterData = filterData!
+                                  myData = filterData!
                                       .where((element) => element.location
                                           .contains(
                                               selectedValueLocation.toString()))
@@ -212,7 +214,7 @@ class _TableNonCableLoadingState extends State<TableNonCableLoading> {
                               onChanged: (String? newValue) {
                                 setState(() {
                                   selectedValueSystem = newValue!;
-                                  filterData = filterData!
+                                  myData = filterData!
                                       .where((element) => element.system
                                           .contains(
                                               selectedValueSystem.toString()))

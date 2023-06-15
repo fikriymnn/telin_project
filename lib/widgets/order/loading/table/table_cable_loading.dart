@@ -26,6 +26,7 @@ class _TableCableLoadingState extends State<TableCableLoading> {
   List armoringType = [];
   List spareCable = [];
   List<CableLoading>? filterData;
+  List<CableLoading>? myData;
   bool sort = true;
 
   Response? response;
@@ -43,7 +44,7 @@ class _TableCableLoadingState extends State<TableCableLoading> {
     super.initState();
   }
 
-  onsortColum(int columnIndex, bool ascending) {
+  onsortColumSystem(int columnIndex, bool ascending) {
     if (columnIndex == 0) {
       if (ascending) {
         filterData!.sort((a, b) => a.system.compareTo(b.system));
@@ -59,7 +60,7 @@ class _TableCableLoadingState extends State<TableCableLoading> {
 
       setState(() {
         spareCable = response!.data;
-        filterData = List.generate(spareCable.length, (index) {
+        myData = List.generate(spareCable.length, (index) {
           var data = spareCable[index];
           return CableLoading(
               no: "${index + 1}",
@@ -75,6 +76,7 @@ class _TableCableLoadingState extends State<TableCableLoading> {
               coreType: "${spareCable[index]['core_type'] ?? "-"}",
               core: "${spareCable[index]['core'] ?? "-"}");
         });
+        filterData = myData;
       });
     } catch (e) {
       QuickAlert.show(
@@ -195,10 +197,10 @@ class _TableCableLoadingState extends State<TableCableLoading> {
                     sortColumnIndex: 0,
                     sortAscending: sort,
                     source: RowSource(
-                      myData: filterData,
+                      myData: myData,
                       context: context,
                       idLoading: widget.loadingId,
-                      count: filterData!.length,
+                      count: myData!.length,
                     ),
                     rowsPerPage: 30,
                     columnSpacing: 8,
@@ -243,10 +245,9 @@ class _TableCableLoadingState extends State<TableCableLoading> {
                                 setState(() {
                                   selectedValueSystem = newValue!;
 
-                                  filterData = filterData!
+                                  myData = filterData!
                                       .where((element) => element.system
-                                          .contains(
-                                              selectedValueSystem.toString()))
+                                          .contains(selectedValueSystem!))
                                       .toList();
                                 });
                               },
@@ -266,6 +267,13 @@ class _TableCableLoadingState extends State<TableCableLoading> {
                               }).toList(),
                             ),
                           ),
+                          onSort: (columnIndex, ascending) {
+                            setState(() {
+                              sort = !sort;
+                            });
+
+                            onsortColumSystem(columnIndex, ascending);
+                          },
                           fixedWidth: 100),
                       DataColumn2(
                           label: DropdownButtonHideUnderline(
@@ -286,10 +294,9 @@ class _TableCableLoadingState extends State<TableCableLoading> {
                               onChanged: (String? newValue) {
                                 setState(() {
                                   selectedValueArmoring = newValue!;
-                                  filterData = filterData!
+                                  myData = filterData!
                                       .where((element) => element.armoringType
-                                          .contains(
-                                              selectedValueArmoring.toString()))
+                                          .contains(selectedValueArmoring!))
                                       .toList();
                                 });
                               },
