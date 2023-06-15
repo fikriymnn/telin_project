@@ -44,10 +44,10 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
 
       setState(() {
         NewMaterialById = response!.data['newMaterial'];
-        NewMaterialByIdCable =
-            response!.data['newMaterial'][0]['submitted_new_material_cables_id_in_spare_cable'];
-        NewMaterialByIdKits =
-            response!.data['newMaterial'][0]['submitted_new_material_kits_id_in_spare_kits'];
+        NewMaterialByIdCable = response!.data['newMaterial'][0]
+            ['submitted_new_material_cables_id_in_spare_cable'];
+        NewMaterialByIdKits = response!.data['newMaterial'][0]
+            ['submitted_new_material_kits_id_in_spare_kits'];
       });
     } catch (e) {
       QuickAlert.show(

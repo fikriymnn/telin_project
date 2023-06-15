@@ -384,33 +384,33 @@ DataRow recentFileDataRow(
               )),
         ),
       ),
-      DataCell(
-        InkWell(
-          onTap: () {
-            if (data.offLoading == "") {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => LakukanOffLoading(
-                            idOffLoading: data.id,
-                          )));
-            }
-          },
-          child: Container(
-            width: 150,
-            height: 19.46,
-            decoration: BoxDecoration(
-                color: dark, borderRadius: BorderRadius.circular(6)),
-            child: Center(
-                child: Text("Do Off-Loading",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
-                    ))),
-          ),
-        ),
-      )
+      DataCell(data.offLoading == ""
+          ? InkWell(
+              onTap: () {
+                if (data.offLoading == "") {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LakukanOffLoading(
+                                idOffLoading: data.id,
+                              )));
+                }
+              },
+              child: Container(
+                width: 150,
+                height: 19.46,
+                decoration: BoxDecoration(
+                    color: dark, borderRadius: BorderRadius.circular(6)),
+                child: Center(
+                    child: Text("Do Off-Loading",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ))),
+              ),
+            )
+          : Container())
     ],
   );
 }

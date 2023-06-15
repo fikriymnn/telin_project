@@ -438,11 +438,10 @@ DataRow recentFileDataRow(var data, context) {
         Center(
           child: InkWell(
             onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return EditLoading(idLoading: data.id);
-                  });
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => EditLoading(idLoading: data.id)));
             },
             child: Container(
               width: 100,

@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class _TableNonCableCartExistingState extends State<TableNonCableCartExisting> {
       response = await dio.get('$getLoadingById/$id');
       msg = response!.data['message'];
       setState(() {
-        LoadingByIdSparekit = response!.data['loading'][0]['kits_id'];
+        LoadingByIdSparekit = response!.data['loading'][0]['existing_kits_id'];
       });
     } catch (e) {
       QuickAlert.show(
@@ -82,37 +83,37 @@ class _TableNonCableCartExistingState extends State<TableNonCableCartExisting> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['rak_number'] ?? "-"}",
+      DataCell(Text("${data['kit']['rak_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['item_name'] ?? "-"}",
+      DataCell(Text("${data['kit']['item_name'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['part_number'] ?? "-"}",
+      DataCell(Text("${data['kit']['part_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['serial_number'] ?? "-"}",
+      DataCell(Text("${data['kit']['serial_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['system'] ?? "-"}",
+      DataCell(Text("${data['kit']['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['weight_kg'] ?? "-"}",
+      DataCell(Text("${data['kit']['weight_kg'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -124,33 +125,51 @@ class _TableNonCableCartExistingState extends State<TableNonCableCartExisting> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['unit'] ?? "-"}",
+      DataCell(Text("${data['kit']['unit'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['unitpriceIdr'] ?? "-"}",
+      DataCell(Text("${data['kit']['unitpriceIdr'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['unitpriceUsd'] ?? "-"}",
+      DataCell(Text("${data['kit']['unitpriceUsd'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
+      DataCell(TextButton(
+          onPressed: () {
+            CoolAlert.show(
+                context: context,
+                type: CoolAlertType.confirm,
+                text: "Do you sure to delete this item",
+                width: 400,
+                confirmBtnText: "Delete",
+                cancelBtnText: "Cancle",
+                onConfirmBtnTap: () {
+                  hapusDataSparekitExisting('${data['id']}');
+                });
+          },
+          child: Text("Delete",
+              style: GoogleFonts.montserrat(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: active,
+              ))))
     ]);
   }
 
-  void hapusDataSparekitLoading(id) async {
+  void hapusDataSparekitExisting(id) async {
     bool status;
     var msg;
     try {
-      response = await dio.delete(
-          '$deleteSparekitFromLoading/${widget.idLoading}',
+      response = await dio.delete('$deleteKitFromExisting/${widget.idLoading}',
           data: {'kits_id': id});
 
       msg = response!.data['message'];
@@ -305,6 +324,16 @@ class _TableNonCableCartExistingState extends State<TableNonCableCartExisting> {
                   DataColumn2(
                       label: Text(
                         "UNIT PRICE(USD)",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "ACTION",
                         style: GoogleFonts.montserrat(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,

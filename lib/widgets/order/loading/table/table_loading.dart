@@ -273,7 +273,7 @@ class _TableLoadingState extends State<TableLoading> {
               context: context,
             ),
             rowsPerPage: 8,
-            columnSpacing: 120,
+            columnSpacing: 115,
             columns: [
               DataColumn2(
                   label: Text(

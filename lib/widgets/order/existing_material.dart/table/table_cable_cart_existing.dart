@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -157,7 +158,55 @@ class _TableCableCartExistingState extends State<TableCableCartExisting> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
+      DataCell(TextButton(
+          onPressed: () {
+            CoolAlert.show(
+                context: context,
+                type: CoolAlertType.confirm,
+                text: "Do you sure to delete this item",
+                width: 400,
+                confirmBtnText: "Delete",
+                cancelBtnText: "Cancle",
+                onConfirmBtnTap: () {
+                  hapusDataCableExisting('${data['id']}');
+                });
+          },
+          child: Text("Delete",
+              style: GoogleFonts.montserrat(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: active,
+              ))))
     ]);
+  }
+
+  void hapusDataCableExisting(id) async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.delete(
+          '$deleteCableFromExisting/${widget.idLoading}',
+          data: {'cables_id': id});
+
+      msg = response!.data['message'];
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: '$msg',
+          title: 'Peringatan',
+          width: 400,
+          barrierDismissible: true,
+          confirmBtnColor: Colors.red);
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 
   @override
@@ -320,6 +369,16 @@ class _TableCableCartExistingState extends State<TableCableCartExisting> {
                         ),
                       ),
                       fixedWidth: 150),
+                  DataColumn2(
+                      label: Text(
+                        "ACTION",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
                 ],
                 rows: List.generate(
                     LoadingByIdCable.length,

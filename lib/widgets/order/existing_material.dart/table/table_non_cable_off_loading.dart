@@ -7,6 +7,8 @@ import 'package:telin_project/api/configAPI.dart';
 
 import 'package:telin_project/constants/style.dart';
 
+import '../form/input_qty_non_cable_existing.dart';
+
 class TableNonCableOffLoading extends StatefulWidget {
   const TableNonCableOffLoading({super.key, required this.idOffLoading});
   final String idOffLoading;
@@ -119,7 +121,7 @@ class _TableNonCableOffLoadingState extends State<TableNonCableOffLoading> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['qty'] ?? "-"}",
+      DataCell(Text("${data['qty_taken'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -133,14 +135,15 @@ class _TableNonCableOffLoadingState extends State<TableNonCableOffLoading> {
           ))),
       DataCell(TextButton(
           onPressed: () {
-            // showDialog(
-            //     context: context,
-            //     builder: (BuildContext context) {
-            //       return InputQtyNonCableExisting(
-            //         idCable: data['_id'],
-            //         idOffLoading: widget.idOffLoading,
-            //       );
-            //     });
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return InputQtyNonCableExisting(
+                    idKit: data['id'],
+                    idLoading: widget.idOffLoading,
+                    qtyStock: data['qty_taken'].toString(),
+                  );
+                });
           },
           child: Text("Take",
               style: GoogleFonts.montserrat(

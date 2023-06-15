@@ -6,12 +6,12 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 
-class TableNonCableEdit extends StatefulWidget {
-  const TableNonCableEdit({super.key, required this.idLoading});
+class DetailTableKitExisting extends StatefulWidget {
+  const DetailTableKitExisting({super.key, required this.idLoading});
   final String idLoading;
 
   @override
-  State<TableNonCableEdit> createState() => _TableNonCableEditState();
+  State<DetailTableKitExisting> createState() => _DetailTableKitExistingState();
 }
 
 List<DropdownMenuItem<String>> get dropdownItemsSystem {
@@ -38,7 +38,7 @@ List<DropdownMenuItem<String>> get dropdownItemsArmoring {
 String selectedValueSystem = "SYSTEM";
 String selectedValueArmoring = "ARMORING TYPE";
 
-class _TableNonCableEditState extends State<TableNonCableEdit> {
+class _DetailTableKitExistingState extends State<DetailTableKitExisting> {
   List LoadingByIdSparekit = [];
 
   String id = "";
@@ -60,7 +60,8 @@ class _TableNonCableEditState extends State<TableNonCableEdit> {
       response = await dio.get('$getLoadingById/$id');
       msg = response!.data['message'];
       setState(() {
-        LoadingByIdSparekit = response!.data['loading'][0]['submitted_kits'];
+        LoadingByIdSparekit =
+            response!.data['loading'][0]['submitted_existing_kits_id'];
       });
     } catch (e) {
       QuickAlert.show(
@@ -117,7 +118,7 @@ class _TableNonCableEditState extends State<TableNonCableEdit> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['qty_taken'] ?? "-"}",
+      DataCell(Text("${data['qty'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -130,35 +131,6 @@ class _TableNonCableEditState extends State<TableNonCableEdit> {
             color: Colors.black,
           ))),
     ]);
-  }
-
-  void hapusDataSparekitLoading(id) async {
-    bool status;
-    var msg;
-    try {
-      response = await dio.delete(
-          '$deleteSparekitFromLoading/${widget.idLoading}',
-          data: {'kits_id': id});
-
-      msg = response!.data['message'];
-
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.success,
-          text: '$msg',
-          title: 'Peringatan',
-          width: 400,
-          barrierDismissible: true,
-          confirmBtnColor: Colors.red);
-    } catch (e) {
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
-    }
   }
 
   @override

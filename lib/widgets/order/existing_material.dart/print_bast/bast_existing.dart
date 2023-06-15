@@ -52,7 +52,8 @@ class _BastOffLoadingState extends State<BastOffLoading> {
         LoadingById = response!.data['loading'];
         LoadingByIdCable =
             response!.data['loading'][0]['submitted_existing_cables_id'];
-        LoadingByIdKits = response!.data['loading'][0]['submitted_kits'];
+        LoadingByIdKits =
+            response!.data['loading'][0]['submitted_existing_kits_id'];
       });
     } catch (e) {
       QuickAlert.show(

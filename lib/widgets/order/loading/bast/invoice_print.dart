@@ -1071,7 +1071,7 @@ class printInvoiceLoading {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataLoadingKit[index]['qty'] ?? "-"}",
+                                      "${dataLoadingKit[index]['qty_taken'] ?? "-"}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -1110,7 +1110,7 @@ class printInvoiceLoading {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataLoadingKit[index]['unitPriceUsd'] * dataLoadingKit[index]['qty'] ?? ""}",
+                                      "${dataLoadingKit[index]['unitPriceUsd'] * dataLoadingKit[index]['qty_taken'] ?? ""}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -1136,7 +1136,7 @@ class printInvoiceLoading {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataLoadingKit[index]['unitPriceIdr'] * dataLoadingKit[index]['qty'] ?? ""}",
+                                      "${dataLoadingKit[index]['unitPriceIdr'] * dataLoadingKit[index]['qty_taken'] ?? ""}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,

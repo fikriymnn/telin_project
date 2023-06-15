@@ -1,5 +1,5 @@
-String baseUrl =
-    'https://asia-southeast2-telkominfra-f7a85.cloudfunctions.net/api';
+String baseUrl = 'http://192.168.199.11:1000';
+// 'https://asia-southeast2-telkominfra-f7a85.cloudfunctions.net/api';
 
 //loading
 String newloading = '$baseUrl/api/loading/';
@@ -17,6 +17,9 @@ String getAllTurnOverById = '$baseUrl/api/loading/turnover';
 String getAllOffLoading = '$baseUrl/api/offloading';
 String getOffLoadingById = '$baseUrl/api/offloading';
 String offLoadingExisting = '$baseUrl/api/offloading/addCableExisting';
+String offLoadingExistingKit = '$baseUrl/api/offloading/addKitExisting';
+String deleteKitFromExisting = '$baseUrl/api/offloading/removeKitExisting';
+String deleteCableFromExisting = '$baseUrl/api/offloading/removeCableExisting';
 String submiOffLoadingExisting = '$baseUrl/api/offloading/submitExisting';
 
 //new material

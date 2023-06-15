@@ -759,187 +759,187 @@ NUMBER""",
                       color: PdfColors.black,
                     )))),
       ])),
-      // pw.ListView.builder(
-      //     itemCount: DataLoadingSparekit.length,
-      //     itemBuilder: (context, index) {
-      //       return pw.Container(
-      //           decoration: pw.BoxDecoration(border: pw.Border.all()),
-      //           child: pw.Column(children: [
-      //             pw.Container(
-      //                 child: pw.Row(children: [
-      //               pw.Container(
-      //                   width: 20,
-      //                   height: 20,
-      //                   decoration: pw.BoxDecoration(border: pw.Border.all()),
-      //                   child: pw.Center(
-      //                     child: pw.Text("${index + 1}",
-      //                         style: pw.TextStyle(
-      //                           fontSize: 6,
-      //                           fontWeight: pw.FontWeight.normal,
-      //                           color: PdfColors.black,
-      //                         )),
-      //                   )),
-      //               pw.Container(
-      //                   width: 150,
-      //                   height: 20,
-      //                   decoration: pw.BoxDecoration(border: pw.Border.all()),
-      //                   child: Padding(
-      //                       padding: EdgeInsets.symmetric(horizontal: 5),
-      //                       child: pw.Center(
-      //                         child: pw.Text(
-      //                             "${DataLoadingSparekit[index]['item_name'] ?? "-"}",
-      //                             style: pw.TextStyle(
-      //                               fontSize: 6,
-      //                               fontWeight: pw.FontWeight.normal,
-      //                               color: PdfColors.black,
-      //                             )),
-      //                       ))),
-      //               pw.Container(
-      //                   width: 60,
-      //                   height: 20,
-      //                   decoration: pw.BoxDecoration(border: pw.Border.all()),
-      //                   child: pw.Center(
-      //                     child: pw.Text("-",
-      //                         style: pw.TextStyle(
-      //                           fontSize: 6,
-      //                           fontWeight: pw.FontWeight.normal,
-      //                           color: PdfColors.black,
-      //                         )),
-      //                   )),
-      //               pw.Container(
-      //                   width: 60,
-      //                   height: 20,
-      //                   decoration: pw.BoxDecoration(border: pw.Border.all()),
-      //                   child: pw.Center(
-      //                       child: pw.Text(
-      //                           "${DataLoadingSparekit[index]['serial_number'] ?? "-"}",
-      //                           style: pw.TextStyle(
-      //                             fontSize: 6,
-      //                             fontWeight: pw.FontWeight.normal,
-      //                             color: PdfColors.black,
-      //                           )))),
-      //               pw.Container(
-      //                   width: 30,
-      //                   height: 20,
-      //                   decoration: pw.BoxDecoration(border: pw.Border.all()),
-      //                   child: pw.Center(
-      //                     child: pw.Text(
-      //                         "${DataLoadingSparekit[index]['qty'] ?? "-"}",
-      //                         style: pw.TextStyle(
-      //                           fontSize: 6,
-      //                           fontWeight: pw.FontWeight.normal,
-      //                           color: PdfColors.black,
-      //                         )),
-      //                   )),
-      //               pw.Container(
-      //                   width: 40,
-      //                   height: 20,
-      //                   decoration: pw.BoxDecoration(border: pw.Border.all()),
-      //                   child: pw.Center(
-      //                     child: pw.Text(
-      //                         "${DataLoadingSparekit[index]['unit'] ?? "-"}",
-      //                         style: pw.TextStyle(
-      //                           fontSize: 6,
-      //                           fontWeight: pw.FontWeight.normal,
-      //                           color: PdfColors.black,
-      //                         )),
-      //                   )),
-      //               pw.Container(
-      //                   width: 60,
-      //                   height: 20,
-      //                   decoration: pw.BoxDecoration(border: pw.Border.all()),
-      //                   child: pw.Center(
-      //                     child: pw.Text(
-      //                         "${DataLoadingSparekit[index]['weight_kg'] ?? "-"}",
-      //                         style: pw.TextStyle(
-      //                           fontSize: 6,
-      //                           fontWeight: pw.FontWeight.normal,
-      //                           color: PdfColors.black,
-      //                         )),
-      //                   )),
-      //               pw.Container(
-      //                   width: 80,
-      //                   height: 20,
-      //                   decoration: pw.BoxDecoration(border: pw.Border.all()),
-      //                   child: pw.Center(
-      //                     child: pw.Text(
-      //                         "${DataLoadingSparekit[index]['remark'] ?? "-"}",
-      //                         style: pw.TextStyle(
-      //                           fontSize: 6,
-      //                           fontWeight: pw.FontWeight.normal,
-      //                           color: PdfColors.black,
-      //                         )),
-      //                   )),
-      //             ])),
-      //             // pw.Container(
-      //             //     child: pw.Row(children: [
-      //             //   pw.Container(
-      //             //       height: 20,
-      //             //       width: 290,
-      //             //       decoration: pw.BoxDecoration(
-      //             //         border: pw.Border.all(),
-      //             //       ),
-      //             //       child: pw.Center(
-      //             //           child: pw.Text("Sub Total",
-      //             //               style: pw.TextStyle(
-      //             //                 fontSize: 8,
-      //             //                 fontWeight: pw.FontWeight.bold,
-      //             //                 color: PdfColors.red,
-      //             //               )))),
-      //             //   pw.Container(
-      //             //       height: 20,
-      //             //       width: 30,
-      //             //       decoration: pw.BoxDecoration(
-      //             //         border: pw.Border.all(),
-      //             //       ),
-      //             //       child: pw.Center(
-      //             //           child: pw.Text("8",
-      //             //               style: pw.TextStyle(
-      //             //                 fontSize: 8,
-      //             //                 fontWeight: pw.FontWeight.bold,
-      //             //                 color: PdfColors.red,
-      //             //               )))),
-      //             //   pw.Container(
-      //             //       height: 20,
-      //             //       width: 40,
-      //             //       decoration: pw.BoxDecoration(
-      //             //         border: pw.Border.all(),
-      //             //       ),
-      //             //       child: pw.Center(
-      //             //           child: pw.Text("",
-      //             //               style: pw.TextStyle(
-      //             //                 fontSize: 8,
-      //             //                 fontWeight: pw.FontWeight.bold,
-      //             //                 fontStyle: pw.FontStyle.italic,
-      //             //                 color: PdfColors.black,
-      //             //               )))),
-      //             //   pw.Container(
-      //             //       height: 20,
-      //             //       width: 60,
-      //             //       decoration: pw.BoxDecoration(
-      //             //         border: pw.Border.all(),
-      //             //       ),
-      //             //       child: pw.Center(
-      //             //           child: pw.Text("28,00",
-      //             //               style: pw.TextStyle(
-      //             //                 fontSize: 8,
-      //             //                 fontWeight: pw.FontWeight.bold,
-      //             //                 color: PdfColors.red,
-      //             //               )))),
-      //             //   pw.Container(
-      //             //       height: 20,
-      //             //       width: 80,
-      //             //       child: pw.Center(
-      //             //           child: pw.Text("",
-      //             //               style: pw.TextStyle(
-      //             //                 fontSize: 8,
-      //             //                 fontWeight: pw.FontWeight.bold,
-      //             //                 fontStyle: pw.FontStyle.italic,
-      //             //                 color: PdfColors.black,
-      //             //               )))),
-      //             // ])),
-      //           ]));
-      //     }),
+      pw.ListView.builder(
+          itemCount: DataLoadingSparekit.length,
+          itemBuilder: (context, index) {
+            return pw.Container(
+                decoration: pw.BoxDecoration(border: pw.Border.all()),
+                child: pw.Column(children: [
+                  pw.Container(
+                      child: pw.Row(children: [
+                    pw.Container(
+                        width: 20,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                          child: pw.Text("${index + 1}",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
+                    pw.Container(
+                        width: 150,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5),
+                            child: pw.Center(
+                              child: pw.Text(
+                                  "${DataLoadingSparekit[index]['item_name'] ?? "-"}",
+                                  style: pw.TextStyle(
+                                    fontSize: 6,
+                                    fontWeight: pw.FontWeight.normal,
+                                    color: PdfColors.black,
+                                  )),
+                            ))),
+                    pw.Container(
+                        width: 60,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                          child: pw.Text("-",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
+                    pw.Container(
+                        width: 60,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                            child: pw.Text(
+                                "${DataLoadingSparekit[index]['serial_number'] ?? "-"}",
+                                style: pw.TextStyle(
+                                  fontSize: 6,
+                                  fontWeight: pw.FontWeight.normal,
+                                  color: PdfColors.black,
+                                )))),
+                    pw.Container(
+                        width: 30,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                          child: pw.Text(
+                              "${DataLoadingSparekit[index]['qty'] ?? "-"}",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
+                    pw.Container(
+                        width: 40,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                          child: pw.Text(
+                              "${DataLoadingSparekit[index]['unit'] ?? "-"}",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
+                    pw.Container(
+                        width: 60,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                          child: pw.Text(
+                              "${DataLoadingSparekit[index]['weight_kg'] ?? "-"}",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
+                    pw.Container(
+                        width: 80,
+                        height: 20,
+                        decoration: pw.BoxDecoration(border: pw.Border.all()),
+                        child: pw.Center(
+                          child: pw.Text(
+                              "${DataLoadingSparekit[index]['remark'] ?? "-"}",
+                              style: pw.TextStyle(
+                                fontSize: 6,
+                                fontWeight: pw.FontWeight.normal,
+                                color: PdfColors.black,
+                              )),
+                        )),
+                  ])),
+                  //             // pw.Container(
+                  //             //     child: pw.Row(children: [
+                  //             //   pw.Container(
+                  //             //       height: 20,
+                  //             //       width: 290,
+                  //             //       decoration: pw.BoxDecoration(
+                  //             //         border: pw.Border.all(),
+                  //             //       ),
+                  //             //       child: pw.Center(
+                  //             //           child: pw.Text("Sub Total",
+                  //             //               style: pw.TextStyle(
+                  //             //                 fontSize: 8,
+                  //             //                 fontWeight: pw.FontWeight.bold,
+                  //             //                 color: PdfColors.red,
+                  //             //               )))),
+                  //             //   pw.Container(
+                  //             //       height: 20,
+                  //             //       width: 30,
+                  //             //       decoration: pw.BoxDecoration(
+                  //             //         border: pw.Border.all(),
+                  //             //       ),
+                  //             //       child: pw.Center(
+                  //             //           child: pw.Text("8",
+                  //             //               style: pw.TextStyle(
+                  //             //                 fontSize: 8,
+                  //             //                 fontWeight: pw.FontWeight.bold,
+                  //             //                 color: PdfColors.red,
+                  //             //               )))),
+                  //             //   pw.Container(
+                  //             //       height: 20,
+                  //             //       width: 40,
+                  //             //       decoration: pw.BoxDecoration(
+                  //             //         border: pw.Border.all(),
+                  //             //       ),
+                  //             //       child: pw.Center(
+                  //             //           child: pw.Text("",
+                  //             //               style: pw.TextStyle(
+                  //             //                 fontSize: 8,
+                  //             //                 fontWeight: pw.FontWeight.bold,
+                  //             //                 fontStyle: pw.FontStyle.italic,
+                  //             //                 color: PdfColors.black,
+                  //             //               )))),
+                  //             //   pw.Container(
+                  //             //       height: 20,
+                  //             //       width: 60,
+                  //             //       decoration: pw.BoxDecoration(
+                  //             //         border: pw.Border.all(),
+                  //             //       ),
+                  //             //       child: pw.Center(
+                  //             //           child: pw.Text("28,00",
+                  //             //               style: pw.TextStyle(
+                  //             //                 fontSize: 8,
+                  //             //                 fontWeight: pw.FontWeight.bold,
+                  //             //                 color: PdfColors.red,
+                  //             //               )))),
+                  //             //   pw.Container(
+                  //             //       height: 20,
+                  //             //       width: 80,
+                  //             //       child: pw.Center(
+                  //             //           child: pw.Text("",
+                  //             //               style: pw.TextStyle(
+                  //             //                 fontSize: 8,
+                  //             //                 fontWeight: pw.FontWeight.bold,
+                  //             //                 fontStyle: pw.FontStyle.italic,
+                  //             //                 color: PdfColors.black,
+                  //             //               )))),
+                  //             // ])),
+                ]));
+          }),
       pw.Container(
           child: pw.Row(children: [
         pw.Container(
