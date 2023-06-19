@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'dart:html' as html;
 
 class DetailTableCableNewMaterial extends StatefulWidget {
   const DetailTableCableNewMaterial({super.key, required this.idNewMaterial});
@@ -41,6 +44,7 @@ String selectedValueArmoring = "ARMORING TYPE";
 class _DetailTableCableNewMaterialState
     extends State<DetailTableCableNewMaterial> {
   List NewMaterialByIdCable = [];
+  List NewMaterialByIdCable2 = [];
 
   String id = "";
   Response? response;
@@ -61,16 +65,15 @@ class _DetailTableCableNewMaterialState
       response = await dio.get('$getNewMaterialById/$id');
 
       setState(() {
-        NewMaterialByIdCable =
-            response!.data['newMaterial'][0]['submitted_new_material_cables_id_in_spare_cable'];
+        NewMaterialByIdCable = response!.data['newMaterial'][0]
+            ['submitted_new_material_cables_id_in_spare_cable'];
+        NewMaterialByIdCable2 =
+            response!.data['newMaterial'][0]['new_material_cables'];
       });
     } catch (e) {}
   }
 
-  DataRow _resultsAPI(
-    index,
-    data,
-  ) {
+  DataRow _resultsAPI(index, data, data2) {
     return DataRow(cells: [
       DataCell(Text("${index + 1}",
           style: GoogleFonts.montserrat(
@@ -126,19 +129,51 @@ class _DetailTableCableNewMaterialState
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['evidence'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
       DataCell(Text("${data['remark'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
+      DataCell(data['evidence'] != null
+          ? TextButton(
+              onPressed: () {
+                downloadEvidenceCableNewMaterial(
+                    data2['id'], data['evidence']['originalName']);
+              },
+              child: Text("Download evidence",
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.blue,
+                  )))
+          : Text("-",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
     ]);
+  }
+
+  void downloadEvidenceCableNewMaterial(id, name) async {
+    bool status;
+    var msg;
+    String url = "$downloadEvidenceCable/${widget.idNewMaterial}/$id";
+
+    try {
+      html.AnchorElement anchorElement = new html.AnchorElement(href: url);
+      anchorElement.download = url;
+      anchorElement.click();
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: e.toString(),
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 
   void hapusDataCableNewMaterial(id) async {
@@ -218,37 +253,23 @@ class _DetailTableCableNewMaterialState
                       ),
                       fixedWidth: 100),
                   DataColumn2(
-                      label: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedValueSystem = newValue!;
-                              });
-                            },
-                            value: selectedValueSystem,
-                            items: dropdownItemsSystem),
+                      label: Text(
+                        'SYSTEM',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
                       ),
                       fixedWidth: 100),
                   DataColumn2(
-                      label: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedValueArmoring = newValue!;
-                              });
-                            },
-                            value: selectedValueArmoring,
-                            items: dropdownItemsArmoring),
+                      label: Text(
+                        'ARMORING TYPE',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
                       ),
                       fixedWidth: 120),
                   DataColumn2(
@@ -305,16 +326,6 @@ class _DetailTableCableNewMaterialState
                       fixedWidth: 100),
                   DataColumn2(
                       label: Text(
-                        "Evidence",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
                         "REMARK",
                         style: GoogleFonts.montserrat(
                           fontSize: 10,
@@ -323,12 +334,23 @@ class _DetailTableCableNewMaterialState
                         ),
                       ),
                       fixedWidth: 150),
+                  DataColumn2(
+                      label: Text(
+                        "Evidence",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
                 ],
                 rows: List.generate(
                     NewMaterialByIdCable.length,
                     (index) => _resultsAPI(
                           index,
                           NewMaterialByIdCable[index],
+                          NewMaterialByIdCable2[index],
                         ))),
           ),
         ),

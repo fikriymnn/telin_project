@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
@@ -28,6 +29,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
   String? selectionSystem;
   String? selectionUnit;
   String? selectionLocation;
+  PlatformFile? pickedFile;
 
   List system = [];
   List unit = [];
@@ -653,7 +655,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Evidence",
+                              "EVIDENCE",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -678,26 +680,41 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                                   offset: const Offset(0, 4))
                             ]),
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 18, bottom: 8),
-                          child: Center(
-                            child: TextField(
-                              controller: txtNamaEvidence,
-                              style: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
-                                  hintText: "Type Here"),
-                            ),
-                          ),
-                        ),
+                            padding: const EdgeInsets.only(left: 18, bottom: 8),
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () async {
+                                    FilePickerResult? result =
+                                        await FilePicker.platform.pickFiles();
+
+                                    if (result != null) {
+                                      setState(() {
+                                        pickedFile = result.files.first;
+                                      });
+                                    } else {
+                                      // User canceled the picker
+                                    }
+                                  },
+                                  icon: const Icon(Icons.upload_file),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Flexible(
+                                  child: Text(
+                                      pickedFile != null
+                                          ? pickedFile!.name
+                                          : "Upload File",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      )),
+                                )
+                              ],
+                            )),
                       ),
                       const SizedBox(
                         height: 20.6,
@@ -790,7 +807,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                     txtQty.text,
                     selectionSystem,
                     selectionUnit,
-                    txtNamaEvidence.text,
+                    pickedFile,
                     txtRemark.text);
               }
             },
@@ -819,12 +836,44 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
   void _clearForm() {
     // txtItemName.clear();
   }
+  addEvidence(idNewMaterial, kitId, evidence) async {
+    String msg;
+    try {
+      final formData = FormData.fromMap({
+        "evidence": await MultipartFile.fromString(
+          evidence.toString(),
+          filename: evidence.name,
+        ),
+      });
+
+      response = await dio.post("$addEvidenceKit/$idNewMaterial/$kitId",
+          data: formData);
+
+      msg = response!.data['message'];
+      // QuickAlert.show(
+      //     context: context,
+      //     type: QuickAlertType.success,
+      //     text: msg,
+      //     title: 'Peringatan',
+      //     width: 400,
+      //     confirmBtnColor: Colors.red);
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: e.toString(),
+          title: 'Upload Evidence Error',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
 
   // Fungsi Add Data
   void inputDataNewMaterialNonCable(itemName, location, partNumber,
       serialNumber, weight, qty, system, unit, evidence, remark) async {
     bool status;
     var msg;
+    String id;
     try {
       // var formData = FormData.fromMap({
       //   'Unit': namaUnit,
@@ -845,6 +894,9 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
         'keterangan': remark ?? "",
       });
       status = response!.data['success'];
+      id = response!.data['newKitId'];
+
+      evidence != null ? addEvidence(widget.idNewMaterial, id, evidence) : null;
 
       if (status) {
         FocusScope.of(context).unfocus();

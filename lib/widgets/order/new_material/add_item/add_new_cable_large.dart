@@ -552,61 +552,61 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                         const SizedBox(
                           height: 20.6,
                         ),
-                        SizedBox(
-                          width: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Lable *",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 230,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  width: 5, color: const Color(0xffF0F0F0)),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    blurRadius: 5,
-                                    offset: const Offset(0, 4))
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18, bottom: 8),
-                            child: Center(
-                              child: TextField(
-                                controller: txtLable,
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 13.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintStyle: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    hintText: "Type Here"),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20.6,
-                        ),
+                        // SizedBox(
+                        //   width: 230,
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.start,
+                        //     children: [
+                        //       Text(
+                        //         "Lable *",
+                        //         style: GoogleFonts.montserrat(
+                        //           fontSize: 20,
+                        //           fontWeight: FontWeight.w600,
+                        //           color: Colors.black,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        // Container(
+                        //   width: 230,
+                        //   height: 44,
+                        //   decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(6),
+                        //       border: Border.all(
+                        //           width: 5, color: const Color(0xffF0F0F0)),
+                        //       color: Colors.white,
+                        //       boxShadow: [
+                        //         BoxShadow(
+                        //             color: Colors.black.withOpacity(0.25),
+                        //             blurRadius: 5,
+                        //             offset: const Offset(0, 4))
+                        //       ]),
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.only(left: 18, bottom: 8),
+                        //     child: Center(
+                        //       child: TextField(
+                        //         controller: txtLable,
+                        //         style: GoogleFonts.montserrat(
+                        //           fontSize: 13.3,
+                        //           fontWeight: FontWeight.w400,
+                        //           color: Colors.black,
+                        //         ),
+                        //         decoration: InputDecoration(
+                        //             border: InputBorder.none,
+                        //             hintStyle: GoogleFonts.montserrat(
+                        //               fontSize: 13.3,
+                        //               fontWeight: FontWeight.w400,
+                        //               color: Colors.black,
+                        //             ),
+                        //             hintText: "Type Here"),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        // const SizedBox(
+                        //   height: 20.6,
+                        // ),
                         SizedBox(
                           width: 230,
                           child: Row(
@@ -1028,7 +1028,6 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                   selectedValueCableType == null ||
                   selectionManufacturer == null ||
                   selectionArmoringType == null ||
-                  txtLable == null ||
                   txtLenght == null ||
                   selectedValueInner == null ||
                   selectionLocation == null ||
@@ -1053,7 +1052,8 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     txtRemark.text,
                     selectionCoreType,
                     txtE_Core.text,
-                    selectionLocation);
+                    selectionLocation,
+                    pickedFile!);
               }
             },
             child: Container(
@@ -1267,16 +1267,53 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   void _clearForm() {
     // txtNamaUnit.clear();
   }
-  // void addInvoiceCable(evidence) async {
-  //   try {} catch (e) {
-  //     print("mmmm");
-  //   }
-  // }
+  addEvidence(idNewMaterial, cableId, evidence) async {
+    String msg;
+    try {
+      final formData = FormData.fromMap({
+        "evidence": await MultipartFile.fromString(
+          evidence.toString(),
+          filename: evidence.name,
+        ),
+      });
 
-  // Fungsi Add Data
-  void inputDataNewMaterialCable(system, cableType, manufacturer, armoringType,
-      length, label, inner, remark, coreType, eCore, tankLocation) async {
+      response = await dio.post("$addEvidenceCable/$idNewMaterial/$cableId",
+          data: formData);
+
+      msg = response!.data['message'];
+      // QuickAlert.show(
+      //     context: context,
+      //     type: QuickAlertType.success,
+      //     text: msg,
+      //     title: 'Peringatan',
+      //     width: 400,
+      //     confirmBtnColor: Colors.red);
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: e.toString(),
+          title: 'Upload Evidence Error',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void inputDataNewMaterialCable(
+      system,
+      cableType,
+      manufacturer,
+      armoringType,
+      length,
+      label,
+      inner,
+      remark,
+      coreType,
+      eCore,
+      tankLocation,
+      evidence) async {
     bool status;
+    String id;
 
     try {
       // var formData = FormData.fromMap({
@@ -1289,7 +1326,6 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
 
       response = await dio
           .post("$addCableToNewMaterial/${widget.idNewMaterial}", data: {
-        'label_id': label,
         "depo_location": "makassars",
         'system': system,
         'cable_type': cableType,
@@ -1307,6 +1343,9 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
         'E_core': eCore,
       });
       status = response!.data['success'];
+      id = response!.data['newCableId'];
+
+      evidence != null ? addEvidence(widget.idNewMaterial, id, evidence) : null;
 
       if (status) {
         // FocusScope.of(context).unfocus();

@@ -1,4 +1,4 @@
-String baseUrl = 'http://192.168.199.11:1000';
+String baseUrl = 'http://192.168.168.11:1000';
 // 'https://asia-southeast2-telkominfra-f7a85.cloudfunctions.net/api';
 
 //loading
@@ -35,6 +35,10 @@ String deleteKitFromNewMaterial =
 String submitNewMaterial = '$baseUrl/api/offloadingNewMaterial/submit';
 String deleteNewMaterial = '$baseUrl/api/offloadingNewMaterial/delete';
 String addEvidenceCable = '$baseUrl/api/offloadingNewMaterial/evidence/cable';
+String addEvidenceKit = '$baseUrl/api/offloadingNewMaterial/evidence/kit';
+String downloadEvidenceCable =
+    '$baseUrl/api/offloadingNewMaterial/evidence/cable';
+String downloadEvidenceKit = '$baseUrl/api/offloadingNewMaterial/evidence/kit';
 
 //allCable
 String getAllCable = '$baseUrl/api/spareCable/';
