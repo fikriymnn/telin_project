@@ -181,7 +181,7 @@ class _BastOffLoadingState extends State<BastOffLoading> {
                         projectName: "${LoadingById[0]['project_name'] ?? "-"}",
                         onClick: () {
                           printBastOffLoading().BastLoadingPrinttt(
-                              LoadingById, LoadingByIdKits, LoadingById);
+                              LoadingByIdCable, LoadingByIdKits, LoadingById);
                           // showDialog(
                           //         context: context,
                           //         builder: (BuildContext context) {

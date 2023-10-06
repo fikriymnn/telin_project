@@ -1,6 +1,6 @@
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:pluto_grid_export/pluto_grid_export.dart';
+
 import 'package:printing/printing.dart';
 
 class printBastNewMaterial {
@@ -778,8 +778,8 @@ NUMBER""",
                         width: 150,
                         height: 20,
                         decoration: pw.BoxDecoration(border: pw.Border.all()),
-                        child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 5),
+                        child: pw.Padding(
+                            padding: pw.EdgeInsets.symmetric(horizontal: 5),
                             child: pw.Center(
                               child: pw.Text(
                                   "${DataNewMaterialKit[index]['item_name'] ?? "-"}",

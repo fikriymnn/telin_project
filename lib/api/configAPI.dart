@@ -1,5 +1,6 @@
 const baseUrl =
     'https://asia-southeast2-telkominfra-f7a85.cloudfunctions.net/api';
+
 //loading
 String newloading = '$baseUrl/api/loading/';
 String addCableToLoading = '$baseUrl/api/loading/cable';
@@ -16,6 +17,9 @@ String getAllTurnOverById = '$baseUrl/api/loading/turnover';
 String getAllOffLoading = '$baseUrl/api/offloading';
 String getOffLoadingById = '$baseUrl/api/offloading';
 String offLoadingExisting = '$baseUrl/api/offloading/addCableExisting';
+String offLoadingExistingKit = '$baseUrl/api/offloading/addKitExisting';
+String deleteKitFromExisting = '$baseUrl/api/offloading/removeKitExisting';
+String deleteCableFromExisting = '$baseUrl/api/offloading/removeCableExisting';
 String submiOffLoadingExisting = '$baseUrl/api/offloading/submitExisting';
 
 //new material
@@ -30,6 +34,11 @@ String deleteKitFromNewMaterial =
     '$baseUrl/api/offloadingNewMaterial/deleteKit';
 String submitNewMaterial = '$baseUrl/api/offloadingNewMaterial/submit';
 String deleteNewMaterial = '$baseUrl/api/offloadingNewMaterial/delete';
+String addEvidenceCable = '$baseUrl/api/offloadingNewMaterial/evidence/cable';
+String addEvidenceKit = '$baseUrl/api/offloadingNewMaterial/evidence/kit';
+String downloadEvidenceCable =
+    '$baseUrl/api/offloadingNewMaterial/evidence/cable';
+String downloadEvidenceKit = '$baseUrl/api/offloadingNewMaterial/evidence/kit';
 
 //allCable
 String getAllCable = '$baseUrl/api/spareCable/';

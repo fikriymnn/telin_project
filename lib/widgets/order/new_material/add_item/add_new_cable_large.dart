@@ -40,8 +40,9 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   List location = [];
 
   Response? response;
-
+  Response? response1;
   var dio = Dio();
+  var dio1 = Dio();
   @override
   void initState() {
     // TODO: implement initState
@@ -55,50 +56,6 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
     super.initState();
   }
 
-  List<DropdownMenuItem<String>> get dropdownItemsSystem {
-    List<DropdownMenuItem<String>> menuItemsSystem = [
-      const DropdownMenuItem(
-          value: "Select System", child: Text("Select System")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItemsSystem;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItemsCableType {
-    List<DropdownMenuItem<String>> menuItemsCableType = [
-      const DropdownMenuItem(
-          value: "Select Cable Type", child: Text("Select Cable Type")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItemsCableType;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItemsManufacture {
-    List<DropdownMenuItem<String>> menuItemsManufacture = [
-      const DropdownMenuItem(
-          value: "Select Manufacture", child: Text("Select Manufacture")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItemsManufacture;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItemsArmoringType {
-    List<DropdownMenuItem<String>> menuItemsArmoringType = [
-      const DropdownMenuItem(
-          value: "Select Armoring Type", child: Text("Select Armoring Type")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItemsArmoringType;
-  }
-
   List<DropdownMenuItem<String>> get dropdownItemsInner {
     List<DropdownMenuItem<String>> menuItemsInner = [
       const DropdownMenuItem(value: "INNER", child: Text("INNER")),
@@ -107,26 +64,19 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
     return menuItemsInner;
   }
 
-  List<DropdownMenuItem<String>> get dropdownItemsOuter {
-    List<DropdownMenuItem<String>> menuItemsOuter = [
-      const DropdownMenuItem(
-          value: "Select Outer", child: Text("Select Outer")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
+  List<DropdownMenuItem<String>> get dropdownItemsTankLocation {
+    List<DropdownMenuItem<String>> menuItemsInner = [
+      const DropdownMenuItem(value: "TANK-2", child: Text("TANK-2")),
+      const DropdownMenuItem(value: "TANK-3", child: Text("TANK-3")),
+      const DropdownMenuItem(value: "TANK-4", child: Text("TANK-4")),
+      const DropdownMenuItem(value: "TANK-5", child: Text("TANK-5")),
+      const DropdownMenuItem(value: "TANK-7", child: Text("TANK-7")),
+      const DropdownMenuItem(value: "TANK-8", child: Text("TANK-8")),
+      const DropdownMenuItem(value: "TANK-9", child: Text("TANK-9")),
+      const DropdownMenuItem(value: "TANK-10", child: Text("TANK-10")),
+      const DropdownMenuItem(value: "TANK-11", child: Text("TANK-11")),
     ];
-    return menuItemsOuter;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItemsCoreType {
-    List<DropdownMenuItem<String>> menuItemsCoreType = [
-      const DropdownMenuItem(
-          value: "Select Core Type", child: Text("Select Core Type")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItemsCoreType;
+    return menuItemsInner;
   }
 
   String selectedValueCableType = "Select Cable Type";
@@ -517,263 +467,292 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                 ),
                 Container(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 230,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Length *",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 203.3,
-                        height: 44,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                                width: 5, color: const Color(0xffF0F0F0)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.25),
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 4))
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 18,
-                          ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 230,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 8),
-                                  child: TextField(
-                                    controller: txtLenght,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintStyle: GoogleFonts.montserrat(
-                                          fontSize: 13.3,
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.black,
-                                        ),
-                                        hintText: "Type Length"),
-                                  ),
+                              Text(
+                                "Length *",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
                                 ),
                               ),
-                              Container(
-                                width: 68.6,
-                                height: 44,
-                                decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(6),
-                                        bottomRight: Radius.circular(6)),
-                                    color: Color(0xffEC1D26)),
-                                child: Center(
-                                  child: Text(
-                                    "Meter",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              )
                             ],
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20.6,
-                      ),
-                      SizedBox(
-                        width: 230,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Lable *",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                              ),
+                        Container(
+                          width: 203.3,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  width: 5, color: const Color(0xffF0F0F0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 4))
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              left: 18,
                             ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 230,
-                        height: 44,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                                width: 5, color: const Color(0xffF0F0F0)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.25),
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 4))
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 18, bottom: 8),
-                          child: Center(
-                            child: TextField(
-                              controller: txtLable,
-                              style: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: TextField(
+                                      controller: txtLenght,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                      decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintStyle: GoogleFonts.montserrat(
+                                            fontSize: 13.3,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.black,
+                                          ),
+                                          hintText: "Type Length"),
+                                    ),
                                   ),
-                                  hintText: "Type Here"),
+                                ),
+                                Container(
+                                  width: 68.6,
+                                  height: 44,
+                                  decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(6),
+                                          bottomRight: Radius.circular(6)),
+                                      color: Color(0xffEC1D26)),
+                                  child: Center(
+                                    child: Text(
+                                      "Meter",
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20.6,
-                      ),
-                      SizedBox(
-                        width: 230,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Tank *",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
+                        const SizedBox(
+                          height: 20.6,
                         ),
-                      ),
-                      Container(
-                        width: 230,
-                        height: 44,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                                width: 5, color: const Color(0xffF0F0F0)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.25),
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 4))
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 18, right: 18),
-                          child: Center(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                  isExpanded: true,
-                                  hint: Text(
-                                    "Select Tank",
+                        // SizedBox(
+                        //   width: 230,
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.start,
+                        //     children: [
+                        //       Text(
+                        //         "Lable *",
+                        //         style: GoogleFonts.montserrat(
+                        //           fontSize: 20,
+                        //           fontWeight: FontWeight.w600,
+                        //           color: Colors.black,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        // Container(
+                        //   width: 230,
+                        //   height: 44,
+                        //   decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(6),
+                        //       border: Border.all(
+                        //           width: 5, color: const Color(0xffF0F0F0)),
+                        //       color: Colors.white,
+                        //       boxShadow: [
+                        //         BoxShadow(
+                        //             color: Colors.black.withOpacity(0.25),
+                        //             blurRadius: 5,
+                        //             offset: const Offset(0, 4))
+                        //       ]),
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.only(left: 18, bottom: 8),
+                        //     child: Center(
+                        //       child: TextField(
+                        //         controller: txtLable,
+                        //         style: GoogleFonts.montserrat(
+                        //           fontSize: 13.3,
+                        //           fontWeight: FontWeight.w400,
+                        //           color: Colors.black,
+                        //         ),
+                        //         decoration: InputDecoration(
+                        //             border: InputBorder.none,
+                        //             hintStyle: GoogleFonts.montserrat(
+                        //               fontSize: 13.3,
+                        //               fontWeight: FontWeight.w400,
+                        //               color: Colors.black,
+                        //             ),
+                        //             hintText: "Type Here"),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        // const SizedBox(
+                        //   height: 20.6,
+                        // ),
+                        SizedBox(
+                          width: 230,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Tank *",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 230,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  width: 5, color: const Color(0xffF0F0F0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 4))
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 18, right: 18),
+                            child: Center(
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                    isExpanded: true,
+                                    hint: Text(
+                                      "Select Tank",
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                     style: GoogleFonts.montserrat(
                                       fontSize: 13.3,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ),
-                                  ),
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      selectedValueInner = newValue!;
-                                    });
-                                  },
-                                  value: selectedValueInner,
-                                  items: dropdownItemsInner),
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        selectedValueInner = newValue!;
+                                      });
+                                    },
+                                    value: selectedValueInner,
+                                    items: dropdownItemsInner),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20.6,
-                      ),
-                      SizedBox(
-                        width: 230,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Tank-Location *",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
+                        const SizedBox(
+                          height: 20.6,
                         ),
-                      ),
-                      Container(
-                        width: 230,
-                        height: 44,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                                width: 5, color: const Color(0xffF0F0F0)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.25),
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 4))
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 18, bottom: 8),
-                          child: Center(
-                            child: TextField(
-                              controller: txtTankLocation,
-                              style: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
+                        SizedBox(
+                          width: 230,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Tank-Location *",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
                               ),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: GoogleFonts.montserrat(
-                                    fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                  ),
-                                  hintText: "Type Here"),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 230,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  width: 5, color: const Color(0xffF0F0F0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 4))
+                              ]),
+                          child:
+                              // Padding(
+                              //   padding: const EdgeInsets.only(left: 18, bottom: 8),
+                              //   child: Center(
+                              //     child: TextField(
+                              //       controller: txtTankLocation,
+                              //       style: GoogleFonts.montserrat(
+                              //         fontSize: 13.3,
+                              //         fontWeight: FontWeight.w400,
+                              //         color: Colors.black,
+                              //       ),
+                              //       decoration: InputDecoration(
+                              //           border: InputBorder.none,
+                              //           hintStyle: GoogleFonts.montserrat(
+                              //             fontSize: 13.3,
+                              //             fontWeight: FontWeight.w400,
+                              //             color: Colors.black,
+                              //           ),
+                              //           hintText: "Type Here"),
+                              //     ),
+                              //   ),
+                              // ),
+                              Padding(
+                            padding: const EdgeInsets.only(left: 18, right: 18),
+                            child: Center(
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                    isExpanded: true,
+                                    hint: Text(
+                                      "Select Location",
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13.3,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 13.3,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                    onChanged: (newVal) {
+                                      setState(() {
+                                        selectionLocation = newVal!;
+                                      });
+                                    },
+                                    value: selectionLocation,
+                                    items: dropdownItemsTankLocation),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ]),
                 ),
                 const SizedBox(
                   width: 40,
@@ -787,7 +766,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "TANK",
+                              "EVIDENCE",
                               style: GoogleFonts.montserrat(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -1046,13 +1025,12 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
           InkWell(
             onTap: () {
               if (selectionSystem == null ||
-                  selectionSystem == null ||
+                  selectedValueCableType == null ||
                   selectionManufacturer == null ||
                   selectionArmoringType == null ||
-                  txtLable == null ||
                   txtLenght == null ||
+                  selectedValueInner == null ||
                   selectionLocation == null ||
-                  txtTankLocation == null ||
                   selectionCoreType == null ||
                   txtE_Core == null) {
                 QuickAlert.show(
@@ -1071,11 +1049,11 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     txtLenght.text,
                     txtLable.text,
                     selectedValueInner,
-                    pickedFile!.name,
                     txtRemark.text,
                     selectionCoreType,
                     txtE_Core.text,
-                    txtTankLocation.text);
+                    selectionLocation,
+                    pickedFile!);
               }
             },
             child: Container(
@@ -1289,8 +1267,38 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   void _clearForm() {
     // txtNamaUnit.clear();
   }
+  addEvidence(idNewMaterial, cableId, evidence) async {
+    String msg;
+    try {
+      final formData = FormData.fromMap({
+        "evidence": await MultipartFile.fromString(
+          evidence.toString(),
+          filename: evidence.name,
+        ),
+      });
 
-  // Fungsi Add Data
+      response = await dio.post("$addEvidenceCable/$idNewMaterial/$cableId",
+          data: formData);
+
+      msg = response!.data['message'];
+      // QuickAlert.show(
+      //     context: context,
+      //     type: QuickAlertType.success,
+      //     text: msg,
+      //     title: 'Peringatan',
+      //     width: 400,
+      //     confirmBtnColor: Colors.red);
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: e.toString(),
+          title: 'Upload Evidence Error',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   void inputDataNewMaterialCable(
       system,
       cableType,
@@ -1299,21 +1307,25 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       length,
       label,
       inner,
-      evidence,
       remark,
       coreType,
       eCore,
-      tankLocation) async {
+      tankLocation,
+      evidence) async {
     bool status;
-    var msg;
+    String id;
+
     try {
       // var formData = FormData.fromMap({
       //   'Unit': namaUnit,
       // });
+      // FormData formdata = FormData.fromMap({
+      //   'evidence':
+      //       await MultipartFile.fromFile(evidence, filename: "tftfty.txt"),
+      // });
 
       response = await dio
           .post("$addCableToNewMaterial/${widget.idNewMaterial}", data: {
-        'label_id': label,
         "depo_location": "makassars",
         'system': system,
         'cable_type': cableType,
@@ -1325,17 +1337,19 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
         "doc_reff": "SCRAP",
         'tank': inner,
         'tank_location': tankLocation,
-        'evidence': evidence,
-        'remark': remark,
+        'remark': remark ?? "",
         'core_type': coreType,
         'sigma_core': eCore,
         'E_core': eCore,
       });
       status = response!.data['success'];
+      id = response!.data['newCableId'];
+
+      evidence != null ? addEvidence(widget.idNewMaterial, id, evidence) : null;
 
       if (status) {
-        FocusScope.of(context).unfocus();
-        _clearForm();
+        // FocusScope.of(context).unfocus();
+        // _clearForm();
         QuickAlert.show(
             context: context,
             type: QuickAlertType.success,
@@ -1355,7 +1369,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       QuickAlert.show(
           context: context,
           type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
+          text: e.toString(),
           title: 'Peringatan',
           width: 400,
           confirmBtnColor: Colors.red);
