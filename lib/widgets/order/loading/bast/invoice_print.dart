@@ -31,13 +31,31 @@ class printInvoiceLoading {
         (index) =>
             dataLoadingKit[index]['unitPriceIdr'] *
             dataLoadingKit[index]['qty']);
-    var totalCableUsd = totCableUsd.reduce((a, b) => a + b);
-    var totalSparekitUsd = totSparekitUsd.reduce((a, b) => a + b);
-    var totalSparekitIdr = totSparekitIdr.reduce((a, b) => a + b);
-    var totalCableIdr = totCableIdr.reduce((a, b) => a + b);
+    var totQtySparekit = List.generate(
+        dataLoadingKit.length, (index) => dataLoadingKit[index]['weight_kg']);
+    num totalCableUsd = 0;
+    num totalSparekitUsd = 0;
+    num totalSparekitIdr = 0;
+    num totalCableIdr = 0;
 
-    var totalQtySparekit = List.generate(dataLoadingKit.length,
-        (index) => dataLoadingKit[index]['weight_kg']).reduce((a, b) => a + b);
+    num totalQtySparekit = 0;
+
+    for (var value in totCableUsd) {
+      totalCableUsd += value;
+    }
+    for (var value in totSparekitUsd) {
+      totalSparekitUsd += value;
+    }
+    for (var value in totCableIdr) {
+      totalCableIdr += value;
+    }
+    for (var value in totSparekitIdr) {
+      totalSparekitIdr += value;
+    }
+
+    for (var value in totQtySparekit) {
+      totalQtySparekit += value;
+    }
 
     doc.addPage(pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
@@ -753,7 +771,7 @@ class printInvoiceLoading {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataLoadingCable[index]['priceUsd'] * dataLoadingCable[index]['length_report'] ?? ""}",
+                                      "${dataLoadingCable[index]['priceUsd'] ?? 0 * dataLoadingCable[index]['length_report'] ?? 0 ?? ""}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -779,7 +797,7 @@ class printInvoiceLoading {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataLoadingCable[index]['priceIdr'] * dataLoadingCable[index]['length_report'] ?? ""}",
+                                      "${dataLoadingCable[index]['priceIdr'] ?? 0 * dataLoadingCable[index]['length_report'] ?? 0 ?? ""}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -1110,7 +1128,7 @@ class printInvoiceLoading {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataLoadingKit[index]['unitPriceUsd'] * dataLoadingKit[index]['qty_taken'] ?? ""}",
+                                      "${dataLoadingKit[index]['unitPriceUsd'] ?? 0 * dataLoadingKit[index]['qty_taken'] ?? 0 ?? ""}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,
@@ -1136,7 +1154,7 @@ class printInvoiceLoading {
                                   pw.BoxDecoration(border: pw.Border.all()),
                               child: pw.Center(
                                   child: pw.Text(
-                                      "${dataLoadingKit[index]['unitPriceIdr'] * dataLoadingKit[index]['qty_taken'] ?? ""}",
+                                      "${dataLoadingKit[index]['unitPriceIdr'] ?? 0 * dataLoadingKit[index]['qty_taken'] ?? 0 ?? ""}",
                                       style: pw.TextStyle(
                                         fontSize: 6,
                                         fontWeight: pw.FontWeight.normal,

@@ -114,7 +114,11 @@ class _TableKursState extends State<TableKurs> {
         columnSpacing: 6,
         horizontalMargin: 6,
         dataRowHeight: 30,
-        border: const TableBorder(top: BorderSide(), bottom: BorderSide()),
+        border: const TableBorder(
+            top: BorderSide(),
+            bottom: BorderSide(),
+            right: BorderSide(),
+            left: BorderSide()),
         columns: [
           DataColumn2(
             label: Text(

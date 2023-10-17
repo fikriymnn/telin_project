@@ -78,61 +78,61 @@ class _DetailTableCableNewMaterialState
       DataCell(Text("${index + 1}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text('${data['label_id'] ?? "-"}',
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("${data['system']['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("${data['armoring_type']['armoring_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("${data['length_report'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("${data['core_type']['core_type'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("${data['sigma_core'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("${data['tank'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("${data['tank_location'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("${data['remark'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(data['evidence'] != null
@@ -144,13 +144,13 @@ class _DetailTableCableNewMaterialState
               child: Text("Download evidence",
                   style: GoogleFonts.montserrat(
                     fontSize: 10,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w600,
                     color: Colors.blue,
                   )))
           : Text("-",
               style: GoogleFonts.montserrat(
                 fontSize: 10,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w600,
                 color: Colors.black,
               ))),
     ]);

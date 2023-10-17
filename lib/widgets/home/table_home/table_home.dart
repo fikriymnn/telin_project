@@ -205,8 +205,9 @@ class _TableHomeState extends State<TableHome> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(left: 146, right: 146),
+        padding: const EdgeInsets.only(left: 100, right: 100),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width,
@@ -325,9 +326,10 @@ class _TableHomeState extends State<TableHome> {
                   fixedWidth: 250,
                 ),
                 DataColumn2(
-                    fixedWidth: 350,
+                    fixedWidth: 300,
                     label: Center(
                       child: Text("Project's Name",
+                          overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.roboto(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,

@@ -207,9 +207,10 @@ class _TableAkunState extends State<TableAkun> {
         dataRowHeight: 30,
         minWidth: 3000,
         border: const TableBorder(
-          top: BorderSide(),
-          bottom: BorderSide(),
-        ),
+            top: BorderSide(),
+            bottom: BorderSide(),
+            left: BorderSide(),
+            right: BorderSide()),
         columns: [
           DataColumn2(
             label: Text(

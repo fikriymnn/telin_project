@@ -149,6 +149,7 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                     padding: const EdgeInsets.symmetric(
                         vertical: 14, horizontal: 26.6),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
                           width: MediaQuery.of(context).size.width,

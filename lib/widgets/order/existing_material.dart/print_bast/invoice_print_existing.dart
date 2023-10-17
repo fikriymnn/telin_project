@@ -31,13 +31,31 @@ class printInvoiceExisting {
         (index) =>
             dataLoadingKit[index]['unitPriceIdr'] *
             dataLoadingKit[index]['qty']);
-    var totalCableUsd = totCableUsd.reduce((a, b) => a + b);
-    var totalSparekitUsd = totSparekitUsd.reduce((a, b) => a + b);
-    var totalSparekitIdr = totSparekitIdr.reduce((a, b) => a + b);
-    var totalCableIdr = totCableIdr.reduce((a, b) => a + b);
+    var totQtySparekit = List.generate(
+        dataLoadingKit.length, (index) => dataLoadingKit[index]['weight_kg']);
+    num totalCableUsd = 0;
+    num totalSparekitUsd = 0;
+    num totalSparekitIdr = 0;
+    num totalCableIdr = 0;
 
-    var totalQtySparekit = List.generate(dataLoadingKit.length,
-        (index) => dataLoadingKit[index]['weight_kg']).reduce((a, b) => a + b);
+    num totalQtySparekit = 0;
+
+    for (var value in totCableUsd) {
+      totalCableUsd += value;
+    }
+    for (var value in totSparekitUsd) {
+      totalSparekitUsd += value;
+    }
+    for (var value in totCableIdr) {
+      totalCableIdr += value;
+    }
+    for (var value in totSparekitIdr) {
+      totalSparekitIdr += value;
+    }
+
+    for (var value in totQtySparekit) {
+      totalQtySparekit += value;
+    }
 
     doc.addPage(pw.MultiPage(
         pageFormat: PdfPageFormat.a4,

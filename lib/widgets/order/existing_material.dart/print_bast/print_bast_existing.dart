@@ -366,9 +366,12 @@ class printBastOffLoading {
   }
 
   static TableCableBast(List dataLoadingCable) {
-    var totalLength = List.generate(dataLoadingCable.length,
-            (index) => dataLoadingCable[index]['length_report'])
-        .reduce((a, b) => a + b);
+    num totalLength = 0;
+    var listData = List.generate(dataLoadingCable.length,
+        (index) => dataLoadingCable[index]['length_report']);
+    for (var value in listData) {
+      totalLength += value;
+    }
     return pw.Column(children: [
       pw.Container(
           child: pw.Row(children: [
@@ -661,11 +664,20 @@ class printBastOffLoading {
   ];
 
   static TableNonCableBast(List DataLoadingSparekit) {
-    var totalQty = List.generate(DataLoadingSparekit.length,
-        (index) => DataLoadingSparekit[index]['qty']).reduce((a, b) => a + b);
-    var totalWeight = List.generate(DataLoadingSparekit.length,
-            (index) => DataLoadingSparekit[index]['weight_kg'])
-        .reduce((a, b) => a + b);
+    num totalQty = 0;
+    num totalWeight = 0;
+
+    var listDataQty = List.generate(DataLoadingSparekit.length,
+        (index) => DataLoadingSparekit[index]['qty_taken']);
+    for (var value in listDataQty) {
+      totalQty += value;
+    }
+    var listDataWeight = List.generate(DataLoadingSparekit.length,
+        (index) => DataLoadingSparekit[index]['weight_kg']);
+
+    for (var value in listDataWeight) {
+      totalWeight += value;
+    }
     return pw.Column(children: [
       pw.Container(
           child: pw.Row(children: [

@@ -174,7 +174,7 @@ class _FormLoadingState extends State<FormLoading> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Vissel Name",
+                                  "Vessel Name",
                                   style: GoogleFonts.montserrat(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,

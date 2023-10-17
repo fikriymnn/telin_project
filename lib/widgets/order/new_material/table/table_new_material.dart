@@ -44,14 +44,14 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
       DataCell(Text('${index + 1}',
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Center(
         child: Text('${data['date'] == null ? "" : data['date']}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -60,7 +60,7 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
             Text('${data['project_name'] == null ? "" : data['project_name']}',
                 style: GoogleFonts.montserrat(
                   fontSize: 10,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black,
                 )),
       )),
@@ -68,7 +68,7 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
         child: Text('${data['from'] == null ? "" : data['from']}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -76,7 +76,7 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
         child: Text('${data['to'] == null ? "" : data['to']}',
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -117,7 +117,7 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
                   child: Text("Detail",
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ))),
             ),
@@ -162,7 +162,7 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
                   child: Text("Delete",
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ))),
             ),
@@ -254,14 +254,14 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
                         controller: controller,
                         style: GoogleFonts.roboto(
                           fontSize: 10.6,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                           color: Colors.black,
                         ),
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintStyle: GoogleFonts.roboto(
                               fontSize: 10.6,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w600,
                               color: const Color(0xFF9D9D9D),
                             ),
                             hintText: "Search"),
@@ -381,14 +381,14 @@ DataRow recentFileDataRow(
       DataCell(Text(data.no,
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Center(
         child: Text(data.date,
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -396,7 +396,7 @@ DataRow recentFileDataRow(
         child: Text(data.projectName,
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -404,7 +404,7 @@ DataRow recentFileDataRow(
         child: Text(data.from,
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -412,7 +412,7 @@ DataRow recentFileDataRow(
         child: Text(data.to,
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -450,7 +450,7 @@ DataRow recentFileDataRow(
                   child: Text("Detail",
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ))),
             ),
@@ -504,7 +504,7 @@ DataRow recentFileDataRow(
                   child: Text("Delete",
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ))),
             ),

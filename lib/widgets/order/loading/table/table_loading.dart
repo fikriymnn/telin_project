@@ -374,14 +374,14 @@ DataRow recentFileDataRow(
       DataCell(Text(data.no,
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Center(
         child: Text(data.date,
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -389,7 +389,7 @@ DataRow recentFileDataRow(
         child: Text(data.projectName,
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -397,7 +397,7 @@ DataRow recentFileDataRow(
         child: Text(data.vesselName,
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -405,7 +405,7 @@ DataRow recentFileDataRow(
         child: Text(data.from,
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -413,7 +413,7 @@ DataRow recentFileDataRow(
         child: Text(data.to,
             style: GoogleFonts.montserrat(
               fontSize: 10,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
       )),
@@ -448,7 +448,7 @@ DataRow recentFileDataRow(
                   child: Text("Detail",
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ))),
             ),
@@ -501,7 +501,7 @@ DataRow recentFileDataRow(
                   child: Text("Delete",
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ))),
             ),

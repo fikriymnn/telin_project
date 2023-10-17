@@ -320,31 +320,31 @@ DataRow recentFileDataRow(
       DataCell(Text(data.no,
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("Makasar",
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text(data.projectName,
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text(data.loading,
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text(data.offLoading,
           style: GoogleFonts.montserrat(
             fontSize: 10,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(
@@ -357,12 +357,21 @@ DataRow recentFileDataRow(
                           idLoading: data.id,
                         )));
           },
-          child: Text('Detail Loading',
-              style: GoogleFonts.montserrat(
-                fontSize: 13.3,
-                fontWeight: FontWeight.w600,
-                color: Colors.black.withOpacity(0.5),
-              )),
+          child: Container(
+            decoration: BoxDecoration(
+                color: green,
+                border: Border.all(width: 2, color: green),
+                borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Detail Loading',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 13.3,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  )),
+            ),
+          ),
         ),
       ),
       DataCell(
@@ -376,12 +385,21 @@ DataRow recentFileDataRow(
                           DetailOffLoading(idLoading: data.id)));
             }
           },
-          child: Text('Detail Off-Loading',
-              style: GoogleFonts.montserrat(
-                fontSize: 13.3,
-                fontWeight: FontWeight.w600,
-                color: Colors.black.withOpacity(0.5),
-              )),
+          child: Container(
+            decoration: BoxDecoration(
+                color: green,
+                border: Border.all(width: 2, color: green),
+                borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Detail Off-Loading',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 13.3,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  )),
+            ),
+          ),
         ),
       ),
       DataCell(data.offLoading == ""
@@ -397,17 +415,18 @@ DataRow recentFileDataRow(
                 }
               },
               child: Container(
-                width: 150,
-                height: 19.46,
                 decoration: BoxDecoration(
-                    color: dark, borderRadius: BorderRadius.circular(6)),
-                child: Center(
-                    child: Text("Do Off-Loading",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ))),
+                    border: Border.all(width: 2, color: Colors.black),
+                    borderRadius: BorderRadius.circular(15)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Do Off-Loading",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
               ),
             )
           : Container())
