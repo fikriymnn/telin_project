@@ -209,37 +209,23 @@ class _TableCableEditState extends State<TableCableEdit> {
                       ),
                       fixedWidth: 100),
                   DataColumn2(
-                      label: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedValueSystem = newValue!;
-                              });
-                            },
-                            value: selectedValueSystem,
-                            items: dropdownItemsSystem),
+                      label: Text(
+                        "SYSTEM",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
                       ),
                       fixedWidth: 100),
                   DataColumn2(
-                      label: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedValueArmoring = newValue!;
-                              });
-                            },
-                            value: selectedValueArmoring,
-                            items: dropdownItemsArmoring),
+                      label: Text(
+                        "ARMORING TYPE",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
                       ),
                       fixedWidth: 120),
                   DataColumn2(

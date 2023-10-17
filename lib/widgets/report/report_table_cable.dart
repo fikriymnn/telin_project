@@ -196,7 +196,7 @@ class _CableReportState extends State<CableReport> {
   }
 
   void exportToCsv() async {
-    String title = "pluto_grid_export";
+    String title = "report_cables";
 
     var exported = const Utf8Encoder()
         .convert(pluto_grid_export.PlutoGridExport.exportCSV(stateManager));
@@ -221,12 +221,44 @@ class _CableReportState extends State<CableReport> {
                   //   onPressed: exportToPdf,
                   //   child: const Text('Export to PDF'),
                   // ),
-                  TextButton(
-                    onPressed: exportToCsv,
-                    child: const Text('Export to CSV'),
+                  InkWell(
+                    onTap: exportToCsv,
+                    child: Container(
+                      width: 170.6,
+                      height: 50.6,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color: Colors.blue,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 14.6),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.download,
+                                size: 20,
+                                color: Colors.white,
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Text("Export to CSV",
+                                  style: GoogleFonts.roboto(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13.3,
+                                      color: Colors.white))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             Expanded(
               child: PlutoGrid(

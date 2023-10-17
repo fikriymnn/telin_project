@@ -6,6 +6,7 @@ import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/print_bast/bast_existing.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/table/table_detail_cable_existing.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/table/table_non_cable_detail_existing.dart';
 
 class DetailOffLoading extends StatefulWidget {
   const DetailOffLoading({super.key, required this.idLoading});
@@ -217,6 +218,16 @@ class _DetailOffLoadingState extends State<DetailOffLoading> {
                   const SizedBox(
                     height: 15,
                   ),
+                  SizedBox(
+                      height: 400,
+                      child: Column(
+                        children: [
+                          Flexible(
+                              child: DetailTableKitExisting(
+                            idLoading: widget.idLoading,
+                          )),
+                        ],
+                      )),
                   // Padding(
                   //   padding: const EdgeInsets.symmetric(horizontal: 100),
                   //   child: Row(

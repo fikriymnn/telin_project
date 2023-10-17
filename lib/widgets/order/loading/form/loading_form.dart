@@ -292,7 +292,7 @@ class _FormLoadingState extends State<FormLoading> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Diserahkan",
+                                  "submitted",
                                   style: GoogleFonts.montserrat(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -357,7 +357,7 @@ class _FormLoadingState extends State<FormLoading> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Diketahui",
+                                  "Is known",
                                   style: GoogleFonts.montserrat(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -545,7 +545,7 @@ class _FormLoadingState extends State<FormLoading> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Diterima",
+                                  "received",
                                   style: GoogleFonts.montserrat(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -604,7 +604,7 @@ class _FormLoadingState extends State<FormLoading> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Perusahaan",
+                                  "company",
                                   style: GoogleFonts.montserrat(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,

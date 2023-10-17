@@ -82,37 +82,37 @@ class _TableNonCableCartState extends State<TableNonCableCart> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['rak_number'] ?? "-"}",
+      DataCell(Text("${data['kit']['rak_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['item_name'] ?? "-"}",
+      DataCell(Text("${data['kit']['item_name'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['part_number'] ?? "-"}",
+      DataCell(Text("${data['kit']['part_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['serial_number'] ?? "-"}",
+      DataCell(Text("${data['kit']['serial_number'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['system'] ?? "-"}",
+      DataCell(Text("${data['kit']['system']['system'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['weight_kg'] ?? "-"}",
+      DataCell(Text("${data['kit']['weight_kg'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -124,7 +124,19 @@ class _TableNonCableCartState extends State<TableNonCableCart> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['unit'] ?? "-"}",
+      DataCell(Text("${data['kit']['unit'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['kit']['unitPriceIdr'] ?? "-"}",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("${data['kit']['unitPriceUsd'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -287,6 +299,26 @@ class _TableNonCableCartState extends State<TableNonCableCart> {
                   DataColumn2(
                       label: Text(
                         "UNIT",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "UNIT PRICE(IDR)",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "UNIT PRICE(USD)",
                         style: GoogleFonts.montserrat(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,

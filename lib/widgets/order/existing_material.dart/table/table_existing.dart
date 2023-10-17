@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,9 @@ class TableExistingMaterial extends StatefulWidget {
 
 class _TableExistingMaterialState extends State<TableExistingMaterial> {
   List offLoading = [];
+  List<ExistingMaterial>? filterData;
+  List<ExistingMaterial>? myData;
+  TextEditingController controller = TextEditingController();
 
   Response? response;
 
@@ -139,6 +143,20 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
 
       setState(() {
         offLoading = response!.data;
+        myData = List.generate(
+            offLoading.length,
+            (index) => ExistingMaterial(
+                  no: '${index + 1}',
+                  id: '${offLoading[index]['_id']}',
+                  projectName:
+                      '${offLoading[index]['project_name'] == null ? "" : offLoading[index]['project_name']}',
+                  depoLocation: 'Makassar',
+                  loading:
+                      '${offLoading[index]['submitted_date_loading'] == null ? "" : offLoading[index]['submitted_date_loading']}',
+                  offLoading:
+                      '${offLoading[index]['submitted_date_offloading'] == null ? "" : offLoading[index]['submitted_date_offloading']}',
+                ));
+        filterData = myData;
       });
     } catch (e) {
       QuickAlert.show(
@@ -153,192 +171,259 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
 
   @override
   Widget build(BuildContext context) {
-    return DataTable2(
-        columnSpacing: 6,
-        horizontalMargin: 6,
-        dataRowHeight: 30,
-        minWidth: 3000,
-        border: const TableBorder(
-            top: BorderSide(),
-            bottom: BorderSide(),
-            left: BorderSide(),
-            right: BorderSide()),
-        columns: [
-          DataColumn2(
-              label: Text(
-                'No',
-                style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
-              fixedWidth: 28),
-          DataColumn2(
-              label: Text('Depo Loaction',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
-              fixedWidth: 150),
-          DataColumn2(
-              label: Text('Project Name',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
-              fixedWidth: 270),
-          DataColumn2(
-              label: Text('Loading',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
-              fixedWidth: 150),
-          DataColumn2(
-              label: Text('Off-Loading',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
-              fixedWidth: 150),
-          const DataColumn2(label: Text(''), fixedWidth: 120),
-          const DataColumn2(label: Text(''), fixedWidth: 120),
-          const DataColumn2(label: Text(''), fixedWidth: 200),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: 258.6,
+                  height: 37.06,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.6),
+                      border:
+                          Border.all(width: 1, color: const Color(0xffC1C1C1)),
+                      color: const Color(0xffF3F3F3)),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10, bottom: 15),
+                    child: TextField(
+                      controller: controller,
+                      style: GoogleFonts.roboto(
+                        fontSize: 10.6,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                      ),
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintStyle: GoogleFonts.roboto(
+                            fontSize: 10.6,
+                            fontWeight: FontWeight.w400,
+                            color: const Color(0xFF9D9D9D),
+                          ),
+                          hintText: "Search"),
+                      onChanged: (value) {
+                        setState(() {
+                          myData = filterData!
+                              .where((element) =>
+                                  element.projectName.contains(value))
+                              .toList();
+                        });
+                      },
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          PaginatedDataTable(
+            sortColumnIndex: 0,
+            source: RowSource(
+              myData: myData,
+              count: myData!.length,
+              context: context,
+            ),
+            rowsPerPage: 8,
+            columnSpacing: 50,
+            columns: [
+              DataColumn2(
+                  label: Text(
+                    'No',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  fixedWidth: 28),
+              DataColumn2(
+                  label: Text('Depo Loaction',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                  fixedWidth: 150),
+              DataColumn2(
+                  label: Text('Project Name',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                  fixedWidth: 200),
+              DataColumn2(
+                  label: Text('Loading',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                  fixedWidth: 150),
+              DataColumn2(
+                  label: Text('Off-Loading',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                  fixedWidth: 150),
+              const DataColumn2(label: Text(''), fixedWidth: 150),
+              const DataColumn2(label: Text(''), fixedWidth: 150),
+              const DataColumn2(label: Text(''), fixedWidth: 200),
+            ],
+          ),
         ],
-        rows: List.generate(offLoading.length,
-            (index) => _resultsAPI(index, offLoading[index])));
+      ),
+    );
+  }
+}
+
+class RowSource extends DataTableSource {
+  var myData;
+  final count;
+  var context;
+
+  RowSource({
+    required this.myData,
+    required this.count,
+    required this.context,
+  });
+
+  @override
+  DataRow? getRow(int index) {
+    if (index < rowCount) {
+      return recentFileDataRow(myData![index], context);
+    } else
+      return null;
   }
 
-  // List<DataRow> _createRowsManufacture() {
-  //   return existingMaterial
-  //       .map((existingMaterial) => DataRow(cells: [
-  //             DataCell(Text(existingMaterial.no,
-  //                 style: GoogleFonts.montserrat(
-  //                   fontSize: 10,
-  //                   fontWeight: FontWeight.w400,
-  //                   color: Colors.black,
-  //                 ))),
-  //             DataCell(Text(existingMaterial.depoLocation,
-  //                 style: GoogleFonts.montserrat(
-  //                   fontSize: 10,
-  //                   fontWeight: FontWeight.w400,
-  //                   color: Colors.black,
-  //                 ))),
-  //             DataCell(Text(existingMaterial.projectName,
-  //                 style: GoogleFonts.montserrat(
-  //                   fontSize: 10,
-  //                   fontWeight: FontWeight.w400,
-  //                   color: Colors.black,
-  //                 ))),
-  //             DataCell(Text(existingMaterial.loading,
-  //                 style: GoogleFonts.montserrat(
-  //                   fontSize: 10,
-  //                   fontWeight: FontWeight.w400,
-  //                   color: Colors.black,
-  //                 ))),
-  //             DataCell(Text(existingMaterial.offLoading,
-  //                 style: GoogleFonts.montserrat(
-  //                   fontSize: 10,
-  //                   fontWeight: FontWeight.w400,
-  //                   color: Colors.black,
-  //                 ))),
-  //             DataCell(
-  //               InkWell(
-  //                 onTap: () {
-  //                   Navigator.push(
-  //                       context,
-  //                       MaterialPageRoute(
-  //                           builder: (context) => const BastOffLoading()));
-  //                 },
-  //                 child: Text('Detail...',
-  //                     style: GoogleFonts.montserrat(
-  //                       fontSize: 13.3,
-  //                       fontWeight: FontWeight.w600,
-  //                       color: Colors.black.withOpacity(0.5),
-  //                     )),
-  //               ),
-  //             ),
-  //             DataCell(
-  //               InkWell(
-  //                 onTap: () {
-  //                   Navigator.push(
-  //                       context,
-  //                       MaterialPageRoute(
-  //                           builder: (context) => const LakukanOffLoading()));
-  //                 },
-  //                 child: Container(
-  //                   width: 150,
-  //                   height: 19.46,
-  //                   decoration: BoxDecoration(
-  //                       color: dark, borderRadius: BorderRadius.circular(6)),
-  //                   child: Center(
-  //                       child: Text("Do Off-Loading",
-  //                           style: GoogleFonts.montserrat(
-  //                             fontSize: 12,
-  //                             fontWeight: FontWeight.w400,
-  //                             color: Colors.white,
-  //                           ))),
-  //                 ),
-  //               ),
-  //             )
-  //           ]))
-  //       .toList();
-  // }
+  @override
+  bool get isRowCountApproximate => false;
+
+  @override
+  int get rowCount => count;
+
+  @override
+  int get selectedRowCount => 0;
+}
+
+DataRow recentFileDataRow(
+  var data,
+  context,
+) {
+  return DataRow(
+    cells: [
+      DataCell(Text(data.no,
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text("Makasar",
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text(data.projectName,
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text(data.loading,
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(Text(data.offLoading,
+          style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ))),
+      DataCell(
+        InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => EditLoading(
+                          idLoading: data.id,
+                        )));
+          },
+          child: Text('Detail Loading',
+              style: GoogleFonts.montserrat(
+                fontSize: 13.3,
+                fontWeight: FontWeight.w600,
+                color: Colors.black.withOpacity(0.5),
+              )),
+        ),
+      ),
+      DataCell(
+        InkWell(
+          onTap: () {
+            if (data.offLoading != "") {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DetailOffLoading(idLoading: data.id)));
+            }
+          },
+          child: Text('Detail Off-Loading',
+              style: GoogleFonts.montserrat(
+                fontSize: 13.3,
+                fontWeight: FontWeight.w600,
+                color: Colors.black.withOpacity(0.5),
+              )),
+        ),
+      ),
+      DataCell(data.offLoading == ""
+          ? InkWell(
+              onTap: () {
+                if (data.offLoading == "") {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LakukanOffLoading(
+                                idOffLoading: data.id,
+                              )));
+                }
+              },
+              child: Container(
+                width: 150,
+                height: 19.46,
+                decoration: BoxDecoration(
+                    color: dark, borderRadius: BorderRadius.circular(6)),
+                child: Center(
+                    child: Text("Do Off-Loading",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ))),
+              ),
+            )
+          : Container())
+    ],
+  );
 }
 
 class ExistingMaterial {
-  final String no, projectName, depoLocation, loading, offLoading;
+  final String no, id, projectName, depoLocation, loading, offLoading;
 
   const ExistingMaterial({
     required this.no,
+    required this.id,
     required this.projectName,
     required this.depoLocation,
     required this.offLoading,
     required this.loading,
   });
-
-  static List<ExistingMaterial> getExistingMaterial() {
-    return <ExistingMaterial>[
-      const ExistingMaterial(
-        no: "1",
-        projectName: "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-        depoLocation: "Makasar",
-        offLoading: "-",
-        loading: "01/01/23",
-      ),
-      const ExistingMaterial(
-        no: "2",
-        projectName: "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-        depoLocation: "Makasar",
-        offLoading: "-",
-        loading: "01/01/23",
-      ),
-      const ExistingMaterial(
-        no: "3",
-        projectName: "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-        depoLocation: "Makasar",
-        offLoading: "-",
-        loading: "01/01/23",
-      ),
-      const ExistingMaterial(
-        no: "4",
-        projectName: "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-        depoLocation: "Makasar",
-        offLoading: "-",
-        loading: "01/01/23",
-      ),
-      const ExistingMaterial(
-        no: "5",
-        projectName: "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-        depoLocation: "Makasar",
-        offLoading: "-",
-        loading: "01/01/23",
-      )
-    ];
-  }
 }

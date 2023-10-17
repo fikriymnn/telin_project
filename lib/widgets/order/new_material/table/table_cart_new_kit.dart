@@ -131,7 +131,8 @@ class _TableNonCableNewCartState extends State<TableNonCableNewCart> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['evidence'] ?? "-"}",
+      DataCell(Text(
+          "${data['evidence'] == null ? "-" : data['evidence']['originalName']}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -170,7 +171,7 @@ class _TableNonCableNewCartState extends State<TableNonCableNewCart> {
     var msg;
     try {
       response = await dio.delete(
-        '$deleteSparekitFromLoading/${widget.idNewMaterial}/$id',
+        '$deleteKitFromNewMaterial/${widget.idNewMaterial}/$id',
       );
 
       msg = response!.data['message'];

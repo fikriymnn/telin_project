@@ -146,45 +146,10 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                       borderRadius: BorderRadius.circular(4),
                       color: Colors.white),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 14, horizontal: 26.6),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 14, horizontal: 26.6),
                     child: Column(
                       children: [
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                width: 258.6,
-                                height: 37.06,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(6.6),
-                                    border: Border.all(
-                                        width: 1, color: const Color(0xffC1C1C1)),
-                                    color: const Color(0xffF3F3F3)),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, bottom: 15),
-                                  child: TextField(
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 10.6,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                    ),
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintStyle: GoogleFonts.roboto(
-                                          fontSize: 10.6,
-                                          fontWeight: FontWeight.w400,
-                                          color: const Color(0xFF9D9D9D),
-                                        ),
-                                        hintText: "Search"),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: Row(

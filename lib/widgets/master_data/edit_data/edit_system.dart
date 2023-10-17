@@ -249,8 +249,26 @@ class _EditSystemState extends State<EditSystem> {
               ),
               InkWell(
                 onTap: () {
-                  editDataSystem(
-                      widget.id, _txtNamaSystem.text, _txtLabelId.text);
+                  if (_txtNamaSystem.text == '') {
+                    QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.error,
+                        title: 'Peringatan',
+                        text: 'Nama Csystem Tidak Boleh Kosong',
+                        width: 400,
+                        confirmBtnColor: Colors.red);
+                  } else if (_txtLabelId.text == '') {
+                    QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.error,
+                        title: 'Peringatan',
+                        text: 'Label system Tidak Boleh Kosong',
+                        width: 400,
+                        confirmBtnColor: Colors.red);
+                  } else {
+                    editDataSystem(
+                        widget.id, _txtNamaSystem.text, _txtLabelId.text);
+                  }
                 },
                 child: Container(
                   width: 90,

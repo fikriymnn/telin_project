@@ -5,7 +5,6 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/routing/routes.dart';
 
-
 import '../../../api/configAPI.dart';
 import '../../../constants/controllers.dart';
 
@@ -93,7 +92,8 @@ class _EditUnitState extends State<EditUnit> {
                     height: 37.3,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: const Color(0xffB8B8B8), width: 1)),
+                        border: Border.all(
+                            color: const Color(0xffB8B8B8), width: 1)),
                     child: Row(
                       children: [
                         Icon(
@@ -148,7 +148,8 @@ class _EditUnitState extends State<EditUnit> {
                 height: 44,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                    border:
+                        Border.all(width: 5, color: const Color(0xffF0F0F0)),
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
@@ -183,7 +184,17 @@ class _EditUnitState extends State<EditUnit> {
               ),
               InkWell(
                 onTap: () {
-                  editDataUnit(widget.id, _txtNamaUnit.text);
+                  if (_txtNamaUnit.text == '') {
+                    QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.error,
+                        title: 'Peringatan',
+                        text: 'Nama unit Tidak Boleh Kosong',
+                        width: 400,
+                        confirmBtnColor: Colors.red);
+                  } else {
+                    editDataUnit(widget.id, _txtNamaUnit.text);
+                  }
                 },
                 child: Container(
                   width: 90,

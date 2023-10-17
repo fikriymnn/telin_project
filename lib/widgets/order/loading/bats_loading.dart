@@ -63,8 +63,8 @@ class _BastLoadingState extends State<BastLoading> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
+    return SingleChildScrollView(
+      child: Padding(
         padding: const EdgeInsets.only(bottom: 32),
         child: Container(
           width: MediaQuery.of(context).size.width,

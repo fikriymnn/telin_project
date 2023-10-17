@@ -135,7 +135,8 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['evidence'] ?? "-"}",
+      DataCell(Text(
+          "${data['evidence'] == null ? "-" : data['evidence']['originalName']}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w400,
@@ -181,7 +182,7 @@ class _TableCartNewCableState extends State<TableCartNewCable> {
       CoolAlert.show(
           context: context,
           type: CoolAlertType.success,
-          text: "$msg",
+          text: "Delete Success",
           width: 400);
     } catch (e) {
       CoolAlert.show(

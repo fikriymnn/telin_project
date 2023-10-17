@@ -657,7 +657,8 @@ class printBastLoading {
 
   static TableNonCableBast(List DataLoadingSparekit) {
     var totalQty = List.generate(DataLoadingSparekit.length,
-        (index) => DataLoadingSparekit[index]['qty']).reduce((a, b) => a + b);
+            (index) => DataLoadingSparekit[index]['qty_taken'])
+        .reduce((a, b) => a + b);
     var totalWeight = List.generate(DataLoadingSparekit.length,
             (index) => DataLoadingSparekit[index]['weight_kg'])
         .reduce((a, b) => a + b);
@@ -819,7 +820,7 @@ NUMBER""",
                         decoration: pw.BoxDecoration(border: pw.Border.all()),
                         child: pw.Center(
                           child: pw.Text(
-                              "${DataLoadingSparekit[index]['qty'] ?? "-"}",
+                              "${DataLoadingSparekit[index]['qty_taken'] ?? "-"}",
                               style: pw.TextStyle(
                                 fontSize: 6,
                                 fontWeight: pw.FontWeight.normal,

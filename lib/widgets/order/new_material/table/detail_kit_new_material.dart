@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
+import 'dart:html' as html;
 
 class DetailTableKitNewMaterial extends StatefulWidget {
   const DetailTableKitNewMaterial({super.key, required this.idNewMaterial});
@@ -41,6 +42,7 @@ String selectedValueArmoring = "ARMORING TYPE";
 
 class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
   List NewMaterialByIdkit = [];
+  List NewMaterialByIdkit2 = [];
 
   String id = "";
   Response? response;
@@ -61,13 +63,15 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
       response = await dio.get('$getNewMaterialById/$id');
 
       setState(() {
-        NewMaterialByIdkit = response!.data['newMaterial'][0][
-            'submitted_new_material_kits_id_in_spare_kits'];
+        NewMaterialByIdkit = response!.data['newMaterial'][0]
+            ['submitted_new_material_kits_id_in_spare_kits'];
+        NewMaterialByIdkit2 =
+            response!.data['newMaterial'][0]['new_material_kits'];
       });
     } catch (e) {}
   }
 
-  DataRow _resultsAPI(index, data) {
+  DataRow _resultsAPI(index, data, data2) {
     return DataRow(cells: [
       DataCell(Text("${index + 1}",
           style: GoogleFonts.montserrat(
@@ -123,12 +127,24 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      // DataCell(Text("${data['evidence'] ?? "-"}",
-      //     style: GoogleFonts.montserrat(
-      //       fontSize: 10,
-      //       fontWeight: FontWeight.w400,
-      //       color: Colors.black,
-      //     ))),
+      DataCell(data['evidence'] != null
+          ? TextButton(
+              onPressed: () {
+                downloadEvidenceKitNewMaterial(
+                    data2['id'], data['evidence']['originalName']);
+              },
+              child: Text("Download evidence",
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.blue,
+                  )))
+          : Text("-",
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
       DataCell(Text("${data['keterangan'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
@@ -136,6 +152,26 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
             color: Colors.black,
           ))),
     ]);
+  }
+
+  void downloadEvidenceKitNewMaterial(id, name) async {
+    bool status;
+    var msg;
+    String url = "$downloadEvidenceKit/${widget.idNewMaterial}/$id";
+
+    try {
+      html.AnchorElement anchorElement = new html.AnchorElement(href: url);
+      anchorElement.download = url;
+      anchorElement.click();
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: e.toString(),
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
   }
 
   void hapuskitNewMaterial(id) async {
@@ -285,16 +321,16 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
                         ),
                       ),
                       fixedWidth: 100),
-                  // DataColumn2(
-                  //     label: Text(
-                  //       "EVIDENCE",
-                  //       style: GoogleFonts.montserrat(
-                  //         fontSize: 10,
-                  //         fontWeight: FontWeight.w600,
-                  //         color: Colors.black,
-                  //       ),
-                  //     ),
-                  //     fixedWidth: 100),
+                  DataColumn2(
+                      label: Text(
+                        "EVIDENCE",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      fixedWidth: 100),
                   DataColumn2(
                       label: Text(
                         "REMARK",
@@ -306,8 +342,10 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
                       ),
                       fixedWidth: 100),
                 ],
-                rows: List.generate(NewMaterialByIdkit.length,
-                    (index) => _resultsAPI(index, NewMaterialByIdkit[index]))
+                rows: List.generate(
+                    NewMaterialByIdkit.length,
+                    (index) => _resultsAPI(index, NewMaterialByIdkit[index],
+                        NewMaterialByIdkit2[index]))
 
                 //  List<DataRow>.generate(
                 //     4,

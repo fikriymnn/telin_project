@@ -248,8 +248,26 @@ class _EditArmoringTypeState extends State<EditArmoringType> {
               ),
               InkWell(
                 onTap: () {
-                  editDataArmoring(
-                      widget.id, _txtNamaArmoring.text, _txtLabelId.text);
+                  if (_txtNamaArmoring.text == '') {
+                    QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.error,
+                        title: 'Peringatan',
+                        text: 'Armoring Type Tidak Boleh Kosong',
+                        width: 400,
+                        confirmBtnColor: Colors.red);
+                  } else if (_txtLabelId.text == '') {
+                    QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.error,
+                        title: 'Peringatan',
+                        text: 'Label Armoring Type Tidak Boleh Kosong',
+                        width: 400,
+                        confirmBtnColor: Colors.red);
+                  } else {
+                    editDataArmoring(
+                        widget.id, _txtNamaArmoring.text, _txtLabelId.text);
+                  }
                 },
                 child: Container(
                   width: 90,

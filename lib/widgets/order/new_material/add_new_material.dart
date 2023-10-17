@@ -39,7 +39,7 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
       QuickAlert.show(
           context: context,
           type: QuickAlertType.success,
-          text: '$msg',
+          text: 'Data New Material Success Added',
           title: 'Peringatan',
           width: 400,
           barrierDismissible: true,
@@ -177,14 +177,18 @@ class _AddnewMaterialScreensState extends State<AddnewMaterialScreens> {
                 ? ResponsiveWidget(
                     largeScreen:
                         AddNewCableLarge(idNewMaterial: widget.idNewMaterial),
-                    smallScreen: AddNewCableSmall(),
-                    mobileScreen: AddNewCableMobile(),
+                    smallScreen:
+                        AddNewCableLarge(idNewMaterial: widget.idNewMaterial),
+                    mobileScreen:
+                        AddNewCableLarge(idNewMaterial: widget.idNewMaterial),
                   )
                 : ResponsiveWidget(
                     largeScreen: AddNewNonCableLarge(
                         idNewMaterial: widget.idNewMaterial),
-                    smallScreen: AddNewNonCableSmall(),
-                    mobileScreen: AddNewNonCableMobile(),
+                    smallScreen: AddNewNonCableLarge(
+                        idNewMaterial: widget.idNewMaterial),
+                    mobileScreen: AddNewNonCableLarge(
+                        idNewMaterial: widget.idNewMaterial),
                   )
           ],
         ),

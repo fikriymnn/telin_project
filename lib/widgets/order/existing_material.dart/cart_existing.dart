@@ -5,6 +5,7 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/table/table_cable_cart_existing.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/table/table_non_cable_cart.dart';
 
 class CartExisting extends StatefulWidget {
   const CartExisting({super.key, required this.idLoading});
@@ -164,6 +165,16 @@ class _CartExistingState extends State<CartExisting> {
                   const SizedBox(
                     height: 15,
                   ),
+                  SizedBox(
+                      height: 400,
+                      child: Column(
+                        children: [
+                          Flexible(
+                              child: TableNonCableCartExisting(
+                            idLoading: widget.idLoading,
+                          )),
+                        ],
+                      )),
                   // SizedBox(
                   //   height: 250,
                   //   child: Column(
