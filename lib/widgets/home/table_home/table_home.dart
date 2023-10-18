@@ -41,32 +41,32 @@ class _TableHomeState extends State<TableHome> {
       DataCell(Text("${index + 1}",
           style: GoogleFonts.montserrat(
             fontSize: 13.3,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("Makasar",
           style: GoogleFonts.montserrat(
             fontSize: 13.3,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(
           Text("${data['project_name'] == null ? "" : data['project_name']}",
               style: GoogleFonts.montserrat(
                 fontSize: 13.3,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w600,
                 color: Colors.black,
               ))),
       DataCell(Text("${data['submitted_date_loading'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 13.3,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("${data['submitted_date_offloading'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 13.3,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(
@@ -167,41 +167,7 @@ class _TableHomeState extends State<TableHome> {
       ));
     }
   }
-  // late PlutoGridStateManager stateManager;
 
-  // final List<PlutoColumn> columns = [
-  //   PlutoColumn(
-  //     title: 'NO',
-  //     field: 'no',
-  //     type: PlutoColumnType.text(),
-  //   ),
-  //   PlutoColumn(
-  //     title: 'DEPO LOCATION',
-  //     field: 'depo',
-  //     type: PlutoColumnType.text(),
-  //   ),
-  //   PlutoColumn(
-  //     title: 'PROJECT NAME',
-  //     field: 'project',
-  //     type: PlutoColumnType.text(),
-  //     enableContextMenu: true,
-  //     enableSorting: true,
-  //   ),
-  //   PlutoColumn(
-  //     title: 'LOADING',
-  //     field: 'armoring',
-  //     type: PlutoColumnType.text(),
-  //     enableContextMenu: true,
-  //     enableSorting: true,
-  //   ),
-  //   PlutoColumn(
-  //     title: 'OFF-LOADING',
-  //     field: 'cable_type',
-  //     type: PlutoColumnType.text(),
-  //     enableContextMenu: true,
-  //     enableSorting: true,
-  //   ),
-  // ];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -256,14 +222,14 @@ class _TableHomeState extends State<TableHome> {
                                 controller: controller,
                                 style: GoogleFonts.roboto(
                                   fontSize: 11.3,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w600,
                                   color: Colors.black,
                                 ),
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintStyle: GoogleFonts.roboto(
                                       fontSize: 11.3,
-                                      fontWeight: FontWeight.w400,
+                                      fontWeight: FontWeight.w600,
                                       color: const Color(0xFF9D9D9D),
                                     ),
                                     hintText: "Search"),
@@ -409,31 +375,31 @@ DataRow recentFileDataRow(var data, context) {
       DataCell(Text(data.no,
           style: GoogleFonts.montserrat(
             fontSize: 13.3,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text("Makasar",
           style: GoogleFonts.montserrat(
             fontSize: 13.3,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text(data.projectName,
           style: GoogleFonts.montserrat(
             fontSize: 13.3,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text(data.loading,
           style: GoogleFonts.montserrat(
             fontSize: 13.3,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(Text(data.offLoading,
           style: GoogleFonts.montserrat(
             fontSize: 13.3,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
       DataCell(

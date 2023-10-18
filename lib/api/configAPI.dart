@@ -1,5 +1,6 @@
-const baseUrl = "http://localhost:1000";
-//'https://asia-southeast2-telkominfra-f7a85.cloudfunctions.net/api';
+const baseUrl =
+//"http://localhost:1000";
+    'https://asia-southeast2-telkominfra-f7a85.cloudfunctions.net/api';
 
 //loading
 String newloading = '$baseUrl/api/loading/';

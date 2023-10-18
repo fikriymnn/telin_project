@@ -205,7 +205,6 @@ class _TableAkunState extends State<TableAkun> {
         columnSpacing: 6,
         horizontalMargin: 6,
         dataRowHeight: 30,
-        minWidth: 3000,
         border: const TableBorder(
             top: BorderSide(),
             bottom: BorderSide(),
@@ -221,7 +220,6 @@ class _TableAkunState extends State<TableAkun> {
                 color: Colors.black,
               ),
             ),
-            fixedWidth: 64,
           ),
           DataColumn2(
             label: Text('Name',
@@ -230,19 +228,16 @@ class _TableAkunState extends State<TableAkun> {
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                 )),
-            fixedWidth: 174.6,
           ),
           DataColumn2(
-              fixedWidth: 222.6,
-              label: Text("Username",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
-              size: ColumnSize.L),
+            label: Text("Username",
+                style: GoogleFonts.montserrat(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                )),
+          ),
           DataColumn2(
-            fixedWidth: 240.6,
             label: Text('Role',
                 style: GoogleFonts.montserrat(
                   fontSize: 16,
@@ -251,15 +246,12 @@ class _TableAkunState extends State<TableAkun> {
                 )),
           ),
           const DataColumn2(
-            fixedWidth: 91.3,
             label: Text(''),
           ),
           const DataColumn2(
-            fixedWidth: 53.3,
             label: Text(''),
           ),
           const DataColumn2(
-            fixedWidth: 53.3,
             label: Text(''),
           ),
         ],

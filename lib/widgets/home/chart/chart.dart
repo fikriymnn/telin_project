@@ -23,152 +23,6 @@ class Sales {
 }
 
 class _ChartDataState extends State<ChartData> {
-//   late List<Sales> _sa;
-//   late List<Sales> _da;
-//   late List<Sales> _sal;
-//   late List<Sales> _lwp;
-//   late List<Sales> _das;
-//   late List<Sales> _lws;
-//   late List<Sales> _lwa;
-//   late List<Sales> _lw;
-//   late List<charts.Series<Sales, String>> _chartdata;
-//   void makeData() {
-//     _sa = <Sales>[];
-//     _da = <Sales>[];
-//     _sal = <Sales>[];
-//     _lwp = <Sales>[];
-//     _das = <Sales>[];
-//     _lws = <Sales>[];
-//     _lwa = <Sales>[];
-//     _lw = <Sales>[];
-
-//     _chartdata = <charts.Series<Sales, String>>[];
-
-//     {
-//       _sa.add(Sales("MINISUB-36", 34543, () {}));
-//       _da.add(Sales("MINISUB-36", 10000, () {}));
-//       _sal.add(Sales("MINISUB-36", 12000, () {}));
-//       _lwp.add(Sales("MINISUB-36", 9000, () {}));
-//       _das.add(Sales("MINISUB-36", 100000, () {}));
-//     }
-//     {
-//       _sa.add(Sales("MINISUB-R", 45645, () {}));
-//       _da.add(Sales("MINISUB-R", 43645, () {}));
-//       _sal.add(Sales("MINISUB-R", 8000, () {}));
-//       _lwp.add(Sales("MINISUB-R", 5000, () {}));
-//       _das.add(Sales("MINISUB-R", 8797, () {}));
-//     }
-
-//     {
-//       _sa.add(Sales("OCC-4", 90899, () {}));
-//       _da.add(Sales("OCC-4", 69889, () {}));
-//       _sal.add(Sales("OCC-4", 8798, () {}));
-//       _lwp.add(Sales("OCC-4", 78978, () {}));
-//       _das.add(Sales("OCC-4", 89871, () {}));
-//     }
-//     {
-//       _sa.add(Sales("OCC-SC22S", 23532, () {}));
-//       _da.add(Sales("OCC-SC22S", 32432, () {}));
-//       _sal.add(Sales("OCC-SC22S", 56544, () {}));
-//       _lwp.add(Sales("OCC-SC22S", 76876, () {}));
-//       _das.add(Sales("OCC-SC22S", 80989, () {}));
-//     }
-
-//     {
-//       _sa.add(Sales("OCC-SC300", 4578, () {}));
-//       _da.add(Sales("OCC-SC300", 78777, () {}));
-//       _sal.add(Sales("OCC-SC300", 78976, () {}));
-//       _lwp.add(Sales("OCC-SC300", 98089, () {}));
-//       _das.add(Sales("OCC-SC300", 4644, () {}));
-//     }
-//     {
-//       _sa.add(Sales("OCC-SC500", 5464, () {}));
-//       _da.add(Sales("OCC-SC500", 4564, () {}));
-//       _sal.add(Sales("OCC-SC500", 65767, () {}));
-//       _lwp.add(Sales("OCC-SC500", 90987, () {}));
-//       _das.add(Sales("OCC-SC500", 46455, () {}));
-//     }
-//     {
-//       _sa.add(Sales("""OCC-SC500
-// /SC-520""", 54754, () {}));
-//       _da.add(Sales("""OCC-SC500
-// /SC-520""", 7687, () {}));
-//       _sal.add(Sales("""OCC-SC500
-// /SC-520""", 78765, () {}));
-//       _lwp.add(Sales("""OCC-SC500
-// /SC-520""", 8777, () {}));
-//       _das.add(Sales("""OCC-SC500
-// /SC-520""", 54764, () {}));
-//     }
-//     {
-//       _sa.add(Sales("OCC-SC530", 54745, () {}));
-//       _da.add(Sales("OCC-SC530", 4444, () {}));
-//       _sal.add(Sales("OCC-SC530", 5555, () {}));
-//       _lwp.add(Sales("OCC-SC530", 55656, () {}));
-//       _das.add(Sales("OCC-SC530", 45654, () {}));
-//     }
-//     {
-//       _sa.add(Sales("OS-SS", 54754, () {}));
-//       _da.add(Sales("OS-SS", 54746, () {}));
-//       _sal.add(Sales("OS-SS", 6767, () {}));
-//       _lwp.add(Sales("OS-SS", 76876, () {}));
-//       _das.add(Sales("OS-SS", 76978, () {}));
-//     }
-//     {
-//       _sa.add(Sales("URC-1", 76897, () {}));
-//       _da.add(Sales("URC-1", 79899, () {}));
-//       _sal.add(Sales("URC-1", 8908, () {}));
-//       _lwp.add(Sales("URC-1", 1111, () {}));
-//       _das.add(Sales("URC-1", 2222, () {}));
-//     }
-
-//     _chartdata.add(
-//       charts.Series(
-//           id: 'Sales',
-//           colorFn: (datum, index) => charts.Color(r: 48, g: 120, b: 240),
-//           data: _sa,
-//           domainFn: (Sales sales, __) => sales.year,
-//           measureFn: (Sales sales, __) => sales.sales,
-//           displayName: 'Sales'),
-//     );
-//     _chartdata.add(
-//       charts.Series(
-//           id: 'Sales',
-//           colorFn: (_, __) => charts.Color(r: 136, g: 108, b: 8),
-//           data: _da,
-//           domainFn: (Sales sales, __) => sales.year,
-//           measureFn: (Sales sales, __) => sales.sales,
-//           displayName: 'Sales'),
-//     );
-//     _chartdata.add(
-//       charts.Series(
-//           id: 'Sales',
-//           colorFn: (_, __) => charts.Color(r: 202, g: 12, b: 12),
-//           data: _sal,
-//           domainFn: (Sales sales, __) => sales.year,
-//           measureFn: (Sales sales, __) => sales.sales,
-//           displayName: 'Sales'),
-//     );
-//     _chartdata.add(
-//       charts.Series(
-//           id: 'Sales',
-//           colorFn: (_, __) => charts.Color(r: 19, g: 211, b: 61),
-//           data: _lwp,
-//           domainFn: (Sales sales, __) => sales.year,
-//           measureFn: (Sales sales, __) => sales.sales,
-//           displayName: 'Sales'),
-//     );
-//     _chartdata.add(
-//       charts.Series(
-//           id: 'Sales',
-//           colorFn: (_, __) => charts.Color(r: 233, g: 68, b: 16),
-//           data: _das,
-//           domainFn: (Sales sales, __) => sales.year,
-//           measureFn: (Sales sales, __) => sales.sales,
-//           displayName: 'Sales'),
-//     );
-//   }
-
   List<String> list = <String>['One', 'Two', 'Three', 'Four'];
   List<DropdownMenuItem<String>> get dropdownItemsGrafik {
     List<DropdownMenuItem<String>> menuItems = [
@@ -190,7 +44,7 @@ class _ChartDataState extends State<ChartData> {
     getDataMinisub36();
   }
 
-  List minisub36Sa = [];
+  List chartData = [];
 
   Response? response;
 
@@ -200,7 +54,7 @@ class _ChartDataState extends State<ChartData> {
       response = await dio.get(getChart);
 
       setState(() {
-        minisub36Sa = response!.data;
+        chartData = response!.data;
       });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -610,9 +464,9 @@ class _ChartDataState extends State<ChartData> {
             BarChartData(
               groupsSpace: 10,
               barGroups: List.generate(
-                  minisub36Sa.length,
+                  chartData.length,
                   (index) => generateGroupData(
-                        minisub36Sa[index],
+                        chartData[index],
                         index,
                       )),
               barTouchData: BarTouchData(

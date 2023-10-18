@@ -149,7 +149,8 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                     padding: const EdgeInsets.symmetric(
                         vertical: 14, horizontal: 26.6),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(
                           width: MediaQuery.of(context).size.width,
@@ -167,13 +168,10 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
                             ],
                           ),
                         ),
-                        const Expanded(
-                            child: ResponsiveWidget(
-                          largeScreen: TableAkun(),
-                          mediumScreen: TableAkun(),
-                          smallScreen: TableAkunSmall(),
-                          mobileScreen: TableAkunMobile(),
-                        )),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        const Expanded(child: TableAkun()),
                       ],
                     ),
                   ),
