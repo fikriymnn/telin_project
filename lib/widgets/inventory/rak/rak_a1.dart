@@ -86,12 +86,6 @@ class _TableRakA1State extends State<TableRakA1> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['description'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
     ]);
   }
 
@@ -168,13 +162,6 @@ class _TableRakA1State extends State<TableRakA1> {
     PlutoColumn(
       title: 'UNIT',
       field: 'unit',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
-      title: 'DESCRIPTION',
-      field: 'description',
       type: PlutoColumnType.text(),
       enableContextMenu: true,
       enableSorting: true,

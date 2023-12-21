@@ -74,7 +74,7 @@ class _TableCableLoadingState extends State<TableCableLoading> {
               tankLevel: "${spareCable[index]['tank_level'] ?? "-"}",
               remark: "${spareCable[index]['remark'] ?? "-"}",
               coreType: "${spareCable[index]['core_type'] ?? "-"}",
-              core: "${spareCable[index]['core'] ?? "-"}");
+              core: "${spareCable[index]['sigma_core'] ?? "-"}");
         });
         filterData = myData;
       });
@@ -382,16 +382,6 @@ class _TableCableLoadingState extends State<TableCableLoading> {
                           fixedWidth: 100),
                       DataColumn2(
                           label: Text(
-                            "REMARK",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                          ),
-                          fixedWidth: 150),
-                      DataColumn2(
-                          label: Text(
                             "ACTION",
                             style: GoogleFonts.montserrat(
                               fontSize: 10,
@@ -498,12 +488,6 @@ DataRow recentFileDataRow(var data, context, idLoading) {
             color: Colors.black,
           ))),
       DataCell(Text(data.tankLevel,
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(Text(data.remark,
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w600,

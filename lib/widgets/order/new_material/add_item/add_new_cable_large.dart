@@ -1053,7 +1053,7 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
                     selectionCoreType,
                     txtE_Core.text,
                     selectionLocation,
-                    pickedFile!);
+                    pickedFile);
               }
             },
             child: Container(

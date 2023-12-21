@@ -84,12 +84,6 @@ class _TableFloorState extends State<TableFloor> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['description'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
     ]);
   }
 
@@ -187,13 +181,6 @@ class _TableFloorState extends State<TableFloor> {
     PlutoColumn(
       title: 'UNIT',
       field: 'unit',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
-      title: 'DESCRIPTION',
-      field: 'description',
       type: PlutoColumnType.text(),
       enableContextMenu: true,
       enableSorting: true,

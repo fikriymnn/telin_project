@@ -286,7 +286,7 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
                 count: myData!.length,
                 context: context,
               ),
-              rowsPerPage: 20,
+              rowsPerPage: 15,
               columnSpacing: 120,
               columns: [
                 DataColumn2(

@@ -240,17 +240,6 @@ class _TableNonCableLoadingState extends State<TableNonCableLoading> {
                           fixedWidth: 100),
                       DataColumn2(
                           label: Text(
-                            '''WIGHT 
-(KG)''',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                          ),
-                          fixedWidth: 100),
-                      DataColumn2(
-                          label: Text(
                             "QTY",
                             style: GoogleFonts.montserrat(
                               fontSize: 10,
@@ -415,12 +404,6 @@ DataRow recentFileDataRow(var data, context, idLoading) {
             color: Colors.black,
           ))),
       DataCell(Text(data.system,
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(Text(data.weight,
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w600,

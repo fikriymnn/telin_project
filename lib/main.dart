@@ -35,11 +35,7 @@ class MyApp extends StatelessWidget {
             page: () => const SiteLayout(
                   role: "",
                 )),
-        GetPage(
-            name: AuthenticationPageRoute,
-            page: () => const SiteLayout(
-                  role: "super-admin",
-                )),
+        GetPage(name: AuthenticationPageRoute, page: () => const LoginScreen()),
       ],
       debugShowCheckedModeBanner: false,
       title: 'Spare Management',

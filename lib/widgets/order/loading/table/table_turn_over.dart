@@ -191,21 +191,12 @@ class _TableCableTurnOverCartState extends State<TableCableTurnOverCart> {
                     fixedWidth: 64.6,
                   ),
                   DataColumn2(
-                    label: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                          style: GoogleFonts.montserrat(
-                            fontSize: 8.6,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedValueSystem = newValue!;
-                            });
-                          },
-                          value: selectedValueSystem,
-                          items: dropdownItemsSystem),
-                    ),
+                    label: Text('SYSTEM',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 8.6,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        )),
                     fixedWidth: 78.6,
                   ),
                   DataColumn2(
@@ -227,21 +218,12 @@ class _TableCableTurnOverCartState extends State<TableCableTurnOverCart> {
                     fixedWidth: 112,
                   ),
                   DataColumn2(
-                    label: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                          style: GoogleFonts.montserrat(
-                            fontSize: 8.6,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedValueArmoring = newValue!;
-                            });
-                          },
-                          value: selectedValueArmoring,
-                          items: dropdownItemsArmoring),
-                    ),
+                    label: Text('ARMORING TYPE',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 8.6,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        )),
                     fixedWidth: 110,
                   ),
                   DataColumn2(

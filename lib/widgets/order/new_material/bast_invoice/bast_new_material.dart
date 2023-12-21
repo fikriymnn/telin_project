@@ -7,7 +7,7 @@ import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/routing/routes.dart';
 import 'package:telin_project/widgets/bast_widget.dart';
 import 'package:telin_project/widgets/invoice_new.dart';
-import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_existing_print.dart';
+import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_print.dart';
 
 import '../../../../api/configAPI.dart';
 import '../../../../constants/controllers.dart';

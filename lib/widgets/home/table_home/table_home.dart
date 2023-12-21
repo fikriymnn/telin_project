@@ -278,7 +278,6 @@ class _TableHomeState extends State<TableHome> {
                       ),
                     ),
                   ),
-                  fixedWidth: 150,
                 ),
                 DataColumn2(
                   label: Center(
@@ -289,22 +288,19 @@ class _TableHomeState extends State<TableHome> {
                           color: Colors.black,
                         )),
                   ),
-                  fixedWidth: 250,
                 ),
                 DataColumn2(
-                    fixedWidth: 300,
-                    label: Center(
-                      child: Text("Project's Name",
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.roboto(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          )),
-                    ),
-                    size: ColumnSize.L),
+                  label: Center(
+                    child: Text("Project's Name",
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.roboto(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        )),
+                  ),
+                ),
                 DataColumn2(
-                  fixedWidth: 95,
                   label: Center(
                     child: Text('Loading',
                         style: GoogleFonts.roboto(
@@ -315,7 +311,6 @@ class _TableHomeState extends State<TableHome> {
                   ),
                 ),
                 DataColumn2(
-                  fixedWidth: 125,
                   label: Center(
                     child: Text('Off-Loading',
                         style: GoogleFonts.roboto(
@@ -326,11 +321,9 @@ class _TableHomeState extends State<TableHome> {
                   ),
                 ),
                 const DataColumn2(
-                  fixedWidth: 80,
                   label: Text(''),
                 ),
                 const DataColumn2(
-                  fixedWidth: 80,
                   label: Text(''),
                 ),
               ],

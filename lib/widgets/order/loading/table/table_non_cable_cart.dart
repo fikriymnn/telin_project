@@ -15,30 +15,6 @@ class TableNonCableCart extends StatefulWidget {
   State<TableNonCableCart> createState() => _TableNonCableCartState();
 }
 
-List<DropdownMenuItem<String>> get dropdownItemsSystem {
-  List<DropdownMenuItem<String>> menuItems = [
-    const DropdownMenuItem(value: "SYSTEM", child: Text("SYSTEM")),
-    const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-    const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-    const DropdownMenuItem(value: "England", child: Text("England")),
-  ];
-  return menuItems;
-}
-
-List<DropdownMenuItem<String>> get dropdownItemsArmoring {
-  List<DropdownMenuItem<String>> menuItemsArmoring = [
-    const DropdownMenuItem(
-        value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
-    const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-    const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-    const DropdownMenuItem(value: "England", child: Text("England")),
-  ];
-  return menuItemsArmoring;
-}
-
-String selectedValueSystem = "SYSTEM";
-String selectedValueArmoring = "ARMORING TYPE";
-
 class _TableNonCableCartState extends State<TableNonCableCart> {
   List LoadingByIdSparekit = [];
 

@@ -92,13 +92,6 @@ class _TableTank5State extends State<TableTank5> {
       enableSorting: true,
     ),
     PlutoColumn(
-      title: '\u03A3 CORE',
-      field: 'core',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
       title: 'TANK',
       field: 'tank',
       type: PlutoColumnType.text(),
@@ -115,20 +108,6 @@ class _TableTank5State extends State<TableTank5> {
     PlutoColumn(
       title: 'TANK LEVEL',
       field: 'tank_level',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
-      title: 'REMARK',
-      field: 'remark',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
-      title: 'DESCRIPTION',
-      field: 'description',
       type: PlutoColumnType.text(),
       enableContextMenu: true,
       enableSorting: true,

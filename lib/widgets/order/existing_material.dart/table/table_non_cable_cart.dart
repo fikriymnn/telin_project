@@ -107,7 +107,7 @@ class _TableNonCableCartExistingState extends State<TableNonCableCartExisting> {
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['kit']['system'] ?? "-"}",
+      DataCell(Text("${data['kit']['system']["system"] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w600,

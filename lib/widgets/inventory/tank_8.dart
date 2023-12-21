@@ -92,13 +92,6 @@ class _TableTank8State extends State<TableTank8> {
       enableSorting: true,
     ),
     PlutoColumn(
-      title: '\u03A3 CORE',
-      field: 'core',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
       title: 'TANK',
       field: 'tank',
       type: PlutoColumnType.text(),
@@ -115,20 +108,6 @@ class _TableTank8State extends State<TableTank8> {
     PlutoColumn(
       title: 'TANK LEVEL',
       field: 'tank_level',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
-      title: 'REMARK',
-      field: 'remark',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
-      title: 'DESCRIPTION',
-      field: 'description',
       type: PlutoColumnType.text(),
       enableContextMenu: true,
       enableSorting: true,
@@ -185,12 +164,6 @@ class _TableTank8State extends State<TableTank8> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['core'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
       DataCell(Text("${data['tank'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
@@ -209,18 +182,6 @@ class _TableTank8State extends State<TableTank8> {
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['remark'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['description'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          )))
     ]);
   }
 

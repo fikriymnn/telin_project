@@ -77,13 +77,6 @@ class _NonCableReportState extends State<NonCableReport> {
       enableSorting: true,
     ),
     PlutoColumn(
-      title: 'Weight',
-      field: 'weight',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
       title: 'Qty',
       field: 'qty',
       type: PlutoColumnType.text(),
@@ -93,13 +86,6 @@ class _NonCableReportState extends State<NonCableReport> {
     PlutoColumn(
       title: 'Unit',
       field: 'unit',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
-      title: 'Remark',
-      field: 'remark',
       type: PlutoColumnType.text(),
       enableContextMenu: true,
       enableSorting: true,
@@ -230,18 +216,12 @@ class _NonCableReportState extends State<NonCableReport> {
                       'system': PlutoCell(
                           value:
                               '${reportSparekits[index]['system'] == null ? "" : reportSparekits[index]['system']}'),
-                      'weight': PlutoCell(
-                          value:
-                              '${reportSparekits[index]['weight'] == null ? "" : reportSparekits[index]['weight']}'),
                       'qty': PlutoCell(
                           value:
                               '${reportSparekits[index]['qty'] == null ? "" : reportSparekits[index]['qty']}'),
                       'unit': PlutoCell(
                           value:
                               '${reportSparekits[index]['unit'] == null ? "" : reportSparekits[index]['unit']}'),
-                      'remark': PlutoCell(
-                          value:
-                              '${reportSparekits[index]['remark'] == null ? "" : reportSparekits[index]['remark']}'),
                     },
                   ),
                 ),

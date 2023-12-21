@@ -226,7 +226,7 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
               count: myData!.length,
               context: context,
             ),
-            rowsPerPage: 8,
+            rowsPerPage: 15,
             columnSpacing: 50,
             columns: [
               DataColumn2(
