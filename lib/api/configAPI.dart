@@ -160,6 +160,7 @@ String getRakC5 = '$baseUrl/api/inventory/kit/RAK C5';
 String getRakC6 = '$baseUrl/api/inventory/kit/RAK C6';
 String getRakC7 = '$baseUrl/api/inventory/kit/RAK C7';
 String getRak = '$baseUrl/api/inventory/kit/RAK';
+String getListview = '$baseUrl/api/inventory/cable/TANK';
 
 String getIdUnit = '$baseUrl/api/unit/get';
 
