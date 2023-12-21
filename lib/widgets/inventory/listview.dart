@@ -289,65 +289,67 @@ class _TableListviewState extends State<TableListview> {
         child: Column(
           children: [
             Expanded(
-              child: PlutoGrid(
-                columns: columns,
-                rows: List.generate(
-                  tank1.length,
-                  (index) => PlutoRow(
-                    cells: {
-                      'no': PlutoCell(
-                        value: '${index + 1}',
+              child: tank1 == null
+                  ? Container()
+                  : PlutoGrid(
+                      columns: columns,
+                      rows: List.generate(
+                        tank1.length,
+                        (index) => PlutoRow(
+                          cells: {
+                            'no': PlutoCell(
+                              value: '${index + 1}',
+                            ),
+                            'lable': PlutoCell(
+                                value: '${tank1[index]['label_id'] ?? ""}'),
+                            'system': PlutoCell(
+                                value:
+                                    '${tank1[index]['system'] == null ? "" : tank1[index]['system']}'),
+                            'armoring': PlutoCell(
+                                value:
+                                    '${tank1[index]['armoring_type'] == null ? "" : tank1[index]['armoring_type']}'),
+                            'cable_type': PlutoCell(
+                                value:
+                                    '${tank1[index]['cable_type'] == null ? "" : tank1[index]['cable_type']}'),
+                            'manufacturer': PlutoCell(
+                                value:
+                                    '${tank1[index]['manufacturer'] == null ? "" : tank1[index]['manufacturer']}'),
+                            'length': PlutoCell(
+                                value:
+                                    '${tank1[index]['length_report'] == null ? "" : tank1[index]['length_report']}'),
+                            'core_type': PlutoCell(
+                                value:
+                                    '${tank1[index]['core_type'] == null ? "" : tank1[index]['core_type']}'),
+                            'core': PlutoCell(
+                                value:
+                                    '${tank1[index]['core'] == null ? "" : tank1[index]['core']}'),
+                            'tank': PlutoCell(
+                                value:
+                                    '${tank1[index]['tank'] == null ? "" : tank1[index]['tank']}'),
+                            'tank_location': PlutoCell(
+                                value:
+                                    '${tank1[index]['tank_location'] == null ? "" : tank1[index]['tank_location']}'),
+                            'tank_level': PlutoCell(
+                                value:
+                                    '${tank1[index]['tank_level'] == null ? "" : tank1[index]['tank_level']}'),
+                            'remark': PlutoCell(
+                                value:
+                                    '${tank1[index]['remark'] == null ? "" : tank1[index]['remark']}'),
+                            'description': PlutoCell(
+                                value:
+                                    '${tank1[index]['description'] == null ? "" : tank1[index]['description']}'),
+                          },
+                        ),
                       ),
-                      'lable': PlutoCell(
-                          value:
-                              '${tank1[index]['label_id'] == null ? "" : tank1[index]['label_id']}'),
-                      'system': PlutoCell(
-                          value:
-                              '${tank1[index]['system'] == null ? "" : tank1[index]['system']}'),
-                      'armoring': PlutoCell(
-                          value:
-                              '${tank1[index]['armoring_type'] == null ? "" : tank1[index]['armoring_type']}'),
-                      'cable_type': PlutoCell(
-                          value:
-                              '${tank1[index]['cable_type'] == null ? "" : tank1[index]['cable_type']}'),
-                      'manufacturer': PlutoCell(
-                          value:
-                              '${tank1[index]['manufacturer'] == null ? "" : tank1[index]['manufacturer']}'),
-                      'length': PlutoCell(
-                          value:
-                              '${tank1[index]['length_report'] == null ? "" : tank1[index]['length_report']}'),
-                      'core_type': PlutoCell(
-                          value:
-                              '${tank1[index]['core_type'] == null ? "" : tank1[index]['core_type']}'),
-                      'core': PlutoCell(
-                          value:
-                              '${tank1[index]['core'] == null ? "" : tank1[index]['core']}'),
-                      'tank': PlutoCell(
-                          value:
-                              '${tank1[index]['tank'] == null ? "" : tank1[index]['tank']}'),
-                      'tank_location': PlutoCell(
-                          value:
-                              '${tank1[index]['tank_location'] == null ? "" : tank1[index]['tank_location']}'),
-                      'tank_level': PlutoCell(
-                          value:
-                              '${tank1[index]['tank_level'] == null ? "" : tank1[index]['tank_level']}'),
-                      'remark': PlutoCell(
-                          value:
-                              '${tank1[index]['remark'] == null ? "" : tank1[index]['remark']}'),
-                      'description': PlutoCell(
-                          value:
-                              '${tank1[index]['description'] == null ? "" : tank1[index]['description']}'),
-                    },
-                  ),
-                ),
-                onLoaded: (PlutoGridOnLoadedEvent event) {
-                  event.stateManager.setShowColumnFilter(true);
-                },
-                configuration: const PlutoGridConfiguration(
-                  enableMoveDownAfterSelecting: true,
-                  enterKeyAction: PlutoGridEnterKeyAction.editingAndMoveDown,
-                ),
-              ),
+                      onLoaded: (PlutoGridOnLoadedEvent event) {
+                        event.stateManager.setShowColumnFilter(true);
+                      },
+                      configuration: const PlutoGridConfiguration(
+                        enableMoveDownAfterSelecting: true,
+                        enterKeyAction:
+                            PlutoGridEnterKeyAction.editingAndMoveDown,
+                      ),
+                    ),
             ),
           ],
         ),

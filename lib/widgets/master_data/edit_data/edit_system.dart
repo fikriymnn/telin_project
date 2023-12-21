@@ -11,7 +11,7 @@ import '../../../routing/routes.dart';
 class EditSystem extends StatefulWidget {
   final String id;
   final String systemName;
-  final String label;
+  final dynamic label;
 
   const EditSystem(
       {super.key,
@@ -34,7 +34,7 @@ class _EditSystemState extends State<EditSystem> {
   void initState() {
     super.initState();
     _txtNamaSystem = TextEditingController(text: widget.systemName);
-    _txtLabelId = TextEditingController(text: widget.label);
+    _txtLabelId = TextEditingController(text: widget.label.toString());
   }
 
   @override

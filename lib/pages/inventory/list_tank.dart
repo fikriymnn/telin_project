@@ -20,49 +20,47 @@ class ListTank extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var screnSize = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          width: screnSize.width,
-          height: screnSize.height,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/background_login_full.png"),
-              fit: BoxFit.cover,
-            ),
+    return SingleChildScrollView(
+      child: Container(
+        width: screnSize.width,
+        height: screnSize.height,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background_login_full.png"),
+            fit: BoxFit.cover,
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Container(
-              width: screnSize.width,
-              height: screnSize.height,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
-                color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Container(
+            width: screnSize.width,
+            height: screnSize.height,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
               ),
-              child: Column(
-                // physics: NeverScrollableScrollPhysics(),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      'List Cable',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
+              color: Colors.white,
+            ),
+            child: Column(
+              // physics: NeverScrollableScrollPhysics(),
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                    'Cable List',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
                     ),
                   ),
-                  SizedBox(
-                      width: screnSize.width,
-                      height: 550,
-                      child: const TableListview()),
-                ],
-              ),
+                ),
+                SizedBox(
+                    width: screnSize.width,
+                    height: 550,
+                    child: const TableListview()),
+              ],
             ),
           ),
         ),

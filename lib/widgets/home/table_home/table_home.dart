@@ -148,6 +148,7 @@ class _TableHomeState extends State<TableHome> {
 
       setState(() {
         offLoading = response!.data;
+
         myData = List.generate(offLoading.length, (index) {
           var data = offLoading[index];
           return ProjectOverview(
@@ -261,7 +262,7 @@ class _TableHomeState extends State<TableHome> {
               sortAscending: sort,
               source: RowSource(
                 myData: myData,
-                count: myData!.length,
+                count: myData == null ? 0 : myData!.length,
                 context: context,
               ),
               rowsPerPage: 8,

@@ -11,7 +11,7 @@ import '../../../constants/style.dart';
 class EditArmoringType extends StatefulWidget {
   final String id;
   final String armoringName;
-  final String label;
+  final dynamic label;
 
   const EditArmoringType(
       {super.key,
@@ -34,7 +34,7 @@ class _EditArmoringTypeState extends State<EditArmoringType> {
   void initState() {
     super.initState();
     _txtNamaArmoring = TextEditingController(text: widget.armoringName);
-    _txtLabelId = TextEditingController(text: widget.label);
+    _txtLabelId = TextEditingController(text: widget.label.toString());
   }
 
   @override

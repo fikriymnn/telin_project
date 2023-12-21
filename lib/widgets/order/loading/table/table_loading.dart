@@ -219,118 +219,120 @@ class _TableLoadingState extends State<TableLoading> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Column(
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  width: 258.6,
-                  height: 37.06,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6.6),
-                      border:
-                          Border.all(width: 1, color: const Color(0xffC1C1C1)),
-                      color: const Color(0xffF3F3F3)),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10, bottom: 15),
-                    child: TextField(
-                      controller: controller,
-                      style: GoogleFonts.roboto(
-                        fontSize: 10.6,
-                        fontWeight: FontWeight.w400,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    width: 258.6,
+                    height: 37.06,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6.6),
+                        border: Border.all(
+                            width: 1, color: const Color(0xffC1C1C1)),
+                        color: const Color(0xffF3F3F3)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, bottom: 15),
+                      child: TextField(
+                        controller: controller,
+                        style: GoogleFonts.roboto(
+                          fontSize: 10.6,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintStyle: GoogleFonts.roboto(
+                              fontSize: 10.6,
+                              fontWeight: FontWeight.w400,
+                              color: const Color(0xFF9D9D9D),
+                            ),
+                            hintText: "Search"),
+                        onChanged: (value) {
+                          setState(() {
+                            myData = filterData!
+                                .where((element) =>
+                                    element.projectName.contains(value))
+                                .toList();
+                          });
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            PaginatedDataTable(
+              sortColumnIndex: 0,
+              source: RowSource(
+                myData: myData,
+                count: myData!.length,
+                context: context,
+              ),
+              rowsPerPage: 15,
+              columnSpacing: 115,
+              columns: [
+                DataColumn2(
+                    label: Text(
+                      'No',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintStyle: GoogleFonts.roboto(
-                            fontSize: 10.6,
-                            fontWeight: FontWeight.w400,
-                            color: const Color(0xFF9D9D9D),
-                          ),
-                          hintText: "Search"),
-                      onChanged: (value) {
-                        setState(() {
-                          myData = filterData!
-                              .where((element) =>
-                                  element.projectName.contains(value))
-                              .toList();
-                        });
-                      },
                     ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          PaginatedDataTable(
-            sortColumnIndex: 0,
-            source: RowSource(
-              myData: myData,
-              count: myData!.length,
-              context: context,
-            ),
-            rowsPerPage: 15,
-            columnSpacing: 115,
-            columns: [
-              DataColumn2(
-                  label: Text(
-                    'No',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
+                    fixedWidth: 28),
+                DataColumn2(
+                    label: Center(
+                      child: Text('Date',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
                     ),
-                  ),
-                  fixedWidth: 28),
-              DataColumn2(
-                  label: Center(
-                    child: Text('Date',
+                    fixedWidth: 100),
+                DataColumn2(
+                    label: Text('Project Name',
                         style: GoogleFonts.montserrat(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         )),
-                  ),
-                  fixedWidth: 100),
-              DataColumn2(
-                  label: Text('Project Name',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      )),
-                  fixedWidth: 200),
-              DataColumn2(
-                  label: Text('Vessel Name',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      )),
-                  fixedWidth: 150),
-              DataColumn2(
-                  label: Text('From',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      )),
-                  fixedWidth: 100),
-              DataColumn2(
-                  label: Text('To',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      )),
-                  fixedWidth: 100),
-              const DataColumn2(label: Text(''), fixedWidth: 200),
-            ],
-          ),
-        ],
+                    fixedWidth: 200),
+                DataColumn2(
+                    label: Text('Vessel Name',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        )),
+                    fixedWidth: 150),
+                DataColumn2(
+                    label: Text('From',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        )),
+                    fixedWidth: 100),
+                DataColumn2(
+                    label: Text('To',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        )),
+                    fixedWidth: 100),
+                const DataColumn2(label: Text(''), fixedWidth: 200),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

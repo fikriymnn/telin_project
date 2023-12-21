@@ -115,7 +115,7 @@ String editUnit = '$baseUrl/api/unit/edit';
 String getReportCable = '$baseUrl/api/report';
 String getReportSpareKits = '$baseUrl/api/report/spare_kits';
 
-String getTank1 = '$baseUrl/api/inventory/cable/TANK-1';
+String getTank1 = '$baseUrl/api/inventory/cable/TANK-01';
 String getTank2 = '$baseUrl/api/inventory/cable/TANK-2';
 String getTank3 = '$baseUrl/api/inventory/cable/TANK-3';
 String getTank4 = '$baseUrl/api/inventory/cable/TANK-4';

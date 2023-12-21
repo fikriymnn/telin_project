@@ -40,7 +40,7 @@ class BastWidget extends StatelessWidget {
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30))),
               child: Padding(
-                padding: const EdgeInsets.only(left: 10, top: 20),
+                padding: const EdgeInsets.only(left: 10, top: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -52,7 +52,7 @@ class BastWidget extends StatelessWidget {
                           color: Colors.black,
                         )),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Text(noBast,
                         textAlign: TextAlign.start,
@@ -62,7 +62,7 @@ class BastWidget extends StatelessWidget {
                           color: Colors.black,
                         )),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Text(projectName,
                         textAlign: TextAlign.start,
