@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 800,
+                height: MediaQuery.of(context).size.height,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
@@ -32,27 +32,31 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 800,
+                height: MediaQuery.of(context).size.height,
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
-                    begin: Alignment.center,
+                    begin: Alignment(-0.5, 0),
                     end: Alignment.centerRight,
                     //center: Alignment(0.5, -0.1),
                     //radius: 1.0,
                     colors: [
                       Color.fromARGB(0, 255, 255, 255),
-                      Color(0xFFFFFFFF),
+                      Color(0xffF1F0F5),
                     ],
                     stops: [0, 0.35],
                   ),
                 ),
               ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  LogoWidget(),
-                  LoginForm(),
-                ],
+              const Padding(
+                padding: EdgeInsets.only(top: 100, right: 100, left: 100),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LogoWidget(),
+                    LoginForm(),
+                  ],
+                ),
               ),
             ],
           ),
