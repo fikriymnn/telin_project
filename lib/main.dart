@@ -6,6 +6,7 @@ import 'package:telin_project/controllers/navigation_controllers.dart';
 import 'package:telin_project/layout.dart';
 import 'package:telin_project/pages/404/error_page.dart';
 import 'package:telin_project/pages/auth/login_screen.dart';
+import 'package:telin_project/pages/depo.dart';
 import 'package:telin_project/pages/home/home.dart';
 import 'package:telin_project/routing/routes.dart';
 
@@ -35,7 +36,9 @@ class MyApp extends StatelessWidget {
             page: () => const SiteLayout(
                   role: "",
                 )),
-        GetPage(name: AuthenticationPageRoute, page: () => const LoginScreen()),
+        GetPage(
+            name: AuthenticationPageRoute,
+            page: () => const SiteLayout(role: "super-admin")),
       ],
       debugShowCheckedModeBanner: false,
       title: 'Spare Management',

@@ -12,7 +12,6 @@ class LogoWidget extends StatelessWidget {
           alignment: Alignment.centerLeft,
           width: 444,
           height: 136,
-          margin: const EdgeInsets.only(top: 178, left: 80),
           child: Image.asset(
             'assets/images/logo_telin_login.png',
             fit: BoxFit.contain,
@@ -28,21 +27,21 @@ class LogoWidget extends StatelessWidget {
             children: [
               Text('Welcome To',
                   textAlign: TextAlign.start,
-                  style: GoogleFonts.roboto(
-                    fontSize: 33,
-                    fontWeight: FontWeight.w400,
+                  style: GoogleFonts.rubik(
+                    fontSize: 30,
+                    fontWeight: FontWeight.normal,
                     color: Colors.black,
                   )),
               Text('Spare Management',
-                  style: GoogleFonts.roboto(
-                    fontSize: 43,
-                    fontWeight: FontWeight.w700,
+                  style: GoogleFonts.rubik(
+                    fontSize: 36,
+                    fontWeight: FontWeight.w600,
                     color: Colors.black,
                   )),
               Text('SKKL TELKOM',
-                  style: GoogleFonts.roboto(
-                    fontSize: 43,
-                    fontWeight: FontWeight.w700,
+                  style: GoogleFonts.rubik(
+                    fontSize: 36,
+                    fontWeight: FontWeight.w600,
                     color: Colors.black,
                   )),
             ],
