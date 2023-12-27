@@ -408,7 +408,7 @@ class _EditSystemState extends State<EditSystem> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Center(
-                    child: Text("Edit System",
+                    child: Text("EDIT SYSTEM",
                         style: GoogleFonts.rubik(
                           fontSize: 24,
                           fontWeight: FontWeight.w500,
@@ -569,7 +569,7 @@ class _EditSystemState extends State<EditSystem> {
                             borderRadius: BorderRadius.circular(6),
                             color: const Color(0xffEC1D26)),
                         child: Center(
-                          child: Text("SUBMIT",
+                          child: Text("EDIT",
                               style: GoogleFonts.rubik(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,

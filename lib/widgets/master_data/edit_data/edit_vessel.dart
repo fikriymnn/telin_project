@@ -2,27 +2,81 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/routing/routes.dart';
 
-import '../../../api/configAPI.dart';
 import '../../../constants/controllers.dart';
+import '../../../constants/style.dart';
 
-class AddLocation extends StatefulWidget {
-  const AddLocation({super.key});
+class EditVessel extends StatefulWidget {
+  final String id;
+  final String vessel;
+  final dynamic refresh;
+  const EditVessel(
+      {super.key, required this.id, required this.vessel, this.refresh});
 
   @override
-  State<AddLocation> createState() => _AddLocationState();
+  State<EditVessel> createState() => _EditVesselState();
 }
 
-class _AddLocationState extends State<AddLocation> {
-  TextEditingController txtNamaLocation = TextEditingController();
-
-  FocusNode focusNode = FocusNode();
-
+class _EditVesselState extends State<EditVessel> {
   Response? response;
 
   var dio = Dio();
+  late final TextEditingController _txtVessel;
+
+  @override
+  void initState() {
+    super.initState();
+    _txtVessel = TextEditingController(text: widget.vessel);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _txtVessel.dispose();
+  }
+
+  void editDataVessel(id, vessel) async {
+    bool status;
+    var msg;
+    try {
+      // response =
+      //     await dio.put('$editVessel/$id', data: {'vessel': vessel});
+
+      status = response!.data['sukses'];
+      msg = response!.data['msg'];
+      if (status) {
+        FocusScope.of(context).unfocus();
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: '$msg',
+            width: 400,
+            confirmBtnColor: Colors.green,
+            onConfirmBtnTap: () {
+              widget.refresh();
+              Navigator.pop(context, true);
+            });
+      } else {
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: '$msg',
+            title: 'Peringatan',
+            width: 400,
+            confirmBtnColor: Colors.red);
+      }
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +104,7 @@ class _AddLocationState extends State<AddLocation> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Center(
-                    child: Text("ADD NEW LOCATION",
+                    child: Text("EDIT VESSEL",
                         style: GoogleFonts.rubik(
                           fontSize: 24,
                           fontWeight: FontWeight.w500,
@@ -70,7 +124,7 @@ class _AddLocationState extends State<AddLocation> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Location",
+                        "Vessel",
                         style: GoogleFonts.rubik(
                           fontSize: 19,
                           fontWeight: FontWeight.w500,
@@ -88,7 +142,7 @@ class _AddLocationState extends State<AddLocation> {
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Center(
                   child: TextField(
-                    controller: txtNamaLocation,
+                    controller: _txtVessel,
                     style: GoogleFonts.rubik(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
@@ -111,7 +165,7 @@ class _AddLocationState extends State<AddLocation> {
                         borderSide:
                             BorderSide(color: Colors.blue.withOpacity(0.5)),
                       ),
-                      labelText: 'Location',
+                      labelText: 'Vessel',
                     ),
                   ),
                 ),
@@ -126,16 +180,16 @@ class _AddLocationState extends State<AddLocation> {
                   children: [
                     InkWell(
                       onTap: () {
-                        if (txtNamaLocation.text == '') {
+                        if (_txtVessel.text == '') {
                           QuickAlert.show(
                               context: context,
                               type: QuickAlertType.error,
                               title: 'Peringatan',
-                              text: 'CLocation Tidak Boleh Kosong',
+                              text: 'Vessel Tidak Boleh Kosong',
                               width: 400,
                               confirmBtnColor: Colors.red);
                         } else {
-                          inputDataLocation(txtNamaLocation.text);
+                          editDataVessel(widget.id, _txtVessel.text);
                         }
                       },
                       child: Container(
@@ -145,7 +199,7 @@ class _AddLocationState extends State<AddLocation> {
                             borderRadius: BorderRadius.circular(6),
                             color: const Color(0xffEC1D26)),
                         child: Center(
-                          child: Text("SUBMIT",
+                          child: Text("EDIT",
                               style: GoogleFonts.rubik(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
@@ -160,56 +214,5 @@ class _AddLocationState extends State<AddLocation> {
             ],
           ))),
     );
-  }
-
-  // Clear the form
-  void _clearForm() {
-    txtNamaLocation.clear();
-  }
-
-  // Fungsi Add Data
-  void inputDataLocation(namaLocation) async {
-    bool status;
-    var msg;
-    try {
-      // var formData = FormData.fromMap({
-      //   'Location': namaLocation,
-      // });
-
-      response =
-          await dio.post(inputLocation, data: {'location': namaLocation});
-      status = response!.data['sukses'];
-      msg = response!.data['msg'];
-      if (status) {
-        FocusScope.of(context).unfocus();
-        _clearForm();
-        QuickAlert.show(
-            context: context,
-            type: QuickAlertType.success,
-            text: '$msg',
-            width: 400,
-            confirmBtnColor: Colors.green,
-            onConfirmBtnTap: () {
-              Navigator.pop(context, true);
-              navigationController.navigateTo(LocationPageRoute);
-            });
-      } else {
-        QuickAlert.show(
-            context: context,
-            type: QuickAlertType.error,
-            text: '$msg',
-            title: 'Peringatan',
-            width: 400,
-            confirmBtnColor: Colors.red);
-      }
-    } catch (e) {
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
-    }
   }
 }

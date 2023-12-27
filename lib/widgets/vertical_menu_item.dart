@@ -140,8 +140,8 @@ class VerticalMenuItemDropDown extends StatelessWidget {
                                   size: size1,
                                   fontWeight: FontWeight.bold,
                                   color: menuController.isHovering(itemName)
-                                  ? active
-                                  : dark,
+                                      ? active
+                                      : dark,
                                 )
                               else
                                 CustomText(
@@ -151,8 +151,10 @@ class VerticalMenuItemDropDown extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               activess == false
-                                  ? const Flexible(child: Icon(Icons.arrow_drop_down))
-                                  : const Flexible(child: Icon(Icons.arrow_drop_up))
+                                  ? const Flexible(
+                                      child: Icon(Icons.arrow_drop_down))
+                                  : const Flexible(
+                                      child: Icon(Icons.arrow_drop_up))
                             ],
                           ),
                         )

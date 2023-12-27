@@ -48,7 +48,16 @@ class HorizontalMenuItem extends StatelessWidget {
                   SizedBox(width: width / 80),
                   Padding(
                     padding: const EdgeInsets.all(16),
-                    child: menuController.returnIconFor(itemName),
+                    child: Container(
+                      width: 27,
+                      height: 15,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          menuController.returnIconFor(itemName),
+                        ],
+                      ),
+                    ),
                   ),
                   if (!menuController.isActive(itemName))
                     Flexible(
@@ -57,7 +66,7 @@ class HorizontalMenuItem extends StatelessWidget {
                         size: size1,
                         fontWeight: FontWeight.bold,
                         color:
-                        menuController.isHovering(itemName) ? active : dark,
+                            menuController.isHovering(itemName) ? active : dark,
                       ),
                     )
                   else
@@ -120,7 +129,16 @@ class HorizontalMenuItemDropDown extends StatelessWidget {
                   SizedBox(width: width / 80),
                   Padding(
                     padding: const EdgeInsets.all(16),
-                    child: menuController.returnIconFor(itemName),
+                    child: Container(
+                      width: 27,
+                      height: 15,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          menuController.returnIconFor(itemName),
+                        ],
+                      ),
+                    ),
                   ),
                   if (!menuController.isActive(itemName))
                     CustomText(
@@ -128,7 +146,7 @@ class HorizontalMenuItemDropDown extends StatelessWidget {
                       size: size1,
                       fontWeight: FontWeight.bold,
                       color:
-                      menuController.isHovering(itemName) ? active : dark,
+                          menuController.isHovering(itemName) ? active : dark,
                     )
                   else
                     CustomText(

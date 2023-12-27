@@ -37,6 +37,9 @@ const EditUnitPageRoute = "/Unit/edit";
 const CompanyDisplayName = "Company";
 const CompanyPageRoute = "/Company";
 
+const VesselDisplayName = "Vessel";
+const VesselPageRoute = "/Vessel";
+
 const OrderDisplayName = "Order";
 const OrderPageRoute = "/order";
 
@@ -97,4 +100,5 @@ List<MenuItem> sideMenuItems = [
   MenuItem(ReportDisplayName, ReportPageRoute),
   MenuItem(SettingsDisplayName, SettingsPageRoute),
   MenuItem(AuthenticationDisplayName, AuthenticationPageRoute),
+  MenuItem(VesselDisplayName, VesselPageRoute),
 ];

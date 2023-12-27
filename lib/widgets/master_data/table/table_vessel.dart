@@ -5,27 +5,30 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
-import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/routing/routes.dart';
-import 'package:telin_project/widgets/master_data/edit_data/edit_unit.dart';
+import 'package:telin_project/widgets/master_data/edit_data/edit_core_type.dart';
+import 'package:telin_project/widgets/master_data/edit_data/edit_vessel.dart';
 
-class TableUnit extends StatefulWidget {
-  const TableUnit({super.key});
+import '../../../constants/controllers.dart';
+
+class TableVessel extends StatefulWidget {
+  const TableVessel({super.key});
 
   @override
-  State<TableUnit> createState() => _TableUnitState();
+  State<TableVessel> createState() => _TableVesselState();
 }
 
-class _TableUnitState extends State<TableUnit> {
-  List unit = [];
+class _TableVesselState extends State<TableVessel> {
+  List coreType = [];
+
   Response? response;
 
   var dio = Dio();
-
   @override
   void initState() {
-    getDataUnit();
+    // TODO: implement initState
+    getDataVessel();
     super.initState();
   }
 
@@ -45,7 +48,7 @@ class _TableUnitState extends State<TableUnit> {
                 fontWeight: FontWeight.w300,
                 color: Colors.black,
               ))),
-          DataCell(Text('${data['unit']}',
+          DataCell(Text('Vessel Name',
               style: GoogleFonts.rubik(
                 fontSize: 14,
                 fontWeight: FontWeight.w300,
@@ -62,10 +65,10 @@ class _TableUnitState extends State<TableUnit> {
                         context: context,
                         barrierColor: Colors.black.withOpacity(0.50),
                         builder: (BuildContext context) {
-                          return EditUnit(
-                            id: data['_id'],
-                            unitName: data['unit'],
-                            refresh: () => getDataUnit(),
+                          return EditVessel(
+                            id: "98709709780",
+                            vessel: "Vessel Name",
+                            refresh: () => getDataVessel(),
                           );
                         });
                   },
@@ -98,7 +101,7 @@ class _TableUnitState extends State<TableUnit> {
                         confirmBtnText: "Delete",
                         cancelBtnText: "Cancle",
                         onConfirmBtnTap: () {
-                          hapusDataUnit('${data['_id']}');
+                          hapusDataVessel('${data['_id']}');
                         });
                   },
                   child: Container(
@@ -121,55 +124,53 @@ class _TableUnitState extends State<TableUnit> {
         ]);
   }
 
-  void getDataUnit() async {
+  void getDataVessel() async {
     bool status;
     var msg;
-    try {
-      response = await dio.get(getAllUnit);
-
-      status = response!.data['sukses'];
-      msg = response!.data['msg'];
-      if (status) {
-        setState(() {
-          unit = response!.data['data'];
-        });
-      } else {
-        QuickAlert.show(
-            context: context,
-            type: QuickAlertType.error,
-            text: '$msg',
-            title: 'Peringatan',
-            width: 400,
-            confirmBtnColor: Colors.red);
-      }
-    } catch (e) {
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
-    }
+    // try {
+    //   response = await dio.get(getAllVessel);
+    //   status = response!.data['sukses'];
+    //   msg = response!.data['msg'];
+    //   if (status) {
+    //     setState(() {
+    //       coreType = response!.data['data'];
+    //     });
+    //   } else {
+    //     QuickAlert.show(
+    //         context: context,
+    //         type: QuickAlertType.error,
+    //         text: '$msg',
+    //         title: 'Peringatan',
+    //         width: 400,
+    //         confirmBtnColor: Colors.red);
+    //   }
+    // } catch (e) {
+    //   QuickAlert.show(
+    //       context: context,
+    //       type: QuickAlertType.error,
+    //       text: 'Terjadi Kesalahan Pada Server Kami',
+    //       title: 'Peringatan',
+    //       width: 400,
+    //       confirmBtnColor: Colors.red);
+    // }
   }
 
-  void hapusDataUnit(id) async {
+  void hapusDataVessel(id) async {
     bool status;
     var msg;
     try {
-      response = await dio.delete('$hapusUnit/$id');
+      response = await dio.delete('$hapusCoreType/$id');
 
       status = response!.data['sukses'];
       msg = response!.data['msg'];
       if (status) {
-        FocusScope.of(context).unfocus();
         CoolAlert.show(
             context: context,
             type: CoolAlertType.success,
             text: "$msg",
             width: 400,
             onConfirmBtnTap: () {
-              getDataUnit();
+              getDataVessel();
             });
       } else {
         CoolAlert.show(
@@ -207,7 +208,7 @@ class _TableUnitState extends State<TableUnit> {
           ),
           DataColumn2(
             label: Text(
-              'UNIT NAME',
+              'VESSEL NAME',
               style: GoogleFonts.rubik(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -219,7 +220,6 @@ class _TableUnitState extends State<TableUnit> {
             label: Text(''),
           ),
         ],
-        rows: List.generate(
-            unit.length, (index) => _resultsAPI(index, unit[index])));
+        rows: List.generate(9, (index) => _resultsAPI(index, 9)));
   }
 }

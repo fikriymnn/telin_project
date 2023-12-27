@@ -10,6 +10,7 @@ import 'package:telin_project/pages/master_data/manufacture.dart';
 import 'package:telin_project/pages/master_data/perusahan.dart';
 import 'package:telin_project/pages/master_data/system.dart';
 import 'package:telin_project/pages/master_data/unit.dart';
+import 'package:telin_project/pages/master_data/vessel.dart';
 import 'package:telin_project/pages/order/loading.dart';
 import 'package:telin_project/pages/order/off_loading_existing_material.dart';
 import 'package:telin_project/pages/order/off_loading_new_material.dart';
@@ -70,6 +71,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(const SettingsViewPage());
     case AuthenticationPageRoute:
       return _getPageRoute(const LoginScreen());
+    case VesselPageRoute:
+      return _getPageRoute(const VesselScreens());
     default:
       return _getPageRoute(const HomeViewPage());
   }

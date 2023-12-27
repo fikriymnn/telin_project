@@ -59,7 +59,7 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 50, left: 100),
+                    padding: const EdgeInsets.only(left: 100),
                     child: InkWell(
                       //rak
                       onTap: () {
@@ -93,7 +93,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -164,7 +165,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -235,7 +237,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -298,7 +301,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -374,7 +378,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -409,7 +414,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         height: 121,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: hoverTank1 ? const Color(0xff4B6B7C) : Colors.black,
+                          color: hoverTank1
+                              ? const Color(0xff4B6B7C)
+                              : Colors.black,
                         ),
                         child: Center(
                           child: Container(
@@ -417,7 +424,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                             height: 87,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: hoverTank1 ? active : const Color(0xffc2c2c2),
+                              color:
+                                  hoverTank1 ? active : const Color(0xffc2c2c2),
                             ),
                             child: Center(
                               child: Text(
@@ -474,7 +482,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -509,7 +518,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         height: 121,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: hoverTank2 ? const Color(0xff4B6B7C) : Colors.black,
+                          color: hoverTank2
+                              ? const Color(0xff4B6B7C)
+                              : Colors.black,
                         ),
                         child: Center(
                           child: Container(
@@ -517,7 +528,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                             height: 87,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: hoverTank2 ? active : const Color(0xffc2c2c2),
+                              color:
+                                  hoverTank2 ? active : const Color(0xffc2c2c2),
                             ),
                             child: Center(
                               child: Text(
@@ -574,7 +586,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -609,7 +622,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         height: 121,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: hoverTank3 ? const Color(0xff4B6B7C) : Colors.black,
+                          color: hoverTank3
+                              ? const Color(0xff4B6B7C)
+                              : Colors.black,
                         ),
                         child: Center(
                           child: Container(
@@ -617,7 +632,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                             height: 87,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: hoverTank3 ? active : const Color(0xffc2c2c2),
+                              color:
+                                  hoverTank3 ? active : const Color(0xffc2c2c2),
                             ),
                             child: Center(
                               child: Text(
@@ -674,7 +690,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -709,7 +726,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         height: 121,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: hoverTank10 ? const Color(0xff4B6B7C) : Colors.black,
+                          color: hoverTank10
+                              ? const Color(0xff4B6B7C)
+                              : Colors.black,
                         ),
                         child: Center(
                           child: Container(
@@ -717,7 +736,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                             height: 87,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: hoverTank10 ? active : const Color(0xffc2c2c2),
+                              color: hoverTank10
+                                  ? active
+                                  : const Color(0xffc2c2c2),
                             ),
                             child: Center(
                               child: Text(
@@ -774,7 +795,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -809,7 +831,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         height: 121,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: hoverTank6 ? const Color(0xff4B6B7C) : Colors.black,
+                          color: hoverTank6
+                              ? const Color(0xff4B6B7C)
+                              : Colors.black,
                         ),
                         child: Center(
                           child: Container(
@@ -817,7 +841,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                             height: 87,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: hoverTank6 ? active : const Color(0xffc2c2c2),
+                              color:
+                                  hoverTank6 ? active : const Color(0xffc2c2c2),
                             ),
                             child: Center(
                               child: Text(
@@ -874,7 +899,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -909,7 +935,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         height: 121,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: hoverTank5 ? const Color(0xff4B6B7C) : Colors.black,
+                          color: hoverTank5
+                              ? const Color(0xff4B6B7C)
+                              : Colors.black,
                         ),
                         child: Center(
                           child: Container(
@@ -917,7 +945,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                             height: 87,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: hoverTank5 ? active : const Color(0xffc2c2c2),
+                              color:
+                                  hoverTank5 ? active : const Color(0xffc2c2c2),
                             ),
                             child: Center(
                               child: Text(
@@ -974,7 +1003,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -1009,7 +1039,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         height: 121,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: hoverTank4 ? const Color(0xff4B6B7C) : Colors.black,
+                          color: hoverTank4
+                              ? const Color(0xff4B6B7C)
+                              : Colors.black,
                         ),
                         child: Center(
                           child: Container(
@@ -1017,7 +1049,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                             height: 87,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: hoverTank4 ? active : const Color(0xffc2c2c2),
+                              color:
+                                  hoverTank4 ? active : const Color(0xffc2c2c2),
                             ),
                             child: Center(
                               child: Text(
@@ -1074,7 +1107,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -1109,7 +1143,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         height: 121,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: hoverTank11 ? const Color(0xff4B6B7C) : Colors.black,
+                          color: hoverTank11
+                              ? const Color(0xff4B6B7C)
+                              : Colors.black,
                         ),
                         child: Center(
                           child: Container(
@@ -1117,7 +1153,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                             height: 87,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: hoverTank11 ? active : const Color(0xffc2c2c2),
+                              color: hoverTank11
+                                  ? active
+                                  : const Color(0xffc2c2c2),
                             ),
                             child: Center(
                               child: Text(
@@ -1174,7 +1212,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -1209,7 +1248,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         height: 121,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: hoverTank9 ? const Color(0xff4B6B7C) : Colors.black,
+                          color: hoverTank9
+                              ? const Color(0xff4B6B7C)
+                              : Colors.black,
                         ),
                         child: Center(
                           child: Container(
@@ -1217,7 +1258,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                             height: 87,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: hoverTank9 ? active : const Color(0xffc2c2c2),
+                              color:
+                                  hoverTank9 ? active : const Color(0xffc2c2c2),
                             ),
                             child: Center(
                               child: Text(
@@ -1274,7 +1316,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -1309,7 +1352,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         height: 121,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: hoverTank8 ? const Color(0xff4B6B7C) : Colors.black,
+                          color: hoverTank8
+                              ? const Color(0xff4B6B7C)
+                              : Colors.black,
                         ),
                         child: Center(
                           child: Container(
@@ -1317,7 +1362,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                             height: 87,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: hoverTank8 ? active : const Color(0xffc2c2c2),
+                              color:
+                                  hoverTank8 ? active : const Color(0xffc2c2c2),
                             ),
                             child: Center(
                               child: Text(
@@ -1374,7 +1420,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 border: Border.all(
-                                                    color: const Color(0xffB8B8B8),
+                                                    color:
+                                                        const Color(0xffB8B8B8),
                                                     width: 1)),
                                             child: Row(
                                               children: [
@@ -1409,7 +1456,9 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         height: 121,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: hoverTank7 ? const Color(0xff4B6B7C) : Colors.black,
+                          color: hoverTank7
+                              ? const Color(0xff4B6B7C)
+                              : Colors.black,
                         ),
                         child: Center(
                           child: Container(
@@ -1417,7 +1466,8 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                             height: 87,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: hoverTank7 ? active : const Color(0xffc2c2c2),
+                              color:
+                                  hoverTank7 ? active : const Color(0xffc2c2c2),
                             ),
                             child: Center(
                               child: Text(

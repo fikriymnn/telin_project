@@ -57,7 +57,7 @@ class SystemScreens extends StatelessWidget {
                                   const SizedBox(
                                     width: 15,
                                   ),
-                                  Text("Add System",
+                                  Text("ADD SYSTEM",
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,

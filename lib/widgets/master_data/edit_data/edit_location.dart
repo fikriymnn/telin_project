@@ -11,8 +11,9 @@ import '../../../constants/style.dart';
 class EditLocation extends StatefulWidget {
   final String id;
   final String locationName;
-
-  const EditLocation({super.key, required this.id, required this.locationName});
+  final dynamic refresh;
+  const EditLocation(
+      {super.key, required this.id, required this.locationName, this.refresh});
 
   @override
   State<EditLocation> createState() => _EditLocationState();
@@ -52,7 +53,11 @@ class _EditLocationState extends State<EditLocation> {
             type: QuickAlertType.success,
             text: '$msg',
             width: 400,
-            confirmBtnColor: Colors.green);
+            confirmBtnColor: Colors.green,
+            onConfirmBtnTap: () {
+              widget.refresh();
+              Navigator.pop(context, true);
+            });
       } else {
         QuickAlert.show(
             context: context,
@@ -76,147 +81,137 @@ class _EditLocationState extends State<EditLocation> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
       content: Container(
-          width: 900,
-          height: 588.6,
+          width: 638,
+          height: 242,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6), color: Colors.white),
+              borderRadius: BorderRadius.circular(15), color: Colors.white),
           child: SingleChildScrollView(
-              child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30),
-            child: Column(
-              children: [
-                InkWell(
-                    onTap: () {
-                      navigationController.navigateTo(LocationPageRoute);
-                    },
-                    child: Container(
-                      width: 107.3,
-                      height: 37.3,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              color: const Color(0xffB8B8B8), width: 1)),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.subdirectory_arrow_left,
-                            color: active,
-                            size: 28.6,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Back",
-                            style: GoogleFonts.roboto(
-                              fontSize: 17.3,
-                              fontWeight: FontWeight.w400,
-                              color: active,
-                            ),
-                          )
-                        ],
-                      ),
-                    )),
-                const SizedBox(
-                  height: 10,
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                width: 638,
+                height: 56,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15)),
+                    color: active),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Center(
+                    child: Text("AEDIT LOCATION",
+                        style: GoogleFonts.rubik(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500,
+                          color: light,
+                        )),
+                  ),
                 ),
-                Text("Edit Location",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 23.3,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    )),
-                const SizedBox(
-                  height: 30,
-                ),
-                SizedBox(
-                  width: 230,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Location",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
+                        "location",
+                        style: GoogleFonts.rubik(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
                       ),
                     ],
                   ),
                 ),
-                Container(
-                  width: 230,
-                  height: 44,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      border:
-                          Border.all(width: 5, color: const Color(0xffF0F0F0)),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.25),
-                            blurRadius: 5,
-                            offset: const Offset(0, 4))
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 18, bottom: 8),
-                    child: Center(
-                      child: TextField(
-                        controller: _txtNamaLocation,
-                        style: GoogleFonts.montserrat(
-                          fontSize: 13.3,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Center(
+                  child: TextField(
+                    controller: _txtNamaLocation,
+                    style: GoogleFonts.rubik(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black),
+                    cursorColor: Colors.blue,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(
+                      fillColor: Color(0xffF8F6F6),
+                      filled: true,
+                      hintStyle: GoogleFonts.rubik(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black.withOpacity(0.38)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                              BorderSide(color: Color(0xffE6E4E4), width: 1)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                            BorderSide(color: Colors.blue.withOpacity(0.5)),
+                      ),
+                      labelText: 'Location',
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        if (_txtNamaLocation.text == '') {
+                          QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.error,
+                              title: 'Peringatan',
+                              text: 'Location Tidak Boleh Kosong',
+                              width: 400,
+                              confirmBtnColor: Colors.red);
+                        } else {
+                          editDataLocation(widget.id, _txtNamaLocation.text);
+                        }
+                      },
+                      child: Container(
+                        width: 123,
+                        height: 33,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: const Color(0xffEC1D26)),
+                        child: Center(
+                          child: Text("EDIT",
+                              style: GoogleFonts.rubik(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: light,
+                              )),
                         ),
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintStyle: GoogleFonts.montserrat(
-                              fontSize: 13.3,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black,
-                            ),
-                            hintText: "Location Name"),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-                const SizedBox(
-                  height: 100,
-                ),
-                InkWell(
-                  onTap: () {
-                    if (_txtNamaLocation.text == '') {
-                      QuickAlert.show(
-                          context: context,
-                          type: QuickAlertType.error,
-                          title: 'Peringatan',
-                          text: 'Location Type Tidak Boleh Kosong',
-                          width: 400,
-                          confirmBtnColor: Colors.red);
-                    } else {
-                      editDataLocation(widget.id, _txtNamaLocation.text);
-                    }
-                  },
-                  child: Container(
-                    width: 90,
-                    height: 37.3,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: const Color(0xffEC1D26)),
-                    child: Center(
-                      child: Text("Edit",
-                          style: GoogleFonts.roboto(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          )),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ))),
     );
   }

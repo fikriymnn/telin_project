@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/widgets/master_data/add_data/add_cable_type.dart';
-import 'package:telin_project/widgets/master_data/table/table_cable_type.dart';
+import 'package:telin_project/widgets/master_data/add_data/add_core_type.dart';
+import 'package:telin_project/widgets/master_data/add_data/add_vessel.dart';
+import 'package:telin_project/widgets/master_data/table/table_core_type.dart';
+import 'package:telin_project/widgets/master_data/table/table_vessel.dart';
 
-class CableTypeScreens extends StatelessWidget {
-  const CableTypeScreens({super.key});
+class VesselScreens extends StatelessWidget {
+  const VesselScreens({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CableTypeScreens extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("MASTER DATA > CABLE TYPE",
+                      Text("MASTER DATA > VESSEL",
                           style: GoogleFonts.rubik(
                               fontWeight: FontWeight.w600,
                               fontSize: 28,
@@ -34,11 +36,11 @@ class CableTypeScreens extends StatelessWidget {
                               context: context,
                               barrierColor: Colors.black.withOpacity(0.50),
                               builder: (BuildContext context) {
-                                return const AddCableType();
+                                return const AddVessel();
                               });
                         },
                         child: Container(
-                          width: 148,
+                          width: 155,
                           height: 33,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
@@ -55,7 +57,7 @@ class CableTypeScreens extends StatelessWidget {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                Text("ADD CABLE TYPE",
+                                Text("ADD VESSEL",
                                     style: GoogleFonts.rubik(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 12,
@@ -77,7 +79,7 @@ class CableTypeScreens extends StatelessWidget {
                     color: light, borderRadius: BorderRadius.circular(15)),
                 child: Padding(
                   padding: const EdgeInsets.all(8),
-                  child: TableCableType(),
+                  child: TableVessel(),
                 ),
               )
 

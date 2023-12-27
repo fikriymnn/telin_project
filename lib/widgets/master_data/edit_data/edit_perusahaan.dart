@@ -5,7 +5,6 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/routing/routes.dart';
 
-
 import '../../../constants/controllers.dart';
 import '../../../constants/style.dart';
 
@@ -16,7 +15,7 @@ class EditPerusahaan extends StatefulWidget {
   final String city;
   final String state;
   final String phone;
-
+  final dynamic refresh;
   const EditPerusahaan(
       {super.key,
       required this.id,
@@ -24,6 +23,7 @@ class EditPerusahaan extends StatefulWidget {
       required this.address,
       required this.city,
       required this.state,
+      required this.refresh,
       required this.phone});
 
   @override
@@ -65,7 +65,7 @@ class _EditPerusahaanState extends State<EditPerusahaan> {
     var msg;
     try {
       response = await dio.put('$editPerusahaan/$id', data: {
-        'system': namaCompany,
+        'company_name': namaCompany,
         'address': address,
         'city': city,
         'state': state,
@@ -81,7 +81,11 @@ class _EditPerusahaanState extends State<EditPerusahaan> {
             type: QuickAlertType.success,
             text: '$msg',
             width: 400,
-            confirmBtnColor: Colors.green);
+            confirmBtnColor: Colors.green,
+            onConfirmBtnTap: () {
+              widget.refresh();
+              Navigator.pop(context, true);
+            });
       } else {
         QuickAlert.show(
             context: context,
@@ -104,357 +108,402 @@ class _EditPerusahaanState extends State<EditPerusahaan> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: 900,
-        height: 588.6,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6), color: Colors.white),
-        child: SingleChildScrollView(
-            child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30),
-          child: Column(
+    return AlertDialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      content: Container(
+          width: 638,
+          height: 606,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15), color: Colors.white),
+          child: SingleChildScrollView(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              InkWell(
-                  onTap: () {
-                    navigationController.navigateTo(CompanyPageRoute);
-                  },
-                  child: Container(
-                    width: 107.3,
-                    height: 37.3,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: const Color(0xffB8B8B8), width: 1)),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.subdirectory_arrow_left,
-                          color: active,
-                          size: 28.6,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "Back",
-                          style: GoogleFonts.roboto(
-                            fontSize: 17.3,
-                            fontWeight: FontWeight.w400,
-                            color: active,
-                          ),
-                        )
-                      ],
-                    ),
-                  )),
-              const SizedBox(
-                height: 10,
-              ),
-              Text("Edit Company",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 23.3,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  )),
-              const SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                width: 230,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Company",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               Container(
-                width: 230,
-                height: 44,
+                width: 638,
+                height: 56,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          blurRadius: 5,
-                          offset: const Offset(0, 4))
-                    ]),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15)),
+                    color: active),
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 18, bottom: 8),
+                  padding: const EdgeInsets.only(left: 20),
                   child: Center(
-                    child: TextField(
-                      controller: _txtNamaCompany,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 13.3,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintStyle: GoogleFonts.montserrat(
-                            fontSize: 13.3,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          hintText: "Company Name"),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                width: 230,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Address",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 230,
-                height: 44,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          blurRadius: 5,
-                          offset: const Offset(0, 4))
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18, bottom: 8),
-                  child: Center(
-                    child: TextField(
-                      controller: _txtAddress,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 13.3,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintStyle: GoogleFonts.montserrat(
-                            fontSize: 13.3,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          hintText: "Address"),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                width: 230,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "City",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 230,
-                height: 44,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          blurRadius: 5,
-                          offset: const Offset(0, 4))
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18, bottom: 8),
-                  child: Center(
-                    child: TextField(
-                      controller: _txtCity,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 13.3,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintStyle: GoogleFonts.montserrat(
-                            fontSize: 13.3,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          hintText: "City"),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                width: 230,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "State",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 230,
-                height: 44,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          blurRadius: 5,
-                          offset: const Offset(0, 4))
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18, bottom: 8),
-                  child: Center(
-                    child: TextField(
-                      controller: _txtState,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 13.3,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintStyle: GoogleFonts.montserrat(
-                            fontSize: 13.3,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          hintText: "State"),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                width: 230,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Phone",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 230,
-                height: 44,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          blurRadius: 5,
-                          offset: const Offset(0, 4))
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18, bottom: 8),
-                  child: Center(
-                    child: TextField(
-                      controller: _txtPhone,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 13.3,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintStyle: GoogleFonts.montserrat(
-                            fontSize: 13.3,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          hintText: "Phone"),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              InkWell(
-                onTap: () {
-                  editDataPerusahaan(
-                      widget.id,
-                      _txtNamaCompany.text,
-                      _txtAddress.text,
-                      _txtCity.text,
-                      _txtState.text,
-                      _txtPhone.text);
-                },
-                child: Container(
-                  width: 90,
-                  height: 37.3,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: const Color(0xffEC1D26)),
-                  child: Center(
-                    child: Text("Edit",
-                        style: GoogleFonts.roboto(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                    child: Text("EDIT COMPANY",
+                        style: GoogleFonts.rubik(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500,
+                          color: light,
                         )),
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Company Name",
+                        style: GoogleFonts.rubik(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Center(
+                  child: TextField(
+                    controller: _txtNamaCompany,
+                    style: GoogleFonts.rubik(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black),
+                    cursorColor: Colors.blue,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(
+                      fillColor: Color(0xffF8F6F6),
+                      filled: true,
+                      hintStyle: GoogleFonts.rubik(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black.withOpacity(0.38)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                              BorderSide(color: Color(0xffE6E4E4), width: 1)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                            BorderSide(color: Colors.blue.withOpacity(0.5)),
+                      ),
+                      labelText: 'Company Name',
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Address",
+                        style: GoogleFonts.rubik(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Center(
+                  child: TextField(
+                    controller: _txtAddress,
+                    style: GoogleFonts.rubik(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black),
+                    cursorColor: Colors.blue,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(
+                      fillColor: Color(0xffF8F6F6),
+                      filled: true,
+                      hintStyle: GoogleFonts.rubik(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black.withOpacity(0.38)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                              BorderSide(color: Color(0xffE6E4E4), width: 1)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                            BorderSide(color: Colors.blue.withOpacity(0.5)),
+                      ),
+                      labelText: 'Address',
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "City",
+                        style: GoogleFonts.rubik(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Center(
+                  child: TextField(
+                    controller: _txtCity,
+                    style: GoogleFonts.rubik(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black),
+                    cursorColor: Colors.blue,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(
+                      fillColor: Color(0xffF8F6F6),
+                      filled: true,
+                      hintStyle: GoogleFonts.rubik(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black.withOpacity(0.38)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                              BorderSide(color: Color(0xffE6E4E4), width: 1)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                            BorderSide(color: Colors.blue.withOpacity(0.5)),
+                      ),
+                      labelText: 'City',
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "State",
+                        style: GoogleFonts.rubik(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Center(
+                  child: TextField(
+                    controller: _txtState,
+                    style: GoogleFonts.rubik(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black),
+                    cursorColor: Colors.blue,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(
+                      fillColor: Color(0xffF8F6F6),
+                      filled: true,
+                      hintStyle: GoogleFonts.rubik(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black.withOpacity(0.38)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                              BorderSide(color: Color(0xffE6E4E4), width: 1)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                            BorderSide(color: Colors.blue.withOpacity(0.5)),
+                      ),
+                      labelText: 'State',
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Phone",
+                        style: GoogleFonts.rubik(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Center(
+                  child: TextField(
+                    controller: _txtPhone,
+                    style: GoogleFonts.rubik(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black),
+                    cursorColor: Colors.blue,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(
+                      fillColor: Color(0xffF8F6F6),
+                      filled: true,
+                      hintStyle: GoogleFonts.rubik(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black.withOpacity(0.38)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                              BorderSide(color: Color(0xffE6E4E4), width: 1)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                            BorderSide(color: Colors.blue.withOpacity(0.5)),
+                      ),
+                      labelText: 'Phone',
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        if (_txtNamaCompany.text == '') {
+                          QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.error,
+                              title: 'Peringatan',
+                              text: 'Nama Perusahaan Tidak Boleh Kosong',
+                              width: 400,
+                              confirmBtnColor: Colors.red);
+                        } else if (_txtAddress.text == '') {
+                          QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.error,
+                              title: 'Peringatan',
+                              text: 'Address Tidak Boleh Kosong',
+                              width: 400,
+                              confirmBtnColor: Colors.red);
+                        } else if (_txtCity.text == '') {
+                          QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.error,
+                              title: 'Peringatan',
+                              text: 'City Tidak Boleh Kosong',
+                              width: 400,
+                              confirmBtnColor: Colors.red);
+                        } else if (_txtState.text == '') {
+                          QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.error,
+                              title: 'Peringatan',
+                              text: 'State Tidak Boleh Kosong',
+                              width: 400,
+                              confirmBtnColor: Colors.red);
+                        } else if (_txtPhone.text == '') {
+                          QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.error,
+                              title: 'Peringatan',
+                              text: 'Phone Tidak Boleh Kosong',
+                              width: 400,
+                              confirmBtnColor: Colors.red);
+                        } else {
+                          editDataPerusahaan(
+                              widget.id,
+                              _txtNamaCompany.text,
+                              _txtAddress.text,
+                              _txtCity.text,
+                              _txtState.text,
+                              _txtPhone.text);
+                        }
+                      },
+                      child: Container(
+                        width: 123,
+                        height: 33,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: const Color(0xffEC1D26)),
+                        child: Center(
+                          child: Text("EDIT",
+                              style: GoogleFonts.rubik(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: light,
+                              )),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
-          ),
-        )));
+          ))),
+    );
   }
 }

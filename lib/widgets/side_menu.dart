@@ -104,8 +104,7 @@ class _SideMenuState extends State<SideMenu> {
                     padding: const EdgeInsets.only(left: 15),
                     child: Container(
                       width: width,
-                      decoration:
-                          BoxDecoration(color: lightGrey.withOpacity(0.10)),
+                      decoration: BoxDecoration(color: light),
                       child: Column(
                         children: [
                           SideMenuItem(
@@ -249,6 +248,22 @@ class _SideMenuState extends State<SideMenu> {
                                   Get.back();
                                 }
                                 navigationController.navigateTo(KursPageRoute);
+                              }
+                            },
+                          ),
+                          SideMenuItem(
+                            itemName: "Vessel",
+                            dropp: false,
+                            size1: 13,
+                            size2: 15,
+                            onTap: () {
+                              if (!menuController.isActive("Vessel")) {
+                                menuController.changeActiveitemTo("Vessel");
+                                if (ResponsiveWidget.isSmallScreen(context)) {
+                                  Get.back();
+                                }
+                                navigationController
+                                    .navigateTo(VesselPageRoute);
                               }
                             },
                           ),

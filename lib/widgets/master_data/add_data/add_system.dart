@@ -50,7 +50,7 @@ class _AddSystemState extends State<AddSystem> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Center(
-                    child: Text("Add New System",
+                    child: Text("ADD NEW SYSTEM",
                         style: GoogleFonts.rubik(
                           fontSize: 24,
                           fontWeight: FontWeight.w500,
@@ -201,7 +201,6 @@ class _AddSystemState extends State<AddSystem> {
                               confirmBtnColor: Colors.red);
                         } else {
                           inputDataSystem(txtNamaSystem.text, txtLabelId.text);
-                          navigationController.navigateTo(SystemPageRoute);
                         }
                       },
                       child: Container(
@@ -231,6 +230,7 @@ class _AddSystemState extends State<AddSystem> {
   // Clear the form
   void _clearForm() {
     txtNamaSystem.clear();
+    txtLabelId.clear();
   }
 
   // Fungsi Add Data
@@ -249,12 +249,16 @@ class _AddSystemState extends State<AddSystem> {
       if (status) {
         FocusScope.of(context).unfocus();
         _clearForm();
-        QuickAlert.show(
+        await QuickAlert.show(
             context: context,
             type: QuickAlertType.success,
             text: '$msg',
             width: 400,
-            confirmBtnColor: Colors.green);
+            confirmBtnColor: Colors.green,
+            onConfirmBtnTap: () {
+              Navigator.pop(context, true);
+              navigationController.navigateTo(SystemPageRoute);
+            });
       } else {
         QuickAlert.show(
             context: context,

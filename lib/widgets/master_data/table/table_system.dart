@@ -60,7 +60,7 @@ class _TableSystemState extends State<TableSystem> {
           DataCell(Center(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 InkWell(
                   onTap: () {
@@ -106,7 +106,6 @@ class _TableSystemState extends State<TableSystem> {
                         cancelBtnText: "Cancle",
                         onConfirmBtnTap: () {
                           hapusDataSystem('${data['_id']}');
-                          navigationController.navigateTo(SystemPageRoute);
                         });
                   },
                   child: Container(
@@ -174,7 +173,10 @@ class _TableSystemState extends State<TableSystem> {
             context: context,
             type: CoolAlertType.success,
             text: "$msg",
-            width: 400);
+            width: 400,
+            onConfirmBtnTap: () {
+              getDataSystem();
+            });
       } else {
         CoolAlert.show(
             context: context,
@@ -201,8 +203,8 @@ class _TableSystemState extends State<TableSystem> {
           DataColumn2(
             fixedWidth: 77,
             label: Text(
-              'No',
-              style: GoogleFonts.montserrat(
+              'NO',
+              style: GoogleFonts.rubik(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
@@ -210,16 +212,16 @@ class _TableSystemState extends State<TableSystem> {
             ),
           ),
           DataColumn2(
-            label: Text('System Name',
-                style: GoogleFonts.montserrat(
+            label: Text('SYSTEM NAME',
+                style: GoogleFonts.rubik(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                 )),
           ),
           DataColumn2(
-            label: Text('System ID',
-                style: GoogleFonts.montserrat(
+            label: Text('SYSTEM ID',
+                style: GoogleFonts.rubik(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
