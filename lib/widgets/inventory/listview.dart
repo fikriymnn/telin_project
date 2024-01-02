@@ -219,36 +219,28 @@ class _TableListviewState extends State<TableListview> {
         ]);
   }
 
-  void exportData() {
+  void exportData(
+    List<DataTank> data,
+  ) {
     try {
-      String csv = const ListToCsvConverter().convert([
+      // Membuat list dari list of rows (data model)
+      List<List<dynamic>> rows = [
         [
-          "LABEL ID",
-          "SYSTEM",
-          "ARMORING TYPE",
-          "CABLE TYPE",
-          "MANUFACTURER",
-          "LENGTH (METER)",
-          "CORE TYPE",
-          "TANK",
-          "TANK LOCATION",
-          "TANK LEVEL"
+          'LABEL ID',
+          'SYSTEM',
+          'ARMORING TYPE',
+          'CABLE TYPE',
+          'MANUFACTURER',
+          'LEMGTH (METER)',
+          'CORE TYPE',
+          'TANK',
+          'TANK LOCATION',
+          'TANK LEVEL'
         ],
-        filterData
-            .map((e) => {
-                  e.lable,
-                  e.system,
-                  e.armoring,
-                  e.cableType,
-                  e.manufacture,
-                  e.length,
-                  e.coreType,
-                  e.tank,
-                  e.tankLocation,
-                  e.tankLevel
-                })
-            .toList()
-      ]);
+        ...data.map((product) => product.toList())
+      ];
+
+      String csv = const ListToCsvConverter().convert(rows);
 
       final fileName = '${filename.text}.csv';
 
@@ -263,20 +255,6 @@ class _TableListviewState extends State<TableListview> {
     } catch (e) {
       print('Error exporting to CSV: $e');
     }
-
-    // try {
-    //   String csvData = ListToCsvConverter().convert(
-    //     filterData.map((e) => null).toList(),
-    //   );
-    //   print(csvData);
-
-    //   // Unduh file CSV
-    //   FileSaver.instance.saveFile(
-    //       name: "tess.csv", filePath: csvData, mimeType: MimeType.csv);
-    // } catch (e) {
-    //   print(e);
-    // }
-    // Tulis data ke dalam file CSV
   }
 
   @override
@@ -284,12 +262,6 @@ class _TableListviewState extends State<TableListview> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextButton(
-            onPressed: () => {
-                  print(
-                      filterData.map((e) => {e.armoring, e.cableType}).toList())
-                },
-            child: Text("data")),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
@@ -310,7 +282,7 @@ class _TableListviewState extends State<TableListview> {
                                 width: 400,
                                 confirmBtnColor: Colors.red);
                           } else {
-                            exportData();
+                            exportData(filterData);
                           }
                         });
                   });
@@ -702,4 +674,17 @@ class DataTank {
         tankLevel: json["tank_level"],
         tankLocation: json["tank_location"]);
   }
+
+  List<dynamic> toList() => [
+        lable,
+        system,
+        armoring,
+        cableType,
+        manufacture,
+        length,
+        coreType,
+        tank,
+        tankLocation,
+        tankLevel
+      ];
 }
