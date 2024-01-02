@@ -82,6 +82,6 @@ class MenuControllers extends GetxController {
         color: active,
       );
     }
-    return FaIcon(icon, color: isHovering(itemName) ? active : dark);
+    return FaIcon(icon, color: isHovering(itemName) ? active : light);
   }
 }
