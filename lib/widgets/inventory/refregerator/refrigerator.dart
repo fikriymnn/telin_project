@@ -14,16 +14,16 @@ import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/inventory/exportPopUp.dart';
 import 'package:telin_project/widgets/searchField.dart';
 
-class TableFloor extends StatefulWidget {
-  const TableFloor({super.key});
+class TableRefrigerator extends StatefulWidget {
+  const TableRefrigerator({super.key});
 
   @override
-  State<TableFloor> createState() => _TableFloorState();
+  State<TableRefrigerator> createState() => _TableRefrigeratorState();
 }
 
-class _TableFloorState extends State<TableFloor> {
-  List<DataFloor> floorData = [];
-  List<DataFloor> filterData = [];
+class _TableRefrigeratorState extends State<TableRefrigerator> {
+  List<DataRefrigerator> refregeratorData = [];
+  List<DataRefrigerator> filterData = [];
 
   Response? response;
 
@@ -42,20 +42,21 @@ class _TableFloorState extends State<TableFloor> {
   @override
   void initState() {
     // TODO: implement initState
-    getDataFloor();
+    getDataRefrigerator();
     super.initState();
   }
 
-  void getDataFloor() async {
+  void getDataRefrigerator() async {
     try {
-      response = await dio.get(getFloor);
+      response = await dio.get(getRefrigerator);
       if (response!.statusCode == 200) {
         List<dynamic> jsonResponse = response!.data;
-        List<DataFloor> floor =
-            jsonResponse.map((json) => DataFloor.fromJson(json)).toList();
+        List<DataRefrigerator> refregerator = jsonResponse
+            .map((json) => DataRefrigerator.fromJson(json))
+            .toList();
         setState(() {
-          floorData = floor;
-          filterData = floor;
+          refregeratorData = refregerator;
+          filterData = refregerator;
         });
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -71,7 +72,7 @@ class _TableFloorState extends State<TableFloor> {
   }
 
   void exportData(
-    List<DataFloor> data,
+    List<DataRefrigerator> data,
   ) {
     try {
       // Membuat list dari list of rows (data model)
@@ -159,7 +160,7 @@ class _TableFloorState extends State<TableFloor> {
               ),
               columnSpacing: 0,
               horizontalMargin: 0,
-              dataRowHeight: 52,
+              dataRowHeight: 100,
               minWidth: 2070,
               headingRowHeight: 75,
               rowsPerPage: 50,
@@ -390,7 +391,7 @@ class _TableFloorState extends State<TableFloor> {
 
   void onSearchTextChanged(String text) {
     setState(() {
-      filterData = floorData
+      filterData = refregeratorData
           .where((data) =>
               data.location
                   .toString()
@@ -429,7 +430,7 @@ class _TableFloorState extends State<TableFloor> {
   }
 }
 
-class DataFloor {
+class DataRefrigerator {
   dynamic location;
   dynamic system;
   dynamic itemName;
@@ -441,7 +442,7 @@ class DataFloor {
 
   dynamic remark;
 
-  DataFloor(
+  DataRefrigerator(
       {required this.location,
       required this.system,
       required this.itemName,
@@ -452,8 +453,8 @@ class DataFloor {
       required this.remark,
       required this.unit});
 
-  factory DataFloor.fromJson(Map<String, dynamic> json) {
-    return DataFloor(
+  factory DataRefrigerator.fromJson(Map<String, dynamic> json) {
+    return DataRefrigerator(
       itemName: json["item_name"],
       partNumber: json["part_number"],
       unit: json["unit"],

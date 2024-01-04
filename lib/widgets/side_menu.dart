@@ -324,8 +324,7 @@ class _SideMenuState extends State<SideMenu> {
                                   padding: const EdgeInsets.only(left: 15),
                                   child: Container(
                                     width: width,
-                                    decoration: BoxDecoration(
-                                        color: lightGrey.withOpacity(0.10)),
+                                    decoration: BoxDecoration(color: sideMenu),
                                     child: Column(
                                       children: [
                                         SideMenuItem(

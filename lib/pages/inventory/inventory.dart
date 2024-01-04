@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/pages/inventory/list_tank.dart';
+
 import 'package:telin_project/widgets/inventory/inventory_map.dart';
 import 'package:telin_project/widgets/inventory/listview.dart';
 

@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/widgets/inventory/listview.dart';
-import 'package:telin_project/widgets/inventory/tank_1.dart';
-import 'package:telin_project/widgets/inventory/tank_10.dart';
-import 'package:telin_project/widgets/inventory/tank_2.dart';
-import 'package:telin_project/widgets/inventory/tank_3.dart';
-import 'package:telin_project/widgets/inventory/tank_4.dart';
-import 'package:telin_project/widgets/inventory/tank_5.dart';
-import 'package:telin_project/widgets/inventory/tank_6.dart';
-import 'package:telin_project/widgets/inventory/tank_7.dart';
-import 'package:telin_project/widgets/inventory/tank_8.dart';
-import 'package:telin_project/widgets/inventory/tank_9.dart';
-
-import '../../widgets/inventory/tank_11.dart';
 
 class ListTank extends StatelessWidget {
   const ListTank({super.key});

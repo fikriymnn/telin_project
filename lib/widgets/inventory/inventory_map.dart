@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
-import 'package:telin_project/pages/inventory/cage.dart';
-import 'package:telin_project/pages/inventory/rak.dart';
-import 'package:telin_project/widgets/inventory/floor/floor.dart';
-import 'package:telin_project/widgets/inventory/refregerator/refregerator.dart';
-import 'package:telin_project/widgets/inventory/tank_1.dart';
-import 'package:telin_project/widgets/inventory/tank_10.dart';
-import 'package:telin_project/widgets/inventory/tank_11.dart';
-import 'package:telin_project/widgets/inventory/tank_2.dart';
-import 'package:telin_project/widgets/inventory/tank_4.dart';
-import 'package:telin_project/widgets/inventory/tank_5.dart';
-import 'package:telin_project/widgets/inventory/tank_6.dart';
-import 'package:telin_project/widgets/inventory/tank_7.dart';
-import 'package:telin_project/widgets/inventory/tank_8.dart';
-import 'package:telin_project/widgets/inventory/tank_9.dart';
 
-import '../../widgets/inventory/tank_3.dart';
+import 'package:telin_project/widgets/inventory/cage/cage.dart';
+import 'package:telin_project/widgets/inventory/floor/floor.dart';
+import 'package:telin_project/widgets/inventory/rak/rak.dart';
+import 'package:telin_project/widgets/inventory/refregerator/refrigerator.dart';
+import 'package:telin_project/widgets/inventory/tank/tank_1.dart';
+import 'package:telin_project/widgets/inventory/tank/tank_10.dart';
+import 'package:telin_project/widgets/inventory/tank/tank_11.dart';
+import 'package:telin_project/widgets/inventory/tank/tank_2.dart';
+import 'package:telin_project/widgets/inventory/tank/tank_3.dart';
+import 'package:telin_project/widgets/inventory/tank/tank_4.dart';
+import 'package:telin_project/widgets/inventory/tank/tank_5.dart';
+import 'package:telin_project/widgets/inventory/tank/tank_6.dart';
+import 'package:telin_project/widgets/inventory/tank/tank_7.dart';
+import 'package:telin_project/widgets/inventory/tank/tank_8.dart';
+import 'package:telin_project/widgets/inventory/tank/tank_9.dart';
 
 class InventoriMapView extends StatefulWidget {
   const InventoriMapView({super.key});
@@ -59,68 +59,108 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 100),
+                    padding: const EdgeInsets.only(left: 100, top: 50),
                     child: InkWell(
                       //rak
                       onTap: () {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "RAK",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("RAKS",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableRak())
+                                        ],
+                                      )),
                                 ),
-                                body: const RacksInventory(),
                               );
                             });
                       },
@@ -138,61 +178,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "FLOOR",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("FLOORS",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableFloor())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableFloor(),
                               );
                             });
                       },
@@ -210,61 +290,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "REFRIGENERATOR",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("REFRIGERATOR",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableRefrigerator())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableRefregerator(),
                               );
                             });
                       },
@@ -282,53 +402,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("CAGE",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableCage())
+                                        ],
+                                      )),
                                 ),
-                                body: const CageInventory(),
                               );
                             });
                       },
@@ -351,61 +519,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "TANK 1",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("TANK 1",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableTank1())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableTank1(),
                               );
                             });
                       },
@@ -455,61 +663,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "TANK 2",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("TANK 2",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableTank2())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableTank2(),
                               );
                             });
                       },
@@ -559,61 +807,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "TANK 3",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("TANK 3",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableTank3())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableTank3(),
                               );
                             });
                       },
@@ -663,61 +951,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "TANK 10",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("TANK 10",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableTank10())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableTank10(),
                               );
                             });
                       },
@@ -768,61 +1096,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "TANK 6",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("TANK 6",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableTank6())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableTank6(),
                               );
                             });
                       },
@@ -872,61 +1240,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "TANK 5",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("TANK 5",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableTank5())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableTank5(),
                               );
                             });
                       },
@@ -976,61 +1384,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "TANK 4",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("TANK 4",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableTank4())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableTank4(),
                               );
                             });
                       },
@@ -1080,61 +1528,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "TANK 11",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("TANK 11",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableTank11())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableTank11(),
                               );
                             });
                       },
@@ -1185,61 +1673,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "TANK 9",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("TANK 9",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableTank9())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableTank9(),
                               );
                             });
                       },
@@ -1289,61 +1817,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "TANK 8",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("TANK 8",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableTank8())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableTank8(),
                               );
                             });
                       },
@@ -1393,61 +1961,101 @@ class _InventoriMapViewState extends State<InventoriMapView> {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  title: Text(
-                                    "TANK 7",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  actions: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 59.3, top: 5, bottom: 5),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                            width: 107.3,
-                                            height: 37.3,
+                              return AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 56,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        const Color(0xffB8B8B8),
-                                                    width: 1)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.subdirectory_arrow_left,
-                                                  color: active,
-                                                  size: 28.6,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
+                                                color: active),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("TANK 7",
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: light,
+                                                        )),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 146,
+                                                          height: 33,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: light,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // border: Border.all(
+                                                            //     color: const Color(
+                                                            //         0xffB8B8B8),
+                                                            //     width: 1)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "< Back",
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: active,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Back",
-                                                  style: GoogleFonts.roboto(
-                                                    fontSize: 17.3,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: active,
-                                                  ),
-                                                )
-                                              ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Expanded(child: TableTank7())
+                                        ],
+                                      )),
                                 ),
-                                body: const TableTank7(),
                               );
                             });
                       },

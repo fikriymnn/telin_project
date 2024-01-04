@@ -14,16 +14,16 @@ import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/inventory/exportPopUp.dart';
 import 'package:telin_project/widgets/searchField.dart';
 
-class TableFloor extends StatefulWidget {
-  const TableFloor({super.key});
+class TableCage extends StatefulWidget {
+  const TableCage({super.key});
 
   @override
-  State<TableFloor> createState() => _TableFloorState();
+  State<TableCage> createState() => _TableCageState();
 }
 
-class _TableFloorState extends State<TableFloor> {
-  List<DataFloor> floorData = [];
-  List<DataFloor> filterData = [];
+class _TableCageState extends State<TableCage> {
+  List<DataCage> cageData = [];
+  List<DataCage> filterData = [];
 
   Response? response;
 
@@ -42,20 +42,20 @@ class _TableFloorState extends State<TableFloor> {
   @override
   void initState() {
     // TODO: implement initState
-    getDataFloor();
+    getDataCage();
     super.initState();
   }
 
-  void getDataFloor() async {
+  void getDataCage() async {
     try {
-      response = await dio.get(getFloor);
+      response = await dio.get(getCage);
       if (response!.statusCode == 200) {
         List<dynamic> jsonResponse = response!.data;
-        List<DataFloor> floor =
-            jsonResponse.map((json) => DataFloor.fromJson(json)).toList();
+        List<DataCage> cage =
+            jsonResponse.map((json) => DataCage.fromJson(json)).toList();
         setState(() {
-          floorData = floor;
-          filterData = floor;
+          cageData = cage;
+          filterData = cage;
         });
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -71,7 +71,7 @@ class _TableFloorState extends State<TableFloor> {
   }
 
   void exportData(
-    List<DataFloor> data,
+    List<DataCage> data,
   ) {
     try {
       // Membuat list dari list of rows (data model)
@@ -390,7 +390,7 @@ class _TableFloorState extends State<TableFloor> {
 
   void onSearchTextChanged(String text) {
     setState(() {
-      filterData = floorData
+      filterData = cageData
           .where((data) =>
               data.location
                   .toString()
@@ -429,7 +429,7 @@ class _TableFloorState extends State<TableFloor> {
   }
 }
 
-class DataFloor {
+class DataCage {
   dynamic location;
   dynamic system;
   dynamic itemName;
@@ -441,7 +441,7 @@ class DataFloor {
 
   dynamic remark;
 
-  DataFloor(
+  DataCage(
       {required this.location,
       required this.system,
       required this.itemName,
@@ -452,8 +452,8 @@ class DataFloor {
       required this.remark,
       required this.unit});
 
-  factory DataFloor.fromJson(Map<String, dynamic> json) {
-    return DataFloor(
+  factory DataCage.fromJson(Map<String, dynamic> json) {
+    return DataCage(
       itemName: json["item_name"],
       partNumber: json["part_number"],
       unit: json["unit"],

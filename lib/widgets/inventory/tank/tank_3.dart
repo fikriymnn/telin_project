@@ -15,27 +15,25 @@ import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/inventory/exportPopUp.dart';
 import 'package:telin_project/widgets/searchField.dart';
 
-import '../order/loading/form/input_length_cable.dart';
-
-class TableListview extends StatefulWidget {
-  const TableListview({super.key});
+class TableTank3 extends StatefulWidget {
+  const TableTank3({super.key});
 
   @override
-  State<TableListview> createState() => _TableListviewState();
+  State<TableTank3> createState() => _TableTank3State();
 }
 
-class _TableListviewState extends State<TableListview> {
+class _TableTank3State extends State<TableTank3> {
   String? selectionSystem;
   String? selectionArmoringType;
   List system = [];
   List armoringType = [];
-  List<DataTank> tank1 = [];
+  List<DataTank> tank3 = [];
   List<DataTank> filterData = [];
   late List<DataTank> dataTable;
 
   TextEditingController filename = TextEditingController();
 
-  TextEditingController lableSearch = TextEditingController();
+  TextEditingController lableSeach = TextEditingController();
   TextEditingController systemSearch = TextEditingController();
   TextEditingController armoringSearch = TextEditingController();
   TextEditingController cableTypeSearch = TextEditingController();
@@ -53,22 +51,22 @@ class _TableListviewState extends State<TableListview> {
   @override
   void initState() {
     // TODO: implement initState
-    getDataListview();
+    getDataTank3();
     getDataSystem();
     getDataArmoringType();
 
     super.initState();
   }
 
-  void getDataListview() async {
+  void getDataTank3() async {
     try {
-      response = await dio.get(getListview);
+      response = await dio.get(getTank3);
       if (response!.statusCode == 200) {
         List<dynamic> jsonResponse = response!.data;
         List<DataTank> tank =
             jsonResponse.map((json) => DataTank.fromJson(json)).toList();
         setState(() {
-          tank1 = tank;
+          tank3 = tank;
           filterData = tank;
         });
       } else {
@@ -261,12 +259,12 @@ class _TableListviewState extends State<TableListview> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: InkWell(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
             onTap: () {
               showDialog(
                   context: context,
@@ -303,292 +301,292 @@ class _TableListviewState extends State<TableListview> {
               ),
             ),
           ),
-        ),
-        Expanded(
-          child: DataTable2(
-              columnSpacing: 0,
-              horizontalMargin: 0,
-              dataRowHeight: 52,
-              minWidth: 2070,
-              headingRowHeight: 75,
-              columns: [
-                DataColumn2(
-                  fixedWidth: 77,
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'NO',
-                        style: GoogleFonts.rubik(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+          Expanded(
+            child: DataTable2(
+                columnSpacing: 0,
+                horizontalMargin: 0,
+                dataRowHeight: 52,
+                minWidth: 2070,
+                headingRowHeight: 75,
+                columns: [
+                  DataColumn2(
+                    fixedWidth: 77,
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'NO',
+                          style: GoogleFonts.rubik(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      Container(
-                        height: 40,
-                        color: activeTable,
-                      )
-                    ],
-                  ),
-                ),
-                DataColumn2(
-                  fixedWidth: 160,
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'LABLE',
-                        style: GoogleFonts.rubik(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                        SizedBox(
+                          height: 6,
                         ),
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      BuildSearchField(
-                        controller: lableSearch,
-                        onChange: onSearchTextChanged,
-                      )
-                    ],
+                        Container(
+                          height: 40,
+                          color: activeTable,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                DataColumn2(
-                  fixedWidth: 200,
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'SYSTEM',
-                        style: GoogleFonts.rubik(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                  DataColumn2(
+                    fixedWidth: 160,
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'LABLE',
+                          style: GoogleFonts.rubik(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      BuildSearchField(
-                        controller: systemSearch,
-                        onChange: onSearchTextChanged,
-                      )
-                    ],
-                  ),
-                ),
-                DataColumn2(
-                  fixedWidth: 200,
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'ARMORING TYPE',
-                        style: GoogleFonts.rubik(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                        SizedBox(
+                          height: 6,
                         ),
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      BuildSearchField(
-                        controller: armoringSearch,
-                        onChange: onSearchTextChanged,
-                      )
-                    ],
+                        BuildSearchField(
+                          controller: lableSeach,
+                          onChange: onSearchTextChanged,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                DataColumn2(
-                  fixedWidth: 200,
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'CABLE TYPE',
-                        style: GoogleFonts.rubik(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                  DataColumn2(
+                    fixedWidth: 200,
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'SYSTEM',
+                          style: GoogleFonts.rubik(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      BuildSearchField(
-                        controller: cableTypeSearch,
-                        onChange: onSearchTextChanged,
-                      )
-                    ],
-                  ),
-                ),
-                DataColumn2(
-                  fixedWidth: 200,
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'MANUFACTURER',
-                        style: GoogleFonts.rubik(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                        SizedBox(
+                          height: 6,
                         ),
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      BuildSearchField(
-                        controller: manufactureSearch,
-                        onChange: onSearchTextChanged,
-                      )
-                    ],
+                        BuildSearchField(
+                          controller: systemSearch,
+                          onChange: onSearchTextChanged,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                DataColumn2(
-                  fixedWidth: 200,
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'LENGTH (METER)',
-                        style: GoogleFonts.rubik(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                  DataColumn2(
+                    fixedWidth: 200,
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'ARMORING TYPE',
+                          style: GoogleFonts.rubik(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      BuildSearchField(
-                        controller: lengthSearch,
-                        onChange: onSearchTextChanged,
-                      )
-                    ],
-                  ),
-                ),
-                DataColumn2(
-                  fixedWidth: 150,
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'CORE TYPE',
-                        style: GoogleFonts.rubik(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                        SizedBox(
+                          height: 6,
                         ),
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      BuildSearchField(
-                        controller: coreTypeSearch,
-                        onChange: onSearchTextChanged,
-                      )
-                    ],
+                        BuildSearchField(
+                          controller: armoringSearch,
+                          onChange: onSearchTextChanged,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                DataColumn2(
-                  fixedWidth: 150,
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'TANK',
-                        style: GoogleFonts.rubik(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                  DataColumn2(
+                    fixedWidth: 200,
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'CABLE TYPE',
+                          style: GoogleFonts.rubik(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      BuildSearchField(
-                        controller: tankSearch,
-                        onChange: onSearchTextChanged,
-                      )
-                    ],
-                  ),
-                ),
-                DataColumn2(
-                  fixedWidth: 200,
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'TANK LOCATION',
-                        style: GoogleFonts.rubik(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                        SizedBox(
+                          height: 6,
                         ),
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      BuildSearchField(
-                        controller: tankLocationSearch,
-                        onChange: onSearchTextChanged,
-                      )
-                    ],
+                        BuildSearchField(
+                          controller: cableTypeSearch,
+                          onChange: onSearchTextChanged,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                DataColumn2(
-                  fixedWidth: 150,
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'TANK LEVEL',
-                        style: GoogleFonts.rubik(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                  DataColumn2(
+                    fixedWidth: 200,
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'MANUFACTURER',
+                          style: GoogleFonts.rubik(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      BuildSearchField(
-                        controller: tankLevelSearch,
-                        onChange: onSearchTextChanged,
-                      )
-                    ],
+                        SizedBox(
+                          height: 6,
+                        ),
+                        BuildSearchField(
+                          controller: manufactureSearch,
+                          onChange: onSearchTextChanged,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
-              rows: List.generate(filterData.length,
-                  (index) => _resultsAPI(index, filterData))),
-        ),
-      ],
+                  DataColumn2(
+                    fixedWidth: 200,
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'LENGTH (METER)',
+                          style: GoogleFonts.rubik(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        BuildSearchField(
+                          controller: lengthSearch,
+                          onChange: onSearchTextChanged,
+                        )
+                      ],
+                    ),
+                  ),
+                  DataColumn2(
+                    fixedWidth: 150,
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'CORE TYPE',
+                          style: GoogleFonts.rubik(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        BuildSearchField(
+                          controller: coreTypeSearch,
+                          onChange: onSearchTextChanged,
+                        )
+                      ],
+                    ),
+                  ),
+                  DataColumn2(
+                    fixedWidth: 150,
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'TANK',
+                          style: GoogleFonts.rubik(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        BuildSearchField(
+                          controller: tankSearch,
+                          onChange: onSearchTextChanged,
+                        )
+                      ],
+                    ),
+                  ),
+                  DataColumn2(
+                    fixedWidth: 200,
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'TANK LOCATION',
+                          style: GoogleFonts.rubik(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        BuildSearchField(
+                          controller: tankLocationSearch,
+                          onChange: onSearchTextChanged,
+                        )
+                      ],
+                    ),
+                  ),
+                  DataColumn2(
+                    fixedWidth: 150,
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'TANK LEVEL',
+                          style: GoogleFonts.rubik(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        BuildSearchField(
+                          controller: tankLevelSearch,
+                          onChange: onSearchTextChanged,
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+                rows: List.generate(filterData.length,
+                    (index) => _resultsAPI(index, filterData))),
+          ),
+        ],
+      ),
     );
   }
 
   void onSearchTextChanged(String text) {
     setState(() {
-      filterData = tank1
+      filterData = tank3
           .where((data) =>
-              data.lable.toString().contains(lableSearch.text) &&
+              data.lable.toString().contains(lableSeach.text) &&
               data.system
                   .toString()
                   .toLowerCase()
