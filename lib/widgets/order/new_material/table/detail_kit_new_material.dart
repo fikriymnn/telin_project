@@ -8,8 +8,10 @@ import 'package:telin_project/constants/style.dart';
 import 'dart:html' as html;
 
 class DetailTableKitNewMaterial extends StatefulWidget {
-  const DetailTableKitNewMaterial({super.key, required this.idNewMaterial});
+  const DetailTableKitNewMaterial(
+      {super.key, required this.idNewMaterial, required this.status});
   final String idNewMaterial;
+  final String status;
 
   @override
   State<DetailTableKitNewMaterial> createState() =>

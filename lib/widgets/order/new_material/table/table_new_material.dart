@@ -284,14 +284,15 @@ DataRow recentFileDataRow(var data, context, index) {
           ))),
       DataCell(Row(
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 5,
-            backgroundColor: Color(0xff24EB2C),
+            backgroundColor:
+                data.status == "Requested" ? active : Color(0xff24EB2C),
           ),
           const SizedBox(
             width: 7,
           ),
-          Text("APPROVED",
+          Text(data.status == "Requested" ? "REQUESTED" : "APPROVED",
               style: GoogleFonts.rubik(
                 fontSize: 14,
                 fontWeight: FontWeight.w300,
@@ -389,19 +390,21 @@ DataRow recentFileDataRow(var data, context, index) {
 }
 
 class NewMaterial {
-  final String id, projectName, from, to, date;
+  final String id, projectName, from, to, date, status;
 
   const NewMaterial(
       {required this.projectName,
       required this.id,
       required this.to,
       required this.from,
-      required this.date});
+      required this.date,
+      required this.status});
 
   factory NewMaterial.fromJson(Map<String, dynamic> json) {
     return NewMaterial(
         id: json['_id'],
         projectName: json['project_name'],
+        status: json['status'],
         to: json['to'],
         from: json['from'],
         date: json['date']);

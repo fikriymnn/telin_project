@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,10 @@ import 'dart:html' as html;
 import 'package:telin_project/constants/style.dart';
 
 class DetailTableCableNewMaterial extends StatefulWidget {
-  const DetailTableCableNewMaterial({super.key, required this.idNewMaterial});
+  const DetailTableCableNewMaterial(
+      {super.key, required this.idNewMaterial, required this.status});
   final String idNewMaterial;
+  final String status;
 
   @override
   State<DetailTableCableNewMaterial> createState() =>
@@ -46,7 +49,7 @@ String selectedValueArmoring = "ARMORING TYPE";
 class _DetailTableCableNewMaterialState
     extends State<DetailTableCableNewMaterial> {
   List NewMaterialByIdCable = [];
-  List NewMaterialByIdCable2 = [];
+  List NewMaterialByIdCableCart = [];
 
   String id = "";
   Response? response;
@@ -69,7 +72,7 @@ class _DetailTableCableNewMaterialState
       setState(() {
         NewMaterialByIdCable = response!.data['newMaterial'][0]
             ['submitted_new_material_cables_id_in_spare_cable'];
-        NewMaterialByIdCable2 =
+        NewMaterialByIdCableCart =
             response!.data['newMaterial'][0]['new_material_cables'];
       });
     } catch (e) {}
@@ -163,6 +166,32 @@ class _DetailTableCableNewMaterialState
                     fontWeight: FontWeight.w400,
                     color: active,
                   ))),
+          DataCell(widget.status == "Requested"
+              ? TextButton(
+                  onPressed: () {
+                    CoolAlert.show(
+                        context: context,
+                        type: CoolAlertType.confirm,
+                        text: "Do you sure to delete this item",
+                        width: 400,
+                        confirmBtnText: "Delete",
+                        cancelBtnText: "Cancle",
+                        onConfirmBtnTap: () {
+                          hapusDataCableNewMaterial('${data['id']}');
+                        });
+                  },
+                  child: Text("Delete",
+                      style: GoogleFonts.rubik(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: active,
+                      )))
+              : Text("",
+                  style: GoogleFonts.rubik(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: active,
+                  ))),
         ]);
   }
 
@@ -191,26 +220,24 @@ class _DetailTableCableNewMaterialState
     var msg;
     try {
       response = await dio
-          .delete('$deleteCableFromLoading/${widget.idNewMaterial}/$id');
+          .delete('$deleteCableFromNewMaterial/${widget.idNewMaterial}/$id');
 
       msg = response!.data['message'];
 
-      QuickAlert.show(
+      CoolAlert.show(
           context: context,
-          type: QuickAlertType.success,
-          text: '$msg',
-          title: 'Peringatan',
+          type: CoolAlertType.success,
+          text: "Delete Success",
           width: 400,
-          barrierDismissible: true,
-          confirmBtnColor: Colors.red);
+          onConfirmBtnTap: () {
+            getDataNewMaterial();
+          });
     } catch (e) {
-      QuickAlert.show(
+      CoolAlert.show(
           context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+          type: CoolAlertType.error,
+          text: "Kesalahan Server",
+          width: 400);
     }
   }
 
@@ -351,19 +378,34 @@ class _DetailTableCableNewMaterialState
                 )),
           ),
           DataColumn2(
-            label: Text("Evidence",
+            label: Text("EVIDENCE",
                 style: GoogleFonts.rubik(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                 )),
           ),
+          DataColumn2(
+            label: Text("ACTION",
+                style: GoogleFonts.rubik(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                )),
+          )
         ],
-        rows: List.generate(
-            NewMaterialByIdCable.length,
-            (index) => _resultsAPI(
-                  index,
-                  NewMaterialByIdCable[index],
-                )));
+        rows: widget.status == "Requested"
+            ? List.generate(
+                NewMaterialByIdCableCart.length,
+                (index) => _resultsAPI(
+                      index,
+                      NewMaterialByIdCableCart[index],
+                    ))
+            : List.generate(
+                NewMaterialByIdCable.length,
+                (index) => _resultsAPI(
+                      index,
+                      NewMaterialByIdCable[index],
+                    )));
   }
 }

@@ -4,13 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
 
 import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/table/detail_cable_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/table/detail_kit_new_material.dart';
 
 class DetailNewMaterial extends StatefulWidget {
-  const DetailNewMaterial({super.key, required this.idNewMaterial});
+  const DetailNewMaterial({
+    super.key,
+    required this.idNewMaterial,
+  });
   final String idNewMaterial;
 
   @override
@@ -62,6 +66,8 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
 
   @override
   Widget build(BuildContext context) {
+    String status =
+        NewMaterialById == null ? "requested" : NewMaterialById[0]['status'];
     return Scaffold(
       backgroundColor: bgGray,
       body: SingleChildScrollView(
@@ -83,30 +89,66 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                               color: Colors.black)),
                       Row(
                         children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => BastNewMaterial(
+                          status == 'Requested'
+                              ? InkWell(
+                                  onTap: () {
+                                    showDialog(
+                                        context: context,
+                                        barrierColor:
+                                            Colors.black.withOpacity(0.50),
+                                        builder: (BuildContext context) {
+                                          return AddItemNewMaterial(
                                             idNewMaterial: widget.idNewMaterial,
-                                          )));
-                            },
-                            child: Container(
-                              width: 148,
-                              height: 33,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: active),
-                              child: Center(
-                                child: Text("BAST",
-                                    style: GoogleFonts.rubik(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 12,
-                                        color: light)),
-                              ),
-                            ),
+                                          );
+                                        });
+                                  },
+                                  child: Container(
+                                    width: 148,
+                                    height: 33,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: active),
+                                    child: Center(
+                                      child: Text("+ ADD ITEM",
+                                          style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12,
+                                              color: light)),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
+                          SizedBox(
+                            width: 21,
                           ),
+                          status != 'Requested'
+                              ? InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                BastNewMaterial(
+                                                  idNewMaterial:
+                                                      widget.idNewMaterial,
+                                                )));
+                                  },
+                                  child: Container(
+                                    width: 148,
+                                    height: 33,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: active),
+                                    child: Center(
+                                      child: Text("BAST",
+                                          style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12,
+                                              color: light)),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
                           SizedBox(
                             width: 21,
                           ),
@@ -118,6 +160,7 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                                 width: 148,
                                 height: 33,
                                 decoration: BoxDecoration(
+                                  border: Border.all(color: active, width: 1),
                                   color: light,
                                   borderRadius: BorderRadius.circular(15),
                                 ),
@@ -164,7 +207,7 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                    "${NewMaterialById[0]['project_name'] ?? "-"}",
+                                    "${NewMaterialById == null ? "-" : NewMaterialById[0]['project_name']}",
                                     style: GoogleFonts.rubik(
                                       fontSize: 19,
                                       fontWeight: FontWeight.w600,
@@ -177,7 +220,7 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                                       borderRadius: BorderRadius.circular(15),
                                       color: light),
                                   child: Center(
-                                    child: Text("Status",
+                                    child: Text(status,
                                         style: GoogleFonts.rubik(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
@@ -192,14 +235,18 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                    "${NewMaterialById[0]['from'] ?? ""} - ${NewMaterialById[0]['to'] ?? ""}",
+                                    NewMaterialById == null
+                                        ? "-"
+                                        : "${NewMaterialById[0]['from'] ?? ""} - ${NewMaterialById[0]['to'] ?? ""}",
                                     style: GoogleFonts.rubik(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                       color: light,
                                     )),
                                 Text(
-                                    "${NewMaterialById[0]['perusahaan']["company_name"] ?? "-"}",
+                                    NewMaterialById == null
+                                        ? "-"
+                                        : "${NewMaterialById[0]['perusahaan']["company_name"] ?? "-"}",
                                     style: GoogleFonts.rubik(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
@@ -235,6 +282,7 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                             Expanded(
                               child: DetailTableCableNewMaterial(
                                 idNewMaterial: widget.idNewMaterial,
+                                status: status,
                               ),
                             ),
                             const SizedBox(
@@ -255,6 +303,7 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                             Expanded(
                               child: DetailTableKitNewMaterial(
                                 idNewMaterial: widget.idNewMaterial,
+                                status: status,
                               ),
                             ),
                           ],
