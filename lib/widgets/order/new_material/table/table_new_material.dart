@@ -11,6 +11,7 @@ import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
 import 'package:telin_project/widgets/order/loading/edit_loading.dart';
 import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/detail_new_material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../api/configAPI.dart';
 import '../../../../routing/routes.dart';
@@ -247,6 +248,9 @@ DataRow recentFileDataRow(var data, context, index) {
   } else {
     id = false;
   }
+  DateTime date = DateTime.parse(data.date);
+  var formatter = DateFormat('dd MMMM yyyy');
+  var formatted = formatter.format(date);
   return DataRow(
     color: MaterialStatePropertyAll(id == true ? activeTable : light),
     cells: [
@@ -258,7 +262,7 @@ DataRow recentFileDataRow(var data, context, index) {
               color: Colors.black,
             )),
       )),
-      DataCell(Text(data.date,
+      DataCell(Text(formatted,
           style: GoogleFonts.rubik(
             fontSize: 14,
             fontWeight: FontWeight.w300,

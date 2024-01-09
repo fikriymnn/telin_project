@@ -1,9 +1,12 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
+import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/routing/routes.dart';
 import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
 
 import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
@@ -64,6 +67,39 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
     }
   }
 
+  void submitDataNewMaterial(id) async {
+    var msg;
+    try {
+      response = await dio.post('$submitNewMaterial/$id');
+
+      msg = response!.data['message'];
+
+      CoolAlert.show(
+          context: context,
+          type: CoolAlertType.success,
+          text: 'Data New Material Success Added',
+          title: 'Success',
+          width: 400,
+          barrierDismissible: true,
+          confirmBtnColor: Colors.green,
+          onConfirmBtnTap: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailNewMaterial(
+                        idNewMaterial: widget.idNewMaterial)));
+          });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     String status =
@@ -89,6 +125,37 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                               color: Colors.black)),
                       Row(
                         children: [
+                          InkWell(
+                            onTap: () {
+                              CoolAlert.show(
+                                  context: context,
+                                  type: CoolAlertType.confirm,
+                                  text: "Do you sure to delete this item",
+                                  width: 400,
+                                  confirmBtnText: "Submit",
+                                  cancelBtnText: "Cancle",
+                                  onConfirmBtnTap: () {
+                                    submitDataNewMaterial(widget.idNewMaterial);
+                                  });
+                            },
+                            child: Container(
+                              width: 148,
+                              height: 33,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: active),
+                              child: Center(
+                                child: Text("SUBMIT REQUEST",
+                                    style: GoogleFonts.rubik(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                        color: light)),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 21,
+                          ),
                           status == 'Requested'
                               ? InkWell(
                                   onTap: () {
@@ -154,7 +221,8 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                           ),
                           InkWell(
                               onTap: () {
-                                Navigator.pop(context);
+                                navigationController
+                                    .navigateTo(NewMaterialPageRoute);
                               },
                               child: Container(
                                 width: 148,
@@ -224,7 +292,9 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                                         style: GoogleFonts.rubik(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
-                                          color: Colors.blue,
+                                          color: status == 'Requested'
+                                              ? active
+                                              : Colors.blue,
                                         )),
                                   ),
                                 )

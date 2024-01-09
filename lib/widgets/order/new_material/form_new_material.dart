@@ -397,7 +397,7 @@ class _FormNewMaterialExistingState extends State<FormNewMaterialExisting> {
       if (status) {
         FocusScope.of(context).unfocus();
         _clearForm();
-        Navigator.push(
+        Navigator.pushReplacement(
             context,
             MaterialPageRoute(
                 builder: (context) => DetailNewMaterial(

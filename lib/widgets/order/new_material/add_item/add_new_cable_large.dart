@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/models/quickalert_type.dart';
@@ -8,8 +11,9 @@ import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/custom_dropdown.dart';
 import 'package:telin_project/widgets/custom_text_field.dart';
 import 'package:telin_project/widgets/order/new_material/table/detail_cable_new_material.dart';
-
+import 'package:mime/mime.dart';
 import '../../../../api/configAPI.dart';
+import 'dart:typed_data';
 import '../bast_invoice/bast_new_material.dart';
 
 class AddNewCableLarge extends StatefulWidget {
@@ -1697,8 +1701,9 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
   addEvidence(idNewMaterial, cableId, evidence) async {
     String msg;
     try {
+      final contentType = File(evidence);
       final formData = FormData.fromMap({
-        "evidence": await MultipartFile.fromString(
+        "evidence": MultipartFile.fromString(
           evidence.toString(),
           filename: evidence.name,
         ),
@@ -1764,10 +1769,10 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
       evidence != null
           ? await addEvidence(widget.idNewMaterial, id, evidence)
           : null;
-
       if (status) {
         // FocusScope.of(context).unfocus();
         // _clearForm();
+
         QuickAlert.show(
             context: context,
             type: QuickAlertType.success,

@@ -162,7 +162,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                       label: "Select Location",
                       item: location.map((location) {
                         return DropdownMenuItem(
-                          value: location['_id'].toString(),
+                          value: location['location'].toString(),
                           child: Text(
                             location['location'],
                             style: GoogleFonts.rubik(
@@ -271,9 +271,9 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                       label: "Select Unit",
                       item: unit.map((unit) {
                         return DropdownMenuItem(
-                          value: unit['_id'].toString(),
+                          value: unit['unit'].toString(),
                           child: Text(
-                            unit['unit'],
+                            unit['unit'].toString(),
                             style: GoogleFonts.rubik(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -285,6 +285,7 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
                       onChange: (newVal) {
                         setState(() {
                           selectionUnit = newVal!;
+                          print(unit);
                         });
                       },
                       value: selectionUnit,

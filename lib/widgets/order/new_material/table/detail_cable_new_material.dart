@@ -201,8 +201,9 @@ class _DetailTableCableNewMaterialState
     String url = "$downloadEvidenceCable/${widget.idNewMaterial}/$id";
 
     try {
-      html.AnchorElement anchorElement = new html.AnchorElement(href: url);
-      anchorElement.download = url;
+      html.AnchorElement anchorElement =
+          await new html.AnchorElement(href: url);
+      anchorElement.download = await url;
       anchorElement.click();
     } catch (e) {
       QuickAlert.show(

@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class DetailTableKitNewMaterial extends StatefulWidget {
 
 class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
   List NewMaterialByIdkit = [];
-  List NewMaterialByIdkit2 = [];
+  List NewMaterialByIdkitCart = [];
 
   String id = "";
   Response? response;
@@ -43,13 +44,40 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
       setState(() {
         NewMaterialByIdkit = response!.data['newMaterial'][0]
             ['submitted_new_material_kits_id_in_spare_kits'];
-        NewMaterialByIdkit2 =
+        NewMaterialByIdkitCart =
             response!.data['newMaterial'][0]['new_material_kits'];
       });
     } catch (e) {}
   }
 
-  DataRow _resultsAPI(index, data, data2) {
+  void hapuskitNewMaterial(id) async {
+    bool status;
+    var msg;
+    try {
+      response = await dio.delete(
+        '$deleteKitFromNewMaterial/${widget.idNewMaterial}/$id',
+      );
+
+      msg = response!.data['message'];
+
+      CoolAlert.show(
+          context: context,
+          type: CoolAlertType.success,
+          text: "$msg",
+          width: 400,
+          onConfirmBtnTap: () {
+            getDataNewMaterial();
+          });
+    } catch (e) {
+      CoolAlert.show(
+          context: context,
+          type: CoolAlertType.error,
+          text: "Kesalahan Server",
+          width: 400);
+    }
+  }
+
+  DataRow _resultsAPI(index, data) {
     bool id;
     if ((index + 1) % 2 == 1) {
       id = true;
@@ -113,11 +141,17 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
               ))),
+          DataCell(Text("${data['keterangan'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
           DataCell(data['evidence'] != null
               ? TextButton(
                   onPressed: () {
                     downloadEvidenceKitNewMaterial(
-                        data2['id'], data['evidence']['originalName']);
+                        data['id'], data['evidence']['originalName']);
                   },
                   child: Text("Download evidence",
                       style: GoogleFonts.rubik(
@@ -131,12 +165,32 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
                   ))),
-          DataCell(Text("${data['keterangan'] ?? "-"}",
-              style: GoogleFonts.rubik(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
+          DataCell(widget.status == "Requested"
+              ? TextButton(
+                  onPressed: () {
+                    CoolAlert.show(
+                        context: context,
+                        type: CoolAlertType.confirm,
+                        text: "Do you sure to delete this item",
+                        width: 400,
+                        confirmBtnText: "Delete",
+                        cancelBtnText: "Cancle",
+                        onConfirmBtnTap: () {
+                          hapuskitNewMaterial('${data['id']}');
+                        });
+                  },
+                  child: Text("Delete",
+                      style: GoogleFonts.rubik(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: active,
+                      )))
+              : Text("",
+                  style: GoogleFonts.rubik(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: active,
+                  ))),
         ]);
   }
 
@@ -154,35 +208,6 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
           context: context,
           type: QuickAlertType.error,
           text: e.toString(),
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
-    }
-  }
-
-  void hapuskitNewMaterial(id) async {
-    bool status;
-    var msg;
-    try {
-      response = await dio.delete(
-        '$deleteSparekitFromLoading/${widget.idNewMaterial}/$id',
-      );
-
-      msg = response!.data['message'];
-
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.success,
-          text: '$msg',
-          title: 'Peringatan',
-          width: 400,
-          barrierDismissible: true,
-          confirmBtnColor: Colors.red);
-    } catch (e) {
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
           title: 'Peringatan',
           width: 400,
           confirmBtnColor: Colors.red);
@@ -306,6 +331,14 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
                 )),
           ),
           DataColumn2(
+            label: Text("REMARK",
+                style: GoogleFonts.rubik(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                )),
+          ),
+          DataColumn2(
             label: Text("EVIDENCE",
                 style: GoogleFonts.rubik(
                   fontSize: 16,
@@ -314,17 +347,22 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
                 )),
           ),
           DataColumn2(
-            label: Text("REMARK",
+            label: Text("ACTION",
                 style: GoogleFonts.rubik(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                 )),
-          ),
+          )
         ],
-        rows: List.generate(
-            NewMaterialByIdkit.length,
-            (index) => _resultsAPI(
-                index, NewMaterialByIdkit[index], NewMaterialByIdkit2[index])));
+        rows: widget.status == "Requested"
+            ? List.generate(
+                NewMaterialByIdkitCart.length,
+                (index) => _resultsAPI(
+                      index,
+                      NewMaterialByIdkitCart[index],
+                    ))
+            : List.generate(NewMaterialByIdkit.length,
+                (index) => _resultsAPI(index, NewMaterialByIdkit[index])));
   }
 }
