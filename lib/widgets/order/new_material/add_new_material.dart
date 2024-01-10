@@ -13,8 +13,14 @@ import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_m
 import 'package:telin_project/widgets/order/new_material/cart_new_material.dart';
 
 class AddItemNewMaterial extends StatefulWidget {
-  const AddItemNewMaterial({super.key, required this.idNewMaterial});
+  const AddItemNewMaterial(
+      {super.key,
+      required this.idNewMaterial,
+      required this.selectSesions,
+      required this.refresh});
   final String idNewMaterial;
+  final bool selectSesions;
+  final dynamic refresh;
 
   @override
   State<AddItemNewMaterial> createState() => _AddItemNewMaterialState();
@@ -24,6 +30,13 @@ class _AddItemNewMaterialState extends State<AddItemNewMaterial> {
   bool selectButon = true;
   bool selectNonCable = false;
   Response? response;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    selectButon == widget.selectSesions;
+    super.initState();
+  }
 
   var dio = Dio();
 
@@ -77,68 +90,8 @@ class _AddItemNewMaterialState extends State<AddItemNewMaterial> {
               children: [
                 Container(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  selectButon = true;
-                                });
-                              },
-                              child: Container(
-                                width: 124,
-                                height: 33,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        bottomLeft: Radius.circular(15)),
-                                    border: Border.all(color: active, width: 1),
-                                    color:
-                                        selectButon == true ? active : light),
-                                child: Center(
-                                  child: Text("CABLE",
-                                      style: GoogleFonts.rubik(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12,
-                                          color: selectButon == true
-                                              ? light
-                                              : active)),
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  selectButon = false;
-                                });
-                              },
-                              child: Container(
-                                width: 124,
-                                height: 33,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(15),
-                                        bottomRight: Radius.circular(15)),
-                                    border: Border.all(color: active, width: 1),
-                                    color:
-                                        selectButon == false ? active : light),
-                                child: Center(
-                                  child: Text("NON CABLE",
-                                      style: GoogleFonts.rubik(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12,
-                                          color: selectButon == false
-                                              ? light
-                                              : active)),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                       InkWell(
                           onTap: () {
                             Navigator.pop(context);
@@ -168,11 +121,15 @@ class _AddItemNewMaterialState extends State<AddItemNewMaterial> {
                 SizedBox(
                   height: 25,
                 ),
-                selectButon
+                widget.selectSesions
                     ? AddNewCableLarge(
                         idNewMaterial: widget.idNewMaterial,
+                        refresh: () => widget.refresh(),
                       )
-                    : AddNewNonCableLarge(idNewMaterial: widget.idNewMaterial),
+                    : AddNewNonCableLarge(
+                        idNewMaterial: widget.idNewMaterial,
+                        refresh: () => widget.refresh(),
+                      ),
               ],
             ),
           )),

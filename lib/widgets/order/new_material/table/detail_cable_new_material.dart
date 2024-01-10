@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:html' as html;
 
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
 
 class DetailTableCableNewMaterial extends StatefulWidget {
   const DetailTableCableNewMaterial(
@@ -166,12 +167,12 @@ class _DetailTableCableNewMaterialState
                     fontWeight: FontWeight.w400,
                     color: active,
                   ))),
-          DataCell(widget.status == "Requested"
+          DataCell(widget.status == "Draft"
               ? TextButton(
                   onPressed: () {
-                    CoolAlert.show(
+                    QuickAlert.show(
                         context: context,
-                        type: CoolAlertType.confirm,
+                        type: QuickAlertType.confirm,
                         text: "Do you sure to delete this item",
                         width: 400,
                         confirmBtnText: "Delete",
@@ -225,18 +226,19 @@ class _DetailTableCableNewMaterialState
 
       msg = response!.data['message'];
 
-      CoolAlert.show(
+      QuickAlert.show(
           context: context,
-          type: CoolAlertType.success,
+          type: QuickAlertType.success,
           text: "Delete Success",
           width: 400,
           onConfirmBtnTap: () {
             getDataNewMaterial();
+            Navigator.pop(context, true);
           });
     } catch (e) {
-      CoolAlert.show(
+      QuickAlert.show(
           context: context,
-          type: CoolAlertType.error,
+          type: QuickAlertType.error,
           text: "Kesalahan Server",
           width: 400);
     }
@@ -244,169 +246,223 @@ class _DetailTableCableNewMaterialState
 
   @override
   Widget build(BuildContext context) {
-    return DataTable2(
-        columnSpacing: 6,
-        horizontalMargin: 6,
-        dataRowHeight: 52,
-        columns: [
-          DataColumn2(
-            fixedWidth: 50,
-            label: Text('NO',
-                style: GoogleFonts.rubik(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("CABLE",
+                  style: GoogleFonts.rubik(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: active,
+                  )),
+              widget.status == 'Draft'
+                  ? InkWell(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            barrierColor: Colors.black.withOpacity(0.50),
+                            builder: (BuildContext context) {
+                              return AddItemNewMaterial(
+                                idNewMaterial: widget.idNewMaterial,
+                                selectSesions: true,
+                                refresh: () => getDataNewMaterial(),
+                              );
+                            });
+                      },
+                      child: Container(
+                        width: 135,
+                        height: 24,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: active),
+                        child: Center(
+                          child: Text("+ ADD CABLE",
+                              style: GoogleFonts.rubik(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                  color: light)),
+                        ),
+                      ),
+                    )
+                  : Container(),
+            ],
           ),
-          DataColumn2(
-            label: Text('LABLE',
-                style: GoogleFonts.rubik(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-          ),
-          DataColumn2(
-            label: Text('SYSTEM',
-                style: GoogleFonts.rubik(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-          ),
-          DataColumn2(
-            label: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text("ARMORING",
-                    style: GoogleFonts.rubik(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    )),
-                Text("TYPE",
-                    style: GoogleFonts.rubik(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    )),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Expanded(
+          child: DataTable2(
+              columnSpacing: 6,
+              horizontalMargin: 6,
+              dataRowHeight: 52,
+              columns: [
+                DataColumn2(
+                  fixedWidth: 50,
+                  label: Text('NO',
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Text('LABLE',
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Text('SYSTEM',
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("ARMORING",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                      Text("TYPE",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                    ],
+                  ),
+                ),
+                DataColumn2(
+                  label: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("LENGTH",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                      Text("(METER)",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                    ],
+                  ),
+                ),
+                DataColumn2(
+                  label: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("CORE",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                      Text("TYPE",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                    ],
+                  ),
+                ),
+                DataColumn2(
+                  label: Text("\u03A3 CORE",
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Text("TANK",
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("TANK",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                      Text("LOCATION",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                    ],
+                  ),
+                ),
+                DataColumn2(
+                  label: Text("REMARK",
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Text("EVIDENCE",
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Text("ACTION",
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                )
               ],
-            ),
-          ),
-          DataColumn2(
-            label: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text("LENGTH",
-                    style: GoogleFonts.rubik(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    )),
-                Text("(METER)",
-                    style: GoogleFonts.rubik(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    )),
-              ],
-            ),
-          ),
-          DataColumn2(
-            label: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text("CORE",
-                    style: GoogleFonts.rubik(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    )),
-                Text("TYPE",
-                    style: GoogleFonts.rubik(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    )),
-              ],
-            ),
-          ),
-          DataColumn2(
-            label: Text("\u03A3 CORE",
-                style: GoogleFonts.rubik(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-          ),
-          DataColumn2(
-            label: Text("TANK",
-                style: GoogleFonts.rubik(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-          ),
-          DataColumn2(
-            label: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text("TANK",
-                    style: GoogleFonts.rubik(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    )),
-                Text("LOCATION",
-                    style: GoogleFonts.rubik(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    )),
-              ],
-            ),
-          ),
-          DataColumn2(
-            label: Text("REMARK",
-                style: GoogleFonts.rubik(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-          ),
-          DataColumn2(
-            label: Text("EVIDENCE",
-                style: GoogleFonts.rubik(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-          ),
-          DataColumn2(
-            label: Text("ACTION",
-                style: GoogleFonts.rubik(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                )),
-          )
-        ],
-        rows: widget.status == "Requested"
-            ? List.generate(
-                NewMaterialByIdCableCart.length,
-                (index) => _resultsAPI(
-                      index,
-                      NewMaterialByIdCableCart[index],
-                    ))
-            : List.generate(
-                NewMaterialByIdCable.length,
-                (index) => _resultsAPI(
-                      index,
-                      NewMaterialByIdCable[index],
-                    )));
+              rows: widget.status != "Approve"
+                  ? List.generate(
+                      NewMaterialByIdCableCart.length,
+                      (index) => _resultsAPI(
+                            index,
+                            NewMaterialByIdCableCart[index],
+                          ))
+                  : List.generate(
+                      NewMaterialByIdCable.length,
+                      (index) => _resultsAPI(
+                            index,
+                            NewMaterialByIdCable[index],
+                          ))),
+        ),
+      ],
+    );
   }
 }

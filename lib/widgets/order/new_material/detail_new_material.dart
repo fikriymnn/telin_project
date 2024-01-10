@@ -74,9 +74,43 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
 
       msg = response!.data['message'];
 
-      CoolAlert.show(
+      QuickAlert.show(
           context: context,
-          type: CoolAlertType.success,
+          type: QuickAlertType.success,
+          text: 'Data New Material Success Added',
+          title: 'Success',
+          width: 400,
+          barrierDismissible: true,
+          confirmBtnColor: Colors.green,
+          onConfirmBtnTap: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailNewMaterial(
+                        idNewMaterial: widget.idNewMaterial)));
+          });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void addRequestData(id) async {
+    var msg;
+    try {
+      response = await dio.post('$changeStatusNewMaterial/$id?status=Requested',
+          data: {"status": "Requested"});
+
+      msg = response!.data['message'];
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
           text: 'Data New Material Success Added',
           title: 'Success',
           width: 400,
@@ -125,48 +159,18 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                               color: Colors.black)),
                       Row(
                         children: [
-                          InkWell(
-                            onTap: () {
-                              CoolAlert.show(
-                                  context: context,
-                                  type: CoolAlertType.confirm,
-                                  text: "Do you sure to delete this item",
-                                  width: 400,
-                                  confirmBtnText: "Submit",
-                                  cancelBtnText: "Cancle",
-                                  onConfirmBtnTap: () {
-                                    submitDataNewMaterial(widget.idNewMaterial);
-                                  });
-                            },
-                            child: Container(
-                              width: 148,
-                              height: 33,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: active),
-                              child: Center(
-                                child: Text("SUBMIT REQUEST",
-                                    style: GoogleFonts.rubik(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 12,
-                                        color: light)),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 21,
-                          ),
-                          status == 'Requested'
+                          status == "Draft"
                               ? InkWell(
                                   onTap: () {
-                                    showDialog(
+                                    QuickAlert.show(
                                         context: context,
-                                        barrierColor:
-                                            Colors.black.withOpacity(0.50),
-                                        builder: (BuildContext context) {
-                                          return AddItemNewMaterial(
-                                            idNewMaterial: widget.idNewMaterial,
-                                          );
+                                        type: QuickAlertType.confirm,
+                                        text: "Do you sure to Add Request",
+                                        width: 400,
+                                        confirmBtnText: "Submit",
+                                        cancelBtnText: "Cancle",
+                                        onConfirmBtnTap: () {
+                                          addRequestData(widget.idNewMaterial);
                                         });
                                   },
                                   child: Container(
@@ -176,7 +180,7 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                                         borderRadius: BorderRadius.circular(15),
                                         color: active),
                                     child: Center(
-                                      child: Text("+ ADD ITEM",
+                                      child: Text("ADD TO REQUEST",
                                           style: GoogleFonts.rubik(
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12,
@@ -184,11 +188,42 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                                     ),
                                   ),
                                 )
-                              : Container(),
+                              : status == "Requested"
+                                  ? InkWell(
+                                      onTap: () {
+                                        QuickAlert.show(
+                                            context: context,
+                                            type: QuickAlertType.confirm,
+                                            text: "Do you sure to Submit?",
+                                            width: 400,
+                                            confirmBtnText: "Submit",
+                                            cancelBtnText: "Cancle",
+                                            onConfirmBtnTap: () {
+                                              submitDataNewMaterial(
+                                                  widget.idNewMaterial);
+                                            });
+                                      },
+                                      child: Container(
+                                        width: 148,
+                                        height: 33,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            color: active),
+                                        child: Center(
+                                          child: Text("SUBMIT REQUEST",
+                                              style: GoogleFonts.rubik(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 12,
+                                                  color: light)),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
                           SizedBox(
                             width: 21,
                           ),
-                          status != 'Requested'
+                          status == 'Approved'
                               ? InkWell(
                                   onTap: () {
                                     Navigator.push(
@@ -293,8 +328,10 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                           color: status == 'Requested'
-                                              ? active
-                                              : Colors.blue,
+                                              ? Colors.orange
+                                              : status == 'Draft'
+                                                  ? active
+                                                  : Colors.green,
                                         )),
                                   ),
                                 )
@@ -337,18 +374,6 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: Text("CABLE",
-                                  style: GoogleFonts.rubik(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    color: active,
-                                  )),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
                             Expanded(
                               child: DetailTableCableNewMaterial(
                                 idNewMaterial: widget.idNewMaterial,
@@ -357,18 +382,6 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
                             ),
                             const SizedBox(
                               height: 15,
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: Text("NON-CABLE",
-                                  style: GoogleFonts.rubik(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    color: active,
-                                  )),
-                            ),
-                            const SizedBox(
-                              height: 10,
                             ),
                             Expanded(
                               child: DetailTableKitNewMaterial(

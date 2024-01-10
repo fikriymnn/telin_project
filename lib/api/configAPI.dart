@@ -12,6 +12,7 @@ String submitLoading = '$baseUrl/api/loading/submit';
 String deleteCableFromLoading = '$baseUrl/api/loading/cable';
 String deleteSparekitFromLoading = '$baseUrl//api/loading/kit';
 String getAllTurnOverById = '$baseUrl/api/loading/turnover';
+String uploadEvidenceLoading = '$baseUrl/api/loading/evidence';
 
 //off-loading
 String getAllOffLoading = '$baseUrl/api/offloading';
@@ -39,6 +40,7 @@ String addEvidenceKit = '$baseUrl/api/offloadingNewMaterial/evidence/kit';
 String downloadEvidenceCable =
     '$baseUrl/api/offloadingNewMaterial/evidence/cable';
 String downloadEvidenceKit = '$baseUrl/api/offloadingNewMaterial/evidence/kit';
+String changeStatusNewMaterial = '$baseUrl/api/offloadingNewMaterial/status';
 
 //allCable
 String getAllCable = '$baseUrl/api/spareCable/';

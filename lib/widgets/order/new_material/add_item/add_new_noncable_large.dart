@@ -11,8 +11,10 @@ import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_m
 import '../../../../api/configAPI.dart';
 
 class AddNewNonCableLarge extends StatefulWidget {
-  const AddNewNonCableLarge({super.key, required this.idNewMaterial});
+  const AddNewNonCableLarge(
+      {super.key, required this.idNewMaterial, required this.refresh});
   final String idNewMaterial;
+  final dynamic refresh;
 
   @override
   State<AddNewNonCableLarge> createState() => _AddNewNonCableLargeState();
@@ -1261,7 +1263,11 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
             type: QuickAlertType.success,
             text: 'Add Kit Success',
             width: 400,
-            confirmBtnColor: Colors.green);
+            confirmBtnColor: Colors.green,
+            onConfirmBtnTap: () {
+              widget.refresh();
+              Navigator.pop(context, true);
+            });
       } else {
         QuickAlert.show(
             context: context,

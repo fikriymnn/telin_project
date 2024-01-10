@@ -72,15 +72,15 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
 
       msg = response!.data['message'];
 
-      CoolAlert.show(
+      QuickAlert.show(
           context: context,
-          type: CoolAlertType.success,
+          type: QuickAlertType.success,
           text: "$msg",
           width: 400);
     } catch (e) {
-      CoolAlert.show(
+      QuickAlert.show(
           context: context,
-          type: CoolAlertType.error,
+          type: QuickAlertType.error,
           text: "This offloading has been submitted! Cannot be deleted!",
           width: 400);
     }
@@ -290,13 +290,21 @@ DataRow recentFileDataRow(var data, context, index) {
         children: [
           CircleAvatar(
             radius: 5,
-            backgroundColor:
-                data.status == "Requested" ? active : Color(0xff24EB2C),
+            backgroundColor: data.status == "Requested"
+                ? Colors.orange
+                : data.status == "Draft"
+                    ? active
+                    : Colors.green,
           ),
           const SizedBox(
             width: 7,
           ),
-          Text(data.status == "Requested" ? "REQUESTED" : "APPROVED",
+          Text(
+              data.status == "Requested"
+                  ? "REQUESTED"
+                  : data.status == "Draft"
+                      ? "DRAFT"
+                      : "APPROVED",
               style: GoogleFonts.rubik(
                 fontSize: 14,
                 fontWeight: FontWeight.w300,
@@ -338,9 +346,9 @@ DataRow recentFileDataRow(var data, context, index) {
           ),
           InkWell(
             onTap: () async {
-              CoolAlert.show(
+              QuickAlert.show(
                   context: context,
-                  type: CoolAlertType.confirm,
+                  type: QuickAlertType.confirm,
                   text: "Do you sure to delete this item",
                   width: 400,
                   confirmBtnText: "Delete",
@@ -356,15 +364,15 @@ DataRow recentFileDataRow(var data, context, index) {
 
                       msg = response!.data['message'];
 
-                      CoolAlert.show(
+                      QuickAlert.show(
                           context: context,
-                          type: CoolAlertType.success,
+                          type: QuickAlertType.success,
                           text: "$msg",
                           width: 400);
                     } catch (e) {
-                      CoolAlert.show(
+                      QuickAlert.show(
                           context: context,
-                          type: CoolAlertType.error,
+                          type: QuickAlertType.error,
                           text:
                               "This offloading has been submitted! Cannot be deleted!",
                           width: 400);
