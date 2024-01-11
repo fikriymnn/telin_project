@@ -1,16 +1,23 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
+import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/routing/routes.dart';
+import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
 
 import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/table/detail_cable_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/table/detail_kit_new_material.dart';
 
 class DetailNewMaterial extends StatefulWidget {
-  const DetailNewMaterial({super.key, required this.idNewMaterial});
+  const DetailNewMaterial({
+    super.key,
+    required this.idNewMaterial,
+  });
   final String idNewMaterial;
 
   @override
@@ -18,7 +25,7 @@ class DetailNewMaterial extends StatefulWidget {
 }
 
 class _DetailNewMaterialState extends State<DetailNewMaterial> {
-  List NewMaterialById = [];
+  dynamic NewMaterialById;
 
   List NewMaterialByIdCable = [];
   List NewMaterialByIdKit = [];
@@ -60,365 +67,336 @@ class _DetailNewMaterialState extends State<DetailNewMaterial> {
     }
   }
 
+  void submitDataNewMaterial(id) async {
+    var msg;
+    try {
+      response = await dio.post('$submitNewMaterial/$id');
+
+      msg = response!.data['message'];
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: 'Data New Material Success Added',
+          title: 'Success',
+          width: 400,
+          barrierDismissible: true,
+          confirmBtnColor: Colors.green,
+          onConfirmBtnTap: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailNewMaterial(
+                        idNewMaterial: widget.idNewMaterial)));
+          });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
+  void addRequestData(id) async {
+    var msg;
+    try {
+      response = await dio.post('$changeStatusNewMaterial/$id?status=Requested',
+          data: {"status": "Requested"});
+
+      msg = response!.data['message'];
+
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          text: 'Data New Material Success Added',
+          title: 'Success',
+          width: 400,
+          barrierDismissible: true,
+          confirmBtnColor: Colors.green,
+          onConfirmBtnTap: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailNewMaterial(
+                        idNewMaterial: widget.idNewMaterial)));
+          });
+    } catch (e) {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: 'Terjadi Kesalahan Pada Server Kami',
+          title: 'Peringatan',
+          width: 400,
+          confirmBtnColor: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    String status =
+        NewMaterialById == null ? "requested" : NewMaterialById[0]['status'];
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10)),
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 12.6),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 19.3, vertical: 12.6),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
+      backgroundColor: bgGray,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 21.3),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 23),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("OFF LOADING > NEW MATERIAL",
+                          style: GoogleFonts.rubik(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 28,
+                              color: Colors.black)),
+                      Row(
                         children: [
-                          Text(
-                            "NEW MATERIAL",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 10.6,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black,
-                            ),
+                          status == "Draft"
+                              ? InkWell(
+                                  onTap: () {
+                                    QuickAlert.show(
+                                        context: context,
+                                        type: QuickAlertType.confirm,
+                                        text: "Do you sure to Add Request",
+                                        width: 400,
+                                        confirmBtnText: "Submit",
+                                        cancelBtnText: "Cancle",
+                                        onConfirmBtnTap: () {
+                                          addRequestData(widget.idNewMaterial);
+                                        });
+                                  },
+                                  child: Container(
+                                    width: 148,
+                                    height: 33,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: active),
+                                    child: Center(
+                                      child: Text("ADD TO REQUEST",
+                                          style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12,
+                                              color: light)),
+                                    ),
+                                  ),
+                                )
+                              : status == "Requested"
+                                  ? InkWell(
+                                      onTap: () {
+                                        QuickAlert.show(
+                                            context: context,
+                                            type: QuickAlertType.confirm,
+                                            text: "Do you sure to Submit?",
+                                            width: 400,
+                                            confirmBtnText: "Submit",
+                                            cancelBtnText: "Cancle",
+                                            onConfirmBtnTap: () {
+                                              submitDataNewMaterial(
+                                                  widget.idNewMaterial);
+                                            });
+                                      },
+                                      child: Container(
+                                        width: 148,
+                                        height: 33,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            color: active),
+                                        child: Center(
+                                          child: Text("SUBMIT REQUEST",
+                                              style: GoogleFonts.rubik(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 12,
+                                                  color: light)),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
+                          SizedBox(
+                            width: 21,
                           ),
-                          const Spacer(),
+                          status == 'Approved'
+                              ? InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                BastNewMaterial(
+                                                  idNewMaterial:
+                                                      widget.idNewMaterial,
+                                                )));
+                                  },
+                                  child: Container(
+                                    width: 148,
+                                    height: 33,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: active),
+                                    child: Center(
+                                      child: Text("BAST",
+                                          style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12,
+                                              color: light)),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
+                          SizedBox(
+                            width: 21,
+                          ),
                           InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => BastNewMaterial(
-                                            idNewMaterial: widget.idNewMaterial,
-                                          )));
-
-                              // showDialog(
-                              //     context: context,
-                              //     builder: (BuildContext context) {
-                              //       return const FormEditLoading();
-                              //     });
-                            },
-                            child: Container(
-                              width: 99.3,
-                              height: 30,
-                              decoration: BoxDecoration(
+                              onTap: () {
+                                navigationController
+                                    .navigateTo(NewMaterialPageRoute);
+                              },
+                              child: Container(
+                                width: 148,
+                                height: 33,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: active, width: 1),
+                                  color: light,
                                   borderRadius: BorderRadius.circular(15),
-                                  color: active),
-                              child: Center(
-                                child: Text("BAST",
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "< Back",
                                     style: GoogleFonts.roboto(
-                                      fontSize: 11,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.w600,
-                                      color: Colors.white,
-                                    )),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 50,
-                          ),
-                          // InkWell(
-                          //   onTap: () {},
-                          //   child: Container(
-                          //     width: 99.3,
-                          //     height: 30,
-                          //     decoration: BoxDecoration(
-                          //         borderRadius: BorderRadius.circular(15),
-                          //         color: active),
-                          //     child: Center(
-                          //       child: Text("SUBMIT",
-                          //           style: GoogleFonts.roboto(
-                          //             fontSize: 11,
-                          //             fontWeight: FontWeight.w600,
-                          //             color: Colors.white,
-                          //           )),
-                          //     ),
-                          //   ),
-                          // ),
-                          const SizedBox(
-                            width: 50,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: CircleAvatar(
-                              radius: 15,
-                              backgroundColor: const Color(0xFFED1D25),
-                              child: Center(
-                                child: Text("X",
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 13.3,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    )),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: NewMaterialById.length,
-                    itemBuilder: (context, index) => SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                              "${NewMaterialById[0]['project_name'] ?? "-"}",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black,
-                              ))
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 22,
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: NewMaterialById.length,
-                    itemBuilder: (contect, index) => SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                              "${NewMaterialById[0]['perusahaan']['company_name']}",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black,
+                                      color: active,
+                                    ),
+                                  ),
+                                ),
                               )),
-                          const SizedBox(
-                            width: 284,
-                          ),
-                          Text(
-                              "${NewMaterialById[0]['from']} - ${NewMaterialById[0]['to']}",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 13.3,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black,
-                              ))
                         ],
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(
-                      height: 400,
-                      child: Column(
-                        children: [
-                          Flexible(
-                              child: DetailTableCableNewMaterial(
-                            idNewMaterial: widget.idNewMaterial,
-                          )),
-                        ],
-                      )),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 100),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.end,
-                  //     children: [
-                  //       InkWell(
-                  //         onTap: () {
-                  //           showDialog(
-                  //               context: context,
-                  //               builder: (BuildContext context) {
-                  //                 return Scaffold(
-                  //                   appBar: AppBar(
-                  //                     backgroundColor: Colors.white,
-                  //                     elevation: 0,
-                  //                     actions: [
-                  //                       Padding(
-                  //                         padding: const EdgeInsets.only(
-                  //                             right: 59.3, top: 5, bottom: 5),
-                  //                         child: InkWell(
-                  //                             onTap: () {
-                  //                               Navigator.pop(context);
-                  //                             },
-                  //                             child: Container(
-                  //                               width: 107.3,
-                  //                               height: 37.3,
-                  //                               decoration: BoxDecoration(
-                  //                                   borderRadius:
-                  //                                       BorderRadius.circular(
-                  //                                           10),
-                  //                                   border: Border.all(
-                  //                                       color: const Color(
-                  //                                           0xffB8B8B8),
-                  //                                       width: 1)),
-                  //                               child: Row(
-                  //                                 children: [
-                  //                                   Icon(
-                  //                                     Icons
-                  //                                         .subdirectory_arrow_left,
-                  //                                     color: active,
-                  //                                     size: 28.6,
-                  //                                   ),
-                  //                                   const SizedBox(
-                  //                                     width: 10,
-                  //                                   ),
-                  //                                   Text(
-                  //                                     "Back",
-                  //                                     style: GoogleFonts.roboto(
-                  //                                       fontSize: 17.3,
-                  //                                       fontWeight:
-                  //                                           FontWeight.w400,
-                  //                                       color: active,
-                  //                                     ),
-                  //                                   )
-                  //                                 ],
-                  //                               ),
-                  //                             )),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                   body: CableDanKitLoading(
-                  //                     id: widget.idLoading,
-                  //                   ),
-                  //                 );
-                  //               });
-                  //         },
-                  //         child: Container(
-                  //           width: 99.3,
-                  //           height: 20.33,
-                  //           decoration: BoxDecoration(
-                  //               borderRadius: BorderRadius.circular(15),
-                  //               color: active),
-                  //           child: Center(
-                  //             child: Text("ADD CABLE",
-                  //                 style: GoogleFonts.roboto(
-                  //                   fontSize: 11,
-                  //                   fontWeight: FontWeight.w600,
-                  //                   color: Colors.white,
-                  //                 )),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  SizedBox(
-                    height: 250,
-                    child: Column(
-                      children: [
-                        Expanded(
-                            child: DetailTableKitNewMaterial(
-                          idNewMaterial: widget.idNewMaterial,
-                        )),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 100),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.end,
-                  //     children: [
-                  //       InkWell(
-                  //         onTap: () {
-                  //           showDialog(
-                  //               context: context,
-                  //               builder: (BuildContext context) {
-                  //                 return Scaffold(
-                  //                   appBar: AppBar(
-                  //                     backgroundColor: Colors.white,
-                  //                     elevation: 0,
-                  //                     actions: [
-                  //                       Padding(
-                  //                         padding: const EdgeInsets.only(
-                  //                             right: 59.3, top: 5, bottom: 5),
-                  //                         child: InkWell(
-                  //                             onTap: () {
-                  //                               Navigator.pop(context);
-                  //                             },
-                  //                             child: Container(
-                  //                               width: 107.3,
-                  //                               height: 37.3,
-                  //                               decoration: BoxDecoration(
-                  //                                   borderRadius:
-                  //                                       BorderRadius.circular(
-                  //                                           10),
-                  //                                   border: Border.all(
-                  //                                       color: const Color(
-                  //                                           0xffB8B8B8),
-                  //                                       width: 1)),
-                  //                               child: Row(
-                  //                                 children: [
-                  //                                   Icon(
-                  //                                     Icons
-                  //                                         .subdirectory_arrow_left,
-                  //                                     color: active,
-                  //                                     size: 28.6,
-                  //                                   ),
-                  //                                   const SizedBox(
-                  //                                     width: 10,
-                  //                                   ),
-                  //                                   Text(
-                  //                                     "Back",
-                  //                                     style: GoogleFonts.roboto(
-                  //                                       fontSize: 17.3,
-                  //                                       fontWeight:
-                  //                                           FontWeight.w400,
-                  //                                       color: active,
-                  //                                     ),
-                  //                                   )
-                  //                                 ],
-                  //                               ),
-                  //                             )),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                   body: CableDanKitLoading(
-                  //                     id: widget.idLoading,
-                  //                   ),
-                  //                 );
-                  //               });
-                  //         },
-                  //         child: Container(
-                  //           width: 99.3,
-                  //           height: 20.33,
-                  //           decoration: BoxDecoration(
-                  //               borderRadius: BorderRadius.circular(15),
-                  //               color: active),
-                  //           child: Center(
-                  //             child: Text("ADD SPAREPART",
-                  //                 style: GoogleFonts.roboto(
-                  //                   fontSize: 11,
-                  //                   fontWeight: FontWeight.w600,
-                  //                   color: Colors.white,
-                  //                 )),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                ],
+                ),
               ),
-            ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                    color: light, borderRadius: BorderRadius.circular(15)),
+                child: Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 62,
+                      decoration: BoxDecoration(
+                        color: active,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            topRight: Radius.circular(15)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 23),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                    "${NewMaterialById == null ? "-" : NewMaterialById[0]['project_name']}",
+                                    style: GoogleFonts.rubik(
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w600,
+                                      color: light,
+                                    )),
+                                Container(
+                                  width: 124,
+                                  height: 23,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: light),
+                                  child: Center(
+                                    child: Text(status,
+                                        style: GoogleFonts.rubik(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          color: status == 'Requested'
+                                              ? Colors.orange
+                                              : status == 'Draft'
+                                                  ? active
+                                                  : Colors.green,
+                                        )),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                    NewMaterialById == null
+                                        ? "-"
+                                        : "${NewMaterialById[0]['from'] ?? ""} - ${NewMaterialById[0]['to'] ?? ""}",
+                                    style: GoogleFonts.rubik(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      color: light,
+                                    )),
+                                Text(
+                                    NewMaterialById == null
+                                        ? "-"
+                                        : "${NewMaterialById[0]['perusahaan']["company_name"] ?? "-"}",
+                                    style: GoogleFonts.rubik(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      color: light,
+                                    )),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 23),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: DetailTableCableNewMaterial(
+                                idNewMaterial: widget.idNewMaterial,
+                                status: status,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Expanded(
+                              child: DetailTableKitNewMaterial(
+                                idNewMaterial: widget.idNewMaterial,
+                                status: status,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),

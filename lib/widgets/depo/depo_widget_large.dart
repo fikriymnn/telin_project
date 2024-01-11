@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/layout.dart';
 import 'package:telin_project/routing/routes.dart';
 
@@ -18,32 +19,23 @@ class _DepoLargeState extends State<DepoLarge> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    return Column(
+    return Stack(
       children: [
-        SizedBox(
+        Container(
           width: screenSize.width,
-          child: Row(
+          height: 302,
+          color: active,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                alignment: Alignment.centerLeft,
-                width: 239.3,
-                height: 73.3,
-                margin: const EdgeInsets.only(top: 20, left: 50),
+                width: 193,
+                height: 59,
+                margin: const EdgeInsets.only(top: 20, left: 148),
                 child: Image.asset(
-                  'assets/images/logo_telin_login.png',
+                  'assets/images/logo_telin_white.png',
                   fit: BoxFit.fill,
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 333),
-                  child: Text('Site Management Dasboard',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.rubik(
-                        fontSize: 26.6,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      )),
                 ),
               ),
             ],
@@ -53,36 +45,33 @@ class _DepoLargeState extends State<DepoLarge> {
           height: 10,
           color: Colors.black,
         ),
-        Expanded(
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/background_depo.png"),
-                    fit: BoxFit.fill)),
-            child: SizedBox(
-              width: screenSize.width,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 86.6),
-                      child: Text('Choose Your Site !',
-                          textAlign: TextAlign.start,
-                          style: GoogleFonts.roboto(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          )),
-                    ),
-                    const SizedBox(
-                      height: 66.6,
-                    ),
-                    SizedBox(
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: SizedBox(
+            width: screenSize.width,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 86.6),
+                    child: Text('Site Management Dashboard',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.rubik(
+                          fontSize: 50,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 66.6,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 162),
+                    child: SizedBox(
                       width: screenSize.width,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           DepoWidget(
                             screenSize: screenSize,
@@ -90,9 +79,6 @@ class _DepoLargeState extends State<DepoLarge> {
                             depo: "Depo Sarana Citranusa Kabil-Batam",
                             route: () {},
                             titleView: "Coming Soon",
-                          ),
-                          const SizedBox(
-                            width: 300,
                           ),
                           DepoWidget(
                             screenSize: screenSize,
@@ -107,13 +93,13 @@ class _DepoLargeState extends State<DepoLarge> {
                                             role: widget.role,
                                           )));
                             },
-                            titleView: "View Dasboard",
+                            titleView: "View Dasboard >",
                           ),
                         ],
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
             ),
           ),

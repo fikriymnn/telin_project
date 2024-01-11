@@ -3,9 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/widgets/home/table_cable/table_cable.dart';
 import 'package:telin_project/widgets/home/table_non_cable.dart';
-import 'package:telin_project/widgets/order/loading/table/table_turn_over.dart';
-
-import '../order/loading/table/table_turn_over_detail.dart';
 
 class DetailTableHome extends StatefulWidget {
   const DetailTableHome({super.key});
@@ -154,10 +151,10 @@ class _DetailTableHomeState extends State<DetailTableHome> {
                       height: 400,
                       child: Column(
                         children: [
-                          Flexible(
-                              child: TableCableTurnOverDetail(
-                            idLoading: "",
-                          )),
+                          // Flexible(
+                          //     child: TableCableTurnOverDetail(
+                          //   idLoading: "",
+                          // )),
                         ],
                       )),
                   const SizedBox(

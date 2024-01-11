@@ -31,42 +31,53 @@ class _TableKursState extends State<TableKurs> {
   DataRow _resultsAPI(index, data) {
     return DataRow(cells: [
       DataCell(Text('${index + 1}',
-          style: GoogleFonts.montserrat(
-            fontSize: 14.6,
-            fontWeight: FontWeight.w400,
+          style: GoogleFonts.rubik(
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
+            color: Colors.black,
+          ))),
+      DataCell(Text('USD',
+          style: GoogleFonts.rubik(
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
+            color: Colors.black,
+          ))),
+      DataCell(Text('${data}',
+          style: GoogleFonts.rubik(
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
             color: Colors.black,
           ))),
       DataCell(Center(
-        child: Text('${data}',
-            style: GoogleFonts.montserrat(
-              fontSize: 14.6,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            )),
-      )),
-      DataCell(Center(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => EditKurs(
-                          kurs: data,
-                        )));
+                showDialog(
+                    context: context,
+                    barrierColor: Colors.black.withOpacity(0.50),
+                    builder: (BuildContext context) {
+                      return EditKurs(
+                        kurs: data,
+                        refresh: () => getDataKurs(),
+                      );
+                    });
               },
               child: Container(
-                width: 50,
-                height: 19.46,
+                width: 77,
+                height: 29,
                 decoration: BoxDecoration(
-                    color: green, borderRadius: BorderRadius.circular(6)),
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: active, width: 1)),
                 child: Center(
                     child: Text("Edit",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.rubik(
                           fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          color: active,
                         ))),
               ),
             ),
@@ -113,16 +124,12 @@ class _TableKursState extends State<TableKurs> {
     return DataTable2(
         columnSpacing: 6,
         horizontalMargin: 6,
-        dataRowHeight: 30,
-        border: const TableBorder(
-            top: BorderSide(),
-            bottom: BorderSide(),
-            right: BorderSide(),
-            left: BorderSide()),
+        dataRowHeight: 52,
         columns: [
           DataColumn2(
+            fixedWidth: 77,
             label: Text(
-              'No',
+              'NO',
               style: GoogleFonts.montserrat(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -131,58 +138,78 @@ class _TableKursState extends State<TableKurs> {
             ),
           ),
           DataColumn2(
-            label: Center(
-              child: Text('Kurs',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
+            fixedWidth: 237,
+            label: Text(
+              'CURRENCY',
+              style: GoogleFonts.montserrat(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
             ),
+          ),
+          DataColumn2(
+            label: Text('EXCHANGE RATE (IDR)',
+                style: GoogleFonts.montserrat(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                )),
           ),
           const DataColumn2(
             label: Text(''),
           ),
         ],
         rows: <DataRow>[
-          DataRow(cells: [
+          DataRow(color: MaterialStatePropertyAll(activeTable), cells: [
             DataCell(Text('1',
-                style: GoogleFonts.montserrat(
-                  fontSize: 14.6,
-                  fontWeight: FontWeight.w400,
+                style: GoogleFonts.rubik(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.black,
+                ))),
+            DataCell(Text('USD',
+                style: GoogleFonts.rubik(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.black,
+                ))),
+            DataCell(Text('${kurs}',
+                style: GoogleFonts.rubik(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w300,
                   color: Colors.black,
                 ))),
             DataCell(Center(
-              child: Text(kurs.toString(),
-                  style: GoogleFonts.montserrat(
-                    fontSize: 14.6,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  )),
-            )),
-            DataCell(Center(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EditKurs(
-                                kurs: kurs,
-                              )));
+                      showDialog(
+                          context: context,
+                          barrierColor: Colors.black.withOpacity(0.50),
+                          builder: (BuildContext context) {
+                            return EditKurs(
+                              kurs: kurs,
+                              refresh: () => getDataKurs(),
+                            );
+                          });
                     },
                     child: Container(
-                      width: 50,
-                      height: 19.46,
+                      width: 77,
+                      height: 29,
                       decoration: BoxDecoration(
-                          color: green, borderRadius: BorderRadius.circular(6)),
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: active, width: 1)),
                       child: Center(
                           child: Text("Edit",
-                              style: GoogleFonts.montserrat(
+                              style: GoogleFonts.rubik(
                                 fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                color: active,
                               ))),
                     ),
                   ),

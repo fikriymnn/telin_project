@@ -10,6 +10,7 @@ import 'package:telin_project/pages/master_data/manufacture.dart';
 import 'package:telin_project/pages/master_data/perusahan.dart';
 import 'package:telin_project/pages/master_data/system.dart';
 import 'package:telin_project/pages/master_data/unit.dart';
+import 'package:telin_project/pages/master_data/vessel.dart';
 import 'package:telin_project/pages/order/loading.dart';
 import 'package:telin_project/pages/order/off_loading_existing_material.dart';
 import 'package:telin_project/pages/order/off_loading_new_material.dart';
@@ -20,7 +21,7 @@ import 'package:telin_project/widgets/report/report_table_noncable.dart';
 import '../pages/inventory/inventory.dart';
 import '../pages/master_data/kurs.dart';
 import '../pages/master_data/master_data.dart';
-import '../pages/order/order.dart';
+
 import '../pages/report/report.dart';
 import '../pages/settings/settings.dart';
 
@@ -52,8 +53,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //   return _getPageRoute(EditUnit());
     case CompanyPageRoute:
       return _getPageRoute(const PerusahaanScreens());
-    case OrderPageRoute:
-      return _getPageRoute(const OrderViewPage());
+
     case LoadingPageRoute:
       return _getPageRoute(const LoadingScreens());
     case NewMaterialPageRoute:
@@ -70,6 +70,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(const SettingsViewPage());
     case AuthenticationPageRoute:
       return _getPageRoute(const LoginScreen());
+    case VesselPageRoute:
+      return _getPageRoute(const VesselScreens());
     default:
       return _getPageRoute(const HomeViewPage());
   }

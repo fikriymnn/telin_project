@@ -668,7 +668,7 @@ class printBastOffLoading {
     num totalWeight = 0;
 
     var listDataQty = List.generate(DataLoadingSparekit.length,
-        (index) => DataLoadingSparekit[index]['qty_taken']);
+        (index) => DataLoadingSparekit[index]['qty']);
     for (var value in listDataQty) {
       totalQty += value;
     }

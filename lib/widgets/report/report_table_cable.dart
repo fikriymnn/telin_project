@@ -66,11 +66,6 @@ class _CableReportState extends State<CableReport> {
       type: PlutoColumnType.text(),
     ),
     PlutoColumn(
-      title: 'Lable Id',
-      field: 'lable_id',
-      type: PlutoColumnType.text(),
-    ),
-    PlutoColumn(
       title: 'System',
       field: 'system',
       type: PlutoColumnType.text(),
@@ -129,20 +124,6 @@ class _CableReportState extends State<CableReport> {
     PlutoColumn(
       title: 'Count',
       field: 'count',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
-      title: 'Remark',
-      field: 'remark',
-      type: PlutoColumnType.text(),
-      enableContextMenu: true,
-      enableSorting: true,
-    ),
-    PlutoColumn(
-      title: 'Evidence',
-      field: 'evidence',
       type: PlutoColumnType.text(),
       enableContextMenu: true,
       enableSorting: true,
@@ -268,9 +249,6 @@ class _CableReportState extends State<CableReport> {
                   (index) => PlutoRow(
                     cells: {
                       'no': PlutoCell(value: '${index + 1}'),
-                      'lable_id': PlutoCell(
-                          value:
-                              '${reportCable[index]['lable_id'] == null ? "" : reportCable[index]['lable_id']}'),
                       'system': PlutoCell(
                           value:
                               '${reportCable[index]['system'] == null ? "" : reportCable[index]['system']}'),
@@ -298,12 +276,6 @@ class _CableReportState extends State<CableReport> {
                       'count': PlutoCell(
                           value:
                               '${reportCable[index]['count'] == null ? "" : reportCable[index]['count']}'),
-                      'remark': PlutoCell(
-                          value:
-                              '${reportCable[index]['remark'] == null ? "" : reportCable[index]['remark']}'),
-                      'evidence': PlutoCell(
-                          value:
-                              '${reportCable[index]['evidence'] == null ? "" : reportCable[index]['evidence']}'),
                     },
                   ),
                 ),

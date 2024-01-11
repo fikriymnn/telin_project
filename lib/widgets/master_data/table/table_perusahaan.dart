@@ -31,115 +31,123 @@ class _TablePerusahaanState extends State<TablePerusahaan> {
   }
 
   DataRow _resultsAPI(index, data) {
-    return DataRow(cells: [
-      DataCell(Text('${index + 1}',
-          style: GoogleFonts.montserrat(
-            fontSize: 14.6,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(Text('${data['company_name']}',
-          style: GoogleFonts.montserrat(
-            fontSize: 14.6,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(Text('${data['address']}',
-          style: GoogleFonts.montserrat(
-            fontSize: 14.6,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(Center(
-        child: Text('${data['city']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 14.6,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            )),
-      )),
-      DataCell(Center(
-        child: Text('${data['state']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 14.6,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            )),
-      )),
-      DataCell(Center(
-        child: Text('${data['phone']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 14.6,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            )),
-      )),
-      DataCell(Center(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => EditPerusahaan(
-                          id: data['_id'],
-                          companyName: data['company_name'],
-                          address: data['address'],
-                          city: data['city'],
-                          state: data['state'],
-                          phone: data['phone'],
-                        )));
-              },
-              child: Container(
-                width: 50,
-                height: 19.46,
-                decoration: BoxDecoration(
-                    color: green, borderRadius: BorderRadius.circular(6)),
-                child: Center(
-                    child: Text("Edit",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ))),
-              ),
+    bool id;
+    if ((index + 1) % 2 == 1) {
+      id = true;
+    } else {
+      id = false;
+    }
+    return DataRow(
+        color: MaterialStatePropertyAll(id == true ? activeTable : light),
+        cells: [
+          DataCell(Text('${index + 1}',
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: Colors.black,
+              ))),
+          DataCell(Text('${data['company_name']}',
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: Colors.black,
+              ))),
+          DataCell(Text('${data['address']}',
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: Colors.black,
+              ))),
+          DataCell(Text('${data['city']}',
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: Colors.black,
+              ))),
+          DataCell(Text('${data['state']}',
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: Colors.black,
+              ))),
+          DataCell(Text('${data['phone']}',
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: Colors.black,
+              ))),
+          DataCell(Center(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        barrierColor: Colors.black.withOpacity(0.50),
+                        builder: (BuildContext context) {
+                          return EditPerusahaan(
+                            id: data['_id'],
+                            companyName: data['company_name'],
+                            address: data['address'],
+                            city: data['city'],
+                            state: data['state'],
+                            phone: data['phone'],
+                            refresh: () => getDataPerusahaan(),
+                          );
+                        });
+                  },
+                  child: Container(
+                    width: 77,
+                    height: 29,
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: active, width: 1)),
+                    child: Center(
+                        child: Text("Edit",
+                            style: GoogleFonts.rubik(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: active,
+                            ))),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    CoolAlert.show(
+                        context: context,
+                        type: CoolAlertType.confirm,
+                        text: "Do you sure to delete this item",
+                        width: 400,
+                        confirmBtnText: "Delete",
+                        cancelBtnText: "Cancle",
+                        onConfirmBtnTap: () {
+                          hapusDataPerusahaan('${data['_id']}');
+                        });
+                  },
+                  child: Container(
+                    width: 77,
+                    height: 29,
+                    decoration: BoxDecoration(
+                        color: active, borderRadius: BorderRadius.circular(15)),
+                    child: Center(
+                        child: Text("Delete",
+                            style: GoogleFonts.rubik(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ))),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            InkWell(
-              onTap: () {
-                CoolAlert.show(
-                    context: context,
-                    type: CoolAlertType.confirm,
-                    text: "Do you sure to delete this item",
-                    width: 400,
-                    confirmBtnText: "Delete",
-                    cancelBtnText: "Cancle",
-                    onConfirmBtnTap: () {
-                      hapusDataPerusahaan('${data['_id']}');
-                      navigationController.navigateTo(CompanyPageRoute);
-                    });
-              },
-              child: Container(
-                width: 50,
-                height: 19.46,
-                decoration: BoxDecoration(
-                    color: active, borderRadius: BorderRadius.circular(6)),
-                child: Center(
-                    child: Text("Delete",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ))),
-              ),
-            ),
-          ],
-        ),
-      )),
-    ]);
+          )),
+        ]);
   }
 
   void getDataPerusahaan() async {
@@ -187,7 +195,10 @@ class _TablePerusahaanState extends State<TablePerusahaan> {
             context: context,
             type: CoolAlertType.success,
             text: "$msg",
-            width: 400);
+            width: 400,
+            onConfirmBtnTap: () {
+              getDataPerusahaan();
+            });
       } else {
         CoolAlert.show(
             context: context,
@@ -209,17 +220,13 @@ class _TablePerusahaanState extends State<TablePerusahaan> {
     return DataTable2(
         columnSpacing: 6,
         horizontalMargin: 6,
-        dataRowHeight: 40,
-        border: const TableBorder(
-            top: BorderSide(),
-            bottom: BorderSide(),
-            right: BorderSide(),
-            left: BorderSide()),
+        dataRowHeight: 52,
         columns: [
           DataColumn2(
+            fixedWidth: 77,
             label: Text(
-              'No',
-              style: GoogleFonts.montserrat(
+              'NO',
+              style: GoogleFonts.rubik(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
@@ -227,53 +234,53 @@ class _TablePerusahaanState extends State<TablePerusahaan> {
             ),
           ),
           DataColumn2(
-            label: Center(
-              child: Text('Company',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
+            label: Text(
+              'COMPANY NAME',
+              style: GoogleFonts.rubik(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
             ),
           ),
           DataColumn2(
-            label: Center(
-              child: Text('Address',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
+            label: Text(
+              'ADDRESS',
+              style: GoogleFonts.rubik(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
             ),
           ),
           DataColumn2(
-            label: Center(
-              child: Text('City',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
+            label: Text(
+              'CITY',
+              style: GoogleFonts.rubik(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
             ),
           ),
           DataColumn2(
-            label: Center(
-              child: Text('State',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
+            label: Text(
+              'STATE',
+              style: GoogleFonts.rubik(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
             ),
           ),
           DataColumn2(
-            label: Center(
-              child: Text('Phone',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
+            label: Text(
+              'PHONE',
+              style: GoogleFonts.rubik(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
             ),
           ),
           const DataColumn2(

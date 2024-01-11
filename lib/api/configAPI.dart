@@ -1,6 +1,5 @@
-const baseUrl =
-//"http://localhost:1000";
-    'https://asia-southeast2-telkominfra-f7a85.cloudfunctions.net/api';
+const baseUrl = "http://localhost:1000";
+//   'https://asia-southeast2-telkominfra-f7a85.cloudfunctions.net/api';
 
 //loading
 String newloading = '$baseUrl/api/loading/';
@@ -11,8 +10,10 @@ String getLoadingById = '$baseUrl/api/loading';
 String deleteLoading = '$baseUrl/api/loading';
 String submitLoading = '$baseUrl/api/loading/submit';
 String deleteCableFromLoading = '$baseUrl/api/loading/cable';
-String deleteSparekitFromLoading = '$baseUrl//api/loading/kit';
+String deleteSparekitFromLoading = '$baseUrl/api/loading/kit';
 String getAllTurnOverById = '$baseUrl/api/loading/turnover';
+String uploadEvidenceLoading = '$baseUrl/api/loading/evidence';
+String changeStatusLoading = '$baseUrl/api/loading/statusLoading';
 
 //off-loading
 String getAllOffLoading = '$baseUrl/api/offloading';
@@ -40,6 +41,7 @@ String addEvidenceKit = '$baseUrl/api/offloadingNewMaterial/evidence/kit';
 String downloadEvidenceCable =
     '$baseUrl/api/offloadingNewMaterial/evidence/cable';
 String downloadEvidenceKit = '$baseUrl/api/offloadingNewMaterial/evidence/kit';
+String changeStatusNewMaterial = '$baseUrl/api/offloadingNewMaterial/status';
 
 //allCable
 String getAllCable = '$baseUrl/api/spareCable/';
@@ -115,7 +117,7 @@ String editUnit = '$baseUrl/api/unit/edit';
 String getReportCable = '$baseUrl/api/report';
 String getReportSpareKits = '$baseUrl/api/report/spare_kits';
 
-String getTank1 = '$baseUrl/api/inventory/cable/TANK-1';
+String getTank1 = '$baseUrl/api/inventory/cable/TANK-01';
 String getTank2 = '$baseUrl/api/inventory/cable/TANK-2';
 String getTank3 = '$baseUrl/api/inventory/cable/TANK-3';
 String getTank4 = '$baseUrl/api/inventory/cable/TANK-4';
@@ -160,6 +162,7 @@ String getRakC5 = '$baseUrl/api/inventory/kit/RAK C5';
 String getRakC6 = '$baseUrl/api/inventory/kit/RAK C6';
 String getRakC7 = '$baseUrl/api/inventory/kit/RAK C7';
 String getRak = '$baseUrl/api/inventory/kit/RAK';
+String getListview = '$baseUrl/api/inventory/cable/TANK';
 
 String getIdUnit = '$baseUrl/api/unit/get';
 

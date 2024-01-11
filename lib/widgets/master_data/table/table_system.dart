@@ -30,92 +30,102 @@ class _TableSystemState extends State<TableSystem> {
   }
 
   DataRow _resultsAPI(index, data) {
-    return DataRow(cells: [
-      DataCell(Text('${index + 1}',
-          style: GoogleFonts.montserrat(
-            fontSize: 14.6,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(Center(
-        child: Text('${data['system']}',
-            style: GoogleFonts.montserrat(
-              fontSize: 14.6,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            )),
-      )),
-      DataCell(Center(
-        child: Text('${data['label_id'] ?? ""}',
-            style: GoogleFonts.montserrat(
-              fontSize: 14.6,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            )),
-      )),
-      DataCell(Center(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => EditSystem(
-                          id: data['_id'],
-                          systemName: data['system'],
-                          label: data['label_id'] ?? "-",
-                        )));
-              },
-              child: Container(
-                width: 50,
-                height: 19.46,
-                decoration: BoxDecoration(
-                    color: green, borderRadius: BorderRadius.circular(6)),
-                child: Center(
-                    child: Text("Edit",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ))),
-              ),
+    bool id;
+    if ((index + 1) % 2 == 1) {
+      id = true;
+    } else {
+      id = false;
+    }
+    return DataRow(
+        color: MaterialStatePropertyAll(id == true ? activeTable : light),
+        cells: [
+          DataCell(Text('${index + 1}',
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: Colors.black,
+              ))),
+          DataCell(Text('${data['system']}',
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: Colors.black,
+              ))),
+          DataCell(Text('${data['label_id'] ?? ""}',
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: Colors.black,
+              ))),
+          DataCell(Center(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        barrierColor: Colors.black.withOpacity(0.50),
+                        builder: (BuildContext context) {
+                          return EditSystem(
+                            id: data['_id'],
+                            systemName: data['system'],
+                            label: data['label_id'] ?? "-",
+                            refresh: () => getDataSystem(),
+                          );
+                        });
+                  },
+                  child: Container(
+                    width: 77,
+                    height: 29,
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: active, width: 1)),
+                    child: Center(
+                        child: Text("Edit",
+                            style: GoogleFonts.rubik(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: active,
+                            ))),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    CoolAlert.show(
+                        context: context,
+                        type: CoolAlertType.confirm,
+                        text: "Do you sure to delete this item",
+                        width: 400,
+                        confirmBtnText: "Delete",
+                        cancelBtnText: "Cancle",
+                        onConfirmBtnTap: () {
+                          hapusDataSystem('${data['_id']}');
+                        });
+                  },
+                  child: Container(
+                    width: 77,
+                    height: 29,
+                    decoration: BoxDecoration(
+                        color: active, borderRadius: BorderRadius.circular(15)),
+                    child: Center(
+                        child: Text("Delete",
+                            style: GoogleFonts.rubik(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ))),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            InkWell(
-              onTap: () {
-                CoolAlert.show(
-                    context: context,
-                    type: CoolAlertType.confirm,
-                    text: "Do you sure to delete this item",
-                    width: 400,
-                    confirmBtnText: "Delete",
-                    cancelBtnText: "Cancle",
-                    onConfirmBtnTap: () {
-                      hapusDataSystem('${data['_id']}');
-                      navigationController.navigateTo(SystemPageRoute);
-                    });
-              },
-              child: Container(
-                width: 50,
-                height: 19.46,
-                decoration: BoxDecoration(
-                    color: active, borderRadius: BorderRadius.circular(6)),
-                child: Center(
-                    child: Text("Delete",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ))),
-              ),
-            ),
-          ],
-        ),
-      )),
-    ]);
+          )),
+        ]);
   }
 
   void getDataSystem() async {
@@ -163,7 +173,10 @@ class _TableSystemState extends State<TableSystem> {
             context: context,
             type: CoolAlertType.success,
             text: "$msg",
-            width: 400);
+            width: 400,
+            onConfirmBtnTap: () {
+              getDataSystem();
+            });
       } else {
         CoolAlert.show(
             context: context,
@@ -185,17 +198,13 @@ class _TableSystemState extends State<TableSystem> {
     return DataTable2(
         columnSpacing: 6,
         horizontalMargin: 6,
-        dataRowHeight: 30,
-        border: const TableBorder(
-            top: BorderSide(),
-            bottom: BorderSide(),
-            right: BorderSide(),
-            left: BorderSide()),
+        dataRowHeight: 52,
         columns: [
           DataColumn2(
+            fixedWidth: 77,
             label: Text(
-              'No',
-              style: GoogleFonts.montserrat(
+              'NO',
+              style: GoogleFonts.rubik(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
@@ -203,24 +212,20 @@ class _TableSystemState extends State<TableSystem> {
             ),
           ),
           DataColumn2(
-            label: Center(
-              child: Text('System Name',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
-            ),
+            label: Text('SYSTEM NAME',
+                style: GoogleFonts.rubik(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                )),
           ),
           DataColumn2(
-            label: Center(
-              child: Text('System ID',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  )),
-            ),
+            label: Text('SYSTEM ID',
+                style: GoogleFonts.rubik(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                )),
           ),
           const DataColumn2(
             label: Text(''),

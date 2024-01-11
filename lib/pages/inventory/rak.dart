@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/widgets/inventory/rak/rak_a1.dart';
-import 'package:telin_project/widgets/inventory/rak/rak_a2.dart';
+import 'package:telin_project/widgets/inventory/rak/rak.dart';
 
 class RacksInventory extends StatelessWidget {
   const RacksInventory({super.key});
@@ -51,7 +50,7 @@ class RacksInventory extends StatelessWidget {
                   SizedBox(
                       height: screnSize.height,
                       width: screnSize.width,
-                      child: const TableRakA1()),
+                      child: const TableRak()),
                   // Padding(
                   //   padding: EdgeInsets.all(15.0),
                   //   child: Text(

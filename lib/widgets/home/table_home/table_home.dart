@@ -7,7 +7,6 @@ import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 import 'package:pluto_grid_export/pluto_grid_export.dart' as pluto_grid_export;
-import 'package:telin_project/widgets/order/loading/edit_loading.dart';
 
 import '../../order/existing_material.dart/detail_turnover.dart';
 
@@ -73,11 +72,11 @@ class _TableHomeState extends State<TableHome> {
         Center(
           child: InkWell(
             onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return EditLoading(idLoading: data['_id']);
-                  });
+              // showDialog(
+              //     context: context,
+              //     builder: (BuildContext context) {
+              //       return EditLoading(idLoading: data['_id']);
+              //     });
             },
             child: Container(
               width: 100,
@@ -148,6 +147,7 @@ class _TableHomeState extends State<TableHome> {
 
       setState(() {
         offLoading = response!.data;
+
         myData = List.generate(offLoading.length, (index) {
           var data = offLoading[index];
           return ProjectOverview(
@@ -261,7 +261,7 @@ class _TableHomeState extends State<TableHome> {
               sortAscending: sort,
               source: RowSource(
                 myData: myData,
-                count: myData!.length,
+                count: myData == null ? 0 : myData!.length,
                 context: context,
               ),
               rowsPerPage: 8,
@@ -278,7 +278,6 @@ class _TableHomeState extends State<TableHome> {
                       ),
                     ),
                   ),
-                  fixedWidth: 150,
                 ),
                 DataColumn2(
                   label: Center(
@@ -289,22 +288,19 @@ class _TableHomeState extends State<TableHome> {
                           color: Colors.black,
                         )),
                   ),
-                  fixedWidth: 250,
                 ),
                 DataColumn2(
-                    fixedWidth: 300,
-                    label: Center(
-                      child: Text("Project's Name",
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.roboto(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          )),
-                    ),
-                    size: ColumnSize.L),
+                  label: Center(
+                    child: Text("Project's Name",
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.roboto(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        )),
+                  ),
+                ),
                 DataColumn2(
-                  fixedWidth: 95,
                   label: Center(
                     child: Text('Loading',
                         style: GoogleFonts.roboto(
@@ -315,7 +311,6 @@ class _TableHomeState extends State<TableHome> {
                   ),
                 ),
                 DataColumn2(
-                  fixedWidth: 125,
                   label: Center(
                     child: Text('Off-Loading',
                         style: GoogleFonts.roboto(
@@ -326,11 +321,9 @@ class _TableHomeState extends State<TableHome> {
                   ),
                 ),
                 const DataColumn2(
-                  fixedWidth: 80,
                   label: Text(''),
                 ),
                 const DataColumn2(
-                  fixedWidth: 80,
                   label: Text(''),
                 ),
               ],
@@ -406,10 +399,10 @@ DataRow recentFileDataRow(var data, context) {
         Center(
           child: InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => EditLoading(idLoading: data.id)));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => EditLoading(idLoading: data.id)));
             },
             child: Container(
               width: 100,

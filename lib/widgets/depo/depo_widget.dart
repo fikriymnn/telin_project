@@ -21,95 +21,64 @@ class DepoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 329.3,
-      height: 184,
+      width: 518,
+      height: 204,
       decoration: BoxDecoration(
-          color: const Color(0xffF0F0F0),
-          borderRadius: BorderRadius.circular(30),
+          color: light,
+          borderRadius: BorderRadius.circular(9),
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withOpacity(0.25),
-                blurRadius: 25,
+                blurRadius: 9.4,
                 offset: const Offset(0, 4))
           ]),
       child: Padding(
-        padding: const EdgeInsets.all(6.6),
-        child: Column(
-          children: [
-            Container(
-              width: screenSize.width,
-              height: 124.6,
-              decoration: BoxDecoration(
-                  color: light,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, top: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.all(20),
+        child: Container(
+          width: screenSize.width,
+          height: 204,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(site,
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.rubik(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  )),
+              Text(depo,
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.rubik(
+                    fontSize: 24,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black,
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(top: 56),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(site,
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.rubik(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        )),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Text(depo,
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.rubik(
-                          fontSize: 13.3,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                        )),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 3.3,
-            ),
-            Container(
-              width: screenSize.width,
-              height: 42,
-              decoration: BoxDecoration(
-                  color: light,
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      route();
-                    },
-                    child: Container(
-                      height: 30.6,
-                      width: 92.6,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFEC1D26),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                    InkWell(
+                      onTap: () {
+                        route();
+                      },
                       child: Center(
                         child: Text(titleView,
                             textAlign: TextAlign.start,
                             style: GoogleFonts.rubik(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal,
+                              color: active,
                             )),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );

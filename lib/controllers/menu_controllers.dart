@@ -67,6 +67,8 @@ class MenuControllers extends GetxController {
         return _customIcon(FontAwesomeIcons.gear, itemName);
       case AuthenticationDisplayName:
         return _customIcon(Icons.exit_to_app, itemName);
+      case VesselDisplayName:
+        return _customIcon(FontAwesomeIcons.ship, itemName);
       default:
         return _customIcon(Icons.exit_to_app, itemName);
     }
@@ -80,6 +82,6 @@ class MenuControllers extends GetxController {
         color: active,
       );
     }
-    return FaIcon(icon, color: isHovering(itemName) ? active : dark);
+    return FaIcon(icon, color: isHovering(itemName) ? active : light);
   }
 }

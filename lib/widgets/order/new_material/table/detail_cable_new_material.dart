@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +9,14 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'dart:html' as html;
 
+import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
+
 class DetailTableCableNewMaterial extends StatefulWidget {
-  const DetailTableCableNewMaterial({super.key, required this.idNewMaterial});
+  const DetailTableCableNewMaterial(
+      {super.key, required this.idNewMaterial, required this.status});
   final String idNewMaterial;
+  final String status;
 
   @override
   State<DetailTableCableNewMaterial> createState() =>
@@ -44,7 +50,7 @@ String selectedValueArmoring = "ARMORING TYPE";
 class _DetailTableCableNewMaterialState
     extends State<DetailTableCableNewMaterial> {
   List NewMaterialByIdCable = [];
-  List NewMaterialByIdCable2 = [];
+  List NewMaterialByIdCableCart = [];
 
   String id = "";
   Response? response;
@@ -67,93 +73,127 @@ class _DetailTableCableNewMaterialState
       setState(() {
         NewMaterialByIdCable = response!.data['newMaterial'][0]
             ['submitted_new_material_cables_id_in_spare_cable'];
-        NewMaterialByIdCable2 =
+        NewMaterialByIdCableCart =
             response!.data['newMaterial'][0]['new_material_cables'];
       });
     } catch (e) {}
   }
 
-  DataRow _resultsAPI(index, data, data2) {
-    return DataRow(cells: [
-      DataCell(Text("${index + 1}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(Text('${data['label_id'] ?? "-"}',
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['system']['system'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['armoring_type']['armoring_type'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['length_report'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['core_type']['core_type'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['sigma_core'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['tank'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['tank_location'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['remark'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ))),
-      DataCell(data['evidence'] != null
-          ? TextButton(
-              onPressed: () {
-                downloadEvidenceCableNewMaterial(
-                    data2['id'], data['evidence']['originalName']);
-              },
-              child: Text("Download evidence",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.blue,
-                  )))
-          : Text("-",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w600,
+  DataRow _resultsAPI(index, data) {
+    bool id;
+    if ((index + 1) % 2 == 1) {
+      id = true;
+    } else {
+      id = false;
+    }
+    return DataRow(
+        color: MaterialStatePropertyAll(id == true ? activeTable : light),
+        cells: [
+          DataCell(Text("${index + 1}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
                 color: Colors.black,
               ))),
-    ]);
+          DataCell(Text('${data['label_id'] ?? "-"}',
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['system']['system'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['armoring_type']['armoring_type'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['length_report'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['core_type']['core_type'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['sigma_core'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['tank'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['tank_location'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['remark'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(data['evidence'] != null
+              ? TextButton(
+                  onPressed: () {
+                    downloadEvidenceCableNewMaterial(
+                        data['id'], data['evidence']['originalName']);
+                  },
+                  child: Text("Download evidence",
+                      style: GoogleFonts.rubik(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: active,
+                      )))
+              : Text("-",
+                  style: GoogleFonts.rubik(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: active,
+                  ))),
+          DataCell(widget.status == "Draft"
+              ? TextButton(
+                  onPressed: () {
+                    QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.confirm,
+                        text: "Do you sure to delete this item",
+                        width: 400,
+                        confirmBtnText: "Delete",
+                        cancelBtnText: "Cancle",
+                        onConfirmBtnTap: () {
+                          hapusDataCableNewMaterial('${data['id']}');
+                        });
+                  },
+                  child: Text("Delete",
+                      style: GoogleFonts.rubik(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: active,
+                      )))
+              : Text("",
+                  style: GoogleFonts.rubik(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: active,
+                  ))),
+        ]);
   }
 
   void downloadEvidenceCableNewMaterial(id, name) async {
@@ -162,8 +202,9 @@ class _DetailTableCableNewMaterialState
     String url = "$downloadEvidenceCable/${widget.idNewMaterial}/$id";
 
     try {
-      html.AnchorElement anchorElement = new html.AnchorElement(href: url);
-      anchorElement.download = url;
+      html.AnchorElement anchorElement =
+          await new html.AnchorElement(href: url);
+      anchorElement.download = await url;
       anchorElement.click();
     } catch (e) {
       QuickAlert.show(
@@ -181,178 +222,245 @@ class _DetailTableCableNewMaterialState
     var msg;
     try {
       response = await dio
-          .delete('$deleteCableFromLoading/${widget.idNewMaterial}/$id');
+          .delete('$deleteCableFromNewMaterial/${widget.idNewMaterial}/$id');
 
       msg = response!.data['message'];
 
       QuickAlert.show(
           context: context,
           type: QuickAlertType.success,
-          text: '$msg',
-          title: 'Peringatan',
+          text: "Delete Success",
           width: 400,
-          barrierDismissible: true,
-          confirmBtnColor: Colors.red);
+          onConfirmBtnTap: () {
+            getDataNewMaterial();
+            Navigator.pop(context, true);
+          });
     } catch (e) {
       QuickAlert.show(
           context: context,
           type: QuickAlertType.error,
-          text: 'Terjadi Kesalahan Pada Server Kami',
-          title: 'Peringatan',
-          width: 400,
-          confirmBtnColor: Colors.red);
+          text: "Kesalahan Server",
+          width: 400);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 19.3),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Text("CABLE",
-                style: GoogleFonts.montserrat(
-                  fontSize: 8.6,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                )),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("CABLE",
+                  style: GoogleFonts.rubik(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: active,
+                  )),
+              widget.status == 'Draft'
+                  ? InkWell(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            barrierColor: Colors.black.withOpacity(0.50),
+                            builder: (BuildContext context) {
+                              return AddItemNewMaterial(
+                                idNewMaterial: widget.idNewMaterial,
+                                selectSesions: true,
+                                refresh: () => getDataNewMaterial(),
+                              );
+                            });
+                      },
+                      child: Container(
+                        width: 135,
+                        height: 24,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: active),
+                        child: Center(
+                          child: Text("+ ADD CABLE",
+                              style: GoogleFonts.rubik(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                  color: light)),
+                        ),
+                      ),
+                    )
+                  : Container(),
+            ],
           ),
         ),
-        const SizedBox(
+        SizedBox(
           height: 10,
         ),
         Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 19.3, right: 150),
-            child: DataTable2(
-                columnSpacing: 6,
-                horizontalMargin: 6,
-                dataRowHeight: 30,
-                minWidth: 3000,
-                columns: [
-                  DataColumn2(
-                      label: Text(
-                        'NO',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 50),
-                  DataColumn2(
-                      label: Text(
-                        'LABLE',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        'SYSTEM',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        'ARMORING TYPE',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 120),
-                  DataColumn2(
-                      label: Text(
-                        """LENGTH
-(METER)
-              """,
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "CORE TYPE",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "\u03A3 CORE",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "TANK",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 50),
-                  DataColumn2(
-                      label: Text(
-                        "TANK LOCATION",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "REMARK",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 150),
-                  DataColumn2(
-                      label: Text(
-                        "Evidence",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                ],
-                rows: List.generate(
-                    NewMaterialByIdCable.length,
-                    (index) => _resultsAPI(
-                          index,
-                          NewMaterialByIdCable[index],
-                          NewMaterialByIdCable2[index],
-                        ))),
-          ),
+          child: DataTable2(
+              columnSpacing: 6,
+              horizontalMargin: 6,
+              dataRowHeight: 52,
+              columns: [
+                DataColumn2(
+                  fixedWidth: 50,
+                  label: Text('NO',
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Text('LABLE',
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Text('SYSTEM',
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("ARMORING",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                      Text("TYPE",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                    ],
+                  ),
+                ),
+                DataColumn2(
+                  label: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("LENGTH",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                      Text("(METER)",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                    ],
+                  ),
+                ),
+                DataColumn2(
+                  label: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("CORE",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                      Text("TYPE",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                    ],
+                  ),
+                ),
+                DataColumn2(
+                  label: Text("\u03A3 CORE",
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Text("TANK",
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("TANK",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                      Text("LOCATION",
+                          style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                    ],
+                  ),
+                ),
+                DataColumn2(
+                  label: Text("REMARK",
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Text("EVIDENCE",
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                ),
+                DataColumn2(
+                  label: Text("ACTION",
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      )),
+                )
+              ],
+              rows: widget.status != "Approve"
+                  ? List.generate(
+                      NewMaterialByIdCableCart.length,
+                      (index) => _resultsAPI(
+                            index,
+                            NewMaterialByIdCableCart[index],
+                          ))
+                  : List.generate(
+                      NewMaterialByIdCable.length,
+                      (index) => _resultsAPI(
+                            index,
+                            NewMaterialByIdCable[index],
+                          ))),
         ),
       ],
     );

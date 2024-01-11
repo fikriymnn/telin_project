@@ -7,7 +7,7 @@ import 'package:telin_project/helpers/responsive.dart';
 import 'package:telin_project/routing/routes.dart';
 import 'package:telin_project/widgets/bast_widget.dart';
 import 'package:telin_project/widgets/invoice_new.dart';
-import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_existing_print.dart';
+import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_print.dart';
 
 import '../../../../api/configAPI.dart';
 import '../../../../constants/controllers.dart';
@@ -62,116 +62,80 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 32),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/images/background_depo.png'),
-                  fit: BoxFit.fill)),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 30),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 59.3, top: 32),
-                        child: InkWell(
+    return Scaffold(
+        backgroundColor: bgGray,
+        body: SingleChildScrollView(
+            child: Stack(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 171,
+              color: Color(0xffC70D14),
+            ),
+            Padding(
+              padding: EdgeInsets.all(25),
+              child: Column(
+                children: [
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "NEW MATERIAL SUBMITTED",
+                          style: GoogleFonts.roboto(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w600,
+                            color: light,
+                          ),
+                        ),
+                        InkWell(
                             onTap: () {
-                              navigationController
-                                  .navigateTo(NewMaterialPageRoute);
+                              Navigator.pop(context);
                             },
                             child: Container(
-                              width: 107.3,
-                              height: 37.3,
+                              width: 148,
+                              height: 33,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color: const Color(0xffB8B8B8),
-                                      width: 1)),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.subdirectory_arrow_left,
+                                //border: Border.all(color: active, width: 1),
+                                color: light,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "< Back",
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
                                     color: active,
-                                    size: 28.6,
                                   ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "Back",
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 17.3,
-                                      fontWeight: FontWeight.w400,
-                                      color: active,
-                                    ),
-                                  )
-                                ],
+                                ),
                               ),
                             )),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              ResponsiveWidget(
-                largeScreen: Padding(
-                  padding: const EdgeInsets.only(top: 150),
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BastWidget(
-                          title: "BAST-Off Loading (New Material)",
-                          noBast: NewMaterialById[0]['no_bast'],
-                          projectName: NewMaterialById[0]['project_name'],
-                          onClick: () {
-                            printBastNewMaterial().BastNewMaterialPrinttt(
-                                NewMaterialByIdCable,
-                                NewMaterialByIdKits,
-                                NewMaterialById);
-                          },
-                        )
                       ],
                     ),
                   ),
-                ),
-                smallScreen: Padding(
-                  padding: const EdgeInsets.only(top: 100),
-                  child: Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BastWidget(
-                          title: "BAST-Off Loading (New Material)",
-                          noBast: "004/BAST-OFF-Loading/WEB/XII/2022",
-                          projectName:
-                              "REPAIR SKKL LTCS LINK ATAMBUA-LARANTUKA",
-                          onClick: () {
-                            printBastNewMaterial().BastNewMaterialPrinttt(
-                                NewMaterialByIdCable,
-                                NewMaterialByIdKits,
-                                NewMaterialById);
-                          },
-                        )
-                      ],
-                    ),
+                  SizedBox(
+                    height: 48,
                   ),
-                ),
+                  BastWidget(
+                    title: "BAST-Off Loading (New Material)",
+                    noBast: NewMaterialById.isEmpty
+                        ? "-"
+                        : NewMaterialById[0]['no_bast'],
+                    projectName: NewMaterialById.isEmpty
+                        ? "-"
+                        : NewMaterialById[0]['project_name'],
+                    onClick: () {
+                      printBastNewMaterial().BastNewMaterialPrinttt(
+                          NewMaterialByIdCable,
+                          NewMaterialByIdKits,
+                          NewMaterialById);
+                    },
+                  )
+                ],
               ),
-            ],
-          ),
-        ),
-      ),
-    );
+            )
+          ],
+        )));
   }
 }

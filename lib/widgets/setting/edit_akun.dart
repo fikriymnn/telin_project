@@ -148,7 +148,7 @@ class _EditAkunState extends State<EditAkun> {
               ],
             ),
           ),
-          Text("User",
+          Text("Edit User",
               style: GoogleFonts.montserrat(
                 fontSize: 33.3,
                 fontWeight: FontWeight.w600,
@@ -194,16 +194,16 @@ class _EditAkunState extends State<EditAkun> {
                       child: TextField(
                         controller: _txtName,
                         style: GoogleFonts.montserrat(
-                          fontSize: 10.6,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black.withOpacity(0.6),
+                          fontSize: 13.3,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
                         ),
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintStyle: GoogleFonts.montserrat(
                               fontSize: 13.3,
                               fontWeight: FontWeight.w400,
-                              color: Colors.black.withOpacity(0.6),
+                              color: Colors.black,
                             ),
                             hintText: "Gudang"),
                       ),
@@ -256,16 +256,16 @@ class _EditAkunState extends State<EditAkun> {
                       child: TextField(
                         controller: _txtUserName,
                         style: GoogleFonts.montserrat(
-                          fontSize: 10.6,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black.withOpacity(0.6),
+                          fontSize: 13.3,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
                         ),
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintStyle: GoogleFonts.montserrat(
                               fontSize: 13.3,
                               fontWeight: FontWeight.w400,
-                              color: Colors.black.withOpacity(0.6),
+                              color: Colors.black,
                             ),
                             hintText: "Gudang1"),
                       ),
@@ -318,16 +318,16 @@ class _EditAkunState extends State<EditAkun> {
                       child: TextField(
                         controller: _txtEmail,
                         style: GoogleFonts.montserrat(
-                          fontSize: 10.6,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black.withOpacity(0.6),
+                          fontSize: 13.3,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
                         ),
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintStyle: GoogleFonts.montserrat(
                               fontSize: 13.3,
                               fontWeight: FontWeight.w400,
-                              color: Colors.black.withOpacity(0.6),
+                              color: Colors.black,
                             ),
                             hintText: "Gudang1"),
                       ),
@@ -384,16 +384,16 @@ class _EditAkunState extends State<EditAkun> {
                               controller: _txtPassword,
                               obscureText: _obscureText,
                               style: GoogleFonts.montserrat(
-                                fontSize: 10.6,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black.withOpacity(0.6),
+                                fontSize: 13.3,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
                               ),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintStyle: GoogleFonts.montserrat(
                                     fontSize: 13.3,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black.withOpacity(0.6),
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
                                   ),
                                   hintText: "password"),
                             ),
@@ -408,7 +408,7 @@ class _EditAkunState extends State<EditAkun> {
                               _obscureText
                                   ? Icons.visibility
                                   : Icons.visibility_off,
-                              color: Colors.black.withOpacity(0.6),
+                              color: Colors.black,
                             ),
                           )
                         ],
@@ -461,7 +461,7 @@ class _EditAkunState extends State<EditAkun> {
                                       fontWeight: FontWeight.w400,
                                       color: _isSelected1
                                           ? const Color(0xffEC1D26)
-                                          : Colors.black.withOpacity(0.6),
+                                          : Colors.black,
                                     ),
                                   ),
                                   value: "super-admin",
@@ -500,7 +500,7 @@ class _EditAkunState extends State<EditAkun> {
                                         fontWeight: FontWeight.w400,
                                         color: _isSelected2
                                             ? const Color(0xffEC1D26)
-                                            : Colors.black.withOpacity(0.6),
+                                            : Colors.black,
                                       ),
                                     ),
                                     value: "admin",
@@ -540,7 +540,7 @@ class _EditAkunState extends State<EditAkun> {
                                         fontWeight: FontWeight.w400,
                                         color: _isSelected3
                                             ? const Color(0xffEC1D26)
-                                            : Colors.black.withOpacity(0.6),
+                                            : Colors.black,
                                       ),
                                     ),
                                     value: "user",
@@ -590,7 +590,7 @@ class _EditAkunState extends State<EditAkun> {
                                             fontWeight: FontWeight.w400,
                                             color: _isSelected1
                                                 ? const Color(0xffEC1D26)
-                                                : Colors.black.withOpacity(0.6),
+                                                : Colors.black,
                                           ),
                                         ),
                                         value: "super-admin",
@@ -630,8 +630,7 @@ class _EditAkunState extends State<EditAkun> {
                                               fontWeight: FontWeight.w400,
                                               color: _isSelected2
                                                   ? const Color(0xffEC1D26)
-                                                  : Colors.black
-                                                      .withOpacity(0.6),
+                                                  : Colors.black,
                                             ),
                                           ),
                                           value: "admin",
@@ -672,8 +671,7 @@ class _EditAkunState extends State<EditAkun> {
                                               fontWeight: FontWeight.w400,
                                               color: _isSelected3
                                                   ? const Color(0xffEC1D26)
-                                                  : Colors.black
-                                                      .withOpacity(0.6),
+                                                  : Colors.black,
                                             ),
                                           ),
                                           value: "user",

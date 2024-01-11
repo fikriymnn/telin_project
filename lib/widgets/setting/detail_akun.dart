@@ -64,7 +64,8 @@ class _DetailAkunState extends State<DetailAkun> {
                     height: 44,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                        border: Border.all(
+                            width: 5, color: const Color(0xffF0F0F0)),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
@@ -73,13 +74,13 @@ class _DetailAkunState extends State<DetailAkun> {
                               offset: const Offset(0, 4))
                         ]),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 18, bottom: 8),
+                      padding: const EdgeInsets.only(left: 10, top: 12),
                       child: Text(
                         widget.name,
                         style: GoogleFonts.montserrat(
-                          fontSize: 10.6,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black.withOpacity(0.6),
+                          fontSize: 13.3,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -115,7 +116,8 @@ class _DetailAkunState extends State<DetailAkun> {
                     height: 44,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
+                        border: Border.all(
+                            width: 5, color: const Color(0xffF0F0F0)),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
@@ -124,13 +126,13 @@ class _DetailAkunState extends State<DetailAkun> {
                               offset: const Offset(0, 4))
                         ]),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 18, bottom: 8),
+                      padding: const EdgeInsets.only(left: 10, top: 12),
                       child: Text(
                         widget.username,
                         style: GoogleFonts.montserrat(
-                          fontSize: 10.6,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black.withOpacity(0.6),
+                          fontSize: 13.3,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -146,46 +148,6 @@ class _DetailAkunState extends State<DetailAkun> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Password",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 298.6,
-                    height: 44,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        border: Border.all(width: 5, color: const Color(0xffF0F0F0)),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black.withOpacity(0.25),
-                              blurRadius: 5,
-                              offset: const Offset(0, 4))
-                        ]),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 18, bottom: 8),
-                      child: Text(
-                        widget.password,
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10.6,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black.withOpacity(0.6),
-                        ),
-                      ),
-                    ),
-                  ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -197,7 +159,7 @@ class _DetailAkunState extends State<DetailAkun> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Select Role",
+                                "Role",
                                 style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w400,
@@ -263,7 +225,9 @@ class _DetailAkunState extends State<DetailAkun> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
                           child: Container(
                             width: 90,
                             height: 37.3,

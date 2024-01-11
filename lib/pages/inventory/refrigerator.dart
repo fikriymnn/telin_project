@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telin_project/widgets/inventory/refregerator/refregerator.dart';
+import 'package:telin_project/widgets/inventory/refregerator/refrigerator.dart';
 
 class RefregeratorInventory extends StatelessWidget {
   const RefregeratorInventory({super.key});
@@ -50,7 +50,7 @@ class RefregeratorInventory extends StatelessWidget {
                   SizedBox(
                       height: screnSize.height,
                       width: screnSize.width,
-                      child: const TableRefregerator()),
+                      child: const TableRefrigerator()),
                 ],
               ),
             ),

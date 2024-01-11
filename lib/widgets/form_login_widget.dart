@@ -122,32 +122,34 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 122),
+    return SingleChildScrollView(
       child: Form(
         key: _captchaFormKey,
         child: Column(
           children: [
             Container(
-              alignment: Alignment.centerLeft,
-              margin: const EdgeInsets.only(right: 420),
+              width: 430,
+              alignment: Alignment.topLeft,
               child: Text('Login',
                   textAlign: TextAlign.left,
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 26,
+                  style: GoogleFonts.rubik(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 36,
                   )),
             ),
             const SizedBox(
               height: 15,
             ),
             Container(
-              width: 386,
+              width: 430,
               height: 50,
-              margin: const EdgeInsets.only(right: 100),
               child: TextFormField(
                 controller: userInput,
-                style: GoogleFonts.roboto(),
+                style: GoogleFonts.rubik(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black),
+                cursorColor: Colors.blue,
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   prefixIcon: Container(
@@ -157,17 +159,18 @@ class _LoginFormState extends State<LoginForm> {
                     child:
                         Image.asset('assets/images/clarity_id-badge-line.png'),
                   ),
-                  fillColor: const Color(0xffF1F0F5),
+                  fillColor: Colors.white,
                   filled: true,
+                  hintStyle: GoogleFonts.rubik(
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black.withOpacity(0.38)),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide:
-                        BorderSide(color: Colors.black.withOpacity(0.5)),
-                  ),
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide.none),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide:
-                        BorderSide(color: Colors.black.withOpacity(0.5)),
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.blue.withOpacity(0.5)),
                   ),
                   labelText: 'Username',
                 ),
@@ -177,14 +180,17 @@ class _LoginFormState extends State<LoginForm> {
               height: 15,
             ),
             Container(
-              width: 386,
+              width: 430,
               height: 50,
-              margin: const EdgeInsets.only(right: 100),
               child: TextFormField(
                 obscureText: _obscureText,
                 controller: passInput,
                 textInputAction: TextInputAction.next,
-                style: GoogleFonts.roboto(),
+                style: GoogleFonts.rubik(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black),
+                cursorColor: Colors.blue,
                 decoration: InputDecoration(
                   prefixIcon: Container(
                     margin: const EdgeInsets.only(left: 16, right: 15),
@@ -203,17 +209,18 @@ class _LoginFormState extends State<LoginForm> {
                       });
                     },
                   ),
-                  fillColor: const Color(0xffF1F0F5),
+                  fillColor: Colors.white,
                   filled: true,
+                  hintStyle: GoogleFonts.rubik(
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black.withOpacity(0.38)),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide:
-                        BorderSide(color: Colors.black.withOpacity(0.5)),
-                  ),
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide.none),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide:
-                        BorderSide(color: Colors.black.withOpacity(0.5)),
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.blue.withOpacity(0.5)),
                   ),
                   labelText: 'Password',
                 ),
@@ -223,22 +230,22 @@ class _LoginFormState extends State<LoginForm> {
               height: 15,
             ),
             Container(
+              width: 430,
+              height: 50,
               alignment: Alignment.centerLeft,
-              margin: const EdgeInsets.only(right: 420),
               child: Text('Captcha',
                   textAlign: TextAlign.left,
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15,
+                  style: GoogleFonts.rubik(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 18,
                   )),
             ),
             const SizedBox(
               height: 6,
             ),
             Container(
-              margin: const EdgeInsets.only(right: 100),
-              height: 150,
-              width: 386,
+              height: 170,
+              width: 426,
               child: LocalCaptcha(
                 key: ValueKey(_configFormData.toString()),
                 controller: _localCaptchaController,
@@ -258,11 +265,9 @@ class _LoginFormState extends State<LoginForm> {
               height: 15,
             ),
             Container(
-              width: 386,
+              width: 430,
               height: 50,
-              margin: const EdgeInsets.only(right: 100),
               child: TextFormField(
-                style: GoogleFonts.roboto(),
                 textInputAction: TextInputAction.done,
                 onFieldSubmitted: (value) {
                   if (userInput.text == '') {
@@ -289,20 +294,28 @@ class _LoginFormState extends State<LoginForm> {
                     }
                   }
                 },
+                cursorColor: Colors.blue,
+                style: GoogleFonts.rubik(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black),
                 decoration: InputDecoration(
-                    fillColor: const Color(0xffF1F0F5),
-                    filled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide:
-                          BorderSide(color: Colors.black.withOpacity(0.5)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide:
-                          BorderSide(color: Colors.black.withOpacity(0.5)),
-                    ),
-                    hintText: "Enter Captcha"),
+                  fillColor: Colors.white,
+                  filled: true,
+                  hintStyle: GoogleFonts.rubik(
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black.withOpacity(0.38)),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.blue.withOpacity(0.5)),
+                  ),
+                  hintText: "Enter Captcha",
+                  labelText: "Captcha",
+                ),
                 validator: (value) {
                   if (value != null && value.isNotEmpty) {
                     if (value.length != _configFormData.length) {
@@ -329,9 +342,8 @@ class _LoginFormState extends State<LoginForm> {
             ),
             const SizedBox(height: 16.0),
             Container(
-              width: 386,
+              width: 430,
               height: 50,
-              margin: const EdgeInsets.only(right: 100),
               child: ElevatedButton(
                 onPressed: () {
                   _localCaptchaController.refresh();
@@ -344,19 +356,18 @@ class _LoginFormState extends State<LoginForm> {
                   fixedSize: const Size(215, 50),
                 ),
                 child: Text('Refresh Captcha',
-                    style: GoogleFonts.roboto(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                    )),
+                    style: GoogleFonts.rubik(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white)),
               ),
             ),
             const SizedBox(
               height: 12,
             ),
             Container(
-              width: 386,
+              width: 430,
               height: 50,
-              margin: const EdgeInsets.only(right: 100),
               child: ElevatedButton(
                 onPressed: () {
                   if (userInput.text == '') {
@@ -391,10 +402,10 @@ class _LoginFormState extends State<LoginForm> {
                   fixedSize: const Size(215, 50),
                 ),
                 child: Text('Login',
-                    style: GoogleFonts.roboto(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                    )),
+                    style: GoogleFonts.rubik(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white)),
               ),
             )
           ],

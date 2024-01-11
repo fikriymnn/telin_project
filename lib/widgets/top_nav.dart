@@ -12,8 +12,8 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
               children: [
                 Container(
                   padding: const EdgeInsets.only(left: 14),
-                  width: 120,
-                  child: Image.asset("assets/images/logo_telin_top_nav.png"),
+                  width: 144,
+                  child: Image.asset("assets/images/logo_telin_white.png"),
                 )
               ],
             )
@@ -24,8 +24,8 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
               icon: const Icon(Icons.menu),
               color: active,
             ),
-      leadingWidth: 120,
-      backgroundColor: light,
+      leadingWidth: 144,
+      backgroundColor: active,
       elevation: 0,
       title: !ResponsiveWidget.isSmallScreen(context)
           ? Padding(
@@ -37,10 +37,18 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                     children: [
                       Visibility(
                         child: CustomText(
+                          text: "Makassar Site",
+                          color: light,
+                          size: 19,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Visibility(
+                        child: CustomText(
                           text: "DEPO 104 - PELINDO IV MAKASSAR",
-                          color: dark,
-                          size: 13,
-                          fontWeight: FontWeight.bold,
+                          color: light,
+                          size: 14,
+                          fontWeight: FontWeight.normal,
                         ),
                       ),
                     ],

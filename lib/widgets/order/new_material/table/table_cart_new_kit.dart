@@ -83,7 +83,7 @@ class _TableNonCableNewCartState extends State<TableNonCableNewCart> {
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['rak_number'] ?? "-"}",
+      DataCell(Text("${data['rak_number']['location'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w600,
@@ -125,7 +125,7 @@ class _TableNonCableNewCartState extends State<TableNonCableNewCart> {
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ))),
-      DataCell(Text("${data['unit'] ?? "-"}",
+      DataCell(Text("${data['unit']['unit'] ?? "-"}",
           style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w600,
