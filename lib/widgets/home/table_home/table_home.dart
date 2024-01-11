@@ -7,7 +7,6 @@ import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 import 'package:pluto_grid_export/pluto_grid_export.dart' as pluto_grid_export;
-import 'package:telin_project/widgets/order/loading/edit_loading.dart';
 
 import '../../order/existing_material.dart/detail_turnover.dart';
 
@@ -73,11 +72,11 @@ class _TableHomeState extends State<TableHome> {
         Center(
           child: InkWell(
             onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return EditLoading(idLoading: data['_id']);
-                  });
+              // showDialog(
+              //     context: context,
+              //     builder: (BuildContext context) {
+              //       return EditLoading(idLoading: data['_id']);
+              //     });
             },
             child: Container(
               width: 100,
@@ -400,10 +399,10 @@ DataRow recentFileDataRow(var data, context) {
         Center(
           child: InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => EditLoading(idLoading: data.id)));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => EditLoading(idLoading: data.id)));
             },
             child: Container(
               width: 100,

@@ -8,8 +8,8 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/bats_loading.dart';
-import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
-import 'package:telin_project/widgets/order/loading/edit_loading.dart';
+
+import 'package:telin_project/widgets/order/loading/detail_loading.dart';
 
 import '../../../../api/configAPI.dart';
 import '../../../../routing/routes.dart';
@@ -319,7 +319,7 @@ DataRow recentFileDataRow(var data, context, index) {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => EditLoading(
+                    builder: (context) => DetailLoading(
                       idLoading: data.id,
                     ),
                   ));
@@ -357,7 +357,7 @@ DataRow recentFileDataRow(var data, context, index) {
 
                     var dio = Dio();
                     try {
-                      response = await dio.delete('$deleteLoading/$id');
+                      response = await dio.delete('$deleteLoading/${data.id}');
 
                       msg = response!.data['message'];
 

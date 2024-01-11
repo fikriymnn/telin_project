@@ -10,8 +10,6 @@ import 'package:telin_project/widgets/custom_dropdown.dart';
 import 'package:telin_project/widgets/custom_text_field.dart';
 import 'package:telin_project/widgets/order/loading/detail_loading.dart';
 
-import '../cable_&_kit.dart';
-
 class FormLoading extends StatefulWidget {
   const FormLoading({
     super.key,

@@ -10,9 +10,10 @@ String getLoadingById = '$baseUrl/api/loading';
 String deleteLoading = '$baseUrl/api/loading';
 String submitLoading = '$baseUrl/api/loading/submit';
 String deleteCableFromLoading = '$baseUrl/api/loading/cable';
-String deleteSparekitFromLoading = '$baseUrl//api/loading/kit';
+String deleteSparekitFromLoading = '$baseUrl/api/loading/kit';
 String getAllTurnOverById = '$baseUrl/api/loading/turnover';
 String uploadEvidenceLoading = '$baseUrl/api/loading/evidence';
+String changeStatusLoading = '$baseUrl/api/loading/statusLoading';
 
 //off-loading
 String getAllOffLoading = '$baseUrl/api/offloading';

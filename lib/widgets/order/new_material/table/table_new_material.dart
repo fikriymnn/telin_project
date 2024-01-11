@@ -7,8 +7,7 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
 import 'package:telin_project/widgets/order/loading/bats_loading.dart';
-import 'package:telin_project/widgets/order/loading/cable_&_kit.dart';
-import 'package:telin_project/widgets/order/loading/edit_loading.dart';
+
 import 'package:telin_project/widgets/order/new_material/add_new_material.dart';
 import 'package:telin_project/widgets/order/new_material/detail_new_material.dart';
 import 'package:intl/intl.dart';

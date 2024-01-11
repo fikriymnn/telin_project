@@ -21,7 +21,7 @@ import 'package:telin_project/widgets/report/report_table_noncable.dart';
 import '../pages/inventory/inventory.dart';
 import '../pages/master_data/kurs.dart';
 import '../pages/master_data/master_data.dart';
-import '../pages/order/order.dart';
+
 import '../pages/report/report.dart';
 import '../pages/settings/settings.dart';
 
@@ -53,8 +53,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //   return _getPageRoute(EditUnit());
     case CompanyPageRoute:
       return _getPageRoute(const PerusahaanScreens());
-    case OrderPageRoute:
-      return _getPageRoute(const OrderViewPage());
+
     case LoadingPageRoute:
       return _getPageRoute(const LoadingScreens());
     case NewMaterialPageRoute:

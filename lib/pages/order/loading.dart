@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 
-import 'package:telin_project/widgets/order/loading/new_order_loading.dart';
-import 'package:telin_project/widgets/order/loading/table/table_cable_loading.dart';
 import 'package:telin_project/widgets/order/loading/table/table_loading.dart';
-import 'package:telin_project/widgets/order/loading/table/table_non_cable_loading.dart';
 
 import '../../widgets/order/loading/form/loading_form.dart';
 

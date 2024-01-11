@@ -9,7 +9,6 @@ import 'package:telin_project/constants/style.dart';
 
 import 'package:telin_project/widgets/order/existing_material.dart/detail_turnover.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/lakukan_off_loading.dart';
-import 'package:telin_project/widgets/order/loading/edit_loading.dart';
 
 class TableExistingMaterial extends StatefulWidget {
   const TableExistingMaterial({super.key});
@@ -71,12 +70,12 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
       DataCell(
         InkWell(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => EditLoading(
-                          idLoading: data['_id'],
-                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => EditLoading(
+            //               idLoading: data['_id'],
+            //             )));
           },
           child: Text('Detail Loading',
               style: GoogleFonts.montserrat(
@@ -352,12 +351,12 @@ DataRow recentFileDataRow(
       DataCell(
         InkWell(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => EditLoading(
-                          idLoading: data.id,
-                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => EditLoading(
+            //               idLoading: data.id,
+            //             )));
           },
           child: Container(
             decoration: BoxDecoration(

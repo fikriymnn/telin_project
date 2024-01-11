@@ -81,7 +81,7 @@ class _BastNewMaterialState extends State<BastNewMaterial> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "LOADING SUBMITTED",
+                          "NEW MATERIAL SUBMITTED",
                           style: GoogleFonts.roboto(
                             fontSize: 28,
                             fontWeight: FontWeight.w600,
