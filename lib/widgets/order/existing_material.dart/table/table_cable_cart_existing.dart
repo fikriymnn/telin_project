@@ -9,36 +9,15 @@ import 'package:telin_project/api/configAPI.dart';
 import '../../../../constants/style.dart';
 
 class TableCableCartExisting extends StatefulWidget {
-  const TableCableCartExisting({super.key, required this.idLoading});
+  const TableCableCartExisting({
+    super.key,
+    required this.idLoading,
+  });
   final String idLoading;
 
   @override
   State<TableCableCartExisting> createState() => _TableCableCartExistingState();
 }
-
-List<DropdownMenuItem<String>> get dropdownItemsSystem {
-  List<DropdownMenuItem<String>> menuItems = [
-    const DropdownMenuItem(value: "SYSTEM", child: Text("SYSTEM")),
-    const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-    const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-    const DropdownMenuItem(value: "England", child: Text("England")),
-  ];
-  return menuItems;
-}
-
-List<DropdownMenuItem<String>> get dropdownItemsArmoring {
-  List<DropdownMenuItem<String>> menuItemsArmoring = [
-    const DropdownMenuItem(
-        value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
-    const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-    const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-    const DropdownMenuItem(value: "England", child: Text("England")),
-  ];
-  return menuItemsArmoring;
-}
-
-String selectedValueSystem = "SYSTEM";
-String selectedValueArmoring = "ARMORING TYPE";
 
 class _TableCableCartExistingState extends State<TableCableCartExisting> {
   List LoadingByIdCable = [];
@@ -159,18 +138,7 @@ class _TableCableCartExistingState extends State<TableCableCartExisting> {
             color: Colors.black,
           ))),
       DataCell(TextButton(
-          onPressed: () {
-            CoolAlert.show(
-                context: context,
-                type: CoolAlertType.confirm,
-                text: "Do you sure to delete this item",
-                width: 400,
-                confirmBtnText: "Delete",
-                cancelBtnText: "Cancle",
-                onConfirmBtnTap: () {
-                  hapusDataCableExisting('${data['id']}');
-                });
-          },
+          onPressed: () {},
           child: Text("Delete",
               style: GoogleFonts.montserrat(
                 fontSize: 12,
@@ -178,6 +146,105 @@ class _TableCableCartExistingState extends State<TableCableCartExisting> {
                 color: active,
               ))))
     ]);
+  }
+
+  DataRow _resultsAPIChart(index, data) {
+    bool id;
+    if ((index + 1) % 2 == 1) {
+      id = true;
+    } else {
+      id = false;
+    }
+    return DataRow(
+        color: MaterialStatePropertyAll(id == true ? activeTable : light),
+        cells: [
+          DataCell(Text("${index + 1}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text('${data['label_id'] ?? "-"}',
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['system']['system'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['armoring_type']['armoring_type'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['length_returned'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['core_type']['core_type'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['sigma_core'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['tank'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['tank_location'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['tank_level'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+
+          // DataCell(Text("${data['remark'] ?? "-"}",
+          //     style: GoogleFonts.rubik(
+          //       fontSize: 14,
+          //       fontWeight: FontWeight.w400,
+          //       color: Colors.black,
+          //     ))),
+          DataCell(TextButton(
+              onPressed: () {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.confirm,
+                    text: "Do you sure to delete this item",
+                    width: 400,
+                    confirmBtnText: "Delete",
+                    cancelBtnText: "Cancle",
+                    onConfirmBtnTap: () {
+                      hapusDataCableExisting('${data['id']}');
+                    });
+              },
+              child: Text("Delete",
+                  style: GoogleFonts.rubik(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: active,
+                  )))),
+        ]);
   }
 
   void hapusDataCableExisting(id) async {
@@ -190,14 +257,17 @@ class _TableCableCartExistingState extends State<TableCableCartExisting> {
 
       msg = response!.data['message'];
 
+      // ignore: use_build_context_synchronously
       QuickAlert.show(
           context: context,
           type: QuickAlertType.success,
           text: '$msg',
-          title: 'Peringatan',
+          title: 'Success',
           width: 400,
           barrierDismissible: true,
-          confirmBtnColor: Colors.red);
+          confirmBtnColor: Colors.green);
+
+      getDataLoading();
     } catch (e) {
       QuickAlert.show(
           context: context,
@@ -211,184 +281,197 @@ class _TableCableCartExistingState extends State<TableCableCartExisting> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 19.3),
-          child: SizedBox(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
             width: MediaQuery.of(context).size.width,
             child: Text("CABLE",
-                style: GoogleFonts.montserrat(
-                  fontSize: 8.6,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                style: GoogleFonts.rubik(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: active,
                 )),
           ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 19.3, right: 150),
+          SizedBox(
+            height: 10,
+          ),
+          Expanded(
             child: DataTable2(
                 columnSpacing: 6,
                 horizontalMargin: 6,
-                dataRowHeight: 30,
-                minWidth: 3000,
+                dataRowHeight: 52,
                 columns: [
                   DataColumn2(
-                      label: Text(
-                        'NO',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    fixedWidth: 50,
+                    label: Text('NO',
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 50),
+                        )),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        'LABLE',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    label: Text('LABLE',
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                        )),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        'SYSTEM',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    label: Text('SYSTEM',
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                        )),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        'ARMORING TYPE',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 120),
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("ARMORING",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                        Text("TYPE",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                      ],
+                    ),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        """LENGTH EXISTING
-(METER)
-              """,
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("LENGTH",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                        Text("(METER)",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                      ],
+                    ),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "CORE TYPE",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("CORE",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                        Text("TYPE",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                      ],
+                    ),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "\u03A3 CORE",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    label: Text("\u03A3 CORE",
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                        )),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "TANK",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    label: Text("TANK",
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 50),
+                        )),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "TANK LOCATION",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("TANK",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                        Text("LOCATION",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                      ],
+                    ),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "TANK LEVEL",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("TANK",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                        Text("LEVEL",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                      ],
+                    ),
+                  ),
+
+                  // DataColumn2(
+                  //   label: Text("REMARK",
+                  //       style: GoogleFonts.rubik(
+                  //         fontSize: 16,
+                  //         fontWeight: FontWeight.w600,
+                  //         color: Colors.black,
+                  //       )),
+                  // ),
                   DataColumn2(
-                      label: Text(
-                        "UNIT PRICE(IDR)",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    label: Text("ACTION",
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "UNIT PRICE(USD)",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "REMARK",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 150),
-                  DataColumn2(
-                      label: Text(
-                        "ACTION",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                        )),
+                  )
                 ],
                 rows: List.generate(
                     LoadingByIdCable.length,
-                    (index) => _resultsAPI(
+                    (index) => _resultsAPIChart(
                           index,
                           LoadingByIdCable[index],
                         ))),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -4,15 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
-import 'package:telin_project/constants/controllers.dart';
 import 'package:telin_project/constants/style.dart';
-
-import 'package:telin_project/helpers/responsive.dart';
-import 'package:telin_project/routing/routes.dart';
 import 'package:telin_project/widgets/bast_widget.dart';
-import 'package:telin_project/widgets/invoice_new.dart';
+import 'package:telin_project/widgets/invoice_widget.dart';
 import 'package:telin_project/widgets/order/loading/bast/bast_print.dart';
-import 'package:telin_project/widgets/order/loading/bast/invoice.dart';
+import 'package:telin_project/widgets/order/loading/bast/invoice_print.dart';
 
 class BastLoading extends StatefulWidget {
   const BastLoading({super.key, required this.idLoading});
@@ -123,10 +119,17 @@ class _BastLoadingState extends State<BastLoading> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        InvoiceLoading(
-                            dataLoading: LoadingById,
-                            dataLoadingCable: LoadingByIdCable,
-                            dataLoadingKit: LoadingByIdKits),
+                        InvoiceWidget(
+                          title: "Invoice Packing List",
+                          noInvoice:
+                              "${LoadingById.isEmpty ? "-" : LoadingById[0]['no_invoice'] ?? "-"}",
+                          projectName:
+                              "${LoadingById.isEmpty ? "-" : LoadingById[0]['project_name'] ?? "-"}",
+                          onClick: () {
+                            printInvoiceLoading().InvoiceLoadingPrinttt(
+                                LoadingById, LoadingByIdCable, LoadingByIdKits);
+                          },
+                        ),
                         BastWidget(
                           title: "BAST-Loading",
                           noBast:

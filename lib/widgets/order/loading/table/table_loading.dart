@@ -321,6 +321,7 @@ DataRow recentFileDataRow(var data, context, index) {
                   MaterialPageRoute(
                     builder: (context) => DetailLoading(
                       idLoading: data.id,
+                      isLoading: true,
                     ),
                   ));
             },

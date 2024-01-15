@@ -1335,6 +1335,7 @@ class _FormLoadingState extends State<FormLoading> {
             MaterialPageRoute(
                 builder: (context) => DetailLoading(
                       idLoading: id,
+                      isLoading: true,
                     )
                 //CableDanKitLoading(id: id)
                 ));

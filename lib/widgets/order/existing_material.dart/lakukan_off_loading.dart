@@ -7,8 +7,7 @@ import 'package:telin_project/constants/style.dart';
 
 import 'package:telin_project/widgets/order/existing_material.dart/cart_existing.dart';
 import 'package:telin_project/widgets/order/existing_material.dart/print_bast/bast_existing.dart';
-import 'package:telin_project/widgets/order/existing_material.dart/table/table_cable_off_loading.dart';
-import 'package:telin_project/widgets/order/existing_material.dart/table/table_non_cable_off_loading.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/table/detail_table_cable_off_loading.dart';
 
 class LakukanOffLoading extends StatefulWidget {
   const LakukanOffLoading({super.key, required this.idOffLoading});
@@ -261,10 +260,10 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
                 height: 400,
                 child: Column(
                   children: [
-                    Flexible(
-                        child: TableCableOffLoading(
-                      idOffLoading: widget.idOffLoading,
-                    )),
+                    // Flexible(
+                    //     child: TableCableOffLoading(
+                    //   idOffLoading: widget.idOffLoading,
+                    // )),
                   ],
                 )),
             const SizedBox(
@@ -274,10 +273,10 @@ class _LakukanOffLoadingState extends State<LakukanOffLoading> {
               height: 250,
               child: Column(
                 children: [
-                  Expanded(
-                      child: TableNonCableOffLoading(
-                    idOffLoading: widget.idOffLoading,
-                  )),
+                  // Expanded(
+                  //     child: TableNonCableOffLoading(
+                  //   idOffLoading: widget.idOffLoading,
+                  // )),
                 ],
               ),
             ),

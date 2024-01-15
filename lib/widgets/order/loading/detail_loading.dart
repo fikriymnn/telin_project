@@ -21,8 +21,10 @@ class DetailLoading extends StatefulWidget {
   const DetailLoading({
     super.key,
     required this.idLoading,
+    required this.isLoading,
   });
   final String idLoading;
+  final bool isLoading;
 
   @override
   State<DetailLoading> createState() => _DetailLoadingState();
@@ -90,8 +92,10 @@ class _DetailLoadingState extends State<DetailLoading> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  DetailLoading(idLoading: widget.idLoading)));
+              builder: (context) => DetailLoading(
+                    idLoading: widget.idLoading,
+                    isLoading: true,
+                  )));
     } catch (e) {
       QuickAlert.show(
           context: context,
@@ -123,8 +127,10 @@ class _DetailLoadingState extends State<DetailLoading> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  DetailLoading(idLoading: widget.idLoading)));
+              builder: (context) => DetailLoading(
+                    idLoading: widget.idLoading,
+                    isLoading: true,
+                  )));
     } catch (e) {
       QuickAlert.show(
           context: context,
@@ -139,7 +145,7 @@ class _DetailLoadingState extends State<DetailLoading> {
   @override
   Widget build(BuildContext context) {
     String status =
-        LoadingById == null ? "requested" : LoadingById[0]['status_loading'];
+        LoadingById == null ? "Requested" : LoadingById[0]['status_loading'];
     return Scaffold(
       backgroundColor: bgGray,
       body: SingleChildScrollView(
@@ -202,7 +208,7 @@ class _DetailLoadingState extends State<DetailLoading> {
                                               text: "Do you sure to Submit?",
                                               width: 400,
                                               confirmBtnText: "Submit",
-                                              cancelBtnText: "Cancle",
+                                              cancelBtnText: "Cancel",
                                               onConfirmBtnTap: () {
                                                 submitDataLoading(
                                                     widget.idLoading);
@@ -259,8 +265,10 @@ class _DetailLoadingState extends State<DetailLoading> {
                             ),
                             InkWell(
                                 onTap: () {
-                                  navigationController
-                                      .navigateTo(LoadingPageRoute);
+                                  navigationController.navigateTo(
+                                      widget.isLoading
+                                          ? LoadingPageRoute
+                                          : ExistingMaterialPageRoute);
                                 },
                                 child: Container(
                                   width: 148,

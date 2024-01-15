@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
-import 'package:telin_project/widgets/order/loading/bast/table_invoice.dart';
 
 class printInvoiceExisting {
   Future<void> InvoiceExistingPrinttt(

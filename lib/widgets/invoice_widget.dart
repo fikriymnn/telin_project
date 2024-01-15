@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telin_project/constants/style.dart';
 
-class BastWidget extends StatelessWidget {
-  final String title, projectName, noBast;
+class InvoiceWidget extends StatelessWidget {
+  final String title, projectName, noInvoice;
   final Function onClick;
-  const BastWidget(
+  const InvoiceWidget(
       {super.key,
       required this.title,
       required this.projectName,
       required this.onClick,
-      required this.noBast});
+      required this.noInvoice});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class BastWidget extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Text(noBast,
+            Text(noInvoice,
                 textAlign: TextAlign.start,
                 style: GoogleFonts.rubik(
                   fontSize: 16,
@@ -75,7 +75,7 @@ class BastWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Center(
-                  child: Text('PRINT BAST',
+                  child: Text('PRINT INVOICE',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.rubik(
                         fontSize: 16,

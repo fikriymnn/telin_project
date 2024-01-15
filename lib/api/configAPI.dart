@@ -23,6 +23,10 @@ String offLoadingExistingKit = '$baseUrl/api/offloading/addKitExisting';
 String deleteKitFromExisting = '$baseUrl/api/offloading/removeKitExisting';
 String deleteCableFromExisting = '$baseUrl/api/offloading/removeCableExisting';
 String submiOffLoadingExisting = '$baseUrl/api/offloading/submitExisting';
+String changeStatusOffLoadingExistingDraft =
+    '$baseUrl/api/offloading/statusExistingDraft';
+String changeStatusOffLoadingExisting =
+    '$baseUrl/api/offloading/statusExisting';
 
 //new material
 String newMaterial = '$baseUrl/api/offloadingNewMaterial/create';

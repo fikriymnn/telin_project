@@ -62,7 +62,7 @@ class _LoadingScreensState extends State<LoadingScreens> {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Text("NEW MATERIAL",
+                                  Text("ADD LOADING",
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
@@ -98,71 +98,5 @@ class _LoadingScreensState extends State<LoadingScreens> {
         ),
       ),
     );
-
-    // Scaffold(
-    //   body: Column(
-    //     children: [
-    //       const SizedBox(
-    //         height: 30,
-    //       ),
-    //       SizedBox(
-    //         width: MediaQuery.of(context).size.width,
-    //         child: Column(
-    //           children: [
-    //             InkWell(
-    //               onTap: () {
-    //                 Navigator.push(
-    //                     context,
-    //                     MaterialPageRoute(
-    //                         builder: (context) => //TableNonCableLoading()
-    //                             //TableCableLoading(loadingId: "loadingId")
-    //                             FormLoading()));
-    //               },
-    //               child: Container(
-    //                 width: 200,
-    //                 height: 50.6,
-    //                 decoration: BoxDecoration(
-    //                     border: Border.all(
-    //                         color: const Color(0xffA5C176), width: 3.3),
-    //                     borderRadius: BorderRadius.circular(4),
-    //                     color: const Color(0xffB1CC85)),
-    //                 child: Padding(
-    //                   padding: const EdgeInsets.only(left: 14.6),
-    //                   child: Center(
-    //                     child: Row(
-    //                       children: [
-    //                         const CircleAvatar(
-    //                           radius: 15,
-    //                           backgroundColor: Colors.white,
-    //                           child: Icon(
-    //                             Icons.add,
-    //                             color: Color(0xffB1CC85),
-    //                             size: 20,
-    //                           ),
-    //                         ),
-    //                         const SizedBox(
-    //                           width: 15,
-    //                         ),
-    //                         Text("Add Loading",
-    //                             style: GoogleFonts.roboto(
-    //                                 fontWeight: FontWeight.w500,
-    //                                 fontSize: 13.3,
-    //                                 color: Colors.white))
-    //                       ],
-    //                     ),
-    //                   ),
-    //                 ),
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //       const SizedBox(
-    //         height: 20,
-    //       ),
-    //       const Expanded(child: TableLoading())
-    //     ],
-    //   ),
-    // );
   }
 }

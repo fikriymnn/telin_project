@@ -156,10 +156,10 @@ class _CartExistingState extends State<CartExisting> {
                       height: 400,
                       child: Column(
                         children: [
-                          Flexible(
-                              child: TableCableCartExisting(
-                            idLoading: widget.idLoading,
-                          )),
+                          // Flexible(
+                          //     child: TableCableCartExisting(
+                          //   idLoading: widget.idLoading,
+                          // )),
                         ],
                       )),
                   const SizedBox(
