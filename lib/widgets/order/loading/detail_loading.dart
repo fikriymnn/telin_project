@@ -181,6 +181,9 @@ class _DetailLoadingState extends State<DetailLoading> {
                                           cancelBtnText: "Cancle",
                                           onConfirmBtnTap: () {
                                             addRequestData(widget.idLoading);
+                                            Navigator.of(context,
+                                                    rootNavigator: true)
+                                                .pop();
                                           });
                                     },
                                     child: Container(
@@ -212,6 +215,9 @@ class _DetailLoadingState extends State<DetailLoading> {
                                               onConfirmBtnTap: () {
                                                 submitDataLoading(
                                                     widget.idLoading);
+                                                Navigator.of(context,
+                                                        rootNavigator: true)
+                                                    .pop();
                                               });
                                         },
                                         child: Container(

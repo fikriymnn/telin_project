@@ -857,15 +857,13 @@ class _AddNewCableLargeState extends State<AddNewCableLarge> {
         _clearForm();
 
         QuickAlert.show(
-            context: context,
-            type: QuickAlertType.success,
-            text: 'Add Cable Success',
-            width: 400,
-            confirmBtnColor: Colors.green,
-            onConfirmBtnTap: () {
-              widget.refresh();
-              Navigator.pop(context, true);
-            });
+          context: context,
+          type: QuickAlertType.success,
+          text: 'Add Cable Success',
+          width: 400,
+          confirmBtnColor: Colors.green,
+        );
+        widget.refresh();
       } else {
         QuickAlert.show(
             context: context,

@@ -155,6 +155,7 @@ class _InputLengthCableState extends State<InputLengthCable> {
                               widget.idLoading,
                               _priceIdr.text,
                               double.parse(_priceIdr.text) * kurs);
+                          Navigator.pop(context, true);
                         }
                       },
                       child: Container(
@@ -314,15 +315,13 @@ class _InputLengthCableState extends State<InputLengthCable> {
       // FocusScope.of(context).unfocus();
 
       QuickAlert.show(
-          context: context,
-          type: QuickAlertType.success,
-          text: '$msg',
-          width: 400,
-          confirmBtnColor: Colors.green,
-          onConfirmBtnTap: () {
-            widget.refresh();
-            Navigator.pop(context, true);
-          });
+        context: context,
+        type: QuickAlertType.success,
+        text: '$msg',
+        width: 400,
+        confirmBtnColor: Colors.green,
+      );
+      widget.refresh();
     } catch (e) {
       QuickAlert.show(
           context: context,

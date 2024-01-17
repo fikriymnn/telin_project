@@ -137,10 +137,10 @@ class _TableNewMaterialState extends State<TableNewMaterial> {
           child: PaginatedDataTable2(
             sortColumnIndex: 0,
             source: RowSource(
-              data: filterData,
-              count: filterData!.length,
-              context: context,
-            ),
+                data: filterData,
+                count: filterData!.length,
+                context: context,
+                refresh: () => getDataNewMaterial()),
             rowsPerPage: 30,
             columnSpacing: 6,
             horizontalMargin: 6,
@@ -215,17 +215,18 @@ class RowSource extends DataTableSource {
   var data;
   final count;
   var context;
+  dynamic refresh;
 
-  RowSource({
-    required this.data,
-    required this.count,
-    required this.context,
-  });
+  RowSource(
+      {required this.data,
+      required this.count,
+      required this.context,
+      required this.refresh});
 
   @override
   DataRow? getRow(int index) {
     if (index < rowCount) {
-      return recentFileDataRow(data![index], context, index);
+      return recentFileDataRow(data![index], context, index, () => refresh());
     } else
       return null;
   }
@@ -240,7 +241,7 @@ class RowSource extends DataTableSource {
   int get selectedRowCount => 0;
 }
 
-DataRow recentFileDataRow(var data, context, index) {
+DataRow recentFileDataRow(var data, context, index, refresh) {
   bool id;
   if ((index + 1) % 2 == 1) {
     id = true;
@@ -350,10 +351,9 @@ DataRow recentFileDataRow(var data, context, index) {
                   type: QuickAlertType.confirm,
                   text: "Do you sure to delete this item",
                   width: 400,
-                  confirmBtnText: "Delete",
-                  cancelBtnText: "Cancle",
                   onConfirmBtnTap: () async {
                     var msg;
+                    Navigator.of(context, rootNavigator: true).pop();
                     try {
                       Response? response;
 
@@ -377,7 +377,7 @@ DataRow recentFileDataRow(var data, context, index) {
                           width: 400);
                     }
 
-                    navigationController.navigateTo(NewMaterialPageRoute);
+                    refresh();
                   });
             },
             child: Container(

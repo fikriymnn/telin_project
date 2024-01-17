@@ -335,11 +335,10 @@ class _DetailOffLoadingState extends State<DetailOffLoading> {
                                                 type: QuickAlertType.confirm,
                                                 text: "Do you sure to Submit?",
                                                 width: 400,
-                                                confirmBtnText: "Submit",
-                                                cancelBtnText: "Cancel",
                                                 onConfirmBtnTap: () {
                                                   submitDataOffLoading(
                                                       widget.idLoading);
+                                                  Navigator.pop(context, true);
                                                 });
                                           },
                                           child: Container(

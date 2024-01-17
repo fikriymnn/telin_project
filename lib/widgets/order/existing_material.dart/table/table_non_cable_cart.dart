@@ -26,17 +26,6 @@ List<DropdownMenuItem<String>> get dropdownItemsSystem {
   return menuItems;
 }
 
-List<DropdownMenuItem<String>> get dropdownItemsArmoring {
-  List<DropdownMenuItem<String>> menuItemsArmoring = [
-    const DropdownMenuItem(
-        value: "ARMORING TYPE", child: Text("ARMORING TYPE")),
-    const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-    const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-    const DropdownMenuItem(value: "England", child: Text("England")),
-  ];
-  return menuItemsArmoring;
-}
-
 String selectedValueSystem = "SYSTEM";
 String selectedValueArmoring = "ARMORING TYPE";
 
@@ -165,6 +154,110 @@ class _TableNonCableCartExistingState extends State<TableNonCableCartExisting> {
     ]);
   }
 
+  DataRow _resultsAPICart(index, data) {
+    bool id;
+    if ((index + 1) % 2 == 1) {
+      id = true;
+    } else {
+      id = false;
+    }
+    var dataQuery = data['kit'];
+    return DataRow(
+        color: MaterialStatePropertyAll(id == true ? activeTable : light),
+        cells: [
+          DataCell(Text("${index + 1}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['rak_number'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['item_name'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['part_number'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['serial_number'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['system']['system'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['weight_kg'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['qty'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['unit'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          // DataCell(Text("${dataQuery['unitPriceIdr'] ?? "-"}",
+          //     style: GoogleFonts.rubik(
+          //       fontSize: 14,
+          //       fontWeight: FontWeight.w400,
+          //       color: Colors.black,
+          //     ))),
+          // DataCell(Text("${dataQuery['unitPriceUsd'] ?? "-"}",
+          //     style: GoogleFonts.rubik(
+          //       fontSize: 14,
+          //       fontWeight: FontWeight.w400,
+          //       color: Colors.black,
+          //     ))),
+          // DataCell(Text("${dataQuery['keterangan'] ?? "-"}",
+          //     style: GoogleFonts.rubik(
+          //       fontSize: 14,
+          //       fontWeight: FontWeight.w400,
+          //       color: Colors.black,
+          //     ))),
+          DataCell(TextButton(
+              onPressed: () async {
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.confirm,
+                    text: "Do you sure to delete this item",
+                    width: 400,
+                    onConfirmBtnTap: () async {
+                      hapusDataSparekitExisting('${dataQuery['id']}');
+                      Navigator.pop(context, true);
+                    });
+              },
+              child: Text("Delete",
+                  style: GoogleFonts.rubik(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: active,
+                  )))),
+        ]);
+  }
+
   void hapusDataSparekitExisting(id) async {
     bool status;
     var msg;
@@ -178,10 +271,11 @@ class _TableNonCableCartExistingState extends State<TableNonCableCartExisting> {
           context: context,
           type: QuickAlertType.success,
           text: '$msg',
-          title: 'Peringatan',
+          title: 'Success',
           width: 400,
           barrierDismissible: true,
-          confirmBtnColor: Colors.red);
+          confirmBtnColor: Colors.green);
+      getDataLoading();
     } catch (e) {
       QuickAlert.show(
           context: context,
@@ -195,224 +289,183 @@ class _TableNonCableCartExistingState extends State<TableNonCableCartExisting> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 19.3),
-          child: SizedBox(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: Text("NON-CABLE",
-                style: GoogleFonts.montserrat(
-                  fontSize: 8.6,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                )),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("SPARE KIT",
+                    style: GoogleFonts.rubik(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: active,
+                    )),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 19.3, right: 126),
+          const SizedBox(
+            height: 10,
+          ),
+          Expanded(
             child: DataTable2(
                 columnSpacing: 6,
-                minWidth: 3000,
-                dataRowHeight: 30,
+                horizontalMargin: 6,
+                dataRowHeight: 52,
                 columns: [
                   DataColumn2(
-                      label: Text(
-                        'NO',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    fixedWidth: 50,
+                    label: Text('NO',
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 50),
+                        )),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "LOCATION",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    label: Text("LOCATION",
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                        )),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "ITEM NAME",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    label: Text("ITEM NAME",
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 220),
+                        )),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "PART NUMBER",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 200),
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("PART",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                        Text("NUMBER",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                      ],
+                    ),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "SERIAL NUMBER",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("SERIAL",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                        Text("NUMBER",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                      ],
+                    ),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "SYSTEM",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    label: Text("SYSTEM",
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                        )),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        '''WIGHT 
-(KG)''',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                    label: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("WEIGHT",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                        Text("(KG)",
+                            style: GoogleFonts.rubik(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            )),
+                      ],
+                    ),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "QTY",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    label: Text("QTY",
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 50),
+                        )),
+                  ),
                   DataColumn2(
-                      label: Text(
-                        "UNIT",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    label: Text("UNIT",
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                        )),
+                  ),
+                  // DataColumn2(
+                  //   label: Text("PRICE (IDR)",
+                  //       style: GoogleFonts.rubik(
+                  //         fontSize: 16,
+                  //         fontWeight: FontWeight.w600,
+                  //         color: Colors.black,
+                  //       )),
+                  // ),
+                  // DataColumn2(
+                  //   label: Text("PRICE (USD)",
+                  //       style: GoogleFonts.rubik(
+                  //         fontSize: 16,
+                  //         fontWeight: FontWeight.w600,
+                  //         color: Colors.black,
+                  //       )),
+                  // ),
+                  // DataColumn2(
+                  //   label: Text("REMARK",
+                  //       style: GoogleFonts.rubik(
+                  //         fontSize: 16,
+                  //         fontWeight: FontWeight.w600,
+                  //         color: Colors.black,
+                  //       )),
+                  // ),
                   DataColumn2(
-                      label: Text(
-                        "UNIT PRICE(IDR)",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
+                    label: Text("ACTION",
+                        style: GoogleFonts.rubik(
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "UNIT PRICE(USD)",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
-                  DataColumn2(
-                      label: Text(
-                        "ACTION",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                      fixedWidth: 100),
+                        )),
+                  )
                 ],
-                rows: List.generate(LoadingByIdSparekit.length,
-                    (index) => _resultsAPI(index, LoadingByIdSparekit[index]))
-
-                //  List<DataRow>.generate(
-                //     4,
-                //     (index) => DataRow(cells: [
-                //           DataCell(Text('1',
-                //               style: GoogleFonts.montserrat(
-                //                 fontSize: 8.6,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.black,
-                //               ))),
-                //           DataCell(Text('',
-                //               style: GoogleFonts.montserrat(
-                //                 fontSize: 8.6,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.black,
-                //               ))),
-                //           DataCell(Text('UJ COMMON ADHESV KIT',
-                //               style: GoogleFonts.montserrat(
-                //                 fontSize: 8.6,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.black,
-                //               ))),
-                //           DataCell(Text('KIT 15010',
-                //               style: GoogleFonts.montserrat(
-                //                 fontSize: 8.6,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.black,
-                //               ))),
-                //           DataCell(Text('4700051391',
-                //               style: GoogleFonts.montserrat(
-                //                 fontSize: 8.6,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.black,
-                //               ))),
-                //           DataCell(Text('LEMARI PENDINGIN',
-                //               style: GoogleFonts.montserrat(
-                //                 fontSize: 8.6,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.black,
-                //               ))),
-                //           DataCell(Text('1,00',
-                //               style: GoogleFonts.montserrat(
-                //                 fontSize: 8.6,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.black,
-                //               ))),
-                //           DataCell(Text('1',
-                //               style: GoogleFonts.montserrat(
-                //                 fontSize: 8.6,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.black,
-                //               ))),
-                //           DataCell(Text('1 unit',
-                //               style: GoogleFonts.montserrat(
-                //                 fontSize: 8.6,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.black,
-                //               ))),
-                //           DataCell(Text('SABANG - LHOK EXSESS DA',
-                //               style: GoogleFonts.montserrat(
-                //                 fontSize: 8.6,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.black,
-                //               ))),
-                //         ]))
-                ),
+                rows: List.generate(
+                    LoadingByIdSparekit.length,
+                    (index) =>
+                        _resultsAPICart(index, LoadingByIdSparekit[index]))),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

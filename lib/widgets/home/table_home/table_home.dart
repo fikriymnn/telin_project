@@ -8,7 +8,7 @@ import 'package:telin_project/widgets/home/detail_table_home.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 import 'package:pluto_grid_export/pluto_grid_export.dart' as pluto_grid_export;
 
-import '../../order/existing_material.dart/detail_turnover.dart';
+import '../../order/existing_material.dart/detail_existing.dart';
 
 class TableHome extends StatefulWidget {
   const TableHome({super.key});

@@ -56,6 +56,13 @@ class _NonCableReportState extends State<NonCableReport> {
       enableSorting: true,
     ),
     PlutoColumn(
+      title: 'Rak Number',
+      field: 'rak_number',
+      type: PlutoColumnType.text(),
+      enableContextMenu: true,
+      enableSorting: true,
+    ),
+    PlutoColumn(
       title: 'Part Number',
       field: 'part_number',
       type: PlutoColumnType.text(),
@@ -207,6 +214,9 @@ class _NonCableReportState extends State<NonCableReport> {
                       'item_name': PlutoCell(
                           value:
                               '${reportSparekits[index]['item_name'] == null ? "" : reportSparekits[index]['item_name']}'),
+                      'rak_number': PlutoCell(
+                          value:
+                              '${reportSparekits[index]['rak_number'] == null ? "" : reportSparekits[index]['rak_number']}'),
                       'part_number': PlutoCell(
                           value:
                               '${reportSparekits[index]['part_number'] == null ? "" : reportSparekits[index]['part_number']}'),

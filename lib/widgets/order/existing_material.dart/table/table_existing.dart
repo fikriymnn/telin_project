@@ -8,8 +8,8 @@ import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
 
-import 'package:telin_project/widgets/order/existing_material.dart/detail_turnover.dart';
-import 'package:telin_project/widgets/order/existing_material.dart/lakukan_off_loading.dart';
+import 'package:telin_project/widgets/order/existing_material.dart/detail_existing.dart';
+
 import 'package:telin_project/widgets/order/loading/detail_loading.dart';
 
 class TableExistingMaterial extends StatefulWidget {
@@ -34,106 +34,6 @@ class _TableExistingMaterialState extends State<TableExistingMaterial> {
     // TODO: implement initState
     getDataLoading();
     super.initState();
-  }
-
-  DataRow _resultsAPI(index, data) {
-    return DataRow(cells: [
-      DataCell(Text("${index + 1}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(Text("Makasar",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(
-          Text("${data['project_name'] == null ? "" : data['project_name']}",
-              style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ))),
-      DataCell(Text("${data['submitted_date_loading'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(Text("${data['submitted_date_offloading'] ?? "-"}",
-          style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ))),
-      DataCell(
-        InkWell(
-          onTap: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => EditLoading(
-            //               idLoading: data['_id'],
-            //             )));
-          },
-          child: Text('Detail Loading',
-              style: GoogleFonts.montserrat(
-                fontSize: 13.3,
-                fontWeight: FontWeight.w600,
-                color: Colors.black.withOpacity(0.5),
-              )),
-        ),
-      ),
-      DataCell(
-        InkWell(
-          onTap: () {
-            if (data['submitted_date_offloading'] != null) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          DetailOffLoading(idLoading: data['_id'])));
-            }
-          },
-          child: Text('Detail Off-Loading',
-              style: GoogleFonts.montserrat(
-                fontSize: 13.3,
-                fontWeight: FontWeight.w600,
-                color: Colors.black.withOpacity(0.5),
-              )),
-        ),
-      ),
-      DataCell(
-        InkWell(
-          onTap: () {
-            if (data['submitted_date_offloading'] == null) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => LakukanOffLoading(
-                            idOffLoading: data['_id'],
-                          )));
-            }
-          },
-          child: Container(
-            width: 150,
-            height: 19.46,
-            decoration: BoxDecoration(
-                color: dark, borderRadius: BorderRadius.circular(6)),
-            child: Center(
-                child: Text("Do Off-Loading",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
-                    ))),
-          ),
-        ),
-      )
-    ]);
   }
 
   void getDataLoading() async {
@@ -643,13 +543,13 @@ DataRow recentFileDataRow(var data, context, index) {
                       type: QuickAlertType.confirm,
                       text: "Do you sure to Off-loading item",
                       width: 400,
-                      confirmBtnText: "oke",
-                      cancelBtnText: "cancel",
                       onConfirmBtnTap: () async {
                         var msg;
                         Response? response;
 
                         var dio = Dio();
+
+                        Navigator.of(context, rootNavigator: true).pop();
                         try {
                           response = await dio.post(
                               '$changeStatusOffLoadingExistingDraft/${data.id}');
@@ -665,6 +565,13 @@ DataRow recentFileDataRow(var data, context, index) {
                             barrierDismissible: true,
                             confirmBtnColor: Colors.green,
                           );
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailOffLoading(
+                                  idLoading: data.id,
+                                ),
+                              ));
                           // Navigator.pushReplacement(
                           //     context,
                           //     MaterialPageRoute(

@@ -63,13 +63,12 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
       msg = response!.data['message'];
 
       QuickAlert.show(
-          context: context,
-          type: QuickAlertType.success,
-          text: "$msg",
-          width: 400,
-          onConfirmBtnTap: () {
-            getDataNewMaterial();
-          });
+        context: context,
+        type: QuickAlertType.success,
+        text: "Delete Success",
+        width: 400,
+      );
+      getDataNewMaterial();
     } catch (e) {
       QuickAlert.show(
           context: context,
@@ -175,10 +174,9 @@ class _DetailTableKitNewMaterialState extends State<DetailTableKitNewMaterial> {
                         type: QuickAlertType.confirm,
                         text: "Do you sure to delete this item",
                         width: 400,
-                        confirmBtnText: "Delete",
-                        cancelBtnText: "Cancle",
                         onConfirmBtnTap: () {
                           hapuskitNewMaterial('${data['id']}');
+                          Navigator.of(context, rootNavigator: true).pop();
                         });
                   },
                   child: Text("Delete",

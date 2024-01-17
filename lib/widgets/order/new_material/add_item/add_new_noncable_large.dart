@@ -1259,15 +1259,13 @@ class _AddNewNonCableLargeState extends State<AddNewNonCableLarge> {
         FocusScope.of(context).unfocus();
         _clearForm();
         QuickAlert.show(
-            context: context,
-            type: QuickAlertType.success,
-            text: 'Add Kit Success',
-            width: 400,
-            confirmBtnColor: Colors.green,
-            onConfirmBtnTap: () {
-              widget.refresh();
-              Navigator.pop(context, true);
-            });
+          context: context,
+          type: QuickAlertType.success,
+          text: 'Add Kit Success',
+          width: 400,
+          confirmBtnColor: Colors.green,
+        );
+        widget.refresh();
       } else {
         QuickAlert.show(
             context: context,

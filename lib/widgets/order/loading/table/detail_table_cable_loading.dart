@@ -173,10 +173,9 @@ class _DetailTableCableLoadingState extends State<DetailTableCableLoading> {
                         type: QuickAlertType.confirm,
                         text: "Do you sure to delete this item",
                         width: 400,
-                        confirmBtnText: "Delete",
-                        cancelBtnText: "Cancle",
                         onConfirmBtnTap: () {
                           hapusDataCableLoading('${data['id']}');
+                          Navigator.of(context, rootNavigator: true).pop();
                         });
                   },
                   child: Text("Delete",

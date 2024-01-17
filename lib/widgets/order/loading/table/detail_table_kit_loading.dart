@@ -168,10 +168,9 @@ class _DetailTableKitLoadingState extends State<DetailTableKitLoading> {
                         type: QuickAlertType.confirm,
                         text: "Do you sure to delete this item",
                         width: 400,
-                        confirmBtnText: "Delete",
-                        cancelBtnText: "Cancle",
                         onConfirmBtnTap: () {
                           hapuskitLoading('${dataQuery['id']}');
+                          Navigator.of(context, rootNavigator: true).pop();
                         });
                   },
                   child: Text("Delete",
@@ -242,7 +241,7 @@ class _DetailTableKitLoadingState extends State<DetailTableKitLoading> {
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
               ))),
-          DataCell(Text("${data['qty'] ?? "-"}",
+          DataCell(Text("${data['qty_taken'] ?? "-"}",
               style: GoogleFonts.rubik(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
@@ -280,10 +279,9 @@ class _DetailTableKitLoadingState extends State<DetailTableKitLoading> {
                         type: QuickAlertType.confirm,
                         text: "Do you sure to delete this item",
                         width: 400,
-                        confirmBtnText: "Delete",
-                        cancelBtnText: "Cancle",
                         onConfirmBtnTap: () {
                           hapuskitLoading('${dataQuery['id']}');
+                          Navigator.of(context, rootNavigator: true).pop();
                         });
                   },
                   child: Text("Delete",

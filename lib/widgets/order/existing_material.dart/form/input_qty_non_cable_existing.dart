@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:telin_project/api/configAPI.dart';
 import 'package:telin_project/constants/style.dart';
+import 'package:telin_project/widgets/custom_text_field.dart';
 
 class InputQtyNonCableExisting extends StatefulWidget {
   const InputQtyNonCableExisting(
@@ -26,6 +27,128 @@ class _InputQtyNonCableExistingState extends State<InputQtyNonCableExisting> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      content: Container(
+          width: 638,
+          height: 238,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15), color: Colors.white),
+          child: SingleChildScrollView(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 638,
+                height: 56,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15)),
+                    color: active),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Center(
+                    child: Text("Take Cable",
+                        style: GoogleFonts.rubik(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500,
+                          color: light,
+                        )),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Qty",
+                        style: GoogleFonts.rubik(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "(Available ${widget.qtyStock})",
+                        style: GoogleFonts.rubik(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black.withOpacity(0.38),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Center(
+                    child: CustomTextField(
+                        controller: qtycon, label: "Input Qty Returned")),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        if (qtycon == "") {
+                          QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.error,
+                              title: 'Peringatan',
+                              text: 'Qty Tidak Boleh Kosong',
+                              width: 400,
+                              confirmBtnColor: Colors.red);
+                        } else {
+                          addKitExisting(
+                              widget.idKit, widget.idLoading, qtycon.text);
+                          Navigator.pop(context, true);
+                        }
+                      },
+                      child: Container(
+                        width: 123,
+                        height: 33,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: const Color(0xffEC1D26)),
+                        child: Center(
+                          child: Text("TAKE",
+                              style: GoogleFonts.rubik(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: light,
+                              )),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ))),
+    );
+
+    AlertDialog(
       content: Container(
         width: 672.6,
         height: 350,
@@ -186,7 +309,7 @@ class _InputQtyNonCableExistingState extends State<InputQtyNonCableExisting> {
                     onTap: () {
                       addKitExisting(
                           widget.idKit, widget.idLoading, qtycon.text);
-                      Navigator.pop(context);
+                      Navigator.pop(context, true);
                     },
                     child: Container(
                       width: 90,

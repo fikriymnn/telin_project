@@ -175,10 +175,9 @@ class _DetailTableCableNewMaterialState
                         type: QuickAlertType.confirm,
                         text: "Do you sure to delete this item",
                         width: 400,
-                        confirmBtnText: "Delete",
-                        cancelBtnText: "Cancle",
                         onConfirmBtnTap: () {
                           hapusDataCableNewMaterial('${data['id']}');
+                          Navigator.of(context, rootNavigator: true).pop();
                         });
                   },
                   child: Text("Delete",
@@ -227,14 +226,12 @@ class _DetailTableCableNewMaterialState
       msg = response!.data['message'];
 
       QuickAlert.show(
-          context: context,
-          type: QuickAlertType.success,
-          text: "Delete Success",
-          width: 400,
-          onConfirmBtnTap: () {
-            getDataNewMaterial();
-            Navigator.pop(context, true);
-          });
+        context: context,
+        type: QuickAlertType.success,
+        text: "Delete Success",
+        width: 400,
+      );
+      getDataNewMaterial();
     } catch (e) {
       QuickAlert.show(
           context: context,

@@ -151,6 +151,106 @@ class _DetailTableNonCableOffLoadingState
         ]);
   }
 
+  DataRow _resultsAPIDraft(index, data) {
+    bool id;
+    if ((index + 1) % 2 == 1) {
+      id = true;
+    } else {
+      id = false;
+    }
+    var dataQuery = data;
+    return DataRow(
+        color: MaterialStatePropertyAll(id == true ? activeTable : light),
+        cells: [
+          DataCell(Text("${index + 1}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['rak_number'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['item_name'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['part_number'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['serial_number'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['system']['system'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['weight_kg'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${data['qty_taken'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+          DataCell(Text("${dataQuery['unit'] ?? "-"}",
+              style: GoogleFonts.rubik(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ))),
+
+          // DataCell(Text("${dataQuery['keterangan'] ?? "-"}",
+          //     style: GoogleFonts.rubik(
+          //       fontSize: 14,
+          //       fontWeight: FontWeight.w400,
+          //       color: Colors.black,
+          //     ))),
+          DataCell(widget.status == "Draft"
+              ? TextButton(
+                  onPressed: () async {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return InputQtyNonCableExisting(
+                            idKit: data['id'],
+                            idLoading: widget.idOffLoading,
+                            qtyStock: data['qty_taken'].toString(),
+                          );
+                        });
+                  },
+                  child: Text("TAKE",
+                      style: GoogleFonts.rubik(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: active,
+                      )))
+              : Text("",
+                  style: GoogleFonts.rubik(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: active,
+                  ))),
+        ]);
+  }
+
   DataRow _resultsAPIApproved(index, data) {
     bool id;
     if ((index + 1) % 2 == 1) {
@@ -404,7 +504,7 @@ class _DetailTableNonCableOffLoadingState
               rows: widget.status == "Draft"
                   ? List.generate(
                       offLoadingByIdKit.length,
-                      (index) => _resultsAPIApproved(
+                      (index) => _resultsAPIDraft(
                             index,
                             offLoadingByIdKit[index],
                           ))

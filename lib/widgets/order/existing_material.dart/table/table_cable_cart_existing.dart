@@ -236,6 +236,7 @@ class _TableCableCartExistingState extends State<TableCableCartExisting> {
                     cancelBtnText: "Cancle",
                     onConfirmBtnTap: () {
                       hapusDataCableExisting('${data['id']}');
+                      Navigator.pop(context, true);
                     });
               },
               child: Text("Delete",

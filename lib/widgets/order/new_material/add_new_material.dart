@@ -10,7 +10,6 @@ import 'package:telin_project/widgets/order/new_material/add_item/add_new_cable_
 import 'package:telin_project/widgets/order/new_material/add_item/add_new_noncable_large.dart';
 
 import 'package:telin_project/widgets/order/new_material/bast_invoice/bast_new_material.dart';
-import 'package:telin_project/widgets/order/new_material/cart_new_material.dart';
 
 class AddItemNewMaterial extends StatefulWidget {
   const AddItemNewMaterial(
