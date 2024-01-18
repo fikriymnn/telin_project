@@ -231,7 +231,7 @@ class _TableTank5State extends State<TableTank5> {
           'ARMORING TYPE',
           'CABLE TYPE',
           'MANUFACTURER',
-          'LEMGTH (METER)',
+          'LENGTH (METER)',
           'CORE TYPE',
           'TANK',
           'TANK LOCATION',
